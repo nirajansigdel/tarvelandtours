@@ -52,7 +52,7 @@ class ApplicationController extends Controller
             $photo = null;
         }
         $application = new Application();
-        $application->demand_id = $id;
+        $application->product_id = $id;
         $application->name = $request->input('name');
         $application->email = $request->input('email');
         $application->address = $request->input('address');

@@ -2,8 +2,8 @@
 @extends('frontend.layouts.master')
 @section('content')
 <div class="container my-5 shadow p-4">
-    <h1 class="mb-4 extralarger  greenhighlight">Application For {{ $demand->vacancy }}</h1>
-    <form id="applicationForm" action="{{ route('apply.store', ['id' => $demand->id]) }}" method="POST" enctype="multipart/form-data">
+    <h1 class="mb-4 extralarger  greenhighlight">Application For {{ $product->heading }}</h1>
+    <form id="applicationForm" action="{{ route('apply.store', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row mb-3">
             <div class="col-md-4">

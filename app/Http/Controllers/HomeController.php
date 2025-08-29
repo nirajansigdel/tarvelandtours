@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CoverImage;
-use App\Models\Demand;
+
 use App\Models\About;
 use App\Models\Service;
 use App\Models\Message;
@@ -32,9 +32,6 @@ class HomeController extends Controller
         // Fetch cover images
         $coverImages = CoverImage::all();
 
-        // Fetch demands
-        $demands = Demand::all();
-
         // Fetch about section
         $about = About::first();
 
@@ -48,6 +45,6 @@ class HomeController extends Controller
         $messages = Message::all();
 
         // Pass data to view
-        return view('home', compact('coverImages', 'demands', 'about', 'services', 'testimonials', 'messages'));
+        return view('home', compact('coverImages', 'about', 'services', 'testimonials', 'messages'));
     }
 }

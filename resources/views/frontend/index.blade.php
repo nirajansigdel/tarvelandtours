@@ -1,12 +1,13 @@
 
-@section('content')
+@extends('frontend.layouts.master')
 
+@section('content')
 
 @php
     use Illuminate\Pagination\LengthAwarePaginator;
 
-    function paginateDemandType($demands, $type, $perPage = 6, $pageParamName = 'page') {
-        $filtered = $demands->where('type', $type)->values();
+    function paginateProductType($products, $type, $perPage = 6, $pageParamName = 'page') {
+        $filtered = $products->where('type', $type)->values();
         $currentPage = request()->get($pageParamName, 1);
         $currentPage = max(1, (int) $currentPage);
 
@@ -21,15 +22,13 @@
         );
     }
 
-    $post = paginateDemandType($demands, 'cyc', 6, 'cyc_page');
-    $festivaloffer = paginateDemandType($demands, 'community_empowerment', 6, 'ce_page');
-    $Destinationcard = paginateDemandType($demands, 'nsep', 6, 'nsep_page');
-    $generaloffer = paginateDemandType($demands, 'frp', 6, 'frp_page');
-    $couplecard  = paginateDemandType($demands, 'bamboo_project', 6, 'bamboo_page');
-    $groupcard = paginateDemandType($demands, 'child_care_home', 6, 'cch_page');
+    $post = paginateProductType($products, 'cyc', 6, 'cyc_page');
+    $festivaloffer = paginateProductType($products, 'community_empowerment', 6, 'ce_page');
+    $Destinationcard = paginateProductType($products, 'nsep', 6, 'nsep_page');
+    $generaloffer = paginateProductType($products, 'frp', 6, 'frp_page');
+    $couplecard  = paginateProductType($products, 'bamboo_project', 6, 'bamboo_page');
+    $groupcard = paginateProductType($products, 'child_care_home', 6, 'cch_page');
 @endphp
-
-@extends('frontend.layouts.master')
 @include("frontend.includes.herosection")
 @include("frontend.includes.banner")
 @include("frontend.includes.offer")

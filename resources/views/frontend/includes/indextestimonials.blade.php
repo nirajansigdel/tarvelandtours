@@ -7,9 +7,9 @@
 
       </div>
     </div>
-    <div class="row g-4 justify-content-center">
+    <div class="testimonial-carousel">
       @foreach($testimonials as $testimonial)
-      <div class="col-md-4">
+      <div class="px-2">
       <div class="bg-white p-4 text-center shadow-sm rounded">
         <img src="{{ asset('uploads/testimonial/' . $testimonial->image) }}" alt="{{ $testimonial->name }}"
         class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">

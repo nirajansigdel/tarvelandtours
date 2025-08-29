@@ -138,7 +138,7 @@
     </div>
 @foreach ($generaloffer as $gnoffer)
 <p>{{($gnoffer->heading) }}</p>
-<img src="{{ asset('uploads/demands/' . $gnoffer->image) }}" alt="Service Image" />
+<img src="{{ asset('uploads/products/' . $gnoffer->image) }}" alt="Service Image" />
 <p>{{($gnoffer->subtitle) }}</p>
 <p>{{($gnoffer->people) }}</p>
 <p>{{($gnoffer->transporta) }}</p>
@@ -160,7 +160,7 @@
             <div class="service-card">
               <div class="service-image">
                 @if ($gnoffer->image)
-                  <img src="{{ asset('uploads/demands/' . $gnoffer->image) }}" alt="Service Image" />
+                  <img src="{{ asset('uploads/products/' . $gnoffer->image) }}" alt="Service Image" />
                 @else
                   <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" alt="Default Image" />
                 @endif
@@ -180,7 +180,7 @@
             <div class="service-card">
               <div class="service-image">
                 @if ($service->image)
-                  <img src="{{ asset('uploads/demands/' . $service->image) }}" alt="Service Image" />
+                  <img src="{{ asset('uploads/products/' . $service->image) }}" alt="Service Image" />
                 @else
                   <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" alt="Default Image" />
                 @endif

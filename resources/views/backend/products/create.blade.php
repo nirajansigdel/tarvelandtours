@@ -1,158 +1,196 @@
 @extends('backend.layouts.master')
 
 @section('content')
-<div class="admin-container">
-    <div class="admin-content">
-        <!-- Page Header -->
-        <div class="page-header">
-            <h1 class="page-title">{{ $page_title ?? 'Add New Product' }}</h1>
-            <a href="{{ route('admin.products.index') }}" class="back-button">
-                <i class="fa fa-arrow-left"></i> Back
-            </a>
-        </div>
-
-        <!-- Alert Messages -->
-        @if (Session::has('success'))
-            <div class="alert alert-success">
-                {{ Session::get('success') }}
-            </div>
-        @endif
-
-        @if (Session::has('error'))
-            <div class="alert alert-danger">
-                {{ Session::get('error') }}
-            </div>
-        @endif
-
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.products.index') }}">Products</a></li>
-                <li class="breadcrumb-item active">{{ $page_title ?? 'Add New Product' }}</li>
-            </ol>
-        </nav>
-
-        <!-- Form -->
-        <div class="form-container">
-            <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data" id="crudForm">
-                @csrf
-                
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">
-                        Add New Product
-                    </div>
+                    <div class="card-header">Create Product</div>
+
                     <div class="card-body">
-                        <div class="form-group">
-                            <label class="form-label">
-                                Product Name <span class="required">*</span>
-                            </label>
-                            <input type="text" 
-                                   name="name" 
-                                   class="form-control @error('name') is-invalid @enderror" 
-                                   placeholder="Enter product name" 
-                                   value="{{ old('name') }}"
-                                   required>
-                            @error('name')
-                                <div class="error-message">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        @if (Session::has('success'))
+                            <div class="alert alert-success">{{ Session::get('success') }}</div>
+                        @endif
 
-                        <div class="form-group">
-                            <label class="form-label">
-                                Category <span class="required">*</span>
-                            </label>
-                            <select name="category" 
-                                    class="form-control @error('category') is-invalid @enderror"
-                                    required>
-                                <option value="">Select Category</option>
-                                <option value="electronics" {{ old('category') == 'electronics' ? 'selected' : '' }}>Electronics</option>
-                                <option value="clothing" {{ old('category') == 'clothing' ? 'selected' : '' }}>Clothing</option>
-                                <option value="books" {{ old('category') == 'books' ? 'selected' : '' }}>Books</option>
-                                <option value="home" {{ old('category') == 'home' ? 'selected' : '' }}>Home & Garden</option>
-                            </select>
-                            @error('category')
-                                <div class="error-message">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                        @endif
 
-                        <div class="form-group">
-                            <label class="form-label">
-                                Price <span class="required">*</span>
-                            </label>
-                            <input type="number" 
-                                   name="price" 
-                                   class="form-control @error('price') is-invalid @enderror" 
-                                   placeholder="0.00" 
-                                   step="0.01"
-                                   min="0"
-                                   value="{{ old('price') }}"
-                                   required>
-                            @error('price')
-                                <div class="error-message">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
+                            @csrf
 
-                        <div class="form-group">
-                            <label class="form-label">Product Image</label>
-                            <input type="file" 
-                                   name="image" 
-                                   class="form-control @error('image') is-invalid @enderror"
-                                   onchange="previewImage(event, 'preview')"
-                                   accept="image/*">
-                            @error('image')
-                                <div class="error-message">{{ $message }}</div>
-                            @enderror
-                            <img id="preview" class="image-preview" style="display: none;">
-                        </div>
+                            <div class="form-group">
+                                <label for="heading">Heading</label>
+                                <input type="text" name="heading" id="heading" class="form-control">
+                            </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Description</label>
-                            <textarea name="description" 
-                                      class="form-control @error('description') is-invalid @enderror"
-                                      rows="4"
-                                      placeholder="Enter product description">{{ old('description') }}</textarea>
-                            @error('description')
-                                <div class="error-message">{{ $message }}</div>
-                            @enderror
-                        </div>
+                            <div class="form-group">
+                                <label for="subtitle">Subtitle</label>
+                                <input type="text" name="subtitle" id="subtitle" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="package">Pack Rate</label>
+                                <input type="text" name="package" id="package" class="form-control" />
+                            </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Status</label>
-                            <select name="status" 
-                                    class="form-control @error('status') is-invalid @enderror">
-                                <option value="1" {{ old('status', '1') == '1' ? 'selected' : '' }}>Active</option>
-                                <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactive</option>
-                            </select>
-                            @error('status')
-                                <div class="error-message">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-save"></i> Create Product
-                        </button>
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">
-                            <i class="fas fa-times"></i> Cancel
-                        </a>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" name="location" id="location" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="transportation">Type of Transportation</label>
+                                <input type="text" name="transportation" id="transportation" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date of Travel / Event</label>
+                                <input type="date" name="date" id="date" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="duration">Duration (Days/Nights)</label>
+                                <input type="text" name="duration" id="duration" class="form-control"
+                                    placeholder="e.g., 3 Days / 2 Nights" />
+                            </div>
+                            <div class="form-group">
+                                <label for="people">No. of People</label>
+                                <input type="number" name="people" id="people" class="form-control" min="1" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Includes</label>
+                                <ul id="includes-list" class="list-unstyled">
+                                    <li class="mb-2 d-flex align-items-center">
+                                        <input type="text" name="includestuff[]" class="form-control me-2"
+                                            placeholder="Enter included item" />
+                                        <button type="button" class="btn btn-success add-include">+</button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <textarea name="content" id="content" class="form-control summernote" rows="5"></textarea>
+                            </div>
+
+                            <div class="form-group pt-3">
+                                <label for="image">Image</label>
+                                <input type="file" name="image" id="image" class="form-control-file"
+                                    onchange="previewImage(event)">
+                                <div id="imagePreview"></div>
+                            </div>
+                            {{-- Project Type Selection --}}
+                            <div class="form-group">
+                                <label>Project Categories</label>
+                                <ul style="list-style-type: none; padding-left: 0;">
+                                    <li>
+                                                                <label><input type="checkbox" class="product-type" value="cyc"
+                            name="product_types[]">Post</label>
+                                    </li>
+                                    <li>
+                                                                <label><input type="checkbox" class="product-type" value="nsep"
+                            name="product_types[]">Destination</label>
+                                    </li>
+                                    <li>
+                                                                <label><input type="checkbox" class="product-type" value="frp"
+                            name="product_types[]">General</label>
+                                    </li>
+                                    <li>
+                                                                <label><input type="checkbox" class="product-type" value="community_empowerment"
+                            name="product_types[]">Festival</label>
+                                    </li>
+                                    <li>
+                                                                <label><input type="checkbox" class="product-type" value="bamboo_project"
+                            name="product_types[]">Couple</label>
+                                    </li>
+                                    <li>
+                                                                <label><input type="checkbox" class="product-type" value="child_care_home"
+                            name="product_types[]">Group</label>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </form>
+
+                        {{-- Related Products Display --}}
+                        <hr>
+                        <div id="related-products-container"></div>
+
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Image preview function
-    function previewImage(event, previewId) {
-        const reader = new FileReader();
-        reader.onload = function() {
-            const preview = document.getElementById(previewId);
-            preview.src = reader.result;
-            preview.style.display = 'block';
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
-@endsection 
+    {{-- Scripts --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const includesList = document.getElementById("includes-list");
+
+            includesList.addEventListener("click", function (e) {
+                if (e.target.classList.contains("add-include")) {
+                    const newLi = document.createElement("li");
+                    newLi.classList.add("mb-2", "d-flex", "align-items-center");
+                    newLi.innerHTML = `
+                        <input type="text" name="includestuff[]" class="form-control me-2" placeholder="Enter included item" />
+                        <button type="button" class="btn btn-danger remove-include">−</button>
+                    `;
+                    includesList.appendChild(newLi);
+                }
+
+                if (e.target.classList.contains("remove-include")) {
+                    e.target.closest("li").remove();
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('imagePreview');
+
+            while (preview.firstChild) {
+                preview.removeChild(preview.firstChild);
+            }
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '200px';
+                    img.style.maxHeight = '200px';
+                    preview.appendChild(img);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 200,
+                focus: true
+            });
+
+            $('.product-type').on('change', function () {
+                let selectedTypes = [];
+
+                $('.product-type:checked').each(function () {
+                    selectedTypes.push($(this).val());
+                });
+
+                if (selectedTypes.length > 0) {
+                    // Placeholder for potential AJAX if needed in future
+                } else {
+                    $('#related-products-container').empty();
+                }
+            });
+        });
+    </script>
+@endsection
+
+
+
+

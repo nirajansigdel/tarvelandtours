@@ -6,12 +6,13 @@
 
 <style>
   .navbar {
-    background: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 1);
-    position: absolute;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    position: sticky;
     left: 0;
     width: 100%;
     top: 0;
+    z-index: 1020;
   }
 
   .lang-option {
@@ -62,7 +63,7 @@
   }
 
   .navbar-nav .nav-link {
-    color: white !important;
+    color: #111 !important;
     font-size: 18px;
     text-transform: capitalize;
     margin: 0 0.7rem;
@@ -178,8 +179,7 @@
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="{{ route('About') }}">About</a></li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="{{ route('Gallery') }}">Gallery</a></li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href=" {{ route('Contact') }}">Contact</a></li>
-         @php $demandType = $demandType ?? 'cyc';  @endphp
-        <li class="nav-item"><a class="nav-link text-dark fw-medium" href=" {{ route('projects.show', $demandType) }}">Offer</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="{{ route('products.index.front') }}">Offer</a></li>
 
         <li class="nav-item dropdown">
           <a class="nav-link text-dark fw-medium" href="#" data-bs-toggle="dropdown">Updates</a>
@@ -241,7 +241,7 @@
         <a class="nav-link" href="{{ route('Gallery') }}">Gallery</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('projects.show', $demandType) }}">offer</a>
+        <a class="nav-link" href="{{ route('products.index.front') }}">offer</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('Service') }}">Our Service</a>

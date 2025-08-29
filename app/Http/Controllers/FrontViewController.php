@@ -9,7 +9,7 @@ use App\Models\About;
 // use App\Models\Service;
 
 use App\Models\Course;
-use App\Models\Demand;
+
 use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Service;
@@ -38,15 +38,14 @@ class FrontViewController extends Controller
         $blogs = BlogPostsCategory::latest()->get()->take(3);
         $testimonials = Testimonial::latest()->get()->take(10);
         $coverImages = CoverImage::all();
-        $demands = Demand::latest()->get()->take(6);
         $message = Message::latest()->first();
         $firstCategory = Category::first();
         $posts = $firstCategory ? $firstCategory->posts()->latest()->take(6)->get() : collect([]);
         $clients = Client::latest()->get();
         $clientMessages = ClientMessage::latest()->get();
-        $latestVacancies = Demand::where('to_date', '>=', Carbon::today())->get();
         $images = PhotoGallery::latest()->get();
         $notifications = Notification::where('status', 1)->latest()->get();
+        $products = \App\Models\Product::latest()->get();
     
     
         return view('frontend.index', compact(
@@ -59,14 +58,13 @@ class FrontViewController extends Controller
             'coverImages',
             'message',
             'clients',
-            'demands',
             'about',
             'posts',
             'firstCategory',
             'clientMessages',
-            'latestVacancies',
             'images',
             'notifications',
+            'products',
           
 
         ));

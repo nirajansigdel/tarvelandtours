@@ -5,7 +5,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Demand</th>
+                                            <th>Product</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Address</th>
@@ -22,7 +22,7 @@
                 @foreach ($applications as $application)
                     <tr data-application-id="{{ $application->id }}">
                     <tr data-application-id="{{ $application->id }}">
-                        <td>{{ $application->demand->vacancy }}</td>
+                                                    <td>{{ $application->product->heading }}</td>
                         <td>{{ $application->name }}</td>
                         <td>{{ $application->email }}</td>
                         <td>{{ $application->address }}</td>

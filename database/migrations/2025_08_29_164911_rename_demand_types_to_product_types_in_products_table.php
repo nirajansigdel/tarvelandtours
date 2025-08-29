@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('demands', function (Blueprint $table) {
-            //
+        Schema::table('products', function (Blueprint $table) {
+            $table->renameColumn('demand_types', 'product_types');
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('demands', function (Blueprint $table) {
-            //
+        Schema::table('products', function (Blueprint $table) {
+            $table->renameColumn('product_types', 'demand_types');
         });
     }
 };

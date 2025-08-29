@@ -49,13 +49,13 @@
 
     <!-- Project Cards -->
     <div class="row g-5">
-      @foreach ($demands->where('type', 'cyc')->take(2) as $course)
+      @foreach ($products->where('type', 'cyc')->take(2) as $course)
         <div class="col-md-4">
           <div class="position-relative card-hover-effect project-card">
 
             <!-- Project Image -->
             @if ($course->image)
-              <img src="{{ asset('uploads/demands/' . $course->image) }}"
+              <img src="{{ asset('uploads/products/' . $course->image) }}"
                    class="img-fluid w-100 rounded"
                    alt="Project Image"
                    style="height: 280px; object-fit: cover;">

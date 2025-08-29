@@ -110,7 +110,7 @@
             {!! \Illuminate\Support\Str::limit(strip_tags($couple->content, '<p><br>'), 200) !!}
           </p>
           <div class="custom-overlay-container shadow">
-            <img src="{{ asset('uploads/demands/' . $couple->image) }}" alt="Service Image">
+                            <img src="{{ asset('uploads/products/' . $couple->image) }}" alt="Service Image">
             <div class="custom-overlay">
               <div class="overlay-text">Discount up 50%</div>
               <button class="overlay-btn">Book Now</button>
@@ -122,7 +122,7 @@
       @foreach ($groupcard->take(1) as $group)
         <div class="col-md-6">
           <div class="custom-overlay-container shadow">
-            <img src="{{ asset('uploads/demands/' . $group->image) }}" alt="Service Image">
+                            <img src="{{ asset('uploads/products/' . $group->image) }}" alt="Service Image">
             <div class="custom-overlay">
               <div class="overlay-text">Discount up 50%</div>
               <button class="overlay-btn">Book Now</button>
