@@ -15,7 +15,6 @@ class Application extends Model
         'email',
         'phone_no',
         'address',
-        
     ];
 
         public function product()

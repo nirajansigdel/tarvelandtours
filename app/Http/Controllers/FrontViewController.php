@@ -45,7 +45,7 @@ class FrontViewController extends Controller
         $clientMessages = ClientMessage::latest()->get();
         $images = PhotoGallery::latest()->get();
         $notifications = Notification::where('status', 1)->latest()->get();
-        $products = \App\Models\Product::latest()->get();
+        $products = \App\Models\Product::where('status', true)->latest()->get();
     
     
         return view('frontend.index', compact(

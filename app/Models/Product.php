@@ -17,6 +17,8 @@ class Product extends Model
         'duration',
         'people',
         'package',
+        'original_price',
+        'discounted_price',
         'location',
         'transportation',
         'content',

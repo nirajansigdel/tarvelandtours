@@ -78,7 +78,9 @@
 
     <!-- Right Image -->
     <div class="col-lg-5 text-center">
-      <img src="{{ asset('image/destin.jpg') }}" alt="" class="service-img">
+      <div class="service-img bg-light d-flex align-items-center justify-content-center">
+    <i class="fas fa-mountain fa-2x text-muted"></i>
+</div>
     </div>
   </div>
 </div>

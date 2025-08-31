@@ -41,7 +41,8 @@ use App\Http\Controllers\{
     NotificationController,
     CareerController,
     CareerApplicationController,
-    ProductController
+    ProductController,
+    UserDetailController
 };
 
 /*
@@ -111,6 +112,8 @@ Route::get('/products', [SingleController::class, 'render_products'])->name('pro
 Route::get('/products/{id}', [SingleController::class, 'render_singleProduct'])->name('products.detail');
 
 
+
+
 // Extra static pages (optional)
 Route::get('/career', [SingleController::class, 'render_career'])->name('career');
 Route::get('/volunteer', [SingleController::class, 'render_volunteer'])->name('volunteer');
@@ -162,6 +165,7 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
         'products' => ProductController::class,
         'notifications' => NotificationController::class,
         'careers' => CareerController::class,
+        // 'userdetails' => UserDetailController::class, // Simplified - only display data
     ]);
 
     // Notifications Status Toggle
@@ -176,10 +180,14 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
     Route::patch('/career-applications/{application}/update-status', [CareerApplicationController::class, 'updateStatus'])->name('career-applications.update-status');
     Route::delete('/career-applications/{application}', [CareerApplicationController::class, 'destroy'])->name('career-applications.destroy');
 
-    // Applications Management
+    // Applications Management (now using userdetails)
     Route::get('/applications', [ApplicationController::class, 'adminIndex'])->name('applications.index');
     Route::post('/applications/{application}/accept', [ApplicationController::class, 'accept'])->name('applications.accept');
     Route::post('/applications/{application}/reject', [ApplicationController::class, 'reject'])->name('applications.reject');
+
+    // User Details Management (Read Only)
+    Route::get('/userdetails', [UserDetailController::class, 'index'])->name('userdetails.index');
+    Route::get('/userdetails/{id}', [UserDetailController::class, 'show'])->name('userdetails.show');
 });
 
 // ========================

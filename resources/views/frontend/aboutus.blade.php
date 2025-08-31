@@ -298,7 +298,9 @@
 
             <!-- Right Image -->
             <div class="col-lg-5 text-center">
-                <img src="{{ asset('image/destin.jpg') }}" alt="About Image" class="service-img img-fluid">
+                <div class="service-img img-fluid bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+    <i class="fas fa-mountain fa-3x text-muted"></i>
+</div>
             </div>
         </div>
     </div>
@@ -366,7 +368,7 @@
     <style>
         .contactsection {
             position: relative;
-            background-image: url("{{ asset('image/destin.jpg') }}");
+            background-color: #f8f9fa;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;

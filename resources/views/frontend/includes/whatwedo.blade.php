@@ -22,7 +22,9 @@
       <!-- Left: Full-height image with play button -->
       <div class="col-lg-6 position-relative d-flex align-items-center">
         <div class="w-100 h-100 position-relative">
-          <img src="{{ asset('image/destin.jpg') }}" alt="Adventure" class="w-100 h-100 object-fit-cover">
+          <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+    <i class="fas fa-mountain fa-3x text-muted"></i>
+</div>
           <!-- Play Button -->
           <a href="#" class="position-absolute top-50 start-50 translate-middle btn btn-warning rounded-circle d-flex align-items-center justify-content-center play-button shadow">
             <i class="fas fa-play text-white"></i>

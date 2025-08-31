@@ -22,12 +22,19 @@
             @foreach($products as $product)
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 shadow-sm">
+                        <!-- Product Image -->
                         @if($product->image)
                             <img src="{{ asset('uploads/products/' . $product->image) }}" 
                                  class="card-img-top" 
-                                 alt="{{ $product->heading }}"
+                                 alt="{{ $product->heading ?? 'Product Image' }}"
+                                 style="height: 200px; object-fit: cover;">
+                        @else
+                            <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" 
+                                 class="card-img-top" 
+                                 alt="Default Product Image"
                                  style="height: 200px; object-fit: cover;">
                         @endif
+
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->heading ?? 'Untitled Product' }}</h5>
                             @if($product->subtitle)
@@ -65,20 +72,50 @@
                                          @foreach($product->product_types as $type)
                                              @php
                                                  $categoryLabels = [
-                                                     'cyc' => 'Post',
-                                                     'nsep' => 'Destination', 
-                                                     'frp' => 'General',
-                                                     'community_empowerment' => 'Festival',
-                                                     'bamboo_project' => 'Couple',
-                                                     'child_care_home' => 'Group'
+                                                     'Post' => 'Post',
+                                                     'Destination' => 'Destination', 
+                                                     'General' => 'General',
+                                                     'Festival' => 'Festival',
+                                                     'Couple' => 'Couple',
+                                                     'Group' => 'Group'
                                                  ];
                                                  $label = $categoryLabels[$type] ?? ucfirst(str_replace('_', ' ', $type));
                                              @endphp
-                                             <span class="badge bg-primary me-1 mb-1">{{ $label }}</span>
+                                             <span class="badge me-1 mb-1" style="background-color: #495057; color: white; font-weight: bold;">{{ $label }}</span>
                                          @endforeach
                                      </div>
                                  </div>
-                             @endif                            
+                             @endif
+                            
+                            {{-- Pricing Information --}}
+                            @if($product->original_price || $product->discounted_price)
+                                <div class="mt-3">
+                                    <h6 class="text-primary mb-2">Package Price:</h6>
+                                    @if($product->original_price && $product->discounted_price)
+                                        <div class="d-flex align-items-center gap-2 mb-1">
+                                            <span class="text-decoration-line-through text-muted" style="font-size: 0.9rem;">
+                                                NPR {{ number_format($product->original_price) }}
+                                            </span>
+                                            <span class="fw-bold text-success" style="font-size: 1.1rem;">
+                                                NPR {{ number_format($product->discounted_price) }}
+                                            </span>
+                                        </div>
+                                        <small class="text-success">
+                                            <i class="fas fa-percentage"></i> 
+                                            {{ round((($product->original_price - $product->discounted_price) / $product->original_price) * 100) }}% OFF
+                                        </small>
+                                    @elseif($product->discounted_price)
+                                        <span class="fw-bold text-success" style="font-size: 1.1rem;">
+                                            NPR {{ number_format($product->discounted_price) }}
+                                        </span>
+                                    @elseif($product->original_price)
+                                        <span class="fw-bold text-primary" style="font-size: 1.1rem;">
+                                            NPR {{ number_format($product->original_price) }}
+                                        </span>
+                                    @endif
+                                </div>
+                            @endif
+                            
                         </div>
                         <div class="card-footer bg-transparent">
                             <a href="{{ route('products.detail', $product->id) }}" 

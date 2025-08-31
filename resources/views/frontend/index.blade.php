@@ -7,7 +7,21 @@
     use Illuminate\Pagination\LengthAwarePaginator;
 
     function paginateProductType($products, $type, $perPage = 6, $pageParamName = 'page') {
-        $filtered = $products->where('type', $type)->values();
+        $filtered = $products->filter(function($product) use ($type) {
+            $productTypes = $product->product_types;
+            
+            // Handle case where product_types is a JSON string
+            if (is_string($productTypes)) {
+                $productTypes = json_decode($productTypes, true) ?? [];
+            }
+            
+            // Ensure it's an array
+            if (!is_array($productTypes)) {
+                $productTypes = [];
+            }
+            
+            return in_array($type, $productTypes);
+        })->values();
         $currentPage = request()->get($pageParamName, 1);
         $currentPage = max(1, (int) $currentPage);
 
@@ -22,12 +36,12 @@
         );
     }
 
-    $post = paginateProductType($products, 'cyc', 6, 'cyc_page');
-    $festivaloffer = paginateProductType($products, 'community_empowerment', 6, 'ce_page');
-    $Destinationcard = paginateProductType($products, 'nsep', 6, 'nsep_page');
-    $generaloffer = paginateProductType($products, 'frp', 6, 'frp_page');
-    $couplecard  = paginateProductType($products, 'bamboo_project', 6, 'bamboo_page');
-    $groupcard = paginateProductType($products, 'child_care_home', 6, 'cch_page');
+    $post = paginateProductType($products, 'Post', 6, 'cyc_page');
+    $festivaloffer = paginateProductType($products, 'Festival', 6, 'ce_page');
+    $Destinationcard = paginateProductType($products, 'Destination', 6, 'nsep_page');
+    $generaloffer = paginateProductType($products, 'General', 6, 'frp_page');
+    $couplecard  = paginateProductType($products, 'Couple', 6, 'bamboo_page');
+    $groupcard = paginateProductType($products, 'Group', 6, 'cch_page');
 @endphp
 @include("frontend.includes.herosection")
 @include("frontend.includes.banner")
@@ -128,13 +142,6 @@
             event.preventDefault(); 
             var form = $(this);
             var formData = new FormData(this);
-            var recaptchaResponse = grecaptcha.getResponse();
-
-
-            if (recaptchaResponse.length === 0) {
-                alert("Please tick the reCAPTCHA box before submitting.");
-                return;
-            }
             $.ajax({
                 url: form.attr('action'),
                 type: 'POST',

@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->string('duration')->nullable();
             $table->integer('people')->nullable();
             $table->string('package')->nullable();
+            $table->decimal('original_price', 10, 2)->nullable();
+            $table->decimal('discounted_price', 10, 2)->nullable();
             $table->string('location')->nullable();
             $table->string('transportation')->nullable();
             $table->text('content')->nullable();

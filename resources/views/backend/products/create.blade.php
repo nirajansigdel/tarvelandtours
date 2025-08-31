@@ -33,6 +33,21 @@
                                 <input type="text" name="package" id="package" class="form-control" />
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="original_price">Original Price (NPR)</label>
+                                        <input type="number" name="original_price" id="original_price" class="form-control" step="0.01" min="0" placeholder="e.g., 20000" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="discounted_price">Discounted Price (NPR)</label>
+                                        <input type="number" name="discounted_price" id="discounted_price" class="form-control" step="0.01" min="0" placeholder="e.g., 15000" />
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="location">Location</label>
                                 <input type="text" name="location" id="location" class="form-control" />
@@ -81,28 +96,28 @@
                             <div class="form-group">
                                 <label>Project Categories</label>
                                 <ul style="list-style-type: none; padding-left: 0;">
-                                    <li>
-                                                                <label><input type="checkbox" class="product-type" value="cyc"
+                                                                        <li>
+                                        <label><input type="checkbox" class="product-type" value="Post"
                             name="product_types[]">Post</label>
                                     </li>
                                     <li>
-                                                                <label><input type="checkbox" class="product-type" value="nsep"
+                                        <label><input type="checkbox" class="product-type" value="Destination"
                             name="product_types[]">Destination</label>
                                     </li>
                                     <li>
-                                                                <label><input type="checkbox" class="product-type" value="frp"
+                                        <label><input type="checkbox" class="product-type" value="General"
                             name="product_types[]">General</label>
                                     </li>
                                     <li>
-                                                                <label><input type="checkbox" class="product-type" value="community_empowerment"
+                                        <label><input type="checkbox" class="product-type" value="Festival"
                             name="product_types[]">Festival</label>
                                     </li>
                                     <li>
-                                                                <label><input type="checkbox" class="product-type" value="bamboo_project"
+                                        <label><input type="checkbox" class="product-type" value="Couple"
                             name="product_types[]">Couple</label>
                                     </li>
                                     <li>
-                                                                <label><input type="checkbox" class="product-type" value="child_care_home"
+                                        <label><input type="checkbox" class="product-type" value="Group"
                             name="product_types[]">Group</label>
                                     </li>
 

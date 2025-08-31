@@ -5,7 +5,7 @@
 
   <style>
     .bg-hero {
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('{{ asset('image/destin.jpg') }}') center center / cover no-repeat fixed;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), #f8f9fa;
       height: 100vh;
     }
 

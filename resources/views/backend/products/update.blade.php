@@ -1,4 +1,4 @@
-@extends('backend.layouts.master')
+is revert @extends('backend.layouts.master')
 
 @section('content')
     <div class="container">
@@ -32,6 +32,21 @@
                             <div class="form-group">
                                 <label for="package">Pack Rate</label>
                                 <input type="text" name="package" id="package" class="form-control" value="{{ old('package', $product->package) }}" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="original_price">Original Price (NPR)</label>
+                                        <input type="number" name="original_price" id="original_price" class="form-control" step="0.01" min="0" placeholder="e.g., 20000" value="{{ old('original_price', $product->original_price) }}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="discounted_price">Discounted Price (NPR)</label>
+                                        <input type="number" name="discounted_price" id="discounted_price" class="form-control" step="0.01" min="0" placeholder="e.g., 15000" value="{{ old('discounted_price', $product->discounted_price) }}" />
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -87,7 +102,7 @@
                                 <label>Project Categories</label>
                                 <ul style="list-style-type: none; padding-left: 0;">
                                                                          @php $types = is_array($product->product_types) ? $product->product_types : (json_decode($product->product_types, true) ?? []); @endphp
-                                                                         @foreach(['cyc' => 'Post','nsep' => 'Destination','frp' => 'General','community_empowerment' => 'Festival','bamboo_project' => 'Couple','child_care_home' => 'Group'] as $val => $label)
+                                                                         @foreach(['Post' => 'Post','Destination' => 'Destination','General' => 'General','Festival' => 'Festival','Couple' => 'Couple','Group' => 'Group'] as $val => $label)
                                     <li>
                                                                                  <label><input type="checkbox" class="product-type" value="{{ $val }}" name="product_types[]" {{ in_array($val, $types) ? 'checked' : '' }}>{{ $label }}</label>
                                     </li>
