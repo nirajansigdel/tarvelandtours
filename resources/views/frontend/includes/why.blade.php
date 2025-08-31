@@ -1,12 +1,11 @@
 
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Font Awesome is already loaded in head.blade.php -->
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
 
   <style>
     .bg-hero {
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('{{ asset('image/destin.jpg') }}') center center / cover no-repeat fixed;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), #f8f9fa;
       height: 100vh;
     }
 

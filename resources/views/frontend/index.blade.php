@@ -1,12 +1,27 @@
 
-@section('content')
+@extends('frontend.layouts.master')
 
+@section('content')
 
 @php
     use Illuminate\Pagination\LengthAwarePaginator;
 
-    function paginateDemandType($demands, $type, $perPage = 6, $pageParamName = 'page') {
-        $filtered = $demands->where('type', $type)->values();
+    function paginateProductType($products, $type, $perPage = 6, $pageParamName = 'page') {
+        $filtered = $products->filter(function($product) use ($type) {
+            $productTypes = $product->product_types;
+            
+            // Handle case where product_types is a JSON string
+            if (is_string($productTypes)) {
+                $productTypes = json_decode($productTypes, true) ?? [];
+            }
+            
+            // Ensure it's an array
+            if (!is_array($productTypes)) {
+                $productTypes = [];
+            }
+            
+            return in_array($type, $productTypes);
+        })->values();
         $currentPage = request()->get($pageParamName, 1);
         $currentPage = max(1, (int) $currentPage);
 
@@ -21,15 +36,13 @@
         );
     }
 
-    $post = paginateDemandType($demands, 'cyc', 6, 'cyc_page');
-    $festivaloffer = paginateDemandType($demands, 'community_empowerment', 6, 'ce_page');
-    $Destinationcard = paginateDemandType($demands, 'nsep', 6, 'nsep_page');
-    $generaloffer = paginateDemandType($demands, 'frp', 6, 'frp_page');
-    $couplecard  = paginateDemandType($demands, 'bamboo_project', 6, 'bamboo_page');
-    $groupcard = paginateDemandType($demands, 'child_care_home', 6, 'cch_page');
+    $post = paginateProductType($products, 'Post', 6, 'cyc_page');
+    $festivaloffer = paginateProductType($products, 'Festival', 6, 'ce_page');
+    $Destinationcard = paginateProductType($products, 'Destination', 6, 'nsep_page');
+    $generaloffer = paginateProductType($products, 'General', 6, 'frp_page');
+    $couplecard  = paginateProductType($products, 'Couple', 6, 'bamboo_page');
+    $groupcard = paginateProductType($products, 'Group', 6, 'cch_page');
 @endphp
-
-@extends('frontend.layouts.master')
 @include("frontend.includes.herosection")
 @include("frontend.includes.banner")
 @include("frontend.includes.offer")
@@ -129,13 +142,6 @@
             event.preventDefault(); 
             var form = $(this);
             var formData = new FormData(this);
-            var recaptchaResponse = grecaptcha.getResponse();
-
-
-            if (recaptchaResponse.length === 0) {
-                alert("Please tick the reCAPTCHA box before submitting.");
-                return;
-            }
             $.ajax({
                 url: form.attr('action'),
                 type: 'POST',

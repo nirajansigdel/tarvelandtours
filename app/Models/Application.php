@@ -10,16 +10,15 @@ class Application extends Model
     use HasFactory;
 
     protected $fillable = [
-        'demand_id',
+        'product_id',
         'name',
         'email',
         'phone_no',
         'address',
-        
     ];
 
-        public function demand()
+        public function product()
     {
-        return $this->belongsTo(Demand::class, 'demand_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

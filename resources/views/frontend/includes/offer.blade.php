@@ -31,7 +31,7 @@
 }
 
 .service-image img {
-  width: 40%!;
+  width: 100% !important;
   height: 100% !important;
   object-fit: cover;
   display: block;
@@ -136,61 +136,45 @@
       <h1 class="heading p-0 m-0">Exclusive Offers This Season</h1>
       <p class="extralarger p-0 m-0">Explore New Horizons</p>
     </div>
-@foreach ($generaloffer as $gnoffer)
-<p>{{($gnoffer->heading) }}</p>
-<img src="{{ asset('uploads/demands/' . $gnoffer->image) }}" alt="Service Image" />
-<p>{{($gnoffer->subtitle) }}</p>
-<p>{{($gnoffer->people) }}</p>
-<p>{{($gnoffer->transporta) }}</p>
-<p>{{($gnoffer->include) }}</p>
-<p>{{($gnoffer->vacancy) }}</p>
-<p>{{($gnoffer->number_of_people_required) }}</p>
-<p>{{($gnoffer->price_rate) }}</p>
 
-
-
-  @endforeach
 
 
     <div class="slider-wrapper">
       <div class="slider-track">
         {{-- Loop your offers --}}
-        @foreach ($generaloffer as $gnoffer)
+        @foreach ($products->unique('heading') as $prod)
       
             <div class="service-card">
               <div class="service-image">
-                @if ($gnoffer->image)
-                  <img src="{{ asset('uploads/demands/' . $gnoffer->image) }}" alt="Service Image" />
+                @if ($prod->image && !empty($prod->image))
+                  <img src="{{ asset('uploads/products/' . $prod->image) }}" alt="{{ $prod->heading }}" />
                 @else
                   <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" alt="Default Image" />
                 @endif
                 <span class="service-badge">Exclusive Offer</span>
               </div>
               <div class="service-content">
-                <h3 class="contenttitle text-capitalize text-white">{{ Str::limit(strip_tags($gnoffer->heading), 15) }}</h3>
-                <p class="contentdesc text-white">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($gnoffer->content)), 120) !!}</p>
+                <h3 class="contenttitle text-capitalize text-white">{{ Str::limit(strip_tags($prod->heading), 15) }}</h3>
+                <p class="contentdesc text-white">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($prod->content)), 120) !!}</p>
+                
+                <!-- Pricing Information -->
+                @if($prod->original_price || $prod->discounted_price)
+                  <div class="pricing-info mt-2">
+                    @if($prod->original_price && $prod->discounted_price)
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="text-decoration-line-through text-muted" style="font-size: 0.9rem;">NPR {{ number_format($prod->original_price) }}</span>
+                        <span class="fw-bold text-warning" style="font-size: 1.1rem;">NPR {{ number_format($prod->discounted_price) }}</span>
+                      </div>
+                    @elseif($prod->discounted_price)
+                      <span class="fw-bold text-warning" style="font-size: 1.1rem;">NPR {{ number_format($prod->discounted_price) }}</span>
+                    @elseif($prod->original_price)
+                      <span class="fw-bold text-warning" style="font-size: 1.1rem;">NPR {{ number_format($prod->original_price) }}</span>
+                    @endif
+                  </div>
+                @endif
               </div>
             </div>
           
-        @endforeach
-
-        {{-- Duplicate offers for seamless scroll --}}
-        @foreach ($generaloffer as $service)
-        
-            <div class="service-card">
-              <div class="service-image">
-                @if ($service->image)
-                  <img src="{{ asset('uploads/demands/' . $service->image) }}" alt="Service Image" />
-                @else
-                  <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" alt="Default Image" />
-                @endif
-                <span class="service-badge">Exclusive Offer</span>
-              </div>
-              <div class="service-content">
-                <h3 class="contenttitle text-capitalize text-white">{{ Str::limit(strip_tags($service->heading), 15) }}</h3>
-                <p class="contentdesc text-white">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($service->content)), 120) !!}</p>
-              </div>
-            </div>
         @endforeach
       </div>
     </div>

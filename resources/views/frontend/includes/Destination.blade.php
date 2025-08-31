@@ -78,7 +78,7 @@
         <div class="col-md-4 col-lg-3">
           <div class="service-card h-100">
             <div class="service-image">
-              <img src="{{ $service->image ? asset('uploads/demands/' . $service->image) : 'https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60' }}" alt="Service Image">
+              <img src="{{ $service->image ? asset('uploads/products/' . $service->image) : 'https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60' }}" alt="Service Image">
             </div>
             <div class="service-content">
               <h3 class="contenttitle text-white">{{ Str::limit(strip_tags($service->heading), 20) }}</h3>

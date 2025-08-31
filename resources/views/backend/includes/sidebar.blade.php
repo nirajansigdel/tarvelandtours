@@ -44,12 +44,22 @@
                             </a>
                         </li>
                         @endcan
-                        @can('list_demands')
+                        @can('list_products')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.demands.index') }}">
+                            <a class="nav-link" href="{{ route('admin.products.index') }}">
                                 <div class="d-flex align-items-center">
                                     <i class="fa fa-angle-double-right"></i>
-                                    <span class="nav-link-text ps-1">Project</span>
+                                    <span class="nav-link-text ps-1">Products</span>
+                                </div>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('list_userdetails')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.userdetails.index') }}">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <span class="nav-link-text ps-1">User Details</span>
                                 </div>
                             </a>
                         </li>
@@ -240,21 +250,12 @@
                             @endcan
 
                         
-                            @can('list_demands')
-                                <li class="nav-item">
-                                    <a class="nav-link {{ Request::segment(2) == 'demands' ? 'active' : '' }}"
-                                        href="{{ route('admin.demands.index') }}">
-                                        <div class="d-flex align-items-center"><i class="fa fa-angle-double-right"></i>
-                                            Demand
-                                        </div>
-                                    </a>
-                                </li>
-                            @endcan
+
 
                         
                              @can('list_applications')
                              <li class="nav-item">
-                                 <a class="nav-link {{ Request::segment(2) == 'demands' ? 'active' : '' }}"
+                                 <a class="nav-link {{ Request::segment(2) == 'applications' ? 'active' : '' }}"
                                      href="{{ route('admin.applications.index') }}">
                                      <div class="d-flex align-items-center"><i class="fa fa-angle-double-right"></i>
                                          Applications

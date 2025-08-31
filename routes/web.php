@@ -12,7 +12,6 @@ use App\Http\Controllers\{
     AboutController,
     AdminController,
     WorkCategoryController,
-    DemandController,
     SearchController,
     SingleController,
     ContactController,
@@ -41,7 +40,9 @@ use App\Http\Controllers\{
     ProjectController,
     NotificationController,
     CareerController,
-    CareerApplicationController
+    CareerApplicationController,
+    ProductController,
+    UserDetailController
 };
 
 /*
@@ -102,12 +103,15 @@ Route::get('/gallerys/{slug}', [SingleController::class, 'render_singleImage'])-
 Route::get('/events', [SingleController::class, 'render_events'])->name('events');
 Route::get('/singleevent/{slug}', [SingleController::class, 'render_singleEvent'])->name('singleEvent');
 
-// 📢 Demands & Application
-Route::get('/demands', [SingleController::class, 'render_demands'])->name('Demand');
-Route::get('/singledemand/{id}', [SingleController::class, 'render_singledemand'])->name('SingleDemand');
+// 📢 Applications
 Route::get('/apply/{id}', [SingleController::class, 'showApplicationForm'])->name('apply');
 Route::post('/apply/{id}', [ApplicationController::class, 'store'])->name('apply.store');
-Route::get('/projects/{demandType}', [DemandController::class, 'show'])->name('projects.show');
+
+// 🛒 Products (Frontend)
+Route::get('/products', [SingleController::class, 'render_products'])->name('products.index.front');
+Route::get('/products/{id}', [SingleController::class, 'render_singleProduct'])->name('products.detail');
+
+
 
 
 // Extra static pages (optional)
@@ -156,10 +160,12 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
         'contacts' => ContactController::class,
         'favicons' => FaviconController::class,
         'client_messages' => ClientMessageController::class,
-        'demands' => DemandController::class,
+        // 'demands' => DemandController::class, // deprecated
         'projects' => ProjectController::class,
+        'products' => ProductController::class,
         'notifications' => NotificationController::class,
         'careers' => CareerController::class,
+        // 'userdetails' => UserDetailController::class, // Simplified - only display data
     ]);
 
     // Notifications Status Toggle
@@ -174,10 +180,14 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
     Route::patch('/career-applications/{application}/update-status', [CareerApplicationController::class, 'updateStatus'])->name('career-applications.update-status');
     Route::delete('/career-applications/{application}', [CareerApplicationController::class, 'destroy'])->name('career-applications.destroy');
 
-    // Applications Management
+    // Applications Management (now using userdetails)
     Route::get('/applications', [ApplicationController::class, 'adminIndex'])->name('applications.index');
     Route::post('/applications/{application}/accept', [ApplicationController::class, 'accept'])->name('applications.accept');
     Route::post('/applications/{application}/reject', [ApplicationController::class, 'reject'])->name('applications.reject');
+
+    // User Details Management (Read Only)
+    Route::get('/userdetails', [UserDetailController::class, 'index'])->name('userdetails.index');
+    Route::get('/userdetails/{id}', [UserDetailController::class, 'show'])->name('userdetails.show');
 });
 
 // ========================

@@ -15,7 +15,7 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('demand_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('phone_no');
             $table->string('email')->nullable();
@@ -33,4 +33,4 @@ class CreateApplicationsTable extends Migration
     {
         Schema::dropIfExists('applications');
     }
-}
+} 

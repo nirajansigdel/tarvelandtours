@@ -43,11 +43,11 @@
                 <thead>
                     <tr>
                         <th>S.N.</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
+                        <th>Heading</th>
+                        <th>Location</th>
+                        <th>Date</th>
                         <th>Image</th>
-                        <th>Status</th>
+
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -55,9 +55,9 @@
                     @forelse($products ?? [] as $product)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $product->name ?? 'N/A' }}</td>
-                            <td>{{ $product->category ?? 'N/A' }}</td>
-                            <td>${{ number_format($product->price ?? 0, 2) }}</td>
+                            <td>{{ $product->heading ?? 'N/A' }}</td>
+                            <td>{{ $product->location ?? 'N/A' }}</td>
+                            <td>{{ optional($product->date)->format('Y-m-d') ?? 'N/A' }}</td>
                             <td>
                                 @if($product->image)
                                     <img src="{{ asset('uploads/products/' . $product->image) }}" 
@@ -67,11 +67,7 @@
                                     <span class="text-muted">No Image</span>
                                 @endif
                             </td>
-                            <td>
-                                <span class="badge {{ $product->status ? 'badge-success' : 'badge-danger' }}">
-                                    {{ $product->status ? 'Active' : 'Inactive' }}
-                                </span>
-                            </td>
+
                             <td>
                                 <div class="action-buttons">
                                     <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-warning btn-sm">
