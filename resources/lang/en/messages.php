@@ -1,6 +1,4 @@
 <?php
-
-use App\Models\About;
 return [
     // hero section
     'Explore' => 'Explore',

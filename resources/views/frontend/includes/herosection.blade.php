@@ -124,7 +124,7 @@
   }
 </style>
 <section class="hero-section">
-  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
     <!-- Carousel Indicators -->
     <div class="carousel-indicators">

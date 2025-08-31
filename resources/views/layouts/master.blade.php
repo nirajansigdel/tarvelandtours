@@ -13,6 +13,9 @@
     <!-- Custom CSS -->
     @stack('styles')
 </head>
+
+@include('resources/lang/en/messages.php')
+resources/lang/ne/messages.php
 <body>
   
     <!-- Navigation -->

@@ -4,37 +4,27 @@
 
 
       <!-- LEFT: Text Content -->
-      <div class="col-lg-6 mb-4 mb-lg-0">
-        <h2 class="fw-light" style="color: #f26522; font-size:32px;">
-          Built with Trust. <strong class="fw-bold">Why to Choose US.</strong>
-        </h2>
+    <div class="col-lg-6 mb-4 mb-lg-0">
+                <p class="heading content-topheading">About us</p>
+                <h1 class="extralarge mb-3">{{ $about->title ?? '' }}</h1>
+                @php
+                    $text = $about->description ?? 'No description available.';
+                    $parts = explode('.', $text);
 
-        <p class="mt-4 fs-5 text-secondary" style="line-height: 1.6;">
-          At <strong>Soft Tech Travel & Tours</strong>, we curate unforgettable travel experiences that inspire, relax,
-          and connect. Whether it's a family vacation, corporate retreat, or adventure tour, we ensure every trip is
-          seamless, safe, and tailored to your needs.
-          <strong class="text-dark d-block" style="font-weight: 700;">
-            Over 75% of our efforts go into trip planning, client support, and local coordination to guarantee every
-            journey exceeds expectations.
-          </strong>
-        </p>
+                    if (count($parts) >= 3) {
+                        $first = trim($parts[0]) . '.';
+                        $second = trim($parts[1]) . '.';
+                        $rest = implode('.', array_slice($parts, 2));
+                        $text = $first . ' ' . $second . '<br>' . $rest;
+                    }
+                @endphp
+                <div class="text-muted mb-4 xs-text-des">
+                   {!! $text !!}
+                </div>
 
-        <p class="fst-italic text-muted small mt-4" style="line-height: 1.8;">
-          <strong>Soft Tech Travel & Tours</strong> is a
-          <span class="text-warning">legally registered travel and tourism company</span> operating with full compliance
-          and licensed by local authorities. We prioritize
-          <span class="text-warning">transparency, ethical service, and accountability</span> — building lasting
-          relationships through trust and excellence in every travel experience.
-        </p>
-
-
-
-
-        <!-- Orange line -->
-        <hr class="my-4" style="border-top: 4px solid #f26522; width: 120px;">
-
-
-      </div>
+                <!-- CTA -->
+                <a href="#" class="btn cta-button">Read More</a>
+            </div>
 
       <!-- RIGHT: Modern KPI grid with primary and secondary cards -->
       <div class="col-lg-6">
