@@ -74,20 +74,20 @@
     </div>
 
     <div class="row g-4">
-      @foreach ($Destinationcard->take(6) as $service)
-        <div class="col-md-4 col-lg-3">
+      @foreach ($Destinationcard->take(6) as $populardestinationinnepal)
+        <a class="col-md-4 col-lg-3" href="{{ route('products.detail', $populardestinationinnepal->id) }}">
           <div class="service-card h-100">
             <div class="service-image">
-              <img src="{{ $service->image ? asset('uploads/products/' . $service->image) : 'https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60' }}" alt="Service Image">
+              <img src="{{ $populardestinationinnepal->image ? asset('uploads/products/' . $populardestinationinnepal->image) : 'https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60' }}" alt="Service Image">
             </div>
             <div class="service-content">
-              <h3 class="contenttitle text-white">{{ Str::limit(strip_tags($service->heading), 20) }}</h3>
+              <h3 class="contenttitle text-white">{{ Str::limit(strip_tags($populardestinationinnepal->heading), 20) }}</h3>
               <p class="codesc text-white pt-1">
-                {!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($service->content)), 120) !!}
+                {!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($populardestinationinnepal->content)), 120) !!}
               </p>
             </div>
           </div>
-        </div>
+        </a>
       @endforeach
     </div>
 

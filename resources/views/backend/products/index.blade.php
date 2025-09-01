@@ -47,7 +47,6 @@
                         <th>Location</th>
                         <th>Date</th>
                         <th>Image</th>
-
                         <th>Actions</th>
                     </tr>
                 </thead>

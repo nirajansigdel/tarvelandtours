@@ -141,9 +141,8 @@
     <div class="slider-wrapper">
       <div class="slider-track">
         {{-- Loop your offers --}}
-        @foreach ($products->unique('heading') as $prod)
-      
-            <div class="service-card">
+        @foreach ($generaloffer as $prod)
+            <a class="service-card" href="{{ route('products.detail', $prod->id) }}">
               <div class="service-image">
                 @if ($prod->image && !empty($prod->image))
                   <img src="{{ asset('uploads/products/' . $prod->image) }}" alt="{{ $prod->heading }}" />
@@ -172,7 +171,7 @@
                   </div>
                 @endif
               </div>
-            </div>
+            </a>
           
         @endforeach
       </div>

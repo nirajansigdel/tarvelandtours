@@ -17,6 +17,7 @@
     <form action="{{ route('projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        
 
         <div class="form-group mb-3">
             <label for="heading">Heading</label>

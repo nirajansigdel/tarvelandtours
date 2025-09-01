@@ -177,9 +177,22 @@
         </li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="{{ route('About') }}">About</a></li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="{{ route('Gallery') }}">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link text-dark fw-medium" href=" {{ route('Contact') }}">Contact</a></li>
-    
-        <li class="nav-item"><a class="nav-link text-dark fw-medium" href=" {{ route('products.index.front') }}">Offer</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href=" {{ route('Contact') }}">Contact</a></li>    
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" id="offerDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Offer
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="offerDropdown">
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Post">Post</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Destination">Destination</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=General">General</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Festival">Festival</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Couple">Couple</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Group">Group</a></li>
+          </ul>
+        </li>
+
 
         <li class="nav-item dropdown">
           <a class="nav-link text-dark fw-medium" href="#" data-bs-toggle="dropdown">Updates</a>
@@ -240,8 +253,21 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('Gallery') }}">Gallery</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href=" {{ route('products.index.front') }}">offer</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          Offer
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Post">Post</a></li>
+          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Destination">Destination</a></li>
+          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=General">General</a></li>
+          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Festival">Festival</a></li>
+          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Couple">Couple</a></li>
+          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Group">Group</a></li>
+        </ul>
+      </li>
+
+
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('Service') }}">Our Service</a>
