@@ -134,7 +134,7 @@
             </div>
 
             <div class="mt-4 text-end">
-                <button type="submit" class="btn btn-primary px-4 py-2 fw-semibold">
+                <button type="submit" class="btn cta-button px-4 py-2 fw-semibold">
                     <i class="fas fa-paper-plane me-2"></i>Submit Application
                 </button>
             </div>

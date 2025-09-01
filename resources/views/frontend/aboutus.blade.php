@@ -295,11 +295,10 @@
                 <!-- CTA -->
                 <a href="#" class="btn cta-button">View Destination</a>
             </div>
-
+                    
             <!-- Right Image -->
             <div class="col-lg-5 text-center">
-                <div class="service-img img-fluid bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
-    <i class="fas fa-mountain fa-3x text-muted"></i>
+                <img src="{{ asset('image/destin.jpg') }}" alt="" class="service-img" style="height: 600px;">
 </div>
             </div>
         </div>

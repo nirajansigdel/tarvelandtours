@@ -5,7 +5,6 @@
   position: relative;
   border-radius: 0.3rem;
   overflow: hidden;
-  background-color: #fff;
   box-shadow: 0 10px 24px rgba(16, 24, 40, 0.08);
   transition:
     transform 0.45s ease,
@@ -109,7 +108,7 @@
 .slider-track {
   display: flex;
   gap: 1rem; /* spacing between cards */
-  animation: scroll-left 110s linear infinite;
+  animation: scroll-left 40s linear infinite;
   width: max-content; /* allow horizontal scroll */
 }
 

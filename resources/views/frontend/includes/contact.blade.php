@@ -1,7 +1,7 @@
 <style>
   .contactsection {
     position: relative;
-    background-color: #f8f9fa;
+    background-image: url("{{ asset('image/destin.jpg') }}");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
