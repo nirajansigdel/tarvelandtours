@@ -269,8 +269,20 @@ class SingleController extends Controller
 
     public function render_products()
     {
-        $products = Product::where('status', true)->latest()->paginate(12);
-        return view('frontend.product', compact('products'));
+        $type = request()->query('type');
+        
+        if ($type) {
+            // Filter products by the selected category type
+            $products = Product::where('status', true)
+                ->whereJsonContains('product_types', $type)
+                ->latest()
+                ->paginate(12);
+        } else {
+            // Show all products if no type is specified
+            $products = Product::where('status', true)->latest()->paginate(12);
+        }
+        
+        return view('frontend.product', compact('products', 'type'));
     }
 
     public function render_singleProduct($id)

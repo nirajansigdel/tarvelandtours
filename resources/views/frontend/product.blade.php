@@ -4,7 +4,17 @@
 <div class="container pt-8">
     <div class="row">
         <div class="col-12">
-            <h1 class="text-center mb-5">Our Products</h1>
+            @if(isset($type) && $type)
+                <h1 class="text-center mb-3">{{ $type }} Products</h1>
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ route('products.index.front') }}">All Products</a></li>
+                        <li class="breadcrumb-item active">{{ $type }}</li>
+                    </ol>
+                </nav>
+            @else
+                <h1 class="text-center mb-5">Our Products</h1>
+            @endif
         </div>
     </div>
 
@@ -12,8 +22,14 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="alert alert-info">
-                    <h4>No products available yet.</h4>
-                    <p>Please check back later for our latest offerings.</p>
+                    @if(isset($type) && $type)
+                        <h4>No {{ $type }} products available yet.</h4>
+                        <p>We don't have any products in the {{ $type }} category at the moment. Please check back later or browse other categories.</p>
+                        <a href="{{ route('products.index.front') }}" class="btn btn-primary mt-2">View All Products</a>
+                    @else
+                        <h4>No products available yet.</h4>
+                        <p>Please check back later for our latest offerings.</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -69,7 +85,7 @@
                                  <div class="mt-2">
                                      <strong>Categories:</strong>
                                      <div class="mt-1">
-                                         @foreach($product->product_types as $type)
+                                         @foreach($product->product_types as $categoryType)
                                              @php
                                                  $categoryLabels = [
                                                      'Post' => 'Post',
@@ -79,7 +95,7 @@
                                                      'Couple' => 'Couple',
                                                      'Group' => 'Group'
                                                  ];
-                                                 $label = $categoryLabels[$type] ?? ucfirst(str_replace('_', ' ', $type));
+                                                 $label = $categoryLabels[$categoryType] ?? ucfirst(str_replace('_', ' ', $categoryType));
                                              @endphp
                                              <span class="badge me-1 mb-1" style="background-color: #495057; color: white; font-weight: bold;">{{ $label }}</span>
                                          @endforeach
