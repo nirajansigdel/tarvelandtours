@@ -112,7 +112,8 @@
           <div class="custom-overlay-container shadow">
                             <img src="{{ asset('uploads/products/' . $couple->image) }}" alt="Service Image">
             <div class="custom-overlay">
-              <div class="overlay-text">Discount up 50%</div>
+                <p class="text-warming">orginial_price:70000</p>
+              <div class="overlay-text">Discount Price : </div>
               <button class="overlay-btn">Book Now</button>
             </div>
           </div>
@@ -124,7 +125,8 @@
           <div class="custom-overlay-container shadow">
                             <img src="{{ asset('uploads/products/' . $group->image) }}" alt="Service Image">
             <div class="custom-overlay">
-              <div class="overlay-text">Discount up 50%</div>
+              <p class="text-warming">orginial_price:70000</p>
+              <div class="overlay-text">Discount Price : </div>
               <button class="overlay-btn">Book Now</button>
             </div>
           </div>

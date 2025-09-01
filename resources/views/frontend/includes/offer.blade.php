@@ -162,11 +162,11 @@
                   <div class="pricing-info mt-2">
                     @if($prod->original_price && $prod->discounted_price)
                       <div class="d-flex align-items-center gap-2">
-                        <span class="text-decoration-line-through text-muted" style="font-size: 0.9rem;">NPR {{ number_format($prod->original_price) }}</span>
+                        <span class="text-decoration-line-through text-white" style="font-size: 0.9rem;">NPR {{ number_format($prod->original_price) }}</span>
                         <span class="fw-bold text-warning" style="font-size: 1.1rem;">NPR {{ number_format($prod->discounted_price) }}</span>
                       </div>
                     @elseif($prod->discounted_price)
-                      <span class="fw-bold text-warning" style="font-size: 1.1rem;">NPR {{ number_format($prod->discounted_price) }}</span>
+                      <span class="fw-bold text-white" style="font-size: 1.1rem;">NPR {{ number_format($prod->discounted_price) }}</span>
                     @elseif($prod->original_price)
                       <span class="fw-bold text-warning" style="font-size: 1.1rem;">NPR {{ number_format($prod->original_price) }}</span>
                     @endif
