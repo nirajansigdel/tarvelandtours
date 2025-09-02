@@ -21,10 +21,10 @@
     width: 100%;
   }
 
- 
+
   .service-img {
     width: 100%;
-    height: 85vh;
+    height: 92vh;
     object-fit: cover;
 
   }
@@ -76,9 +76,31 @@
       <a href="#" class="btn cta-button">See All Services</a>
     </div>
 
+   
     <!-- Right Image -->
-    <div class="col-lg-5 text-center">
-      <img src="{{ asset('image/destin.jpg') }}" alt="" class="service-img">
+
+    <div class="col-lg-5 position-relative d-flex justify-content-center">
+      <div class="col-md-10">
+        <!-- Image -->
+        <img src="{{ asset('image/destin.jpg') }}" alt="Service" class="img-fluid rounded shadow service-img">
+
+        <!-- Experience Badge -->
+        <!-- Experience Circle (on top) -->
+        <div
+          class="position-absolute expercircle text-white rounded-circle d-flex flex-column justify-content-center align-items-center fw-bold"
+          style="width: 190px; height: 190px; bottom: 50px; left: -60px; z-index: 2;">
+          <div style="font-size:40px;">15+</div>
+          <div style="font-size:20px; text-align: center;">Years of<br>experience</div>
+        </div>
+
+        <!-- Customers Banner (under the circle) -->
+        <div class="position-absolute text-white text-center py-4 px-3"
+          style="background-color: #0E2F57; bottom: -40px; width:444px; border-radius: 6px; z-index: 1;">
+          <div class="fw-bold" style="font-size:40px;">1K+</div>
+          <small class="xs-text-des">Customize Service</small>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

@@ -33,11 +33,11 @@ class SingleController extends Controller
         $teams = Team::all();
         $posts = Post::with('category')->latest()->take(3)->get();
         $listservices = Service::latest()->take(5)->get();
-        $message = DirectorMessage::first();
+        $dir = DirectorMessage::all();
         $siteSetting = SiteSetting::first();
         $faqs = Faq::latest()->get();
 
-        return view('frontend.aboutus', compact('about', 'posts','faqs', 'listservices', 'message', 'siteSetting', 'teams'));
+        return view('frontend.aboutus', compact('about', 'posts','faqs', 'listservices', 'dir', 'siteSetting', 'teams'));
     }
 
     public function render_team(Request $request)

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class DirectorMessage extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'image',
+    ];
 }
+
