@@ -138,7 +138,7 @@
   <div class="container d-flex align-items-center justify-content-between">
     <!-- Logo -->
     <a class="navbar-brand toplogo" href="{{ route('index') }}">
-      <img src="{{ asset('image/logo.avif') }}" alt="Logo" />
+      <img src="{{ asset('image/logo.jpg') }}" alt="Logo" />
     </a>
 
     <!-- Language Toggle (mobile) -->
