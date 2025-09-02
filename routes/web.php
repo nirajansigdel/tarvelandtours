@@ -37,7 +37,7 @@ use App\Http\Controllers\{
     ClientController,
     WhyUsController,
     EventController,
-    ProjectController,
+    // ProjectController, // Commented out - controller doesn't exist
     NotificationController,
     CareerController,
     CareerApplicationController,
@@ -109,6 +109,11 @@ Route::post('/apply/{id}', [ApplicationController::class, 'store'])->name('apply
 
 // 🛒 Products (Frontend)
 Route::get('/products', [SingleController::class, 'render_products'])->name('products.index.front');
+Route::get('/destinations', [SingleController::class, 'render_destinations'])->name('destinations.index.front');
+Route::get('/festivals', [SingleController::class, 'render_festivals'])->name('festivals.index.front');
+Route::get('/couples', [SingleController::class, 'render_couples'])->name('couples.index.front');
+Route::get('/groups', [SingleController::class, 'render_groups'])->name('groups.index.front');
+Route::get('/posts', [SingleController::class, 'render_posts'])->name('posts.index.front');
 Route::get('/products/{id}', [SingleController::class, 'render_singleProduct'])->name('products.detail');
 
 
@@ -161,7 +166,7 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
         'favicons' => FaviconController::class,
         'client_messages' => ClientMessageController::class,
         // 'demands' => DemandController::class, // deprecated
-        'projects' => ProjectController::class,
+        // 'projects' => ProjectController::class, // Commented out - controller doesn't exist
         'products' => ProductController::class,
         'notifications' => NotificationController::class,
         'careers' => CareerController::class,

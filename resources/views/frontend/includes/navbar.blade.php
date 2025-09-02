@@ -3,7 +3,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
 <style>
   .navbar {
     background: transparent;
@@ -184,15 +183,14 @@
             Offer
           </a>
           <ul class="dropdown-menu" aria-labelledby="offerDropdown">
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Post">Post</a></li>
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Destination">Destination</a></li>
+            <li><a class="dropdown-item" href="{{ route('posts.index.front') }}">Post</a></li>
+            <li><a class="dropdown-item" href="{{ route('destinations.index.front') }}">Destination</a></li>
             <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=General">General</a></li>
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Festival">Festival</a></li>
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Couple">Couple</a></li>
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Group">Group</a></li>
+            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">Festival</a></li>
+            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">Couple</a></li>
+            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">Group</a></li>
           </ul>
         </li>
-
 
         <li class="nav-item dropdown">
           <a class="nav-link text-dark fw-medium" href="#" data-bs-toggle="dropdown">Updates</a>
@@ -258,15 +256,14 @@
           Offer
         </a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Post">Post</a></li>
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Destination">Destination</a></li>
+          <li><a class="dropdown-item" href="{{ route('posts.index.front') }}">Post</a></li>
+          <li><a class="dropdown-item" href="{{ route('destinations.index.front') }}">Destination</a></li>
           <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=General">General</a></li>
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Festival">Festival</a></li>
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Couple">Couple</a></li>
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Group">Group</a></li>
+          <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">Festival</a></li>
+          <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">Couple</a></li>
+          <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">Group</a></li>
         </ul>
       </li>
-
 
       </li>
       <li class="nav-item">
@@ -309,3 +306,4 @@
     }
   }
 </script>
+

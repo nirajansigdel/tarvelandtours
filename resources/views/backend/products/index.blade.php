@@ -58,10 +58,10 @@
                             <td>{{ $product->location ?? 'N/A' }}</td>
                             <td>{{ optional($product->date)->format('Y-m-d') ?? 'N/A' }}</td>
                             <td>
-                                @if($product->image)
-                                    <img src="{{ asset('uploads/products/' . $product->image) }}" 
+                                @if(is_array($product->images) && count($product->images))
+                                    <img src="{{ asset('uploads/products/' . $product->images[0]) }}" 
                                          class="table-image" 
-                                         alt="{{ $product->name }}">
+                                         alt="{{ $product->heading ?? 'Product Image' }}">
                                 @else
                                     <span class="text-muted">No Image</span>
                                 @endif

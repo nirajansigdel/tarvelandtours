@@ -6,7 +6,7 @@ use App\Models\Faq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class FaqController extends Controller
+class EventController extends Controller
 {
     /**
      * Backend - List all FAQs with pagination

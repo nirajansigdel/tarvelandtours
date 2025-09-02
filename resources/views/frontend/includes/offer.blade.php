@@ -144,8 +144,8 @@
         @foreach ($generaloffer as $prod)
             <a class="service-card" href="{{ route('products.detail', $prod->id) }}">
               <div class="service-image">
-                @if ($prod->image && !empty($prod->image))
-                  <img src="{{ asset('uploads/products/' . $prod->image) }}" alt="{{ $prod->heading }}" />
+                @if (is_array($prod->images) && count($prod->images))
+                  <img src="{{ asset('uploads/products/' . $prod->images[0]) }}" alt="{{ $prod->heading }}" />
                 @else
                   <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" alt="Default Image" />
                 @endif

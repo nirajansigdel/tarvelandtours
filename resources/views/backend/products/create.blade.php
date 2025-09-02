@@ -87,10 +87,11 @@
                             </div>
 
                             <div class="form-group pt-3">
-                                <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control-file"
-                                    onchange="previewImage(event)">
-                                <div id="imagePreview"></div>
+                                <label for="images">Images (up to 6)</label>
+                                <input type="file" name="images[]" id="images" class="form-control" multiple>
+                                <small class="text-muted">You can select multiple images.</small>
+                                <div class="mt-2 small text-muted">Selected: <span id="imagesCount">0</span></div>
+                                <div id="galleryPreview" class="d-flex flex-wrap gap-2 mt-2"></div>
                             </div>
                             {{-- Project Type Selection --}}
                             <div class="form-group">
@@ -202,6 +203,28 @@
                 } else {
                     $('#related-products-container').empty();
                 }
+            });
+        });
+
+        // Live preview for multiple gallery images
+        document.getElementById('images').addEventListener('change', function (e) {
+            const files = Array.from(e.target.files || []);
+            const preview = document.getElementById('galleryPreview');
+            const counter = document.getElementById('imagesCount');
+            counter.textContent = files.length;
+            while (preview.firstChild) preview.removeChild(preview.firstChild);
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    const img = document.createElement('img');
+                    img.src = ev.target.result;
+                    img.style.width = '100px';
+                    img.style.height = '100px';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '6px';
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
             });
         });
     </script>

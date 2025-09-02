@@ -110,7 +110,7 @@
             {!! \Illuminate\Support\Str::limit(strip_tags($couple->content, '<p><br>'), 200) !!}
           </p>
           <div class="custom-overlay-container shadow">
-                            <img src="{{ asset('uploads/products/' . $couple->image) }}" alt="Service Image">
+                            <img src="{{ (is_array($couple->images) && count($couple->images)) ? asset('uploads/products/' . $couple->images[0]) : asset('images/default-couple.jpg') }}" alt="Service Image">
             <div class="custom-overlay">
                 <p class="text-warming">orginial_price:70000</p>
               <div class="overlay-text">Discount Price : </div>
@@ -123,7 +123,7 @@
       @foreach ($groupcard->take(1) as $group)
         <div class="col-md-6">
           <div class="custom-overlay-container shadow">
-                            <img src="{{ asset('uploads/products/' . $group->image) }}" alt="Service Image">
+                            <img src="{{ (is_array($group->images) && count($group->images)) ? asset('uploads/products/' . $group->images[0]) : asset('images/default-group.jpg') }}" alt="Service Image">
             <div class="custom-overlay">
               <p class="text-warming">orginial_price:70000</p>
               <div class="overlay-text">Discount Price : </div>

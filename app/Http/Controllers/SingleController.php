@@ -285,10 +285,75 @@ class SingleController extends Controller
         return view('frontend.product', compact('products', 'type'));
     }
 
+    public function render_destinations()
+    {
+        $products = Product::where('status', true)
+            ->whereJsonContains('product_types', 'Destination')
+            ->latest()
+            ->paginate(12);
+
+        return view('frontend.destination', compact('products'));
+    }
+
+    public function render_festivals()
+    {
+        $products = Product::where('status', true)
+            ->whereJsonContains('product_types', 'Festival')
+            ->latest()
+            ->paginate(12);
+
+        return view('frontend.festival', compact('products'));
+    }
+
+    public function render_couples()
+    {
+        $products = Product::where('status', true)
+            ->whereJsonContains('product_types', 'Couple')
+            ->latest()
+            ->paginate(12);
+
+        return view('frontend.couple', compact('products'));
+    }
+
+    public function render_groups()
+    {
+        $products = Product::where('status', true)
+            ->whereJsonContains('product_types', 'Group')
+            ->latest()
+            ->paginate(12);
+
+        return view('frontend.group', compact('products'));
+    }
+
+    public function render_posts()
+    {
+        $products = Product::where('status', true)
+            ->whereJsonContains('product_types', 'Post')
+            ->latest()
+            ->paginate(12);
+
+        return view('frontend.post', compact('products'));
+    }
+
     public function render_singleProduct($id)
     {
         $product = Product::where('id', $id)->firstOrFail();
-        $relatedProducts = Product::where('id', '!=', $id)->latest()->take(5)->get();
+        
+        // Get related products of the same type(s) as the current product
+        $relatedProducts = Product::where('id', '!=', $id)
+            ->where('status', true)
+            ->where(function($query) use ($product) {
+                // If the product has multiple types, find products that share at least one type
+                if (is_array($product->product_types) && count($product->product_types) > 0) {
+                    foreach ($product->product_types as $type) {
+                        $query->orWhereJsonContains('product_types', $type);
+                    }
+                }
+            })
+            ->latest()
+            ->take(5)
+            ->get();
+            
         return view('frontend.layouts.productblade', compact('product', 'relatedProducts'));
     }
     
