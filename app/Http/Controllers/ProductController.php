@@ -34,18 +34,21 @@ class ProductController extends Controller
             'location' => 'nullable|string|max:255',
             'transportation' => 'nullable|string|max:255',
             'content' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'product_types' => 'nullable|array',
             'product_types.*' => 'string',
             'status' => 'nullable|boolean',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time().'_'.$image->getClientOriginalName();
-            $image->move(public_path('uploads/products'), $imageName);
-            $imagePath = $imageName;
+        // Handle multiple images
+        $galleryImages = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $gimg) {
+                $gname = time().'_'.uniqid().'_'.$gimg->getClientOriginalName();
+                $gimg->move(public_path('uploads/products'), $gname);
+                $galleryImages[] = $gname;
+            }
         }
 
         Product::create([
@@ -60,7 +63,7 @@ class ProductController extends Controller
             'location' => $validated['location'] ?? null,
             'transportation' => $validated['transportation'] ?? null,
             'content' => $validated['content'] ?? null,
-            'image' => $imagePath,
+            'images' => $galleryImages,
             'product_types' => $request->input('product_types'),
             'status' => (bool)($request->input('status', 1)),
         ]);
@@ -88,21 +91,21 @@ class ProductController extends Controller
             'location' => 'nullable|string|max:255',
             'transportation' => 'nullable|string|max:255',
             'content' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'product_types' => 'nullable|array',
             'product_types.*' => 'string',
             'status' => 'nullable|boolean',
         ]);
 
-        $imagePath = $product->image;
-        if ($request->hasFile('image')) {
-            if ($imagePath && file_exists(public_path('uploads/products/'.$imagePath))) {
-                @unlink(public_path('uploads/products/'.$imagePath));
+        // Handle additional gallery images, keep existing
+        $existing = is_array($product->images) ? $product->images : [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $gimg) {
+                $gname = time().'_'.uniqid().'_'.$gimg->getClientOriginalName();
+                $gimg->move(public_path('uploads/products'), $gname);
+                $existing[] = $gname;
             }
-            $image = $request->file('image');
-            $imageName = time().'_'.$image->getClientOriginalName();
-            $image->move(public_path('uploads/products'), $imageName);
-            $imagePath = $imageName;
         }
 
         $product->update([
@@ -117,7 +120,7 @@ class ProductController extends Controller
             'location' => $validated['location'] ?? null,
             'transportation' => $validated['transportation'] ?? null,
             'content' => $validated['content'] ?? null,
-            'image' => $imagePath,
+            'images' => $existing,
             'product_types' => $request->input('product_types'),
             'status' => (bool)($request->input('status', 1)),
         ]);
@@ -135,5 +138,4 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
 }
-
 

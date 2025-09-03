@@ -300,7 +300,7 @@
  <div class="col-lg-5 position-relative d-flex justify-content-center">
       <div class="col-md-10">
         <!-- Image -->
-        <img src="{{ asset('uploads/about'.$about->image) }}" alt="Service" class="img-fluid rounded shadow service-img">
+        <img src="{{ asset('uploads/about/'.$about->image) }}" alt="Service" class="img-fluid rounded shadow service-img">
 
         <!-- Experience Badge -->
         <!-- Experience Circle (on top) -->
@@ -334,7 +334,7 @@
                 <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-delay="100">
                     <h3 class="pt-4 mb-4 fw-bold">CEO Message</h3>
                     <p id="typing-text"></p>
-                    @foreach ($dir as $ceoms )
+                    @foreach ($message as $ceoms )
                      <div id="full-content"  class="xs-text-des">
                         {{$ceoms->description}}
                     </div>
@@ -388,6 +388,7 @@
 
     <style>
         .contactsection {
+             background-image: url("{{ asset('image/destin.jpg') }}");
             position: relative;
             background-color: #f8f9fa;
             background-position: center;
@@ -397,8 +398,6 @@
             min-height: 80vh;
             overflow: hidden;
         }
-    </style>
-    <style>
         .text-warning {
             color: var(--bs-orange) !important;
             ;

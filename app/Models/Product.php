@@ -22,7 +22,7 @@ class Product extends Model
         'location',
         'transportation',
         'content',
-        'image',
+        'images',
         'product_types',
         'status',
     ];
@@ -31,6 +31,7 @@ class Product extends Model
         'date' => 'date',
         'people' => 'integer',
         'product_types' => 'array',
+        'images' => 'array',
         'status' => 'boolean',
     ];
 
@@ -39,5 +40,4 @@ class Product extends Model
         return $this->belongsTo(Country::class);
     }
 }
-
 

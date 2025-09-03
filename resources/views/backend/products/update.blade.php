@@ -90,12 +90,17 @@ is revert @extends('backend.layouts.master')
                             </div>
 
                             <div class="form-group pt-3">
-                                <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control-file" onchange="previewImage(event)">
-                                @if($product->image)
-                                    <div class="mt-2"><img src="{{ asset('uploads/products/'.$product->image) }}" alt="" style="max-width:200px;max-height:200px"></div>
+                                <label for="images">Images (up to 6)</label>
+                                <input type="file" name="images[]" id="images" class="form-control" multiple>
+                                <div class="mt-2 small text-muted">Selected: <span id="imagesCount">0</span></div>
+                                <div id="galleryPreview" class="d-flex flex-wrap gap-2 mt-2"></div>
+                                @if(is_array($product->images) && count($product->images))
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        @foreach($product->images as $img)
+                                            <img src="{{ asset('uploads/products/'.$img) }}" style="width:100px;height:100px;object-fit:cover;border-radius:6px" />
+                                        @endforeach
+                                    </div>
                                 @endif
-                                <div id="imagePreview"></div>
                             </div>
 
                             <div class="form-group">
@@ -138,7 +143,28 @@ is revert @extends('backend.layouts.master')
         $(document).ready(function () {
             $('.summernote').summernote({ height: 200, focus: true });
         });
+
+        // Live preview for multiple gallery images
+        document.getElementById('images').addEventListener('change', function (e) {
+            const files = Array.from(e.target.files || []);
+            const preview = document.getElementById('galleryPreview');
+            const counter = document.getElementById('imagesCount');
+            counter.textContent = files.length;
+            while (preview.firstChild) preview.removeChild(preview.firstChild);
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    const img = document.createElement('img');
+                    img.src = ev.target.result;
+                    img.style.width = '100px';
+                    img.style.height = '100px';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '6px';
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
     </script>
 @endsection
-
 

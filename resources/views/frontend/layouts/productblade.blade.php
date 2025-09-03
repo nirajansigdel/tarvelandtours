@@ -12,17 +12,62 @@
     </style>
 
 
+    @php
+        // Get the first product type for dynamic content
+        $productType = is_array($product->product_types) && count($product->product_types) > 0 ? $product->product_types[0] : 'General';
+        
+        // Define dynamic content based on product type
+        $heroContent = [
+            'Post' => [
+                'title' => 'Our Travel Posts',
+                'breadcrumb' => 'Posts',
+                'bg_image' => 'image/blog.webp'
+            ],
+            'Destination' => [
+                'title' => 'Our Destinations',
+                'breadcrumb' => 'Destinations',
+                'bg_image' => 'image/destin.jpg'
+            ],
+            'Festival' => [
+                'title' => 'Our Festivals',
+                'breadcrumb' => 'Festivals',
+                'bg_image' => 'image/events.jpg'
+            ],
+            'Couple' => [
+                'title' => 'Our Couple Packages',
+                'breadcrumb' => 'Couple Packages',
+                'bg_image' => 'image/um.jpg'
+            ],
+            'Group' => [
+                'title' => 'Our Group Tours',
+                'breadcrumb' => 'Group Tours',
+                'bg_image' => 'image/gallary.jpg'
+            ],
+            'General' => [
+                'title' => 'Our Products',
+                'breadcrumb' => 'Products',
+                'bg_image' => 'image/service.jpg'
+            ]
+        ];
+        
+        $currentHero = $heroContent[$productType] ?? $heroContent['General'];
+        
+        // Check if product has a custom hero image field (you can add this to your products table later)
+        $customHeroImage = $product->hero_image ?? null;
+        $finalBgImage = $customHeroImage ? asset('uploads/hero/' . $customHeroImage) : asset($currentHero['bg_image']);
+    @endphp
+
     <section class="position-relative text-white text-center"
-        style="background: url('{{ asset('image/blog.webp') }}') center center / cover no-repeat; height:400px;">
+        style="background: url('{{ $finalBgImage }}') center center / cover no-repeat; height:400px;">
         <div class="herosectionoverlay"></div>
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Our POst </h1>
+                <h1 class="fw-bold display-4">{{ $currentHero['title'] }}</h1>
                 <p class="mt-2 fs-5">
                     <span class="fw-semibold">Home</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    Posts
+                    {{ $currentHero['breadcrumb'] }}
                 </p>
             </div>
         </div>
@@ -57,13 +102,21 @@
     <section class="py-5">
         <div class="container">
             <div class="row">
-                <!-- Product Image -->
+                <!-- Product Image & Gallery -->
                 <div class="col-md-8">
                     <div class="mb-4 position-relative">
-                        @if($product->image)
-                            <img src="{{ asset('uploads/products/' . $product->image) }}" class="img-fluid rounded shadow"
+                        @if(is_array($product->images) && count($product->images))
+                            <img src="{{ asset('uploads/products/' . $product->images[0]) }}" class="img-fluid rounded shadow"
                                 alt="{{ $product->heading ?? 'Product Image' }}"
                                 style="width: 100%; height: 400px; object-fit: cover;">
+                            
+                            @if(count($product->images) > 1)
+                                <div class="mt-3 d-flex flex-wrap gap-2">
+                                    @foreach(array_slice($product->images, 1) as $gimg)
+                                        <img src="{{ asset('uploads/products/' . $gimg) }}" class="rounded" style="width:120px;height:90px;object-fit:cover" alt="Gallery Image">
+                                    @endforeach
+                                </div>
+                            @endif
                         @else
                             <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60"
                                 class="img-fluid rounded shadow" alt="Default Product Image"
@@ -184,6 +237,14 @@
                             </div>
                         @endif
 
+                         @if($product->includes)
+                            <div class="mb-4">
+                                <h5 class="fw-bold mb-3">Description</h5>
+                                <div class="text-muted lh-lg fs-6">
+                                    {!! $product->includes !!}
+                                </div>
+                            </div>
+                        @endif
 
 
                         <!-- Action Buttons -->
@@ -222,13 +283,13 @@
 </style>
                <div class="col-md-4">
     <div class="bg-light rounded shadow-sm p-3 h-100 position-sticky" style="top: 100px;">
-        <h5 class="bg-dark text-white py-2 px-3 rounded ">Related Products</h5>
+        <h5 class="bg-dark text-white py-2 px-3 rounded ">Related Offer</h5>
 
         @foreach($relatedProducts as $relatedProduct)
             <div class="card mb-3 border-0 shadow-sm rounded-3 hover-shadow transition">
                 <div class="card-body p-2">
-                    @if($relatedProduct->image)
-                        <img src="{{ asset('uploads/products/' . $relatedProduct->image) }}"
+                    @if(is_array($relatedProduct->images) && count($relatedProduct->images))
+                        <img src="{{ asset('uploads/products/' . $relatedProduct->images[0]) }}"
                              class="img-fluid rounded mb-2 productimage" alt="Related Product Image">
                     @endif
 

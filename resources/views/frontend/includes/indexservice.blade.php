@@ -41,10 +41,13 @@
     .feature-icon {
       font-size: 2rem;
     }
+     .controlwidth{
+    width:279px !important;
+  }
   }
 </style>
 
-
+<section class="container-fluid">
 <div class="container py-5">
   <div class="row align-items-center justify-content-between">
     <!-- Left Content -->
@@ -94,7 +97,7 @@
         </div>
 
         <!-- Customers Banner (under the circle) -->
-        <div class="position-absolute text-white text-center py-4 px-3"
+        <div class="position-absolute text-white text-center py-4 px-3 controlwidth"
           style="background-color: #0E2F57; bottom: -40px; width:444px; border-radius: 6px; z-index: 1;">
           <div class="fw-bold" style="font-size:40px;">1K+</div>
           <small class="xs-text-des">Customize Service</small>
@@ -104,3 +107,4 @@
     </div>
   </div>
 </div>
+</section>

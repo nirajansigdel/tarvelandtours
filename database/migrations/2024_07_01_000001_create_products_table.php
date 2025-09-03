@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->string('transportation')->nullable();
             $table->text('content')->nullable();
             $table->string('image')->nullable();
+            $table->json('images')->nullable();
             $table->json('product_types')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
@@ -33,5 +34,4 @@ return new class extends Migration {
         Schema::dropIfExists('products');
     }
 };
-
 

@@ -54,8 +54,8 @@
           <div class="position-relative card-hover-effect project-card">
 
             <!-- Project Image -->
-            @if ($course->image)
-              <img src="{{ asset('uploads/products/' . $course->image) }}"
+            @if (is_array($course->images) && count($course->images))
+              <img src="{{ asset('uploads/products/' . $course->images[0]) }}"
                    class="img-fluid w-100 rounded"
                    alt="Project Image"
                    style="height: 280px; object-fit: cover;">
@@ -76,4 +76,3 @@
     </div>
   </div>
 </section>
-
