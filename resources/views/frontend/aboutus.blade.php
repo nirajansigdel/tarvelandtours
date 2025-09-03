@@ -336,13 +336,27 @@
                     <p id="typing-text"></p>
                     @foreach ($message as $ceoms )
                      <div id="full-content"  class="xs-text-des">
-                        {{$ceoms->description}}
+                        @if($ceoms->name)
+                            <h5 class="fw-bold mb-2">{{ $ceoms->name }}</h5>
+                        @endif
+                        @if($ceoms->position)
+                            <p class="text-muted mb-2">{{ $ceoms->position }}</p>
+                        @endif
+                        @if($ceoms->companyName)
+                            <p class="text-muted mb-3">{{ $ceoms->companyName }}</p>
+                        @endif
+                        @if($ceoms->message)
+                            <div class="ceo-message">
+                                {{ $ceoms->message }}
+                            </div>
+                        @endif
                     </div>
                      <div class="col-md-6 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
-                    <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
-                        style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
-                    </>
-                </div>
+                    @if($ceoms->image)
+                        <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
+                            style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
+                    @endif
+                    </div>
                     @endforeach
                    
                 </div>

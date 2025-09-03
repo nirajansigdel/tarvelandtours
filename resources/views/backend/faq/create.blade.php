@@ -19,8 +19,24 @@
                 </div>
             @endif
 
-            <form action="{{ route('admin.faqs.store') }}" method="POST">
+            <form action="{{ route('admin.faqs.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+                {{-- FAQ Type --}}
+                <div class="mb-3">
+                    <label for="type" class="form-label">FAQ Type</label>
+                    <select class="form-control" id="type" name="type">
+                        <option value="">Select FAQ Type</option>
+                        <option value="procurement" {{ old('type') == 'procurement' ? 'selected' : '' }}>Procurement</option>
+                        <option value="general" {{ old('type') == 'general' ? 'selected' : '' }}>General</option>
+                    </select>
+                </div>
+
+                {{-- Question --}}
+                <div class="mb-3">
+                    <label for="question" class="form-label">Question</label>
+                    <textarea class="form-control" id="question" name="question" rows="3">{{ old('question') }}</textarea>
+                </div>
 
                 {{-- Heading --}}
                 <div class="mb-3">
@@ -32,6 +48,12 @@
                 <div class="mb-3">
                     <label for="answer" class="form-label">Answer <span class="text-danger">*</span></label>
                     <textarea class="form-control" id="answer" name="answer" rows="5" required>{{ old('answer') }}</textarea>
+                </div>
+
+                {{-- Image --}}
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image (Optional)</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
                 </div>
 
                 {{-- Action Buttons --}}

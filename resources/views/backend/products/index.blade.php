@@ -46,6 +46,7 @@
                         <th>Heading</th>
                         <th>Location</th>
                         <th>Date</th>
+                        <th>Includes</th>
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
@@ -57,6 +58,20 @@
                             <td>{{ $product->heading ?? 'N/A' }}</td>
                             <td>{{ $product->location ?? 'N/A' }}</td>
                             <td>{{ optional($product->date)->format('Y-m-d') ?? 'N/A' }}</td>
+                            <td>
+                                @if(is_array($product->includes) && count($product->includes))
+                                    <ul class="list-unstyled mb-0">
+                                        @foreach(array_slice($product->includes, 0, 3) as $include)
+                                            <li class="small text-muted">• {{ Str::limit($include, 30) }}</li>
+                                        @endforeach
+                                        @if(count($product->includes) > 3)
+                                            <li class="small text-muted">+{{ count($product->includes) - 3 }} more</li>
+                                        @endif
+                                    </ul>
+                                @else
+                                    <span class="text-muted">No includes</span>
+                                @endif
+                            </td>
                             <td>
                                 @if(is_array($product->images) && count($product->images))
                                     <img src="{{ asset('uploads/products/' . $product->images[0]) }}" 

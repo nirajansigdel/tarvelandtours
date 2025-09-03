@@ -67,9 +67,9 @@ class FaqController extends Controller
 public function update(Request $request, Faq $faq)
 {
     $request->validate([
-        'type' => 'required|string|in:procurement,general',
+        'type' => 'nullable|string|in:procurement,general',
         'heading' => 'required|string|max:255',
-        'question' => 'required|string',
+        'question' => 'nullable|string',
         'answer' => 'required|string',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);

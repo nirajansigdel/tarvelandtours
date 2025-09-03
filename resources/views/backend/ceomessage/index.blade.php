@@ -37,8 +37,10 @@
             <thead>
                 <tr>
                     <th>S.N.</th>
-                    <th>Title</th>
-                    <th>Description</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Company Name</th>
+                    <th>Message</th>
                     <th>Image</th>
                     <th>Actions</th>
                 </tr>
@@ -50,8 +52,10 @@
                 @foreach ($ceomessage as $message)
                     <tr>
                         <td>{{ $serialNumber++ }}</td>
-                        <td>{{ $message->title }}</td>
-                        <td>{{ $message->description }}</td>
+                        <td>{{ $message->name ?? 'N/A' }}</td>
+                        <td>{{ $message->position ?? 'N/A' }}</td>
+                        <td>{{ $message->companyName ?? 'N/A' }}</td>
+                        <td>{{ Str::limit($message->message ?? 'N/A', 100) }}</td>
                         <td>
                             @if ($message->image)
                                 <img src="{{ asset('uploads/message/' . $message->image) }}" alt="Image" style="max-width: 100px; max-height: 100px;">

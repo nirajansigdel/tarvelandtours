@@ -14,23 +14,56 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Type</th>
+                    <th>Question</th>
                     <th>Heading</th>
                     <th>Answer</th>
+                    <th>Image</th>
                     <th style="width: 150px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($faqs as $faq)
                 <tr>
-                    <td>{{ $faq->heading }}</td>
-                    <td>{{ $faq->answer }}</td>
                     <td>
-                        <a href="{{ route('admin.faqs.edit', $faq->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
-                        </form>
+                        @if($faq->type)
+                            <span class="badge bg-{{ $faq->type == 'procurement' ? 'warning' : 'info' }}">
+                                {{ ucfirst($faq->type) }}
+                            </span>
+                        @else
+                            <span class="text-muted">Not set</span>
+                        @endif
+                    </td>
+                    <td>{{ $faq->question ? Str::limit($faq->question, 50) : 'Not set' }}</td>
+                    <td>{{ Str::limit($faq->heading, 50) }}</td>
+                    <td>{{ Str::limit($faq->answer, 100) }}</td>
+                    <td>
+                        @if($faq->image)
+                            <img src="{{ asset('uploads/faqs/' . $faq->image) }}" 
+                                 alt="FAQ Image" 
+                                 style="max-width: 60px; max-height: 60px;" 
+                                 class="img-thumbnail">
+                        @else
+                            <span class="text-muted">No image</span>
+                        @endif
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a href="{{ route('admin.faqs.edit', $faq->id) }}" 
+                               class="btn btn-sm btn-warning">
+                                <i class="fa fa-edit"></i> Edit
+                            </a>
+                            <form action="{{ route('admin.faqs.destroy', $faq->id) }}" 
+                                  method="POST" 
+                                  style="display:inline-block;" 
+                                  onsubmit="return confirm('Are you sure you want to delete this FAQ?');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-danger" type="submit">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

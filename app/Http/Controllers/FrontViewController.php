@@ -24,6 +24,7 @@ use App\Models\BlogPostsCategory;
 use App\Models\Client;
 use App\Models\ClientMessage;
 use App\Models\Message;
+use App\Models\DirectorMessage;
 use Carbon\Carbon;
 
 class FrontViewController extends Controller
@@ -39,6 +40,7 @@ class FrontViewController extends Controller
         $testimonials = Testimonial::latest()->get()->take(10);
         $coverImages = CoverImage::all();
         $message = Message::latest()->first();
+        $ceoMessage = DirectorMessage::latest()->first();
         $firstCategory = Category::first();
         $posts = $firstCategory ? $firstCategory->posts()->latest()->take(6)->get() : collect([]);
         $clients = Client::latest()->get();
@@ -57,6 +59,7 @@ class FrontViewController extends Controller
             'testimonials',
             'coverImages',
             'message',
+            'ceoMessage',
             'clients',
             'about',
             'posts',

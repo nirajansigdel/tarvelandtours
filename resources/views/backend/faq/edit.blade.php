@@ -1,38 +1,74 @@
 @extends('backend.layouts.master')
 
 @section('content')
-<div class="container">
-    <h1 class="mb-4">Edit FAQ</h1>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                   <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form method="POST" action="{{ route('admin.faqs.update', $faq->id) }}">
-        @csrf
-        @method('PUT')
-        
-        {{-- Heading --}}
-        <div class="form-group mb-3">
-            <label for="heading">Heading</label>
-            <input type="text" class="form-control" id="heading" name="heading" value="{{ old('heading', $faq->heading) }}" required>
-        </div>
-        
-        {{-- Answer --}}
-        <div class="form-group mb-3">
-            <label for="answer">Answer</label>
-            <textarea class="form-control" id="answer" name="answer" rows="5" required>{{ old('answer', $faq->answer) }}</textarea>
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Edit FAQ</h3>
         </div>
 
-        {{-- Action Buttons --}}
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('admin.faqs.index') }}" class="btn btn-secondary">Cancel</a>
-    </form>
+        <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                           <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('admin.faqs.update', $faq->id) }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                
+                {{-- FAQ Type --}}
+                <div class="mb-3">
+                    <label for="type" class="form-label">FAQ Type</label>
+                    <select class="form-control" id="type" name="type">
+                        <option value="">Select FAQ Type</option>
+                        <option value="procurement" {{ old('type', $faq->type) == 'procurement' ? 'selected' : '' }}>Procurement</option>
+                        <option value="general" {{ old('type', $faq->type) == 'general' ? 'selected' : '' }}>General</option>
+                    </select>
+                </div>
+
+                {{-- Question --}}
+                <div class="mb-3">
+                    <label for="question" class="form-label">Question</label>
+                    <textarea class="form-control" id="question" name="question" rows="3">{{ old('question', $faq->question) }}</textarea>
+                </div>
+                
+                {{-- Heading --}}
+                <div class="mb-3">
+                    <label for="heading" class="form-label">Heading <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="heading" name="heading" value="{{ old('heading', $faq->heading) }}" required>
+                </div>
+                
+                {{-- Answer --}}
+                <div class="mb-3">
+                    <label for="answer" class="form-label">Answer <span class="text-danger">*</span></label>
+                    <textarea class="form-control" id="answer" name="answer" rows="5" required>{{ old('answer', $faq->answer) }}</textarea>
+                </div>
+
+                {{-- Image --}}
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image (Optional)</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    @if($faq->image)
+                        <div class="mt-2">
+                            <p class="text-muted">Current image:</p>
+                            <img src="{{ asset('uploads/faqs/' . $faq->image) }}" alt="Current FAQ Image" style="max-width: 200px; max-height: 200px;" class="img-thumbnail">
+                        </div>
+                    @endif
+                </div>
+
+                {{-- Action Buttons --}}
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Update FAQ</button>
+                    <a href="{{ route('admin.faqs.index') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection
