@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
+use App\Models\DirectorMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -10,7 +10,7 @@ class CeomessageController extends Controller
 {
     public function index()
     {
-        $ceomessage = Message::paginate(10);
+        $ceomessage = DirectorMessage::paginate(10);
         return view('backend.ceomessage.index', ['ceomessage' => $ceomessage, 'page_title' => 'CEO Message']);
     }
 
@@ -53,7 +53,7 @@ class CeomessageController extends Controller
             }
 
             // Create new message
-            $message = new Message;
+            $message = new DirectorMessage;
             $message->title = $request->input('title');
             $message->description = $request->input('description');
             $message->image = $newImageName;
@@ -79,7 +79,7 @@ class CeomessageController extends Controller
 
     public function edit($id)
     {
-        $message = Message::find($id);
+        $message = DirectorMessage::find($id);
         return view('backend.ceomessage.update', ['message' => $message, 'page_title' => 'Update Message']);
     }
 
@@ -104,7 +104,7 @@ class CeomessageController extends Controller
             'image' => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
         ]);
 
-            $message = Message::findOrFail($id);
+            $message = DirectorMessage::findOrFail($id);
 
             if ($request->hasFile('image')) {
                 // Delete the old image from the server
@@ -137,7 +137,7 @@ class CeomessageController extends Controller
 
     public function destroy($id)
     {
-        $message = Message::find($id);
+        $message = DirectorMessage::find($id);
 
         if ($message) {
             $message->delete();
@@ -149,7 +149,7 @@ class CeomessageController extends Controller
 
     public function showCeoMessage()
     {
-        $message = Message::first(); // Fetch the CEO message
+        $message = DirectorMessage::first(); // Fetch the CEO message
         return view('frontend.index', compact('message'));
     }
     

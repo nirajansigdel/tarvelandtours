@@ -133,11 +133,11 @@
 </style>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-md py-2">
+<nav class="navbar navbar-expand-md">
   <div class="container d-flex align-items-center justify-content-between">
     <!-- Logo -->
     <a class="navbar-brand toplogo" href="{{ route('index') }}">
-      <img src="{{ asset('image/logo.avif') }}" alt="Logo" />
+      <img src="{{ asset('image/logo.jpg') }}" alt="Logo" />
     </a>
 
     <!-- Language Toggle (mobile) -->
@@ -152,11 +152,24 @@
         </div>
       </div>
     </div>
+<style>
+  .navbar-toggler, .btn-close {
+    border-color: white; /* white border */
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  .btn-close{
+    color: white !important;
+    border-color: #ef6b20;
+  }
+</style>
 
     <!-- Hamburger Button -->
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+    <button class="navbar-toggler" style="color:white"  type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
       aria-controls="mobileMenu">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon " style="color:white"></span>
     </button>
 
     <!-- Desktop Menu -->
@@ -176,13 +189,21 @@
         </li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="{{ route('About') }}">About</a></li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="{{ route('Gallery') }}">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link text-dark fw-medium" href=" {{ route('Contact') }}">Contact</a></li>    
+        <li class="nav-item"><a class="nav-link text-dark fw-medium"
+            href=" {{ route('destinations.index.front') }}">Destination</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href=" {{ route('Contact') }}">Contact</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" id="offerDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
             Offer
           </a>
           <ul class="dropdown-menu" aria-labelledby="offerDropdown">
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Post">Promotional Posts</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=General">General Offers</a></li>
+            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">Festival Deals</a></li>
+            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">Couple Packages</a></li>
+            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">Group Packages</a></li>
+
             <li><a class="dropdown-item" href="{{ route('posts.index.front') }}">Post</a></li>
             <li><a class="dropdown-item" href="{{ route('destinations.index.front') }}">Destination</a></li>
             <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=General">General</a></li>
@@ -223,16 +244,18 @@
     background: var(--primary);
     color: white;
   }
-  .btn-close{
-    color:white !important;
-  }
+
+   .btn-close.white-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+  } 
+  
 </style>
 
 <!-- Mobile Menu -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type="button" class="btn-close white-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
     <ul class="navbar-nav">

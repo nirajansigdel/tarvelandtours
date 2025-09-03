@@ -33,7 +33,7 @@ class SingleController extends Controller
         $teams = Team::all();
         $posts = Post::with('category')->latest()->take(3)->get();
         $listservices = Service::latest()->take(5)->get();
-        $message = DirectorMessage::first();
+        $message = DirectorMessage::all();
         $siteSetting = SiteSetting::first();
         $faqs = Faq::latest()->get();
 

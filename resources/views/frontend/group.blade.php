@@ -9,11 +9,11 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Group Tours</h1>
+                <h1 class="fw-bold display-4">Festivals</h1>
                 <p class="mt-2 fs-5">
                     <span class="fw-semibold">Home</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    Group Tours
+                    Festivals
                 </p>
             </div>
         </div>
@@ -21,28 +21,30 @@
 
     <div class="container pt-8 pb-8">
         <div class="row">
-            <div class="col-12">
-                <h1 class="text-center mb-5">Our Group Tours</h1>
-            </div>
+           <div class="directors-header my-5 text-center">
+            <h1 class="heading mb-1">GRoup Offer</h1>
+            <p class="extralarger">
+                Bring your friends or family</p>
+        </div>
         </div>
 
         @if($products->isEmpty())
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="alert alert-info">
-                        <h4>No group tours available yet.</h4>
-                        <p>Please check back later for exciting group adventures.</p>
+                        <h4>No festivals available yet.</h4>
+                        <p>Please check back later for new festival events.</p>
                     </div>
                 </div>
             </div>
         @else
             <div class="row">
-                @foreach($products as $product)
+                @foreach($products  as $product)
                     <div class="col-md-4 mb-4">
                         <div class="card h-100 shadow-sm">
                             @if(is_array($product->images) && count($product->images))
                                 <img src="{{ asset('uploads/products/' . $product->images[0]) }}" class="card-img-top"
-                                    alt="{{ $product->heading ?? 'Group Tour Image' }}" style="height: 200px; object-fit: cover;">
+                                    alt="{{ $product->heading ?? 'Festival Image' }}" style="height: 200px; object-fit: cover;">
                             @else
                                 <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60"
                                     class="card-img-top" alt="Default Image" style="height: 200px; object-fit: cover;">
@@ -58,7 +60,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <h5 class="content-heading mt-2">{{ $product->heading ?? 'Untitled Group Tour' }}</h5>
+                                <h5 class="content-heading mt-2">{{ $product->heading ?? 'Untitled Festival' }}</h5>
                                 @if($product->subtitle)
                                     <p class="contentdesc text-muted">{{ Str::limit($product->subtitle, 100) }}</p>
                                 @endif
@@ -121,18 +123,9 @@
             @endif
         @endif
 
-        <!-- Add extra spacing at the bottom -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="text-center text-muted">
-                    <hr class="my-4">
-                    <p class="mb-0">Join exciting group adventures and make new friends along the way</p>
-                </div>
-            </div>
-        </div>
-
         <!-- Footer spacer to ensure proper separation -->
         <div class="footer-spacer"></div>
     </div>
 </div>
+@endsection
 @endsection

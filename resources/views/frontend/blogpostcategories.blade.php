@@ -23,7 +23,7 @@
     <div class="directors-header mb-5 text-center">
             <h1 class="heading mb-1"> Collection of Blogs</h1>
             <p class="extralarger">
-                Our blogs shares stories
+                Our blogs shares stories</p>
         </div>
     <div class="row">
         @foreach ($blogpostcategories as $blogs)

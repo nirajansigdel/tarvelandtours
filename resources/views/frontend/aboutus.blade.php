@@ -297,9 +297,29 @@
             </div>
                     
             <!-- Right Image -->
-            <div class="col-lg-5 text-center">
-                <img src="{{ asset('image/destin.jpg') }}" alt="" class="service-img" style="height: 600px;">
-</div>
+ <div class="col-lg-5 position-relative d-flex justify-content-center">
+      <div class="col-md-10">
+        <!-- Image -->
+        <img src="{{ asset('uploads/about/'.$about->image) }}" alt="Service" class="img-fluid rounded shadow service-img">
+
+        <!-- Experience Badge -->
+        <!-- Experience Circle (on top) -->
+        <div
+          class="position-absolute expercircle text-white rounded-circle d-flex flex-column justify-content-center align-items-center fw-bold"
+          style="width: 190px; height: 190px; bottom: 50px; left: -60px; z-index: 2;">
+          <div style="font-size:40px;">15+</div>
+          <div style="font-size:20px; text-align: center;">Years of<br>experience</div>
+        </div>
+
+        <!-- Customers Banner (under the circle) -->
+        <div class="position-absolute text-white text-center py-4 px-3"
+          style="background-color: #0E2F57; bottom: -40px; width:444px; border-radius: 6px; z-index: 1;">
+          <div class="fw-bold" style="font-size:40px;">1K+</div>
+          <small class="xs-text-des">Customize Service</small>
+        </div>
+
+      </div>
+    </div>
             </div>
         </div>
     </div>
@@ -314,15 +334,17 @@
                 <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-delay="100">
                     <h3 class="pt-4 mb-4 fw-bold">CEO Message</h3>
                     <p id="typing-text"></p>
-                    <div id="full-content" style="display:none;" class="xs-text-des">
-                        {{ app()->getLocale() === 'ne' ? $about->ceo_message_ne : $about->ceo_message }}
-                        {!! app()->getLocale() === 'ne' ? $about->content_ne : $about->content !!}
+                    @foreach ($message as $ceoms )
+                     <div id="full-content"  class="xs-text-des">
+                        {{$ceoms->description}}
                     </div>
-                </div>
-                <div class="col-md-6 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
-                    <img src="{{ asset('uploads/about/' . $about->image) }}" alt="CEO Image"
+                     <div class="col-md-6 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
+                    <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
                         style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
                     </>
+                </div>
+                    @endforeach
+                   
                 </div>
             </div>
     </section>
@@ -366,6 +388,7 @@
 
     <style>
         .contactsection {
+             background-image: url("{{ asset('image/destin.jpg') }}");
             position: relative;
             background-color: #f8f9fa;
             background-position: center;
@@ -375,8 +398,6 @@
             min-height: 80vh;
             overflow: hidden;
         }
-    </style>
-    <style>
         .text-warning {
             color: var(--bs-orange) !important;
             ;

@@ -43,11 +43,19 @@
     $couplecard  = paginateProductType($products, 'Couple', 6, 'bamboo_page');
     $groupcard = paginateProductType($products, 'Group', 6, 'cch_page');
 @endphp
+{{--
+
+
+
+
+
+--}}
+
 @include("frontend.includes.herosection")
 @include("frontend.includes.banner")
-@include("frontend.includes.offer")
-@include("frontend.includes.couple")
-@include("frontend.includes.Destination")
+@include("frontend.includes.indexoffer")
+@include("frontend.includes.indexcouple")
+@include("frontend.includes.indexDestination")
 @include("frontend.includes.why")  
 @include("frontend.includes.costest")
 @include("frontend.includes.indexservice")

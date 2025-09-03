@@ -237,6 +237,14 @@
                             </div>
                         @endif
 
+                         @if($product->includes)
+                            <div class="mb-4">
+                                <h5 class="fw-bold mb-3">Description</h5>
+                                <div class="text-muted lh-lg fs-6">
+                                    {!! $product->includes !!}
+                                </div>
+                            </div>
+                        @endif
 
 
                         <!-- Action Buttons -->

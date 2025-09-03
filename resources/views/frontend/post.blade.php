@@ -21,9 +21,11 @@
 
     <div class="container pt-8 pb-8">
         <div class="row">
-            <div class="col-12">
-                <h1 class="text-center mb-5">Our Travel Posts</h1>
-            </div>
+             <div class="directors-header my-5 text-center">
+            <h1 class="heading mb-1">Special Offer for Everyone</h1>
+            <p class="extralarger">
+                Enjoy exclusive deals made just for you.</p>
+        </div>
         </div>
 
         @if($products->isEmpty())
@@ -135,4 +137,5 @@
         <div class="footer-spacer"></div>
     </div>
 </div>
+@endsection
 @endsection

@@ -21,9 +21,11 @@
 
     <div class="container pt-8 pb-8">
         <div class="row">
-            <div class="col-12">
-                <h1 class="text-center mb-5">Our Destinations</h1>
-            </div>
+           <div class="directors-header my-5 text-center">
+            <h1 class="heading mb-1"> Beautiful Destination</h1>
+            <p class="extralarger">
+                Where the map ends, your story begins.</p>
+        </div>
         </div>
 
         @if($products->isEmpty())

@@ -4,16 +4,16 @@
 <div class="content-wrapper">
 
     <section class="position-relative text-white text-center"
-        style="background: url('{{ asset('image/blog.webp') }}') center center / cover no-repeat; height:400px;">
+        style="background: url('{{ asset('image/destin.jpg') }}') center center / cover no-repeat; height:400px;">
         <div class="herosectionoverlay"></div>
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Couple Packages</h1>
+                <h1 class="fw-bold display-4">Destinations</h1>
                 <p class="mt-2 fs-5">
                     <span class="fw-semibold">Home</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    Couple Packages
+                    Destinations
                 </p>
             </div>
         </div>
@@ -21,17 +21,19 @@
 
     <div class="container pt-8 pb-8">
         <div class="row">
-            <div class="col-12">
-                <h1 class="text-center mb-5">Our Couple Packages</h1>
-            </div>
+            <div class="directors-header my-5 text-center">
+            <h1 class="heading mb-1"> Perfect for Two </h1>
+            <p class="extralarger">
+                Celebrate togetherness with special deals</p>
+        </div>
         </div>
 
         @if($products->isEmpty())
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="alert alert-info">
-                        <h4>No couple packages available yet.</h4>
-                        <p>Please check back later for romantic couple getaways.</p>
+                        <h4>No destinations available yet.</h4>
+                        <p>Please check back later for new destinations.</p>
                     </div>
                 </div>
             </div>
@@ -42,7 +44,7 @@
                         <div class="card h-100 shadow-sm">
                             @if(is_array($product->images) && count($product->images))
                                 <img src="{{ asset('uploads/products/' . $product->images[0]) }}" class="card-img-top"
-                                    alt="{{ $product->heading ?? 'Couple Package Image' }}" style="height: 200px; object-fit: cover;">
+                                    alt="{{ $product->heading ?? 'Destination Image' }}" style="height: 200px; object-fit: cover;">
                             @else
                                 <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60"
                                     class="card-img-top" alt="Default Image" style="height: 200px; object-fit: cover;">
@@ -58,7 +60,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <h5 class="content-heading mt-2">{{ $product->heading ?? 'Untitled Couple Package' }}</h5>
+                                <h5 class="content-heading mt-2">{{ $product->heading ?? 'Untitled Destination' }}</h5>
                                 @if($product->subtitle)
                                     <p class="contentdesc text-muted">{{ Str::limit($product->subtitle, 100) }}</p>
                                 @endif
@@ -126,7 +128,7 @@
             <div class="col-12">
                 <div class="text-center text-muted">
                     <hr class="my-4">
-                    <p class="mb-0">Create unforgettable memories with our romantic couple packages</p>
+                    <p class="mb-0">Discover amazing destinations and plan your next adventure</p>
                 </div>
             </div>
         </div>

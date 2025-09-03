@@ -386,3 +386,25 @@ html {
       background: linear-gradient(to bottom, #fff, #fffbe6);
       transition: transform 0.3s;
     }
+
+      .expercircle{
+        background: var(--bs-orange);
+      }
+
+  @media (max-width: 576px) {
+    .expercircle {
+      width: 120px !important;
+      height: 120px !important;
+      bottom: 30px !important;
+      left: 0px !important;
+    }
+
+    .expercircle div:first-child {
+      font-size: 24px !important;
+    }
+
+    .expercircle div:last-child {
+      font-size: 12px !important;
+    }
+  }
+
