@@ -38,6 +38,8 @@ class ProductController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'product_types' => 'nullable|array',
             'product_types.*' => 'string',
+            'includes' => 'nullable|array|max:5',
+            'includes.*' => 'nullable|string|max:255',
             'status' => 'nullable|boolean',
         ]);
 
@@ -49,6 +51,14 @@ class ProductController extends Controller
                 $gimg->move(public_path('uploads/products'), $gname);
                 $galleryImages[] = $gname;
             }
+        }
+
+        // Filter out empty includes values
+        $includes = $request->input('includes', []);
+        if (is_array($includes)) {
+            $includes = array_filter($includes, function($value) {
+                return !empty(trim($value));
+            });
         }
 
         Product::create([
@@ -65,6 +75,7 @@ class ProductController extends Controller
             'content' => $validated['content'] ?? null,
             'images' => $galleryImages,
             'product_types' => $request->input('product_types'),
+            'includes' => $includes,
             'status' => (bool)($request->input('status', 1)),
         ]);
 
@@ -95,6 +106,8 @@ class ProductController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
             'product_types' => 'nullable|array',
             'product_types.*' => 'string',
+            'includes' => 'nullable|array|max:5',
+            'includes.*' => 'nullable|string|max:255',
             'status' => 'nullable|boolean',
         ]);
 
@@ -106,6 +119,14 @@ class ProductController extends Controller
                 $gimg->move(public_path('uploads/products'), $gname);
                 $existing[] = $gname;
             }
+        }
+
+        // Filter out empty includes values
+        $includes = $request->input('includes', []);
+        if (is_array($includes)) {
+            $includes = array_filter($includes, function($value) {
+                return !empty(trim($value));
+            });
         }
 
         $product->update([
@@ -122,6 +143,7 @@ class ProductController extends Controller
             'content' => $validated['content'] ?? null,
             'images' => $existing,
             'product_types' => $request->input('product_types'),
+            'includes' => $includes,
             'status' => (bool)($request->input('status', 1)),
         ]);
 
@@ -138,4 +160,3 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
 }
-

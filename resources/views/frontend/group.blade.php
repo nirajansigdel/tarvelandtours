@@ -9,11 +9,11 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Festivals</h1>
+                <h1 class="fw-bold display-4">Group Packages</h1>
                 <p class="mt-2 fs-5">
                     <span class="fw-semibold">Home</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    Festivals
+                    Groups
                 </p>
             </div>
         </div>
@@ -32,8 +32,8 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="alert alert-info">
-                        <h4>No festivals available yet.</h4>
-                        <p>Please check back later for new festival events.</p>
+                        <h4>No group packages available yet.</h4>
+                        <p>Please check back later for new group offers.</p>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                         <div class="card h-100 shadow-sm">
                             @if(is_array($product->images) && count($product->images))
                                 <img src="{{ asset('uploads/products/' . $product->images[0]) }}" class="card-img-top"
-                                    alt="{{ $product->heading ?? 'Festival Image' }}" style="height: 200px; object-fit: cover;">
+                                    alt="{{ $product->heading ?? 'Group Package Image' }}" style="height: 200px; object-fit: cover;">
                             @else
                                 <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60"
                                     class="card-img-top" alt="Default Image" style="height: 200px; object-fit: cover;">
@@ -60,7 +60,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <h5 class="content-heading mt-2">{{ $product->heading ?? 'Untitled Festival' }}</h5>
+                                <h5 class="content-heading mt-2">{{ $product->heading ?? 'Untitled Group Package' }}</h5>
                                 @if($product->subtitle)
                                     <p class="contentdesc text-muted">{{ Str::limit($product->subtitle, 100) }}</p>
                                 @endif

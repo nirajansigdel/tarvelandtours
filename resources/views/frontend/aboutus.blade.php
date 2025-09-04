@@ -328,6 +328,70 @@
 
 
     <!-- ========== CEO Section with Typing Animation ========== -->
+
+  <!-- AOS Initialization -->
+<script>
+    AOS.init({
+        duration: 1500,
+        easing: 'ease-in-out-cubic',
+        once: true,
+        mirror: false,
+        offset: 150
+    });
+</script>
+
+<!-- CEO Message Section -->
+<section class="aboutherosection py-5 directors-section">
+    <div class="container">
+        <div class="row align-items-center mx-md-5">
+
+            @foreach ($message as $index => $ceoms)
+                <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-delay="100">
+                    <h3 class="pt-4 mb-4 fw-bold">CEO Message</h3>
+
+                    <!-- Typing Text Output -->
+                    <p id="typing-text-{{ $index }}"></p>
+
+                    <!-- Hidden Full Message -->
+                    <div id="full-content-{{ $index }}" class="xs-text-des" style="display: none;">
+                        {{ $ceoms->message }}
+                    </div>
+                </div>
+
+                <div class="col-md-5 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
+                    <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
+                         style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+</section>
+
+<!-- Typing Effect Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Loop over all messages
+        @foreach ($message as $index => $ceoms)
+            const fullContent{{ $index }} = document.getElementById('full-content-{{ $index }}').innerText.trim();
+            const typingText{{ $index }} = document.getElementById('typing-text-{{ $index }}');
+            let index{{ $index }} = 0;
+
+            function type{{ $index }}() {
+                if (index{{ $index }} < fullContent{{ $index }}.length) {
+                    typingText{{ $index }}.innerHTML += fullContent{{ $index }}.charAt(index{{ $index }});
+                    index{{ $index }}++;
+                    setTimeout(type{{ $index }}, 50);
+                }
+            }
+
+            type{{ $index }}();
+        @endforeach
+    });
+</script>
+
+
+    {{-- 
     <section class="aboutherosection py-5 directors-section">
         <div class="container">
             <div class="row align-items-center mx-md-5">
@@ -336,19 +400,33 @@
                     <p id="typing-text"></p>
                     @foreach ($message as $ceoms )
                      <div id="full-content"  class="xs-text-des">
-                        {{$ceoms->description}}
+                        @if($ceoms->name)
+                            <h5 class="fw-bold mb-2">{{ $ceoms->name }}</h5>
+                        @endif
+                        @if($ceoms->position)
+                            <p class="text-muted mb-2">{{ $ceoms->position }}</p>
+                        @endif
+                        @if($ceoms->companyName)
+                            <p class="text-muted mb-3">{{ $ceoms->companyName }}</p>
+                        @endif
+                        @if($ceoms->message)
+                            <div class="ceo-message">
+                                {{ $ceoms->message }}
+                            </div>
+                        @endif
                     </div>
                      <div class="col-md-6 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
-                    <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
-                        style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
-                    </>
-                </div>
+                    @if($ceoms->image)
+                        <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
+                            style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
+                    @endif
+                    </div>
                     @endforeach
                    
                 </div>
             </div>
     </section>
-
+ --}}
     <!-- ========== Directors Section ========== -->
     <section class="container-fluid py-5 bg-soft-blue ">
         <div class="container text-center">
@@ -465,7 +543,7 @@
                                 <button class="accordion-button collapsed custom-accordion-button px-2" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapse{{$index}}" aria-expanded="false"
                                     aria-controls="collapse{{$index}}">
-                                    {{$faq->heading}}
+                                    {{$faq->question}}
                                 </button>
                             </h2>
                             <div id="collapse{{$index}}" class="accordion-collapse collapse" aria-labelledby="heading{{$index}}"

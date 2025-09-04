@@ -19,20 +19,23 @@
                 </div>
             @endif
 
-            <form action="{{ route('admin.faqs.store') }}" method="POST">
+            <form action="{{ route('admin.faqs.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                {{-- Heading --}}
+                {{-- Question --}}
                 <div class="mb-3">
-                    <label for="heading" class="form-label">Heading <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="heading" name="heading" value="{{ old('heading') }}" required>
+                    <label for="question" class="form-label">Question</label>
+                    <textarea class="form-control" id="question" name="question" rows="3">{{ old('question') }}</textarea>
                 </div>
+
 
                 {{-- Answer --}}
                 <div class="mb-3">
                     <label for="answer" class="form-label">Answer <span class="text-danger">*</span></label>
                     <textarea class="form-control" id="answer" name="answer" rows="5" required>{{ old('answer') }}</textarea>
                 </div>
+
+             
 
                 {{-- Action Buttons --}}
                 <div class="d-flex justify-content-between">

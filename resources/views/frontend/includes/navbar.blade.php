@@ -177,7 +177,7 @@
     <div class="collapse navbar-collapse justify-content-between d-none d-md-flex">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" id="navbarDropdown" role="button"
+          <a class="nav-link dropdown-toggle text-dark " href="#" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
             Introduction
           </a>
@@ -188,13 +188,13 @@
 
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="{{ route('About') }}">About</a></li>
-        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="{{ route('Gallery') }}">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link text-dark fw-medium"
+        <li class="nav-item"><a class="nav-link text-dark" href="{{ route('About') }}">About</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="{{ route('Gallery') }}">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link text-dark "
             href=" {{ route('destinations.index.front') }}">Destination</a></li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href=" {{ route('Contact') }}">Contact</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" id="offerDropdown" role="button"
+          <a class="nav-link dropdown-toggle text-dark " href="#" id="offerDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
             Offer
           </a>
@@ -210,7 +210,7 @@
 
 
         <li class="nav-item dropdown">
-          <a class="nav-link text-dark fw-medium" href="#" data-bs-toggle="dropdown">Updates</a>
+          <a class="nav-link text-dark" href="#" data-bs-toggle="dropdown">Updates</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('events') }}">News & Events</a></li>
             <li><a class="dropdown-item" href="{{ route('Blogpostcategory') }}">Blogs</a></li>

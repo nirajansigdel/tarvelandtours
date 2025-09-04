@@ -31,21 +31,11 @@ class FaqController extends Controller
   public function store(Request $request)
 {
     $request->validate([
-        'type' => 'required|string|in:procurement,general',
-        'heading' => 'required|string|max:255',
         'question' => 'required|string',
         'answer' => 'required|string',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
-    $data = $request->only(['type', 'heading', 'question', 'answer']);
-
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imageName = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('uploads/faqs'), $imageName);
-        $data['image'] = $imageName;
-    }
+    $data = $request->only([ 'question', 'answer']);
 
     Faq::create($data);
 
@@ -67,26 +57,13 @@ class FaqController extends Controller
 public function update(Request $request, Faq $faq)
 {
     $request->validate([
-        'type' => 'required|string|in:procurement,general',
-        'heading' => 'required|string|max:255',
-        'question' => 'required|string',
+       'question' => 'required|string',
         'answer' => 'required|string',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
-    $data = $request->only(['type', 'heading', 'question', 'answer']);
+    $data = $request->only(['question', 'answer']);
 
-    if ($request->hasFile('image')) {
-        // Delete old image if exists
-        if ($faq->image && file_exists(public_path('uploads/faqs/' . $faq->image))) {
-            unlink(public_path('uploads/faqs/' . $faq->image));
-        }
-
-        $image = $request->file('image');
-        $imageName = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('uploads/faqs'), $imageName);
-        $data['image'] = $imageName;
-    }
+   
 
     $faq->update($data);
 
@@ -100,10 +77,7 @@ public function update(Request $request, Faq $faq)
      */
     public function destroy(Faq $faq)
 {
-    // Delete image if exists in public/uploads/faqs
-    if ($faq->image && file_exists(public_path('uploads/faqs/' . $faq->image))) {
-        unlink(public_path('uploads/faqs/' . $faq->image));
-    }
+
 
     $faq->delete();
 

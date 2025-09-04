@@ -9,5 +9,6 @@ class Faq extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type', 'heading', 'question', 'answer', 'image'];
+    // Only include columns that exist in the 'faqs' table
+    protected $fillable = ['question', 'answer'];
 }

@@ -24,6 +24,7 @@ class Product extends Model
         'content',
         'images',
         'product_types',
+        'includes',
         'status',
     ];
 
@@ -32,6 +33,7 @@ class Product extends Model
         'people' => 'integer',
         'product_types' => 'array',
         'images' => 'array',
+        'includes' => 'array',
         'status' => 'boolean',
     ];
 
@@ -40,4 +42,3 @@ class Product extends Model
         return $this->belongsTo(Country::class);
     }
 }
-

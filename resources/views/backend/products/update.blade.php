@@ -75,13 +75,29 @@ is revert @extends('backend.layouts.master')
                             </div>
 
                             <div class="form-group">
-                                <label>Includes</label>
+                                <label>Includes <small class="text-muted">(Up to 5 items)</small></label>
                                 <ul id="includes-list" class="list-unstyled">
-                                    <li class="mb-2 d-flex align-items-center">
-                                        <input type="text" name="includestuff[]" class="form-control me-2" placeholder="Enter included item" />
-                                        <button type="button" class="btn btn-success add-include">+</button>
-                                    </li>
+                                    @if(is_array($product->includes) && count($product->includes))
+                                        @foreach($product->includes as $include)
+                                            <li class="mb-2 d-flex align-items-center">
+                                                <input type="text" name="includes[]" class="form-control me-2" 
+                                                    placeholder="Enter included item" value="{{ $include }}" />
+                                                @if($loop->first)
+                                                    <button type="button" class="btn btn-success btn-sm add-include" id="add-include-btn">+</button>
+                                                @else
+                                                    <button type="button" class="btn btn-danger btn-sm remove-include">−</button>
+                                                @endif
+                                            </li>
+                                        @endforeach
+                                    @else
+                                        <li class="mb-2 d-flex align-items-center">
+                                            <input type="text" name="includes[]" class="form-control me-2" 
+                                                placeholder="Enter included item" />
+                                            <button type="button" class="btn btn-success btn-sm add-include" id="add-include-btn">+</button>
+                                        </li>
+                                    @endif
                                 </ul>
+                                <small class="text-muted">Current items: <span id="includes-count">{{ is_array($product->includes) ? count($product->includes) : 1 }}</span>/5</small>
                             </div>
 
                             <div class="form-group">
@@ -140,6 +156,39 @@ is revert @extends('backend.layouts.master')
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+        // Includes functionality
+        document.addEventListener("DOMContentLoaded", function () {
+            const includesList = document.getElementById("includes-list");
+            const addIncludeBtn = document.getElementById("add-include-btn");
+            const includesCountSpan = document.getElementById("includes-count");
+
+            let currentIncludesCount = {{ is_array($product->includes) ? count($product->includes) : 1 }};
+            includesCountSpan.textContent = currentIncludesCount;
+
+            addIncludeBtn.addEventListener("click", function () {
+                if (currentIncludesCount < 5) {
+                    const newLi = document.createElement("li");
+                    newLi.classList.add("mb-2", "d-flex", "align-items-center");
+                    newLi.innerHTML = `
+                        <input type="text" name="includes[]" class="form-control me-2" placeholder="Enter included item" />
+                        <button type="button" class="btn btn-danger btn-sm remove-include">−</button>
+                    `;
+                    includesList.appendChild(newLi);
+                    currentIncludesCount++;
+                    includesCountSpan.textContent = currentIncludesCount;
+                }
+            });
+
+            includesList.addEventListener("click", function (e) {
+                if (e.target.classList.contains("remove-include")) {
+                    e.target.closest("li").remove();
+                    currentIncludesCount--;
+                    includesCountSpan.textContent = currentIncludesCount;
+                }
+            });
+        });
+
         $(document).ready(function () {
             $('.summernote').summernote({ height: 200, focus: true });
         });
@@ -167,4 +216,3 @@ is revert @extends('backend.layouts.master')
         });
     </script>
 @endsection
-

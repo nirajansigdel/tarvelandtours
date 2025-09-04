@@ -10,9 +10,10 @@ class DirectorMessage extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'description',
+        'name',
+        'position',
+        'companyName',
         'image',
+        'message',
     ];
 }
-

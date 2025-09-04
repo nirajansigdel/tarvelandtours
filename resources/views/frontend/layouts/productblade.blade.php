@@ -237,11 +237,20 @@
                             </div>
                         @endif
 
-                         @if($product->includes)
+                         @if($product->includes && is_array($product->includes) && count($product->includes))
                             <div class="mb-4">
-                                <h5 class="fw-bold mb-3">Description</h5>
-                                <div class="text-muted lh-lg fs-6">
-                                    {!! $product->includes !!}
+                                <h5 class="fw-bold mb-3">What's Included</h5>
+                                <div class="row">
+                                    @foreach($product->includes as $include)
+                                        @if(trim($include))
+                                            <div class="col-md-12 mb-2">
+                                                <div class="">
+                                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                                    <span class="text-muted">{{ $include }}</span>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         @endif

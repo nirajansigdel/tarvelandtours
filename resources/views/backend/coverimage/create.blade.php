@@ -34,7 +34,7 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="title">Title </label><span style="color:red; font-size:large"> *</span>
-                <input style="width:auto;" type="text" name="title" class="form-control" id="title"
+                <input  type="text" name="title" class="form-control" id="title"
                     value="{{ old('title') }}" placeholder="Title" required>
             </div>
 

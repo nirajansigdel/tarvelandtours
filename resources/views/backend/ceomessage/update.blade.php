@@ -33,8 +33,18 @@
         @method('PUT')
         <div class="card-body">
             <div class="form-group">
-                <label for="exampleInputEmail1">Title </label><span style="color:red; font-size:large"> *</span>
-                <input type="text" name="title" class="form-control" placeholder="Title" value="{{ $message->title }}" required>
+                <label for="name">Name </label><span style="color:red; font-size:large"> *</span>
+                <input type="text" name="name" class="form-control" placeholder="Name" value="{{ $message->name }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="position">Position </label><span style="color:red; font-size:large"> *</span>
+                <input type="text" name="position" class="form-control" placeholder="Position" value="{{ $message->position }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="companyName">Company Name </label><span style="color:red; font-size:large"> *</span>
+                <input type="text" name="companyName" class="form-control" placeholder="Company Name" value="{{ $message->companyName }}" required>
             </div>
             
             <div class="form-group">
@@ -48,8 +58,8 @@
             </div>
 
             <div class="form-group">
-                <label for="description">Description </label><span style="color:red; font-size:large"> *</span>
-                <textarea style="width: 100%; min-height: 150px;" type="text" class="form-control" name="description" id="description" placeholder="Add Description">{{ $message->description }}</textarea>
+                <label for="message">Message </label><span style="color:red; font-size:large"> *</span>
+                <textarea style="width: 100%; min-height: 150px;" type="text" class="form-control" name="message" id="message" placeholder="Add Message">{{ $message->message }}</textarea>
             </div>
 
            

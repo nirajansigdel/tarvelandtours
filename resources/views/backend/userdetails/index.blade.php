@@ -8,17 +8,12 @@
             <h1 class="page-title">{{ $page_title ?? 'User Details' }}</h1>
         </div>
 
-        <!-- Alert Messages -->
+        <!-- Alerts -->
         @if (Session::has('success'))
-            <div class="alert alert-success">
-                {{ Session::get('success') }}
-            </div>
+            <div class="alert alert-success">{{ Session::get('success') }}</div>
         @endif
-
         @if (Session::has('error'))
-            <div class="alert alert-danger">
-                {{ Session::get('error') }}
-            </div>
+            <div class="alert alert-danger">{{ Session::get('error') }}</div>
         @endif
 
         <!-- Breadcrumb -->
@@ -31,17 +26,16 @@
 
         <!-- Data Table -->
         <div class="table-responsive">
-            <table class="data-table">
-                <thead>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                     <tr>
-                        <th>S.N.</th>
-                        <th>Full Name</th>
+                        <th>#</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Address</th>
-                        <th>Product Applied</th>
-                        <th>Document Proof</th>
-                        <th>Submitted Date</th>
+                        <th>Product</th>
+                        <th>Submitted</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,46 +45,45 @@
                             <td>{{ $userDetail->name }}</td>
                             <td>{{ $userDetail->email ?? 'N/A' }}</td>
                             <td>{{ $userDetail->phone_no }}</td>
-                            <td>{{ Str::limit($userDetail->address ?? 'N/A', 30) }}</td>
+                            <td>{{ $userDetail->product->heading ?? 'N/A' }}</td>
+                            <td>{{ $userDetail->created_at ? $userDetail->created_at->format('M d, Y') : 'N/A' }}</td>
                             <td>
-                                @if($userDetail->product)
-                                    <div>
-                                        <strong>{{ $userDetail->product->heading }}</strong>
-                                        @if($userDetail->product->product_types)
-                                            <div class="mt-1">
-                                                @php
-                                                    $productTypes = $userDetail->product->product_types;
-                                                    if (is_string($productTypes)) {
-                                                        $productTypes = json_decode($productTypes, true) ?? [];
-                                                    }
-                                                    if (!is_array($productTypes)) {
-                                                        $productTypes = [];
-                                                    }
-                                                @endphp
-                                                                                                 @foreach($productTypes as $type)
-                                                     <span class="badge badge-info mr-1" style="background-color: #5C7C8F; color: white; font-weight: bold;">{{ $type }}</span>
-                                                 @endforeach
-                                            </div>
+                                <button class="btn btn-sm btn-info toggle-details" data-id="{{ $index }}" aria-label="Toggle Details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr class="user-details-row" id="details-{{ $index }}" style="display: none; background-color: #f9f9f9;">
+                            <td colspan="7">
+                                <div class="p-3">
+                                    <p><strong>Address:</strong> {{ $userDetail->address ?? 'N/A' }}</p>
+                                    <p><strong>Product Types:</strong>
+                                        @php
+                                            $productTypes = $userDetail->product->product_types ?? [];
+                                            if (is_string($productTypes)) {
+                                                $productTypes = json_decode($productTypes, true) ?? [];
+                                            }
+                                        @endphp
+                                        @foreach($productTypes as $type)
+                                            <span class="badge badge-primary">{{ $type }}</span>
+                                        @endforeach
+                                    </p>
+                                    <p><strong>Document Proof:</strong>
+                                        @if($userDetail->document_proof)
+                                            <a href="{{ Storage::url($userDetail->document_proof) }}" target="_blank" class="btn btn-sm btn-outline-secondary">
+                                                <i class="fas fa-file-pdf"></i> View Document
+                                            </a>
+                                        @else
+                                            <span class="text-muted">No document uploaded.</span>
                                         @endif
-                                    </div>
-                                @else
-                                    <span class="text-muted">N/A</span>
-                                @endif
+                                    </p>
+                                </div>
                             </td>
-                            <td>
-                                @if($userDetail->document_proof)
-                                    <a href="{{ Storage::url($userDetail->document_proof) }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-file-pdf"></i> View Document
-                                    </a>
-                                @else
-                                    <span class="text-muted">No document</span>
-                                @endif
-                            </td>
-                            <td>{{ $userDetail->created_at ? $userDetail->created_at->format('M d, Y H:i') : 'N/A' }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center">No user details found.</td>
+                            <td colspan="7" class="text-center">No user details found.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -106,3 +99,39 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log('Toggle script loaded'); // Debug line
+    document.querySelectorAll('.toggle-details').forEach(button => {
+        button.addEventListener('click', function () {
+            console.log('Button clicked', this);
+            const id = this.getAttribute('data-id');
+            const detailsRow = document.getElementById('details-' + id);
+            const icon = this.querySelector('i');
+
+            if (!detailsRow) {
+                console.error('Details row not found for id:', id);
+                return;
+            }
+
+            // Use getComputedStyle to check visibility
+            const isHidden = window.getComputedStyle(detailsRow).display === 'none';
+
+            if (isHidden) {
+                detailsRow.style.display = 'table-row';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                detailsRow.style.display = 'none';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
+});
+
+
+</script>
+@endpush

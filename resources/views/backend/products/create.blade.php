@@ -71,14 +71,15 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Includes</label>
+                                <label>Includes <small class="text-muted">(Up to 5 items)</small></label>
                                 <ul id="includes-list" class="list-unstyled">
                                     <li class="mb-2 d-flex align-items-center">
-                                        <input type="text" name="includestuff[]" class="form-control me-2"
-                                            placeholder="Enter included item" />
-                                        <button type="button" class="btn btn-success add-include">+</button>
+                                        <input type="text" name="includes[]" class="form-control me-2"
+                                            placeholder="Enter included item" required />
+                                        <button type="button" class="btn btn-success btn-sm add-include" id="add-include-btn">+</button>
                                     </li>
                                 </ul>
+                                <small class="text-muted">Current items: <span id="includes-count">1</span>/5</small>
                             </div>
 
                             <div class="form-group">
@@ -142,20 +143,31 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const includesList = document.getElementById("includes-list");
+            const addIncludeBtn = document.getElementById("add-include-btn");
+            const includesCountSpan = document.getElementById("includes-count");
 
-            includesList.addEventListener("click", function (e) {
-                if (e.target.classList.contains("add-include")) {
+            let currentIncludesCount = 1;
+            includesCountSpan.textContent = currentIncludesCount;
+
+            addIncludeBtn.addEventListener("click", function () {
+                if (currentIncludesCount < 5) {
                     const newLi = document.createElement("li");
                     newLi.classList.add("mb-2", "d-flex", "align-items-center");
                     newLi.innerHTML = `
-                        <input type="text" name="includestuff[]" class="form-control me-2" placeholder="Enter included item" />
+                        <input type="text" name="includes[]" class="form-control me-2" placeholder="Enter included item" />
                         <button type="button" class="btn btn-danger remove-include">−</button>
                     `;
                     includesList.appendChild(newLi);
+                    currentIncludesCount++;
+                    includesCountSpan.textContent = currentIncludesCount;
                 }
+            });
 
+            includesList.addEventListener("click", function (e) {
                 if (e.target.classList.contains("remove-include")) {
                     e.target.closest("li").remove();
+                    currentIncludesCount--;
+                    includesCountSpan.textContent = currentIncludesCount;
                 }
             });
         });
@@ -229,6 +241,5 @@
         });
     </script>
 @endsection
-
 
 

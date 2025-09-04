@@ -38,8 +38,10 @@ class CeomessageController extends Controller
 
             // Validate request data
             $this->validate($request, [
-                'title' => 'required|string',
-                'description' => 'required|string',
+                'name' => 'required|string',
+                'position' => 'required|string',
+                'companyName' => 'required|string',
+                'message' => 'required|string',
                 'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
             ]);
 
@@ -54,10 +56,11 @@ class CeomessageController extends Controller
 
             // Create new message
             $message = new DirectorMessage;
-            $message->title = $request->input('title');
-            $message->description = $request->input('description');
+            $message->name = $request->input('name');
+            $message->position = $request->input('position');
+            $message->companyName = $request->input('companyName');
+            $message->message = $request->input('message');
             $message->image = $newImageName;
-            // $message->content = $request->input('content');
 
             // Log message details before saving
             Log::info('Message details before saving:', $message->toArray());
@@ -99,8 +102,10 @@ class CeomessageController extends Controller
 
         // Validate the request data
         $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
+            'name' => 'required|string',
+            'position' => 'required|string',
+            'companyName' => 'required|string',
+            'message' => 'required|string',
             'image' => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
         ]);
 
@@ -119,9 +124,10 @@ class CeomessageController extends Controller
             }
 
             // Update the model properties
-            $message->title = $request->title;
-            $message->description = $request->description;
-            // $message->content = $request->content;
+            $message->name = $request->name;
+            $message->position = $request->position;
+            $message->companyName = $request->companyName;
+            $message->message = $request->message;
 
             // Save the updated model
             $message->save();
