@@ -388,6 +388,15 @@ class SingleController extends Controller
         return view('frontend.volunteer', compact('faqs'));
     }
 
+
+public function render_SEO($id)
+{
+    $seoSetting = SeoSetting::findOrFail($id);
+    return view('backend.seo_settings.show', compact('seoSetting'));
+}
+
+
+
      public function render_applycareer()
     {
         // Get the first active career for the application form

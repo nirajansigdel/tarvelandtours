@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use App\Models\Post;
+use App\Models\SeoSetting;
 use App\Models\Team;
 use App\Models\About;
 // use App\Models\Service;
@@ -48,6 +49,7 @@ class FrontViewController extends Controller
         $images = PhotoGallery::latest()->get();
         $notifications = Notification::where('status', 1)->latest()->get();
         $products = \App\Models\Product::where('status', true)->latest()->get();
+         $seoSetting = SeoSetting::latest()->first();
     
     
         return view('frontend.index', compact(
@@ -68,7 +70,7 @@ class FrontViewController extends Controller
             'images',
             'notifications',
             'products',
-          
+          'seoSetting',
 
         ));
     }

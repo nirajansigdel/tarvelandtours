@@ -42,7 +42,8 @@ use App\Http\Controllers\{
     CareerController,
     CareerApplicationController,
     ProductController,
-    UserDetailController
+    UserDetailController,
+    SeoSettingController,
 };
 
 /*
@@ -170,8 +171,13 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
         'products' => ProductController::class,
         'notifications' => NotificationController::class,
         'careers' => CareerController::class,
+        'seo_settings' => SeoSettingController::class, 
         // 'userdetails' => UserDetailController::class, // Simplified - only display data
     ]);
+
+Route::prefix('backend')->name('backend.')->group(function () {
+    Route::resource('seo_settings', SeoSettingController::class);
+});
 
     // Notifications Status Toggle
     Route::patch('/notifications/{id}/toggle-status', [NotificationController::class, 'toggleStatus'])->name('notifications.toggle-status');
@@ -223,7 +229,11 @@ Route::prefix('backend')->name('backend.')->group(function () {
 Route::get('/events/{slug}', [EventController::class, 'show'])
      ->name('singleevents');
 
-
-
-    
-      
+    Route::prefix('backend/seo_settings')->name('backend.seo_settings.')->group(function () {
+    Route::get('/', [SeoSettingController::class, 'index'])->name('index');            // List all SEO settings
+    Route::get('/create', [SeoSettingController::class, 'create'])->name('create');    // Show create form
+    Route::post('/', [SeoSettingController::class, 'store'])->name('store');           // Store new SEO setting
+    Route::get('/{id}/edit', [SeoSettingController::class, 'edit'])->name('edit');     // Show edit form
+    Route::put('/{id}', [SeoSettingController::class, 'update'])->name('update');      // Update SEO setting
+    Route::delete('/{id}', [SeoSettingController::class, 'destroy'])->name('destroy'); // Delete SEO setting
+});

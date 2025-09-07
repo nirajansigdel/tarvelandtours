@@ -6,11 +6,11 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tarvelandtour</title>
-    <meta name="description" content="Free Web tutorials">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="author" content="John Doe">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tarvelamdtour-{{ $seoSetting->meta_title ?? 'Default Title' }}</title>
+    <meta name="description" content="{{ $seoSetting->meta_description ?? 'Default description' }}">
+    <meta name="keywords" content="{{ $seoSetting->meta_keywords ?? 'Default keywords' }}">
+    <meta name="author" content="{{ $seoSetting->meta_author ?? 'Default author' }}">
+    <meta name="viewport" content="{{ $seoSetting->viewport ?? 'width=device-width, initial-scale=1.0' }}">
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -50,5 +50,7 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
-    <html lang="{{ app()->getLocale() }}"></html>
+    <html lang="{{ app()->getLocale() }}">
+
+    </html>
 </head>

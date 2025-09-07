@@ -760,6 +760,27 @@
         </a>
     </li>
 @endhasanyrole
+@hasanyrole('superadmin|admin')
+    <li class="nav-item">
+        <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+            <div class="col-auto navbar-vertical-label">SEO Settings</div>
+            <div class="col ps-0">
+                <hr class="mb-0 navbar-vertical-divider">
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link {{ Request::segment(2) == 'seo_settings' ? 'active' : '' }}"
+            href="{{ route('admin.seo_settings.index') }}">
+            <div class="d-flex align-items-center">
+                <i class="fa fa-angle-double-right"></i>
+                <span class="nav-link-text ps-1">SEO Settings</span>
+            </div>
+        </a>
+    </li>
+@endhasanyrole
+
 
 
 
