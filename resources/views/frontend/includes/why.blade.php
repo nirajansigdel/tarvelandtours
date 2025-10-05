@@ -6,7 +6,7 @@
 
   <style>
     .bg-hero {
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('{{ asset('image/destin.jpg') }}') center center / cover no-repeat fixed;
+      background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('{{ asset('image/destin.jpg') }}') center center / cover no-repeat fixed;
       height: 100vh;
     }
 
@@ -58,7 +58,7 @@
           </div>
           <div class="card-body">
             <h5 class="fw-bold text-warning">Tour And Travel</h5>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+            <p class="text-muted">Explore stunning trekking routes in Nepal with detailed map locations</p>
           </div>
         </div>
       </div>

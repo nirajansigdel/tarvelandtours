@@ -164,9 +164,9 @@
                     <div class="ps-lg-2">
                         <!-- Title & Subtitle -->
                         <div class="mb-4">
-                            <h1 class="fw-bold  text-dark">{{ $product->heading }}</h1>
+                            <h2 class="fw-bold  text-dark">{{ $product->heading }}</h2>
                             @if($product->subtitle)
-                                <p class="fs-5 text-muted">{{ $product->subtitle }}</p>
+                                <h6 h6="fs-5 text-muted">{{ $product->subtitle }}</h6>
                             @endif
                         </div>
 
@@ -231,9 +231,9 @@
                         @if($product->content)
                             <div class="mb-4">
                                 <h5 class="fw-bold mb-3">Description</h5>
-                                <div class="text-muted lh-lg fs-6">
+                                <p class="text-muted lh-lg fs-6">
                                     {!! $product->content !!}
-                                </div>
+                                </p>
                             </div>
                         @endif
 

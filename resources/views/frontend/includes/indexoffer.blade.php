@@ -118,6 +118,9 @@
   max-width: 25%;
   box-sizing: border-box;
 }
+.tarveloffer{
+  margin-top: -100px !important;
+}
 
 @keyframes scroll-left {
   0% {
@@ -129,7 +132,7 @@
 }
 
 </style>
-<section class="container-fluid tarveloffer pb-5">
+<section class="container-fluid tarveloffer">
   <div class="container d-flex flex-column justify-content-center gap-4">
     <div class="row text-center">
       <h1 class="heading p-0 m-0">Exclusive Offers This Season</h1>

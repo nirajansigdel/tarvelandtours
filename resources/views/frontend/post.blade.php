@@ -17,7 +17,7 @@
                 </p>
             </div>
         </div>
-    </section>
+    <!-- </section> -->
 
     <div class="container pt-8 pb-8">
         <div class="row">

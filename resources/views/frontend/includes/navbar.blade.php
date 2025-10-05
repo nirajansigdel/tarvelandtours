@@ -12,6 +12,7 @@
     left: 0;
     width: 100%;
     top: 0;
+    padding: 0;
   }
 
   .lang-option {
@@ -65,7 +66,8 @@
     color: white !important;
     font-size: 18px;
     text-transform: capitalize;
-    margin: 0 0.7rem;
+    margin:0.7rem;
+    
   }
 
   .navbar-nav .nav-link:hover {
@@ -79,7 +81,7 @@
     border-radius: 5px;
     font-weight: 500;
     background: var(--bs-yellow) !important;
-    padding: 8px;
+  
   }
 
   .badge.bg-danger {
@@ -185,14 +187,15 @@
             <li><a class="dropdown-item" href="{{ route('index') }}">Home</a></li>
             <li><a class="dropdown-item" href="{{ route('whyus') }}">Why Us</a></li>
             <li><a class="dropdown-item" href="{{ route('Service') }}">Our Service</a></li>
+            <li><a class="dropdown-item" href="{{ route('About') }}">About</a></li>
 
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link text-dark" href="{{ route('About') }}">About</a></li>
+        
         <li class="nav-item"><a class="nav-link text-dark" href="{{ route('Gallery') }}">Gallery</a></li>
         <li class="nav-item"><a class="nav-link text-dark "
             href=" {{ route('destinations.index.front') }}">Destination</a></li>
-        <li class="nav-item"><a class="nav-link text-dark fw-medium" href=" {{ route('Contact') }}">Contact</a></li>
+        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark " href="#" id="offerDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -218,6 +221,7 @@
             <li><a class="dropdown-item" href="{{ route('testimonails') }}">Testimonails</a></li>
           </ul>
         </li>
+        <li class="nav-item"><a class="nav-link text-dark" href=" {{ route('Contact') }}">Contact</a></li>
       </ul>
 
       <!-- Language Toggle (desktop) -->

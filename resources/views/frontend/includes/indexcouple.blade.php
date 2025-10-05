@@ -106,6 +106,7 @@
         <!-- LEFT COLUMN: COUPLES -->
         <div class="col-md-6">
           <h2 class="custom-heading">Special Offer for Couples</h2>
+          <h3 class="contenttitle text-white">{!! \Illuminate\Support\Str::limit(strip_tags($couple->heading, '<p><br>'), 200) !!}</h3>
           <p class="custom-subtext">
             {!! \Illuminate\Support\Str::limit(strip_tags($couple->content, '<p><br>'), 200) !!}
           </p>
@@ -131,7 +132,8 @@
             </div>
           </div>
 
-          <h2 class="custom-heading mt-4">{{ $group->heading }}</h2>
+          <h2 class="custom-heading mt-4">Special Group Package</h2>
+          <h3 class="contenttitle text-white">{!! \Illuminate\Support\Str::limit(strip_tags($group->heading, '<p><br>'), 200) !!}</h3>
           <p class="custom-subtext">
             {!! \Illuminate\Support\Str::limit(strip_tags($group->content, '<p><br>'), 200) !!}
           </p>

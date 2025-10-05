@@ -42,6 +42,62 @@
         .whatsapp-chat img:hover {
             transform: scale(1.1);
         }
+
+        /* Ensure proper spacing between content and footer */
+        .pb-8 {
+            padding-bottom: 5rem !important;
+        }
+
+        .pt-8 {
+            padding-top: 5rem !important;
+        }
+
+        /* Add minimum height to main content area */
+        main {
+            min-height: calc(100vh - 400px); /* Adjust based on your header/footer heights */
+        }
+
+        /* Ensure footer doesn't stick to content */
+        .footer-spacer {
+            height: 3rem;
+            background: transparent;
+        }
+
+        /* Additional spacing utilities */
+        .mb-footer {
+            margin-bottom: 4rem !important;
+        }
+
+        .pb-footer {
+            padding-bottom: 4rem !important;
+        }
+
+        /* Ensure content area has proper height */
+        .content-wrapper {
+            min-height: calc(100vh - 300px);
+            padding-bottom: 2rem;
+        }
+
+        /* Footer separation */
+        footer {
+            margin-top: auto;
+            position: relative;
+        }
+
+        /* Container spacing */
+        .container {
+            margin-bottom: 2rem;
+        }
+
+        /* Card spacing */
+        .card {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Section spacing */
+        section {
+            margin-bottom: 3rem;
+        }
     </style>
 
     
