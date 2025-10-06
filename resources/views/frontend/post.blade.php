@@ -19,9 +19,9 @@
         </div>
     <!-- </section> -->
 
-    <div class="container pt-8 pb-8">
+    <div class="container">
         <div class="row">
-             <div class="directors-header my-5 text-center">
+             <div class="directors-header mb-4 text-center">
             <h1 class="heading mb-1">Special Offer for Everyone</h1>
             <p class="extralarger">
                 Enjoy exclusive deals made just for you.</p>

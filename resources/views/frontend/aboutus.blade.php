@@ -191,39 +191,23 @@
         </div>
     </section>
 
-
-
     <!-- ========== Mission Section ========== -->
     <section class="container-fluid py-5 bg-soft-blue">
         <div class="container">
             <div class="row text-center">
-                <div class="col-md-4 mb-4">
-                    <div class="mission-card p-4">
-                        <h3 class="mb-3">{{trans('messages.sp_mission') }}</h3>
 
-                        <h3 class="mb-3">{{ __('messages.mission') }}
-                        </h3>
-
-                        <p class="xs-text-des">{{ trans('messages.mission_cont') }}</p>
+                @foreach ($missionVisionValues as $mvv)
+                    <div class="col-md-4 mb-4 ">
+                        <div class="mission-card p-4">
+                            <h3 class="mb-3">{{$mvv->heading }}
+                            </h3>
+                            <p class="xs-text-des">{{$mvv->description }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="mission-card p-4">
-                        <h3 class="mb-3">{{ __('messages.sp_vision') }}</h3>
-                        <h3 class="mb-3">{{ __('messages.vision') }}</h3>
-                        <p class="xs-text-des">{{ trans('messages.vision_cont') }}</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="mission-card p-4">
-                        <h3 class="mb-3">{{ trans('messages.value') }}</h3>
-                        <p class="xs-text-des">{{ trans('messages.value_cont') }}</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
-
     <style>
         .section-title {
             color: #f26522;
@@ -289,39 +273,39 @@
                     }
                 @endphp
                 <div class="text-muted mb-4 xs-text-des">
-                   {!! $text !!}
+                    {!! $text !!}
                 </div>
 
                 <!-- CTA -->
                 <a href="#" class="btn cta-button">View Destination</a>
             </div>
-                    
+
             <!-- Right Image -->
- <div class="col-lg-5 position-relative d-flex justify-content-center">
-      <div class="col-md-10">
-        <!-- Image -->
-        <img src="{{ asset('uploads/about/'.$about->image) }}" alt="Service" class="img-fluid rounded shadow service-img">
+            <div class="col-lg-5 position-relative d-flex justify-content-center">
+                <div class="col-md-10">
+                    <!-- Image -->
+                    <img src="{{ asset('uploads/about/' . $about->image) }}" alt="Service"
+                        class="img-fluid rounded shadow service-img">
 
-        <!-- Experience Badge -->
-        <!-- Experience Circle (on top) -->
-        <div
-          class="position-absolute expercircle text-white rounded-circle d-flex flex-column justify-content-center align-items-center fw-bold"
-          style="width: 190px; height: 190px; bottom: 50px; left: -60px; z-index: 2;">
-          <div style="font-size:40px;">15+</div>
-          <div style="font-size:20px; text-align: center;">Years of<br>experience</div>
-        </div>
+                    <!-- Experience Badge -->
+                    <!-- Experience Circle (on top) -->
+                    <div class="position-absolute expercircle text-white rounded-circle d-flex flex-column justify-content-center align-items-center fw-bold"
+                        style="width: 190px; height: 190px; bottom: 50px; left: -60px; z-index: 2;">
+                        <div style="font-size:40px;">15+</div>
+                        <div style="font-size:20px; text-align: center;">Years of<br>experience</div>
+                    </div>
 
-        <!-- Customers Banner (under the circle) -->
-        <div class="position-absolute text-white text-center py-4 px-3"
-          style="background-color: #0E2F57; bottom: -40px; width:444px; border-radius: 6px; z-index: 1;">
-          <div class="fw-bold" style="font-size:40px;">1K+</div>
-          <small class="xs-text-des">Customize Service</small>
-        </div>
+                    <!-- Customers Banner (under the circle) -->
+                    <div class="position-absolute text-white text-center py-4 px-3"
+                        style="background-color: #0E2F57; bottom: -40px; width:444px; border-radius: 6px; z-index: 1;">
+                        <div class="fw-bold" style="font-size:40px;">1K+</div>
+                        <small class="xs-text-des">Customize Service</small>
+                    </div>
 
-      </div>
-    </div>
+                </div>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -329,69 +313,69 @@
 
     <!-- ========== CEO Section with Typing Animation ========== -->
 
-  <!-- AOS Initialization -->
-<script>
-    AOS.init({
-        duration: 1500,
-        easing: 'ease-in-out-cubic',
-        once: true,
-        mirror: false,
-        offset: 150
-    });
-</script>
+    <!-- AOS Initialization -->
+    <script>
+        AOS.init({
+            duration: 1500,
+            easing: 'ease-in-out-cubic',
+            once: true,
+            mirror: false,
+            offset: 150
+        });
+    </script>
 
-<!-- CEO Message Section -->
-<section class="aboutherosection py-5 directors-section">
-    <div class="container">
-        <div class="row align-items-center mx-md-5">
+    <!-- CEO Message Section -->
+    <section class="aboutherosection py-5 directors-section">
+        <div class="container">
+            <div class="row align-items-center mx-md-5">
 
-            @foreach ($message as $index => $ceoms)
-                <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-delay="100">
-                    <h3 class="pt-4 mb-4 fw-bold">CEO Message</h3>
+                @foreach ($message as $index => $ceoms)
+                    <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-delay="100">
+                        <h3 class="pt-4 mb-4 fw-bold">CEO Message</h3>
 
-                    <!-- Typing Text Output -->
-                    <p id="typing-text-{{ $index }}"></p>
+                        <!-- Typing Text Output -->
+                        <p id="typing-text-{{ $index }}"></p>
 
-                    <!-- Hidden Full Message -->
-                    <div id="full-content-{{ $index }}" class="xs-text-des" style="display: none;">
-                        {{ $ceoms->message }}
+                        <!-- Hidden Full Message -->
+                        <div id="full-content-{{ $index }}" class="xs-text-des" style="display: none;">
+                            {{ $ceoms->message }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-md-5 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
-                    <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
-                         style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
-                </div>
-            @endforeach
+                    <div class="col-md-5 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
+                        <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
+                            style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
+                    </div>
+                @endforeach
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Typing Effect Script -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Loop over all messages
-        @foreach ($message as $index => $ceoms)
-            const fullContent{{ $index }} = document.getElementById('full-content-{{ $index }}').innerText.trim();
-            const typingText{{ $index }} = document.getElementById('typing-text-{{ $index }}');
-            let index{{ $index }} = 0;
+    <!-- Typing Effect Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Loop over all messages
+            @foreach ($message as $index => $ceoms)
+                const fullContent{{ $index }} = document.getElementById('full-content-{{ $index }}').innerText.trim();
+                const typingText{{ $index }} = document.getElementById('typing-text-{{ $index }}');
+                let index{{ $index }} = 0;
 
-            function type{{ $index }}() {
-                if (index{{ $index }} < fullContent{{ $index }}.length) {
-                    typingText{{ $index }}.innerHTML += fullContent{{ $index }}.charAt(index{{ $index }});
-                    index{{ $index }}++;
-                    setTimeout(type{{ $index }}, 50);
+                function type{{ $index }}() {
+                    if (index{{ $index }} < fullContent{{ $index }}.length) {
+                        typingText{{ $index }}.innerHTML += fullContent{{ $index }}.charAt(index{{ $index }});
+                        index{{ $index }}++;
+                        setTimeout(type{{ $index }}, 50);
+                    }
                 }
-            }
 
-            type{{ $index }}();
-        @endforeach
-    });
-</script>
+                type{{ $index }}();
+            @endforeach
+        });
+    </script>
 
 
-    {{-- 
+    {{--
     <section class="aboutherosection py-5 directors-section">
         <div class="container">
             <div class="row align-items-center mx-md-5">
@@ -399,34 +383,34 @@
                     <h3 class="pt-4 mb-4 fw-bold">CEO Message</h3>
                     <p id="typing-text"></p>
                     @foreach ($message as $ceoms )
-                     <div id="full-content"  class="xs-text-des">
+                    <div id="full-content" class="xs-text-des">
                         @if($ceoms->name)
-                            <h5 class="fw-bold mb-2">{{ $ceoms->name }}</h5>
+                        <h5 class="fw-bold mb-2">{{ $ceoms->name }}</h5>
                         @endif
                         @if($ceoms->position)
-                            <p class="text-muted mb-2">{{ $ceoms->position }}</p>
+                        <p class="text-muted mb-2">{{ $ceoms->position }}</p>
                         @endif
                         @if($ceoms->companyName)
-                            <p class="text-muted mb-3">{{ $ceoms->companyName }}</p>
+                        <p class="text-muted mb-3">{{ $ceoms->companyName }}</p>
                         @endif
                         @if($ceoms->message)
-                            <div class="ceo-message">
-                                {{ $ceoms->message }}
-                            </div>
+                        <div class="ceo-message">
+                            {{ $ceoms->message }}
+                        </div>
                         @endif
                     </div>
-                     <div class="col-md-6 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
-                    @if($ceoms->image)
+                    <div class="col-md-6 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
+                        @if($ceoms->image)
                         <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
                             style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
-                    @endif
+                        @endif
                     </div>
                     @endforeach
-                   
+
                 </div>
             </div>
     </section>
- --}}
+    --}}
     <!-- ========== Directors Section ========== -->
     <section class="container-fluid py-5 bg-soft-blue ">
         <div class="container text-center">
@@ -466,7 +450,7 @@
 
     <style>
         .contactsection {
-             background-image: url("{{ asset('image/destin.jpg') }}");
+            background-image: url("{{ asset('image/destin.jpg') }}");
             position: relative;
             background-color: #f8f9fa;
             background-position: center;
@@ -476,6 +460,7 @@
             min-height: 80vh;
             overflow: hidden;
         }
+
         .text-warning {
             color: var(--bs-orange) !important;
             ;
@@ -543,7 +528,7 @@
                                 <button class="accordion-button collapsed custom-accordion-button px-2" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapse{{$index}}" aria-expanded="false"
                                     aria-controls="collapse{{$index}}">
-                                    {{$faq->question}}
+                                   👉 {{$faq->question}}
                                 </button>
                             </h2>
                             <div id="collapse{{$index}}" class="accordion-collapse collapse" aria-labelledby="heading{{$index}}"

@@ -58,7 +58,7 @@
           </div>
           <div class="card-body">
             <h5 class="fw-bold text-warning">Tour And Travel</h5>
-            <p class="text-muted">Explore stunning trekking routes in Nepal with detailed map locations</p>
+            <p class="text-muted">Experience Nepal’s natural beauty through stunning trekking paths, complete with easy-to-follow map guides.</p>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
           </div>
           <div class="card-body">
             <h5 class="fw-bold text-warning">Campus</h5>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+            <p class="text-muted">We offer campus tours with guided visits, meet-and-greets, and info sessions to help you explore firsthand.</p>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
           </div>
           <div class="card-body">
             <h5 class="fw-bold text-warning">Adventure Tour</h5>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+            <p class="text-muted">Join Adventure Tour for an exciting, experience full of thrilling activities and unforgettable memories!.</p>
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@
           </div>
           <div class="card-body">
             <h5 class="fw-bold text-warning">Photography</h5>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+            <p class="text-muted">Capture unforgettable moments of your Nepal adventure through stunning photography.</p>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ use App\Models\VideoGallery;
 use App\Models\DirectorMessage;
 use App\Models\BlogPostsCategory;
 use App\Models\ClientMessage;
-
+use App\Models\MissionVisionValue;
 use App\Models\WhyUs;
 use App\Models\Product;
 use App\Models\Event;
@@ -36,8 +36,9 @@ class SingleController extends Controller
         $message = DirectorMessage::all();
         $siteSetting = SiteSetting::first();
         $faqs = Faq::latest()->get();
+        $missionVisionValues = MissionVisionValue::paginate(10);
 
-        return view('frontend.aboutus', compact('about', 'posts','faqs', 'listservices', 'message', 'siteSetting', 'teams'));
+        return view('frontend.aboutus', compact('about', 'posts','faqs', 'listservices', 'message', 'siteSetting', 'teams','missionVisionValues'));
     }
 
     public function render_team(Request $request)
@@ -49,9 +50,10 @@ class SingleController extends Controller
         $categories = Category::latest()->take(10)->get();
         $about = About::first();
         $posts = Post::with('category')->latest()->take(3)->get();
-
-        return view('frontend.team', compact('teams', 'sitesetting', 'categories', 'about', 'page_title', 'services', 'posts'));
+        $missionVisionValues = MissionVisionValue::paginate(10);
+        return view('frontend.team', compact('teams', 'sitesetting', 'categories', 'about', 'page_title', 'services', 'posts','missionVisionValues'));
     }
+
 
     public function render_service()
     {

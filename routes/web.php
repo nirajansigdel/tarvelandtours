@@ -44,6 +44,7 @@ use App\Http\Controllers\{
     ProductController,
     UserDetailController,
     SeoSettingController,
+    MissionVisionValueController,
 };
 
 /*
@@ -172,12 +173,18 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
         'notifications' => NotificationController::class,
         'careers' => CareerController::class,
         'seo_settings' => SeoSettingController::class, 
+        'missionvisionvalue'=> MissionVisionValueController::class,
         // 'userdetails' => UserDetailController::class, // Simplified - only display data
     ]);
 
 Route::prefix('backend')->name('backend.')->group(function () {
     Route::resource('seo_settings', SeoSettingController::class);
 });
+
+
+
+
+
 
     // Notifications Status Toggle
     Route::patch('/notifications/{id}/toggle-status', [NotificationController::class, 'toggleStatus'])->name('notifications.toggle-status');
