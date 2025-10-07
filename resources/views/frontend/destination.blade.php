@@ -127,14 +127,11 @@
         <div class="row mt-5">
             <div class="col-12">
                 <div class="text-center text-muted">
-                    <hr class="my-4">
+                    
                     <p class="mb-0">Discover amazing destinations and plan your next adventure</p>
                 </div>
             </div>
         </div>
-
-        <!-- Footer spacer to ensure proper separation -->
-        <div class="footer-spacer"></div>
     </div>
 </div>
 @endsection

@@ -10,7 +10,7 @@
     <div class="testimonial-carousel">
       @foreach($testimonials as $testimonial)
       <div class="px-2">
-      <div class="bg-white p-4 text-center shadow-sm rounded">
+      <div class="bg-white p-4 text-center shadow-sm rounded justify-content-center align-items-center d-flex flex-column">
         <img src="{{ asset('uploads/testimonial/' . $testimonial->image) }}" alt="{{ $testimonial->name }}"
         class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
 

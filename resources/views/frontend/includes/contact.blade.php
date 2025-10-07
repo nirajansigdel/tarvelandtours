@@ -31,7 +31,7 @@
         unforgettable experience. Let’s make your dream trip a reality!
       </p>
 
-      <a href="{{ route('Contact') }}" class="btn btn-outline-light btn-lg py-2 rounded-pill fw-semibold col-md-3">
+      <a href="{{ route('Contact') }}" class="btn btn-outline-light btn-lg py-2 rounded-pill fw-semibold" style="width: 180px;">
         Book Now
       </a>
     </div>

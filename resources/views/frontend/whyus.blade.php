@@ -25,9 +25,8 @@
             </div>
         </div>
     </section>
-<section class="container-fluid py-5">
+<section class="container-fluid py-1">
     <div class="container">
-          <h2 class="extarlarge text-center mb-5">Why Trekking Nepal?</h2>
         @forelse($whyUsData as $why)
             <div class="row gx-5 mt-5">
                 <div class="col-md-12">

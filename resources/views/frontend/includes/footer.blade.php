@@ -79,7 +79,7 @@
                 <div class="footer-menu">
                     <a href="{{ route('Service') }}">Our Services</a>
                     <a href="{{ route('Blogpostcategory') }}">Blog</a>
-                    <a href="{{ route('events') }}">News & Events</a>
+                    <a href="{{ route('Contact') }}">Contact Us</a>
                     <a href="{{ route('Gallery') }}">Gallery</a>
                 </div>
             </div>
@@ -88,10 +88,11 @@
             <div class="col-md-4 mb-4 reveal-up" style="--reveal-delay: 200ms;">
                 <h5>Explore</h5>
                 <div class="footer-menu">
-                    <a href="#">Our Mission</a>
-                    <a href="#">Our Team</a>
-                    <a href="#">Partners</a>
-                    <a href="#">Contact Us</a>
+                     <li><a class="dropdown-item" href="{{ route('products.index.front') }}">Promotional Posts</a></li>
+            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">Festival Deals</a></li>
+            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">Couple Packages</a></li>
+            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">Group Packages</a></li>
+                    
                 </div>
             </div>
 

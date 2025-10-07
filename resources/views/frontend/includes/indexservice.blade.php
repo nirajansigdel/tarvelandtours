@@ -24,7 +24,7 @@
 
   .service-img {
     width: 100%;
-    height: 92vh;
+    height:80vh;
     object-fit: cover;
 
   }
@@ -55,8 +55,7 @@
       <p class="heading">Our Services</p>
       <h1 class="extralarge mb-3">Join The Adventure With Stories</h1>
       <p class="text-muted mb-4">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s.
+        Experience the journey of a lifetime with the best travel agency in Nepal, renowned for organizing unforgettable solo treks and immersive adventures across the Himalayas.
       </p>
 
       <!-- Features -->
@@ -76,7 +75,7 @@
       </div>
 
       <!-- CTA -->
-      <a href="#" class="btn cta-button">See All Services</a>
+      <a href="{{ route("Service") }}" class="btn cta-button">See All Services</a>
     </div>
 
    
@@ -108,3 +107,4 @@
   </div>
 </div>
 </section>
+

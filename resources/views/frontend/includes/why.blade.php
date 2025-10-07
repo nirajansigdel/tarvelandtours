@@ -9,31 +9,6 @@
       background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('{{ asset('image/destin.jpg') }}') center center / cover no-repeat fixed;
       height: 100vh;
     }
-
-    .icon-circle {
-      width: 80px;
-      height: 80px;
-      background-color: #ff8c22;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      color: #fff;
-      margin: 0 auto 1rem;
-    }
-
-    
-
-    .card-bg:hover {
-      transform: translateY(-10px);
-    }
-
-    .section-overlap {
-      margin-top: -100px;
-      position: relative;
-      z-index: 10;
-    }
   </style>
 
 
@@ -42,7 +17,7 @@
   <div class="container row col-md-8 fcc">
     <p class="text-warning fs-2">Why choose us</p>
     <h1 class="fw-bold display-4">Let Us Show You The Beauty Of The World</h1>
-    <a href="#" class="btn btn-outline-light rounded-pill px-4 py-3 mt-3  col-md-2">Contact Us</a>
+    <a href="{{ route('Contact') }}" class="btn btn-outline-light rounded-pill px-4 py-3 mt-3  col-md-2">Contact Us</a>
   </div>
 </section>
 

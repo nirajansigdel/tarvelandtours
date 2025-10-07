@@ -144,7 +144,7 @@
     <div class="slider-wrapper">
       <div class="slider-track">
         {{-- Loop your offers --}}
-        @foreach ($generaloffer as $prod)
+        @foreach ($products as $prod)
             <a class="service-card" href="{{ route('products.detail', $prod->id) }}">
               <div class="service-image">
                 @if (is_array($prod->images) && count($prod->images))

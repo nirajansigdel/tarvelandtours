@@ -35,7 +35,11 @@
             <div class="col-lg-8 col-md-8 col-sm-12 order-2 order-md-3 ">
                 <h2 class=" fw-bold pb-2 m-0">{{ $blogpostcategory->title }}</h2>
                 <div class="text-secondary xs-text-des" style=" letter-spacing: 0.01em;">
-                    {{ strip_tags(app()->getLocale() === 'ne' ? $blogpostcategory->content_ne : $blogpostcategory->content) }}
+                   {!! str_replace(
+    ['<o:p>', '</o:p>'],
+    '',
+    html_entity_decode(app()->getLocale() === 'ne' ? $blogpostcategory->content_ne : $blogpostcategory->content)
+) !!}
 
                 </div>
             </div>
@@ -45,22 +49,24 @@
             
 
             {{-- Sidebar - Other Categories --}}
-            <aside class="col-lg-4 col-md-4 col-sm-12 order-3 order-md-2 sample_page_list p-4 bg-light rounded shadow-sm border">
-                <h4 class="mb-4 border-bottom pb-2 text-secondary">Our Specials offer</h4>
-                <ul class="list-unstyled">
-                    @foreach ($listblogs as $blog)
-                        <li class="mb-3">
-                            <a href="{{ route('SingleBlogpostcategory', ['slug' => $blog->slug]) }}" 
-                               class="text-decoration-none fw-semibold text-primary d-block py-1 px-2 rounded"
-                               style="transition: background-color 0.3s, color 0.3s;"
-                               onmouseover="this.style.backgroundColor='#0d6efd'; this.style.color='#fff'; this.style.textDecoration='none';" 
-                               onmouseout="this.style.backgroundColor=''; this.style.color='';">
-                                {{ app()->getLocale() === 'ne' ? $blog->title_ne : $blog->title }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </aside>
+
+
+<aside
+                    class="col-lg-3 col-md-3 col-sm-12 order-3 order-md-2 p-4 bg-light rounded shadow-sm border asidebar">
+                    <h4 class="mb-4 border-bottom pb-2 text-secondary">Special Offer</h4>
+                    <ul class="list-unstyled">
+                        @foreach ($listblogs as $blog)
+                            <li class="mb-3">
+                                <a href="{{ route('SingleBlogpostcategory', ['slug' => $blog->slug]) }}"
+                                    class="fw-bold content-heading text-decoration-none">
+                                    {{ app()->getLocale() === 'ne' ? $blog->title_ne : $blog->title }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </aside>
+
+
 
         </div>
     </div>

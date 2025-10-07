@@ -147,7 +147,7 @@
               <h1 class="outline">Explore</h1>
               <h1 class="solid">The World</h1>
               <p>{{ $cover->title ?? 'Experience the best trekking in Nepal with customized tour packages from Kathmandu. From short treks near Kathmandu to low-budget adventures and the Annapurna Circuit, we offer unforgettable journeys for beginners and solo trekkers.' }}</p>
-              <a href="#" class="btn btn-outline-light">Discover Now</a>
+              <a href="{{ route('products.index.front') }}" class="btn btn-outline-light">Discover Now</a>
             </div>
           </div>
           @php $slideIndex++; @endphp

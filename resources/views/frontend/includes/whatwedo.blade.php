@@ -40,7 +40,7 @@
         <p class="text-light mb-4">
           From crystal-clear waters to thrilling adventures, we craft experiences that take you beyond boundaries. Whether you're seeking relaxation or excitement, our tours deliver memories that last a lifetime.
         </p>
-        <a href="#" class="btn cta-button col-md-4">
+        <a href="{{ route("About") }}" class="btn cta-button col-md-4">
           Learn More <i class="fas fa-arrow-right ms-2"></i>
         </a>
       </div>

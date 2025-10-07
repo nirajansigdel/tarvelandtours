@@ -202,8 +202,8 @@
             Offer
           </a>
           <ul class="dropdown-menu" aria-labelledby="offerDropdown">
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Post">Promotional Posts</a></li>
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=General">General Offers</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}">Promotional Posts</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}">General Offers</a></li>
             <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">Festival Deals</a></li>
             <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">Couple Packages</a></li>
             <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">Group Packages</a></li>

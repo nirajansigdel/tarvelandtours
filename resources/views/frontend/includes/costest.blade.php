@@ -23,7 +23,7 @@
                 </div>
 
                 <!-- CTA -->
-                <a href="#" class="btn cta-button">Read More</a>
+                <a href="{{ route("About") }}" class="btn cta-button">Read More</a>
             </div>
 
       <!-- RIGHT: Modern KPI grid with primary and secondary cards -->

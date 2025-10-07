@@ -232,12 +232,12 @@
         }
 
 
-        .service-img {
-            width: 100%;
-            height: 85vh;
-            object-fit: cover;
+     .service-img {
+    width: 100%;
+    height:80vh;
+    object-fit: cover;
 
-        }
+  }
 
         @media (max-width: 768px) {
             .main-heading {

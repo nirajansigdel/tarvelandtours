@@ -17,33 +17,249 @@
         </div>
     </section>
 
+<style>
 
-<section class="container-fluid bg-light">
-<div class="container py-5 ">
-    <div class="directors-header mb-5 text-center">
-            <h1 class="heading mb-1"> Collection of Blogs</h1>
-            <p class="extralarger">
-                Our blogs shares stories</p>
-        </div>
+/* Update styles for the service cards */
+.whyus {
+  background-color: #f5f5f5; /* similar to donation section background */
+}
+
+.service-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 10px 24px rgba(16, 24, 40, 0.08);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(16, 24, 40, 0.14);
+}
+
+.service-image {
+  position: relative;
+}
+
+.service-image img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.1s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.service-card:hover .service-image img {
+  transform: scale(1.05);
+}
+
+.service-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(2, 6, 23, 0.85) 0%,
+    rgba(2, 6, 23, 0.5) 45%,
+    rgba(2, 6, 23, 0.0) 75%
+  );
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.service-card:hover .service-image::after {
+  opacity: 0.95;
+}
+
+.service-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  color: #0f172a;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.service-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem 1.25rem 1.25rem;
+  color: #ffffff;
+  transform: translateY(10px);
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease;
+}
+
+.service-card:hover .service-content {
+  transform: translateY(0);
+}
+
+.service-title {
+  margin: 0 0 0.25rem 0;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+
+.service-desc {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.service-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.service-cta:hover {
+  background-color: #ffffff;
+}
+
+.service-cta .arrow {
+  transition: transform 0.3s ease;
+}
+
+.service-cta:hover .arrow {
+  transform: translateX(2px);
+}
+
+.btn-primary {
+  background-color: #f26522;
+  border-color: #f26522;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: #d4571e;
+  border-color: #d4571e;
+}
+
+/* Reveal-up effect (same as projects) */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.9s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .service-image img { height: 240px; }
+}
+
+</style>
+<section class="container-fluid">
+  <div class="container">
     <div class="row">
-        @foreach ($blogpostcategories as $blogs)
-  <div class="col-md-4">
-        <img src="https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=800&q=60" class="card-img-top blog-img" alt="Traveller">
-        <div class="card-body px-0 mt-1">
-          <small class="text-uppercase fw-semibold content-topheading">Traveller Blog</small>
-          <h5 class="card-title fw-semibold mt-2 text-dark content-heading text-capitalize">{{ $blogs->title }}</h5>
-          <p class="card-text text-muted mt-2">{{ \Illuminate\Support\Str::limit(strip_tags($blogs->content), 150) }}</p>
-          <a href="{{ route('SingleBlogpostcategory', $blogs->slug) }}" class="text-dark fw-semibold  text-decoration-none content-button">
-            Read More <i class="bi bi-arrow-right"></i>
-          </a>
+      <div class="text-center mb-4">
+        <h1 class="extralarger pb-2">Collection of Blogs</h1>
+        <p class="xs-text">Our blogs shares stories</p>
+      </div>
+    </div>
+    <div class="row">
+      @foreach ($blogpostcategories as $blogs)
+        <div class="col-md-4 mb-4">
+          <div class="service-card reveal-up">
+            <div class="service-image">
+              @if ( $blogs->image)
+                <img src="{{ asset('uploads/blogpostcategory/' .  $blogs->image) }}" alt="popular short trek">
+              @else
+                <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" alt="Default Image">
+              @endif
+              <span class="service-badge">Blogs</span>
+            </div>
+            <div class="service-content">
+              <h3 class="service-title text-capitalize">{{ Str::limit(strip_tags( $blogs->title), 40) }}</h3>
+              <p class="service-desc">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($blogs->content)), 150) !!}</p>
+              <a href="{{ route('SingleBlogpostcategory', $blogs->slug) }}"  class="service-cta">View details <span class="arrow">→</span></a>
+            </div>
+          </div>
         </div>
+      @endforeach
     </div>
-
-
-        @endforeach
+    <style>
+      .bordergreen{
+        background: transparent;
+        border: 2px solid var(--primary);
+        transition: background 0.9s ease, color 0.3s ease;
+      }
+      .bordergreen:hover{
+        background:#448c4c;
+        color: white;
+        
+      }
+    </style>
+    <div class="text-center mt-4">
+      <a href="{{ route('Service') }}">
+        <button class="cta-button btn btn-primary px-5">View More</button>
+      </a>
     </div>
-</div>
+  </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var container = document.querySelector('.whyus');
+    if (!container) return;
+
+    var elements = Array.prototype.slice.call(container.querySelectorAll('.reveal-up'));
+    elements.forEach(function (el, index) {
+      el.style.setProperty('--reveal-delay', (index * 120) + 'ms');
+    });
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+      elements.forEach(function (el) { observer.observe(el); });
+    } else {
+      elements.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  });
+</script>
+
+
+
 
 <style>
     .ascent-flow .circle-img {

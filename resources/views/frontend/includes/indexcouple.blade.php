@@ -101,39 +101,128 @@
 <section class="container-fluid coupbg py-4">
   <div class="container my-5">
     <div class="row align-items-center g-4 text-white">
-      @foreach ($couplecard ->take(1) as $couple)
+      @foreach ($couplecard->take(1) as $couple)
 
         <!-- LEFT COLUMN: COUPLES -->
         <div class="col-md-6">
           <h2 class="custom-heading">Special Offer for Couples</h2>
-          <h3 class="contenttitle text-white">{!! \Illuminate\Support\Str::limit(strip_tags($couple->heading, '<p><br>'), 200) !!}</h3>
+          <h3 class="contenttitle text-white">
+            {!! \Illuminate\Support\Str::limit(strip_tags($couple->heading, '<p><br>'), 200) !!}
+          </h3>
           <p class="custom-subtext">
             {!! \Illuminate\Support\Str::limit(strip_tags($couple->content, '<p><br>'), 200) !!}
           </p>
           <div class="custom-overlay-container shadow">
-                            <img src="{{ (is_array($couple->images) && count($couple->images)) ? asset('uploads/products/' . $couple->images[0]) : asset('images/default-couple.jpg') }}" alt="Service Image">
-            <div class="custom-overlay">
-                <p class="text-warming">orginial_price:70000</p>
-              <div class="overlay-text">Discount Price : </div>
-              <button class="overlay-btn">Book Now</button>
+            <img
+              src="{{ (is_array($couple->images) && count($couple->images)) ? asset('uploads/products/' . $couple->images[0]) : asset('images/default-couple.jpg') }}"
+              alt="Service Image">
+            <div class="custom-overlay p-3  rounded shadow-sm">
+
+              @if($couple->original_price || $couple->discounted_price)
+                <div class="mt-3">
+
+                  @if($couple->original_price && $couple->discounted_price)
+                    <h6 class="mb-2 text-white fw-semibold">
+                      Package Price:
+                      <span class="text-decoration-line-through text-light fw-normal" style="font-size: 0.9rem;">
+                        NPR {{ number_format($couple->original_price) }}
+                      </span>
+                    </h6>
+
+                    <div class="d-flex flex-column">
+                      <span class="fw-bold text-white mb-1" style="font-size: 1.1rem;">
+                        Discounted Price: NPR {{ number_format($couple->discounted_price) }}
+                      </span>
+                      <span class="text-white small">
+                        Couple's Offer Price:NPR {{ number_format($couple->original_price - $couple->discounted_price) }}
+                      </span>
+                    </div>
+
+                  @elseif($couple->discounted_price)
+                    <div class="d-flex flex-column">
+                      <span class="fw-bold text-white mb-1" style="font-size: 1.1rem;">
+                        Price: NPR {{ number_format($couple->discounted_price) }}
+                      </span>
+                    </div>
+
+                  @elseif($couple->original_price)
+                    <div class="d-flex flex-column">
+                      <span class="fw-bold text-white mb-1" style="font-size: 1.1rem;">
+                        Price: NPR {{ number_format($couple->original_price) }}
+                      </span>
+                    </div>
+                  @endif
+
+                </div>
+              @endif
+
+
+              <div class="mt-4">
+                 <a class="overlay-btn text-decoration-none" href="{{ route('products.detail', $couple->id) }}">View More</a>
+              </div>
             </div>
+
           </div>
         </div>
       @endforeach
       <!-- RIGHT COLUMN: ADVENTURE -->
       @foreach ($groupcard->take(1) as $group)
         <div class="col-md-6">
-          <div class="custom-overlay-container shadow">
-                            <img src="{{ (is_array($group->images) && count($group->images)) ? asset('uploads/products/' . $group->images[0]) : asset('images/default-group.jpg') }}" alt="Service Image">
-            <div class="custom-overlay">
-              <p class="text-warming">orginial_price:70000</p>
-              <div class="overlay-text">Discount Price : </div>
-              <button class="overlay-btn">Book Now</button>
+            <div class="custom-overlay-container shadow">
+              <img
+                src="{{ (is_array($group->images) && count($group->images)) ? asset('uploads/products/' . $group->images[0]) : asset('images/default-couple.jpg') }}"
+                alt="Service Image">
+              <div class="custom-overlay p-3  rounded shadow-sm">
+
+                @if($group->original_price || $group->discounted_price)
+                  <div class="mt-3">
+
+                    @if($group->original_price && $group->discounted_price)
+                      <h6 class="mb-2 text-white fw-semibold">
+                        Package Price:
+                        <span class="text-decoration-line-through text-light fw-normal" style="font-size: 0.9rem;">
+                          NPR {{ number_format($group->original_price) }}
+                        </span>
+                      </h6>
+
+                      <div class="d-flex flex-column">
+                        <span class="fw-bold text-white mb-1" style="font-size: 1.1rem;">
+                          Discounted Price: NPR {{ number_format($group->discounted_price) }}
+                        </span>
+                        <span class="text-white small">
+                          Couple's Offer Price:NPR {{ number_format($group->original_price - $couple->discounted_price) }}
+                        </span>
+                      </div>
+
+                    @elseif($group->discounted_price)
+                      <div class="d-flex flex-column">
+                        <span class="fw-bold text-white mb-1" style="font-size: 1.1rem;">
+                          Price: NPR {{ number_format($group->discounted_price) }}
+                        </span>
+                      </div>
+
+                    @elseif($group->original_price)
+                      <div class="d-flex flex-column">
+                        <span class="fw-bold text-white mb-1" style="font-size: 1.1rem;">
+                          Price: NPR {{ number_format($group->original_price) }}
+                        </span>
+                      </div>
+                    @endif
+
+                  </div>
+                @endif
+                <div class="mt-4">
+                  <a class="overlay-btn text-decoration-none" href="{{ route('products.detail', $group->id) }}">View More</a>
+                </div>
+              </div>
+
             </div>
-          </div>
+         
 
           <h2 class="custom-heading mt-4">Special Group Package</h2>
-          <h3 class="contenttitle text-white">{!! \Illuminate\Support\Str::limit(strip_tags($group->heading, '<p><br>'), 200) !!}</h3>
+          <h3 class="contenttitle text-white">
+            {!! \Illuminate\Support\Str::limit(strip_tags($group->heading, '<p><br>'), 200) !!}
+          </h3>
           <p class="custom-subtext">
             {!! \Illuminate\Support\Str::limit(strip_tags($group->content, '<p><br>'), 200) !!}
           </p>

@@ -33,49 +33,51 @@
   </style>
 
 
-  <section class="container-fluid py-5" style="background: #f8fafc;">
+  <section class="container-fluid py-3" >
     <div class="container">
-    <div class="text-center mb-5">
-      <h1 class="fw-bold" style="color: #222;">List of Our Services</h1>
-      <p class="fs-5 text-muted fst-italic">"Empowering communities through dedicated service and care."</p>
-    </div>
-
-    @foreach ($services as $index => $service)
-    <div class="row align-items-center mb-5">
-      <!-- Image column -->
-      <div class="col-md-6 d-flex justify-content-center 
-      {{ $index % 2 == 0 ? 'order-1 order-md-2' : 'order-1 order-md-1' }}">
-      <div class="overflow-hidden rounded" style="max-width: 400px; max-height: 250px;">
-      @if ($service->image)
-      <img src="{{ asset('uploads/service/' . $service->image) }}" alt="Service Image" class="img-fluid"
-      style="object-fit: cover; width: 100%; height: 100%;">
-      @else
-      <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=800&auto=format&fit=crop&q=60"
-      alt="Default Image" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;">
-      @endif
-      </div>
-      </div>
-
-      <!-- Text column -->
-      <div class="col-md-6 d-flex flex-column 
-      {{ $index % 2 == 0 ? 'order-2 order-md-1' : 'order-2 order-md-2' }}">
-      <h3 class="fw-bold text-dark">{{ Str::limit(strip_tags($service->title), 40) }}</h3>
-      <p class="contentdesc" style="line-height: 1.5;">
-      {!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($service->description)), 350) !!}
-
-      </p>
-      <a href="{{ route('SingleService', ['slug' => $service->slug]) }}"
-      class="text-dark fw-semibold  text-decoration-none content-button " style="width: fit-content;text-decoration:none">
-      Read more
-      <i class="bi bi-arrow-right fw-semibold"></i>
-      </a>
-      </div>
-    </div>
-    @endforeach
+   
     </div>
   </section>
 
 
 
+<section class="section-overlap pb-5">
+  <div class="container">
+     <div class="text-center mb-5">
+      <h1 class="fw-bold" style="color: #222;">List of Our Services</h1>
+      <p class="fs-5 text-muted fst-italic">"Empowering communities through dedicated service and care."</p>
+    </div>
+    <div class="row g-4">
+       @foreach ($services as $index => $service)
+      <!-- Card 1 -->
+      <a href="{{ route('SingleService', ['slug' => $service->slug]) }}" class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" style="text-decoration: none;">
+      
+        <div class="card card-bg border-0">
+          <div class="icon-circle">
+            <img src="{{ asset('uploads/service/' . $service->image) }}" alt="Service Image" class="img-fluid"
+     style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;">
+
+          </div>
+          <div class="card-body">
+            <h5 class="fw-bold text-warning">{{ Str::limit(strip_tags($service->title), 36) }}</h5>
+            <p class="text-muted">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($service->description)), 300) !!}</p>
+          </div>
+        </div>
+      </a>
+
+
+@endforeach
+    </div>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
 
 @endsection
