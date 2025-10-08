@@ -215,7 +215,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link text-dark" href="#" data-bs-toggle="dropdown">Updates</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('events') }}">News & Events</a></li>
+            <!-- <li><a class="dropdown-item" href="{{ route('events') }}">News & Events</a></li> -->
             <li><a class="dropdown-item" href="{{ route('Blogpostcategory') }}">Blogs</a></li>
             <li><a class="dropdown-item" href="{{ route('career') }}">Career</a></li>
             <li><a class="dropdown-item" href="{{ route('testimonails') }}">Testimonails</a></li>

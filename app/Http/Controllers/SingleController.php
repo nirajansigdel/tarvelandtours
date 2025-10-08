@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use App\Models\Post;
+use App\Models\SectionOnePicture;
 use App\Models\Team;
 use App\Models\About;
 use App\Models\WorkCategory;
@@ -20,6 +21,7 @@ use App\Models\DirectorMessage;
 use App\Models\BlogPostsCategory;
 use App\Models\ClientMessage;
 use App\Models\MissionVisionValue;
+use App\Models\SeoSetting;
 use App\Models\WhyUs;
 use App\Models\Product;
 use App\Models\Event;
@@ -63,8 +65,9 @@ class SingleController extends Controller
         $sitesetting = SiteSetting::first();
         $about = About::first();
         $serviceHead = Service::latest()->take(1)->get();
+       $Sectionones = SectionOnePicture::latest()->get();
 
-        return view('frontend.services', compact('images', 'services', 'categories', 'sitesetting', 'about', 'serviceHead'));
+        return view('frontend.services', compact('images', 'services', 'categories', 'sitesetting', 'about', 'serviceHead','Sectionones'));
     }
 
     public function render_whyus()
@@ -72,8 +75,9 @@ class SingleController extends Controller
         $clientMessages = ClientMessage::latest()->get();
         $whyUsItems = WhyUs::latest()->take(12)->get();
         $whyUsData = WhyUs::latest()->get();
+        $Sectionones = SectionOnePicture::first();
 
-        return view('frontend.whyus', compact('whyUsItems', 'clientMessages', 'whyUsData'));
+        return view('frontend.whyus', compact('whyUsItems', 'clientMessages', 'whyUsData', 'Sectionones'));
     }
 
     public function render_testimonial()

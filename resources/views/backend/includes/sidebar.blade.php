@@ -803,6 +803,28 @@
     </li>
 @endhasanyrole
 
+@hasanyrole('superadmin|admin')
+    <li class="nav-item">
+        <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+            <div class="col-auto navbar-vertical-label">Section One Picture</div>
+            <div class="col ps-0">
+                <hr class="mb-0 navbar-vertical-divider">
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link {{ Request::is('admin/sectiononepicture*') ? 'active' : '' }}"
+           href="{{ route('admin.sectiononepicture.index') }}"
+           aria-current="{{ Request::is('admin/sectiononepicture*') ? 'page' : '' }}">
+            <div class="d-flex align-items-center">
+                <i class="fa fa-angle-double-right"></i>
+                <span class="nav-link-text ps-1">Section One Picture</span>
+            </div>
+        </a>
+    </li>
+@endhasanyrole
+
 
 
 

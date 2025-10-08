@@ -45,6 +45,7 @@ use App\Http\Controllers\{
     UserDetailController,
     SeoSettingController,
     MissionVisionValueController,
+    SectionOnePictureController,
 };
 
 /*
@@ -174,6 +175,7 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
         'careers' => CareerController::class,
         'seo_settings' => SeoSettingController::class, 
         'missionvisionvalue'=> MissionVisionValueController::class,
+        'sectiononepicture' => SectionOnePictureController::class,
         // 'userdetails' => UserDetailController::class, // Simplified - only display data
     ]);
 

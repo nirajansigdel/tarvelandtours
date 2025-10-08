@@ -3,7 +3,7 @@
 
 
 <section class="position-relative text-white text-center"
-        style="background: url('{{ asset('image/q.avif') }}') center center / cover no-repeat; height:400px;">
+        style="background: url('{{ asset('image/check.jpg') }}') center center / cover no-repeat; height:400px;">
         <div class="herosectionoverlay"></div>
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
