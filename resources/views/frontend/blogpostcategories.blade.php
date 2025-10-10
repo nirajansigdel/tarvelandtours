@@ -19,12 +19,12 @@
 
 <style>
 
-/* Update styles for the service cards */
+/* Updated styles for the blogs cards */
 .whyus {
-  background-color: #f5f5f5; /* similar to donation section background */
+  background-color: #f5f5f5;
 }
 
-.service-card {
+.blogs-card {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
@@ -33,16 +33,16 @@
   transition: transform 0.45s ease, box-shadow 0.45s ease;
 }
 
-.service-card:hover {
+.blogs-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 32px rgba(16, 24, 40, 0.14);
 }
 
-.service-image {
+.blogs-image {
   position: relative;
 }
 
-.service-image img {
+.blogs-image img {
   width: 100%;
   height: 320px;
   object-fit: cover;
@@ -50,11 +50,11 @@
   transition: transform 1.1s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.service-card:hover .service-image img {
+.blogs-card:hover .blogs-image img {
   transform: scale(1.05);
 }
 
-.service-image::after {
+.blogs-image::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -68,11 +68,11 @@
   transition: opacity 0.6s ease;
 }
 
-.service-card:hover .service-image::after {
+.blogs-card:hover .blogs-image::after {
   opacity: 0.95;
 }
 
-.service-badge {
+.blogs-badge {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -85,7 +85,7 @@
   font-weight: 700;
 }
 
-.service-content {
+.blogs-content {
   position: absolute;
   left: 0;
   right: 0;
@@ -96,18 +96,18 @@
   transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease;
 }
 
-.service-card:hover .service-content {
+.blogs-card:hover .blogs-content {
   transform: translateY(0);
 }
 
-.service-title {
+.blogs-title {
   margin: 0 0 0.25rem 0;
   font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.3;
 }
 
-.service-desc {
+.blogs-desc {
   font-size: 0.9rem;
   opacity: 0.9;
   margin-bottom: 0.75rem;
@@ -117,7 +117,7 @@
   overflow: hidden;
 }
 
-.service-cta {
+.blogs-cta {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -131,15 +131,15 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.service-cta:hover {
+.blogs-cta:hover {
   background-color: #ffffff;
 }
 
-.service-cta .arrow {
+.blogs-cta .arrow {
   transition: transform 0.3s ease;
 }
 
-.service-cta:hover .arrow {
+.blogs-cta:hover .arrow {
   transform: translateX(2px);
 }
 
@@ -154,7 +154,7 @@
   border-color: #d4571e;
 }
 
-/* Reveal-up effect (same as projects) */
+/* Reveal-up effect */
 .reveal-up {
   opacity: 0;
   transform: translateY(40px) scale(0.98);
@@ -176,51 +176,50 @@
   }
 }
 
-/* Responsive tweaks */
 @media (max-width: 768px) {
-  .service-image img { height: 240px; }
+  .blogs-image img { height: 240px; }
 }
 
 </style>
+
 <section class="container-fluid">
   <div class="container">
     <div class="row">
       <div class="text-center mb-4">
         <h1 class="extralarger pb-2">Collection of Blogs</h1>
-        <p class="xs-text">Our blogs shares stories</p>
+        <p class="xs-text">Our blogs share stories</p>
       </div>
     </div>
     <div class="row">
       @foreach ($blogpostcategories as $blogs)
         <div class="col-md-4 mb-4">
-          <div class="service-card reveal-up">
-            <div class="service-image">
-              @if ( $blogs->image)
-                <img src="{{ asset('uploads/blogpostcategory/' .  $blogs->image) }}" alt="popular short trek">
+          <div class="blogs-card reveal-up">
+            <div class="blogs-image">
+              @if ($blogs->image)
+                <img src="{{ asset('uploads/blogpostcategory/' . $blogs->image) }}" alt="popular short trek">
               @else
                 <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" alt="Default Image">
               @endif
-              <span class="service-badge">Blogs</span>
+              <span class="blogs-badge">Blogs</span>
             </div>
-            <div class="service-content">
-              <h3 class="service-title text-capitalize">{{ Str::limit(strip_tags( $blogs->title), 40) }}</h3>
-              <p class="service-desc">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($blogs->content)), 150) !!}</p>
-              <a href="{{ route('SingleBlogpostcategory', $blogs->slug) }}"  class="service-cta">View details <span class="arrow">→</span></a>
+            <div class="blogs-content">
+              <h3 class="blogs-title text-capitalize">{{ Str::limit(strip_tags($blogs->title), 40) }}</h3>
+              <p class="blogs-desc">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($blogs->content)), 150) !!}</p>
+              <a href="{{ route('SingleBlogpostcategory', $blogs->slug) }}" class="blogs-cta">View details <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
       @endforeach
     </div>
     <style>
-      .bordergreen{
+      .bordergreen {
         background: transparent;
         border: 2px solid var(--primary);
         transition: background 0.9s ease, color 0.3s ease;
       }
-      .bordergreen:hover{
-        background:#448c4c;
+      .bordergreen:hover {
+        background: #448c4c;
         color: white;
-        
       }
     </style>
     <div class="text-center mt-4">
@@ -258,9 +257,7 @@
   });
 </script>
 
-
-
-
+<!-- The ascent-flow section remains unchanged -->
 <style>
     .ascent-flow .circle-img {
     position: relative;
@@ -362,7 +359,6 @@
                 <div class="circle-img">
                     <img src="{{ asset('image/first.avif') }}" class="img-fluid" alt="New Customer">
                     <div class="label-tag red">Active</div>
-                
                 </div>
                 <p class="flow-caption mt-3">Hope for Digital world</p>
             </div>
@@ -377,7 +373,6 @@
                 <div class="circle-img">
                     <img src="{{ asset('image/digital.avif') }}" class="img-fluid rounded-circle" alt="Operations">
                     <div class="label-tag red">Need</div>
-                
                 </div>
                 <p class="flow-caption mt-3">Empower Young Lives</p>
             </div>
@@ -388,7 +383,6 @@
                 <div class="circle-img">
                     <img src="{{ asset('image/ch.avif') }}" class="img-fluid rounded-circle" alt="Loyal Customer">
                     <div class="label-tag red">On time</div>
-                    
                 </div>
                 <p class="flow-caption mt-3">Growing with Grace</p>
             </div>
@@ -397,5 +391,3 @@
 </section>
 
 @endsection
-
-

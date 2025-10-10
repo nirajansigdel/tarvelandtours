@@ -72,32 +72,7 @@
             padding-bottom: 4rem !important;
         }
 
-        /* Ensure content area has proper height */
-        .content-wrapper {
-            min-height: calc(100vh - 300px);
-            padding-bottom: 2rem;
-        }
-
-        /* Footer separation */
-        footer {
-            margin-top: auto;
-            position: relative;
-        }
-
-        /* Container spacing */
-        .container {
-            margin-bottom: 2rem;
-        }
-
-        /* Card spacing */
-        .card {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Section spacing */
-        section {
-            margin-bottom: 3rem;
-        }
+    
     </style>
 
     

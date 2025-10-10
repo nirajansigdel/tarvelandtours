@@ -11,8 +11,8 @@
     position: absolute;
     left: 0;
     width: 100%;
-    top: 0;
-    padding: 0;
+    top:0px !important;
+    padding:20px;
   }
 
   .lang-option {
