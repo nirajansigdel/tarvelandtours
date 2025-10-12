@@ -23,16 +23,15 @@
  </style>
 
       <h2 class="extralarge mb-3">
-        Start Planning Your Trip Now and <span class="text-warning">Get 30% Discount</span>
+        {{ __('messages.start_planning') }} <span class="text-warning">{{ __('messages.get_discount') }}</span>
       </h2>
 
       <p class="lead fw-normal mb-4 px-2 px-md-5 text-center">
-       We’re here to assist you with your travel plans and ensure you have an
-        unforgettable experience. Let’s make your dream trip a reality!
+        {{ __('messages.contact_description') }}
       </p>
 
       <a href="{{ route('Contact') }}" class="btn btn-outline-light btn-lg py-2 rounded-pill fw-semibold" style="width: 180px;">
-        Book Now
+        {{ __('messages.book_now') }}
       </a>
     </div>
   </div>

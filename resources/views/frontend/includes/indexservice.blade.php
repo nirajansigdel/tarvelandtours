@@ -52,30 +52,30 @@
   <div class="row align-items-center justify-content-between">
     <!-- Left Content -->
     <div class="col-lg-6 mb-4 mb-lg-0">
-      <p class="heading">Our Services</p>
-      <h1 class="extralarge mb-3">Join The Adventure With Stories</h1>
+      <p class="heading">{{ __('messages.our_services') }}</p>
+      <h1 class="extralarge mb-3">{{ __('messages.join_adventure_stories') }}</h1>
       <p class="text-muted mb-4">
-        Experience the journey of a lifetime with the best travel agency in Nepal, renowned for organizing unforgettable solo treks and immersive adventures across the Himalayas.
+        {{ __('messages.service_description') }}
       </p>
 
       <!-- Features -->
       <div class="row text-center mb-4">
         <div class="col-4 text-center">
           <img src="{{ asset('image/services-1.svg') }}" alt="" class="iconsimg">
-          <div class="feature-title mt-1">Custom Destinations</div>
+          <div class="feature-title mt-1">{{ __('messages.custom_destinations') }}</div>
         </div>
         <div class="col-4 text-center">
           <img src="{{ asset('image/services-2.svg') }}" alt="" class="iconsimg">
-          <div class="feature-title mt-2">Unforgettable Moments</div>
+          <div class="feature-title mt-2">{{ __('messages.unforgettable_moments') }}</div>
         </div>
         <div class="col-4 text-center">
           <img src="{{ asset('image/services-3.svg') }}" alt="" class="iconsimg">
-          <div class="feature-title mt-2 ">Competitive Pricings</div>
+          <div class="feature-title mt-2 ">{{ __('messages.competitive_pricings') }}</div>
         </div>
       </div>
 
       <!-- CTA -->
-      <a href="{{ route("Service") }}" class="btn cta-button">See All Services</a>
+      <a href="{{ route("Service") }}" class="btn cta-button">{{ __('messages.see_all_services') }}</a>
     </div>
 
    
@@ -92,14 +92,14 @@
           class="position-absolute expercircle text-white rounded-circle d-flex flex-column justify-content-center align-items-center fw-bold"
           style="width: 190px; height: 190px; bottom: 50px; left: -60px; z-index: 2;">
           <div style="font-size:40px;">15+</div>
-          <div style="font-size:20px; text-align: center;">Years of<br>experience</div>
+          <div style="font-size:20px; text-align: center;">{{ __('messages.years_experience') }}</div>
         </div>
 
         <!-- Customers Banner (under the circle) -->
         <div class="position-absolute text-white text-center py-4 px-3 controlwidth"
           style="background-color: #0E2F57; bottom: -40px; width:444px; border-radius: 6px; z-index: 1;">
           <div class="fw-bold" style="font-size:40px;">1K+</div>
-          <small class="xs-text-des">Customize Service</small>
+          <small class="xs-text-des">{{ __('messages.customize_service') }}</small>
         </div>
 
       </div>

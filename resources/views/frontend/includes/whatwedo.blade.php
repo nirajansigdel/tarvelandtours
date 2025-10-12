@@ -35,13 +35,13 @@
 
       <!-- Right: Full-height text content -->
       <div class="col-lg-6 d-flex flex-column justify-content-center text-white px-5 rightcol">
-        <h2 class="extralarge">What We Do</h2>
-        <h2 class="fw-bold mb-3">Exploring The World Without Limits</h2>
+        <h2 class="extralarge">{{ __('messages.what_we_do') }}</h2>
+        <h2 class="fw-bold mb-3">{{ __('messages.exploring_world_limits') }}</h2>
         <p class="text-light mb-4">
-          From crystal-clear waters to thrilling adventures, we craft experiences that take you beyond boundaries. Whether you're seeking relaxation or excitement, our tours deliver memories that last a lifetime.
+          {{ __('messages.what_we_do_description') }}
         </p>
         <a href="{{ route("About") }}" class="btn cta-button col-md-4">
-          Learn More <i class="fas fa-arrow-right ms-2"></i>
+          {{ __('messages.learn_more') }} <i class="fas fa-arrow-right ms-2"></i>
         </a>
       </div>
 

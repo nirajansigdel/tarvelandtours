@@ -6,8 +6,8 @@
   <div class="container destination-content">
     <div class="row mb-4">
       <div class="col-7">
-        <h1 class="heading ">Unmissable Travel Deals</h1>
-        <p class="extralarger">Escape Now, Pay Less</p>
+        <h1 class="heading ">{{ __('messages.unmissable_travel_deals') }}</h1>
+        <p class="extralarger">{{ __('messages.escape_now_pay_less') }}</p>
       </div>
     </div>
 
@@ -32,7 +32,7 @@
     <div class="row mt-5 justify-content-center">
       <div class="col-md-auto">
         <a href="{{ route('Service') }}">
-          <button class="btn cta-button px-5">View More</button>
+          <button class="btn cta-button px-5">{{ __('messages.view_more') }}</button>
         </a>
       </div>
     </div>

@@ -46,6 +46,7 @@ use App\Http\Controllers\{
     SeoSettingController,
     MissionVisionValueController,
     SectionOnePictureController,
+    LanguageController,
 };
 
 /*
@@ -55,15 +56,9 @@ use App\Http\Controllers\{
 */
 
 // 🌐 Language switching
-Route::get('/lang/{lang}', function ($lang) {
-    $supportedLocales = config('app.available_locales');
-    if (!in_array($lang, array_keys($supportedLocales))) {
-        return redirect()->route('index');
-    }
-    app()->setLocale($lang);
-    session()->put('locale', $lang);
-    return redirect()->route('index');
-});
+Route::get('/lang/{locale}', [LanguageController::class, 'switchLanguage'])->name('language.switch');
+Route::get('/api/current-language', [LanguageController::class, 'getCurrentLanguage'])->name('language.current');
+Route::get('/api/available-languages', [LanguageController::class, 'getAvailableLanguages'])->name('language.available');
 
 
 
@@ -72,6 +67,9 @@ Route::get('/lang/{lang}', function ($lang) {
 // ========================
 Route::get('/', [FrontViewController::class, 'index'])->name('index');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/demo-translations', function() {
+    return view('frontend.demo-translations');
+})->name('demo.translations');
 Route::post('/contactpage', [ContactController::class, 'store'])->name('Contact.store');
 
 // 📄 Static Pages

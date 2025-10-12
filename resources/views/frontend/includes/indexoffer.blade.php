@@ -7,8 +7,8 @@
 <section class="container-fluid tarveloffer">
   <div class="container d-flex flex-column justify-content-center gap-4">
     <div class="row text-center">
-      <h1 class="heading p-0 m-0">Exclusive Offers This Season</h1>
-      <p class="extralarger p-0 m-0">Explore New Horizons</p>
+      <h1 class="heading p-0 m-0">{{ __('messages.exclusive_offers') }}</h1>
+      <p class="extralarger p-0 m-0">{{ __('messages.explore_horizons') }}</p>
     </div>
 
     <div class="slider-wrapper">
@@ -22,7 +22,7 @@
                 @else
                   <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" alt="Default Image" />
                 @endif
-                <span class="service-badge">Exclusive Offer</span>
+                <span class="service-badge">{{ __('messages.exclusive_offer') }}</span>
               </div>
               <div class="service-content">
                 <h3 class="contenttitle text-capitalize text-white">{{ Str::limit(strip_tags($prod->heading), 15) }}</h3>
@@ -53,7 +53,7 @@
     <div class="row d-flex flex-column justify-content-center align-items-center mt-4">
       <div class="col-md-3">
         <a href="{{ route('Service') }}">
-          <button class="cta-button btn btn-primary px-5">View More</button>
+          <button class="cta-button btn btn-primary px-5">{{ __('messages.view_more') }}</button>
         </a>
       </div>
     </div>

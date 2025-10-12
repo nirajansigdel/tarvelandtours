@@ -144,10 +144,10 @@
           <div class="carousel-item {{ $slideIndex === 0 ? 'active' : '' }}">
             <img src="{{ asset('uploads/coverimage/' . $img) }}" alt="Cover Image">
             <div class="hero-content">
-              <h1 class="outline">Explore</h1>
-              <h1 class="solid">The World</h1>
-              <p>{{ $cover->title ?? 'Experience the best trekking in Nepal with customized tour packages from Kathmandu. From short treks near Kathmandu to low-budget adventures and the Annapurna Circuit, we offer unforgettable journeys for beginners and solo trekkers.' }}</p>
-              <a href="{{ route('products.index.front') }}" class="btn btn-outline-light">Discover Now</a>
+              <h1 class="outline">{{ __('messages.hero_title_outline') }}</h1>
+              <h1 class="solid">{{ __('messages.hero_title_solid') }}</h1>
+              <p>{{ $cover->title ?? __('messages.hero_description') }}</p>
+              <a href="{{ route('products.index.front') }}" class="btn btn-outline-light">{{ __('messages.discover_now') }}</a>
             </div>
           </div>
           @php $slideIndex++; @endphp

@@ -3,25 +3,23 @@
     <div class="row text-center g-4 justify-center ">
       <div class="col-6 col-md-3 feature-box d-flex flex-column  fcc " style="animation-delay: 0s;">
     <img src="{{ asset('image/services-2.svg') }}" alt="" class="iconsimg">
-        <h5 class="fw-bold text-white mt-2">Map Location</h5>
-        <p class="contentdesc">Explore stunning trekking routes in Nepal with detailed map locations</p>
+        <h5 class="fw-bold text-white mt-2">{{ __('messages.map_location') }}</h5>
+        <p class="contentdesc">{{ __('messages.map_location_desc') }}</p>
       </div>
       <div class="col-6 col-md-3 feature-box d-flex flex-column  fcc" style="animation-delay: 0.2s;">
        <img src="{{ asset('image/services-1.svg') }}" alt="" class="iconsimg">
-        <h5 class="fw-bold text-white mt-2">Traveling Bag</h5>
-        <p class="contentdesc">Pack smart and light with the perfect traveling bag for adventures.</p>
+        <h5 class="fw-bold text-white mt-2">{{ __('messages.traveling_bag') }}</h5>
+        <p class="contentdesc">{{ __('messages.traveling_bag_desc') }}</p>
       </div>
       <div class="col-6 col-md-3 feature-box d-flex flex-column fcc" style="animation-delay: 0.4s;">
         <img src="{{ asset('image/services-3.svg') }}" alt="" class="iconsimg">
-        <h5 class="fw-bold text-white mt-2">Photography</h5>
-        <p class="contentdesc">Capture unforgettable moments of your Nepal adventure through stunning photography.
-.</p>
+        <h5 class="fw-bold text-white mt-2">{{ __('messages.photography') }}</h5>
+        <p class="contentdesc">{{ __('messages.photography_desc') }}</p>
       </div>
       <div class="col-6 col-md-3 feature-box  d-flex flex-column  fcc" style="animation-delay: 0.6s;">
         <img src="{{ asset('image/services-2.svg') }}" alt="" class="iconsimg">
-        <h5 class="fw-bold text-white mt-2">Affordable Prices</h5>
-        <p class="contentdesc">Enjoy unforgettable Nepal experiences with high-quality service at affordable prices.
-.</p>
+        <h5 class="fw-bold text-white mt-2">{{ __('messages.affordable_prices') }}</h5>
+        <p class="contentdesc">{{ __('messages.affordable_prices_desc') }}</p>
       </div>
     </div>
   </div>

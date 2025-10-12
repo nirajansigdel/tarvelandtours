@@ -70,6 +70,11 @@
                 </div>
             </div>
         </nav> --}}
+        {{-- Language Switcher --}}
+        <div class="language-switcher-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+            <x-simple-language-switcher />
+        </div>
+
         {{-- Main content --}}
         <main class="py-4">
             @yield('content')

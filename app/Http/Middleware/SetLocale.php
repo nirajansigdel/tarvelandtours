@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Middleware;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\App;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class SetLocale
 {
@@ -18,49 +18,18 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-
-        $language = $request->input('locale');
-
-        if ($language) {
-            Session::put('locale', $language);
-            App::setLocale($language);
-        } elseif (Session::has('locale')) {
-            $language = Session::get('locale');
-            App::setLocale($language);
-        }
-    
-        return $next($request);
-        // if(! $request->user()) {
-        //     return $next($request);
-        // }
- 
-        // $language = $request->input('locale');;
- 
-        // if ($language) {
-        //     Session::put('locale', $language);
-        //     App::setLocale($language);
-        // } elseif (Session::has('locale')) {
-       
-        //     $language = Session::get('locale');
-        //     App::setLocale($language);
-        // }
-        // return $next($request);
-
-
-        // if(! $request->user()) {
-        //     return $next($request);
-        // }
- 
-        // $language = $request->segment(2);
+        // Get the locale from session, or default to 'en'
+        $locale = Session::get('locale', config('app.locale'));
         
-        // if (isset($language)) {
-        //     dd($language);
-        //     if (in_array($language, config('app.available_locales'))) {
-        //         Session::put('locale', $language);
-        //         App::setLocale($language);
-        //     }
-        // }
- 
-        // return $next($request);
+        // Validate that the locale is supported
+        $availableLocales = array_keys(config('app.available_locales'));
+        if (!in_array($locale, $availableLocales)) {
+            $locale = config('app.locale');
+        }
+        
+        // Set the application locale
+        App::setLocale($locale);
+        
+        return $next($request);
     }
 }
