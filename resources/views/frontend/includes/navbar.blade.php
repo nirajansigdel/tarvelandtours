@@ -145,13 +145,12 @@
 
     <!-- Language Toggle (mobile) -->
     <div class="lang-toggle-mobile d-flex align-items-center">
-      <div class="position-relative lang-toggle px-1 py-1 rounded-pill" style="width: 100px; background-color: #e9ecef;"
-        onclick="toggleLangButton()">
-        <div id="langToggleBg" class="position-absolute top-0 bottom-0 start-0 rounded-pill"
-          style="width: 50%; z-index: 1;"></div>
+      <div class="position-relative lang-toggle px-1 py-1 rounded-pill" style="width: 100px; background-color: #e9ecef;">
+        <div id="langToggleBg" class="position-absolute top-0 bottom-0 rounded-pill"
+          style="width: 50%; z-index: 1; {{ app()->getLocale() === 'es' ? 'transform: translateX(100%);' : 'transform: translateX(0%);' }}"></div>
         <div class="d-flex justify-content-between align-items-center position-relative" style="z-index: 2;">
-          <span id="langSpa" class="lang-option flex-fill text-center py-1 fw-semibold lang-inactive">SPA</span>
-          <span id="langEng" class="lang-option flex-fill text-center py-1 fw-semibold lang-active">ENG</span>
+          <a href="{{ route('language.switch', 'es') }}" id="langSpa" class="lang-option flex-fill text-center py-1 fw-semibold {{ app()->getLocale() === 'es' ? 'lang-active' : 'lang-inactive' }}">SPA</a>
+          <a href="{{ route('language.switch', 'en') }}" id="langEng" class="lang-option flex-fill text-center py-1 fw-semibold {{ app()->getLocale() === 'en' ? 'lang-active' : 'lang-inactive' }}">ENG</a>
         </div>
       </div>
     </div>
@@ -227,12 +226,12 @@
       <!-- Language Toggle (desktop) -->
       <div class="d-flex align-items-center gap-3">
         <div class="position-relative lang-toggle px-1 py-1 rounded-pill"
-          style="width: 100px; background-color: #e9ecef;" onclick="toggleLangButton()">
-          <div id="langToggleBg" class="position-absolute top-0 bottom-0 start-0 rounded-pill"
-            style="width: 50%; z-index: 1;"></div>
+          style="width: 100px; background-color: #e9ecef;">
+          <div id="langToggleBg" class="position-absolute top-0 bottom-0 rounded-pill"
+            style="width: 50%; z-index: 1; {{ app()->getLocale() === 'es' ? 'transform: translateX(100%);' : 'transform: translateX(0%);' }}"></div>
           <div class="d-flex justify-content-between align-items-center position-relative" style="z-index: 2;">
-            <span id="langSpa" class="lang-option flex-fill text-center py-1 fw-semibold lang-inactive">SPA</span>
-            <span id="langEng" class="lang-option flex-fill text-center py-1 fw-semibold lang-active">ENG</span>
+            <a href="{{ route('language.switch', 'es') }}" id="langSpa" class="lang-option flex-fill text-center py-1 fw-semibold {{ app()->getLocale() === 'es' ? 'lang-active' : 'lang-inactive' }}">SPA</a>
+            <a href="{{ route('language.switch', 'en') }}" id="langEng" class="lang-option flex-fill text-center py-1 fw-semibold {{ app()->getLocale() === 'en' ? 'lang-active' : 'lang-inactive' }}">ENG</a>
           </div>
         </div>
       </div>
@@ -309,24 +308,24 @@
   </div>
 </div>
 
-<!-- Toggle Script -->
-<script>
-  let currentLang = 'ENG';
-  function toggleLangButton() {
-    const eng = document.querySelectorAll('#langEng');
-    const spa = document.querySelectorAll('#langSpa');
-    const bg = document.querySelectorAll('#langToggleBg');
-
-    if (currentLang === 'ENG') {
-      currentLang = 'SPA';
-      eng.forEach(el => el.classList.replace('lang-active', 'lang-inactive'));
-      spa.forEach(el => el.classList.replace('lang-inactive', 'lang-active'));
-      bg.forEach(el => el.style.transform = 'translateX(100%)');
-    } else {
-      currentLang = 'ENG';
-      spa.forEach(el => el.classList.replace('lang-active', 'lang-inactive'));
-      eng.forEach(el => el.classList.replace('lang-inactive', 'lang-active'));
-      bg.forEach(el => el.style.transform = 'translateX(0%)');
-    }
+<!-- Language toggle styling -->
+<style>
+  .lang-option {
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
-</script>
+  
+  .lang-option:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .lang-option.lang-active {
+    color: #0d6efd;
+  }
+  
+  .lang-option.lang-inactive {
+    color: #6c757d;
+  }
+</style>
