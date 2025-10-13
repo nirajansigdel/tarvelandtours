@@ -5,7 +5,7 @@
 
       <!-- LEFT: Text Content -->
     <div class="col-lg-6 mb-4 mb-lg-0">
-                <p class="heading content-topheading">About us</p>
+                <p class="heading content-topheading">{{ __('messages.about_us') }}</p>
                 <h1 class="extralarge mb-3">{{ $about->title ?? '' }}</h1>
                 @php
                     $text = $about->description ?? 'No description available.';
@@ -23,7 +23,7 @@
                 </div>
 
                 <!-- CTA -->
-                <a href="{{ route("About") }}" class="btn cta-button">Read More</a>
+                <a href="{{ route("About") }}" class="btn cta-button">{{ __('messages.read_more') }}</a>
             </div>
 
       <!-- RIGHT: Modern KPI grid with primary and secondary cards -->
@@ -33,7 +33,7 @@
             <span class="kpi-emoji" aria-hidden="true">⚙️</span>
             <div class="kpi-value"><span class="kpi-number" data-target="75">0</span><span class="kpi-suffix">%</span>
             </div>
-            <div class="kpi-label"> Tour Operations</div>
+            <div class="kpi-label">{{ __('messages.tour_operations') }}</div>
             <div class="kpi-progress">
               <div class="kpi-progress-bar" style="width:0%"></div>
             </div>
@@ -42,7 +42,7 @@
             <span class="kpi-emoji" aria-hidden="true">🗂️</span>
             <div class="kpi-value"><span class="kpi-number" data-target="20">0</span><span class="kpi-suffix">%</span>
             </div>
-            <div class="kpi-label">Client Satisfaction</div>
+            <div class="kpi-label">{{ __('messages.client_satisfaction') }}</div>
             <div class="kpi-progress">
               <div class="kpi-progress-bar" style="width:0%"></div>
             </div>
@@ -51,7 +51,7 @@
             <span class="kpi-emoji" aria-hidden="true">💸</span>
             <div class="kpi-value"><span class="kpi-number" data-target="5">0</span><span class="kpi-suffix">%</span>
             </div>
-            <div class="kpi-label">Booking Support</div>
+            <div class="kpi-label">{{ __('messages.booking_support') }}</div>
             <div class="kpi-progress">
               <div class="kpi-progress-bar" style="width:0%"></div>
             </div>

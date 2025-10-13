@@ -105,7 +105,7 @@
 
         <!-- LEFT COLUMN: COUPLES -->
         <div class="col-md-6">
-          <h2 class="custom-heading">Special Offer for Couples</h2>
+          <h2 class="custom-heading">{{ __('messages.special_offer_couples') }}</h2>
           <h3 class="contenttitle text-white">
             {!! \Illuminate\Support\Str::limit(strip_tags($couple->heading, '<p><br>'), 200) !!}
           </h3>
@@ -123,7 +123,7 @@
 
                   @if($couple->original_price && $couple->discounted_price)
                     <h6 class="mb-2 text-white fw-semibold">
-                      Package Price:
+                      {{ __('messages.package_price') }}
                       <span class="text-decoration-line-through text-light fw-normal" style="font-size: 0.9rem;">
                         NPR {{ number_format($couple->original_price) }}
                       </span>
@@ -131,24 +131,24 @@
 
                     <div class="d-flex flex-column">
                       <span class="fw-bold text-white mb-1" style="font-size: 1.1rem;">
-                        Discounted Price: NPR {{ number_format($couple->discounted_price) }}
+                        {{ __('messages.discounted_price') }} NPR {{ number_format($couple->discounted_price) }}
                       </span>
                       <span class="text-white small">
-                        Couple's Offer Price:NPR {{ number_format($couple->original_price - $couple->discounted_price) }}
+                        {{ __('messages.couples_offer_price') }}NPR {{ number_format($couple->original_price - $couple->discounted_price) }}
                       </span>
                     </div>
 
                   @elseif($couple->discounted_price)
                     <div class="d-flex flex-column">
                       <span class="fw-bold text-white mb-1" style="font-size: 1.1rem;">
-                        Price: NPR {{ number_format($couple->discounted_price) }}
+                        {{ __('messages.price') }} NPR {{ number_format($couple->discounted_price) }}
                       </span>
                     </div>
 
                   @elseif($couple->original_price)
                     <div class="d-flex flex-column">
                       <span class="fw-bold text-white mb-1" style="font-size: 1.1rem;">
-                        Price: NPR {{ number_format($couple->original_price) }}
+                        {{ __('messages.price') }} NPR {{ number_format($couple->original_price) }}
                       </span>
                     </div>
                   @endif
@@ -158,7 +158,7 @@
 
 
               <div class="mt-4">
-                 <a class="overlay-btn text-decoration-none" href="{{ route('products.detail', $couple->id) }}">View More</a>
+                 <a class="overlay-btn text-decoration-none" href="{{ route('products.detail', $couple->id) }}">{{ __('messages.view_more') }}</a>
               </div>
             </div>
 
@@ -219,7 +219,7 @@
             </div>
          
 
-          <h2 class="custom-heading mt-4">Special Group Package</h2>
+          <h2 class="custom-heading mt-4">{{ __('messages.special_group_package') }}</h2>
           <h3 class="contenttitle text-white">
             {!! \Illuminate\Support\Str::limit(strip_tags($group->heading, '<p><br>'), 200) !!}
           </h3>

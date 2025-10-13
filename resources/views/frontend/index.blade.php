@@ -177,13 +177,13 @@
                 contentType: false,
                 success: function(response) {
                     if (response.success) {
-                        alert("Message sent successfully!");
+                        alert("{{ __('message_sent_successfully') }}");
                     } else {
-                        alert("Error in sending message. Please try again.");
+                        alert("{{ __('error_sending_message') }}");
                     }
                 },
                 error: function(xhr, status, error) {
-                    alert("An unexpected error occurred. Please try again.");
+                    alert("{{ __('unexpected_error') }}");
                 }
             });
         });

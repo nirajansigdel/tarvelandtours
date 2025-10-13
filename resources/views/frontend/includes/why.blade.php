@@ -15,9 +15,9 @@
 <!-- HERO SECTION -->
 <section class="bg-hero d-flex flex-column justify-content-center align-items-center text-center text-white">
   <div class="container row col-md-8 fcc">
-    <p class="text-warning fs-2">Why choose us</p>
-    <h1 class="fw-bold display-4">Let Us Show You The Beauty Of The World</h1>
-    <a href="{{ route('Contact') }}" class="btn btn-outline-light rounded-pill px-4 py-3 mt-3  col-md-2">Contact Us</a>
+    <p class="text-warning fs-2">{{ __('messages.why_choose_us') }}</p>
+    <h1 class="fw-bold display-4">{{ __('messages.beauty_of_world') }}</h1>
+    <a href="{{ route('Contact') }}" class="btn btn-outline-light rounded-pill px-4 py-3 mt-3  col-md-2">{{ __('messages.contact_us') }}</a>
   </div>
 </section>
 
@@ -32,8 +32,8 @@
             <i class="fas fa-plane"></i>
           </div>
           <div class="card-body">
-            <h5 class="fw-bold text-warning">Tour And Travel</h5>
-            <p class="text-muted">Experience Nepal’s natural beauty through stunning trekking paths, complete with easy-to-follow map guides.</p>
+            <h5 class="fw-bold text-warning">{{ __('messages.tour_and_travel') }}</h5>
+            <p class="text-muted">{{ __('messages.tour_and_travel_desc') }}</p>
           </div>
         </div>
       </div>
@@ -45,8 +45,8 @@
             <i class="fas fa-compass"></i>
           </div>
           <div class="card-body">
-            <h5 class="fw-bold text-warning">Campus</h5>
-            <p class="text-muted">We offer campus tours with guided visits, meet-and-greets, and info sessions to help you explore firsthand.</p>
+            <h5 class="fw-bold text-warning">{{ __('messages.campus') }}</h5>
+            <p class="text-muted">{{ __('messages.campus_desc') }}</p>
           </div>
         </div>
       </div>
@@ -58,8 +58,8 @@
             <i class="fas fa-hiking"></i>
           </div>
           <div class="card-body">
-            <h5 class="fw-bold text-warning">Adventure Tour</h5>
-            <p class="text-muted">Join Adventure Tour for an exciting, experience full of thrilling activities and unforgettable memories!.</p>
+            <h5 class="fw-bold text-warning">{{ __('messages.adventure_tour') }}</h5>
+            <p class="text-muted">{{ __('messages.adventure_tour_desc') }}</p>
           </div>
         </div>
       </div>
@@ -71,8 +71,8 @@
             <i class="fas fa-camera"></i>
           </div>
           <div class="card-body">
-            <h5 class="fw-bold text-warning">Photography</h5>
-            <p class="text-muted">Capture unforgettable moments of your Nepal adventure through stunning photography.</p>
+            <h5 class="fw-bold text-warning">{{ __('messages.photography') }}</h5>
+            <p class="text-muted">{{ __('messages.photography_desc_why') }}</p>
           </div>
         </div>
       </div>
