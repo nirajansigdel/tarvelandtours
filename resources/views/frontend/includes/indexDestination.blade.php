@@ -1,7 +1,3 @@
-<style>
-
-</style>
-
 <section class="container-fluid destination py-5">
   <div class="container destination-content">
     <div class="row mb-4">

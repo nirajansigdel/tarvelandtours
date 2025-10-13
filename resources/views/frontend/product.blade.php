@@ -30,7 +30,7 @@
 
         @if($products->isEmpty())
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-12 text-center mb-5">
                     <div class="alert alert-info">
                         <h4>No products available yet.</h4>
                         <p>Please check back later for our latest offerings.</p>

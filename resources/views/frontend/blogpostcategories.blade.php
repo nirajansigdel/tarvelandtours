@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-<section class="position-relative text-white text-center"
+<section class="position-relative text-white text-center mb-5"
         style="background: url('{{ asset('image/blog.webp') }}') center center / cover no-repeat; height:400px;">
         <div class="herosectionoverlay"></div>
 

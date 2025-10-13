@@ -1,15 +1,10 @@
-
-<style>
-  /* Service Card Styles (your original design) */
-
-
-</style>
 <section class="container-fluid tarveloffer">
   <div class="container d-flex flex-column justify-content-center gap-4">
-    <div class="row text-center">
+    <div class="row text-center mt-5">
       <h1 class="heading p-0 m-0">Exclusive Offers This Season</h1>
       <p class="extralarger p-0 m-0">Explore New Horizons</p>
     </div>
+
 
     <div class="slider-wrapper">
       <div class="slider-track">

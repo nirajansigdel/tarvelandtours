@@ -2,7 +2,7 @@
 
 @section('content')
 
-   <section class="position-relative text-white text-center"
+   <section class="position-relative text-white text-center mb-2"
         style="background: url('{{ asset('image/q.avif') }}') center center / cover no-repeat; height:400px;">
         <div class="herosectionoverlay"></div>
 

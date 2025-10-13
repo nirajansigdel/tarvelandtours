@@ -56,13 +56,32 @@
 @include("frontend.includes.indexoffer")
 @include("frontend.includes.indexcouple")
 @include("frontend.includes.indexDestination")
-@include("frontend.includes.why")  
+@include("frontend.includes.why") 
 @include("frontend.includes.costest")
 @include("frontend.includes.indexservice")
 @include("frontend.includes.indextestimonials")
 @include("frontend.includes.contact") 
 @include("frontend.includes.whatwedo")
 @include("frontend.includes.indexblog")
+
+
+{{-- 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+--}}
 
 {{-- 
 

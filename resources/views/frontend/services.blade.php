@@ -2,7 +2,7 @@
 @section('content')
 
 
-<section class="position-relative text-white text-center"
+<section class="position-relative text-white text-center mb-5"
         style="background: url('{{ asset('image/check.jpg') }}') center center / cover no-repeat; height:400px;">
         <div class="herosectionoverlay"></div>
 
@@ -41,7 +41,7 @@
 
 
 
-<section class="section-overlap pb-5">
+<section class="section-overlap pt-5">
   <div class="container">
      <div class="text-center mb-5">
       <h1 class="fw-bold" style="color: #222;">List of Our Services</h1>

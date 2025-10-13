@@ -3,7 +3,7 @@
 @section('content')
 <div class="content-wrapper">
 
-    <section class="position-relative text-white text-center"
+    <section class="position-relative text-white text-center mb-5"
         style="background: url('{{ asset('image/destin.jpg') }}') center center / cover no-repeat; height:400px;">
         <div class="herosectionoverlay"></div>
 

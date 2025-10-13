@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="position-relative text-white text-center"
-        style="background: url('{{ asset('image/service.jpg') }}') center center / cover no-repeat; height:400px;">
+        style="background: url('{{ asset('image/q.avif') }}') center center / cover no-repeat; height:400px;">
         <div class="herosectionoverlay"></div>
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
@@ -54,11 +54,11 @@
                     class="col-lg-3 col-md-3 col-sm-12 order-3 order-md-2 p-4 bg-light rounded shadow-sm border asidebar">
                     <h4 class="mb-4 border-bottom pb-2 text-secondary">Special Offer</h4>
                     <ul class="list-unstyled">
-                        @foreach ($services as $blog)
+                        @foreach ($listservices as $Service)
                             <li class="mb-3">
-                                <a href="{{ route('SingleBlogpostcategory', ['slug' => $blog->slug]) }}"
+                                <a href="{{ route('SingleService', ['slug' => $Service->slug]) }}"
                                     class="fw-bold content-heading text-decoration-none">
-                                    {{ app()->getLocale() === 'ne' ? $blog->title_ne : $blog->title }}
+                                    {{$Service->title }}
                                 </a>
                             </li>
                         @endforeach
