@@ -10,11 +10,12 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Testimonials</h1>
+                <h1 class="fw-bold display-4"> {{ __('messages.testimonials') }}</h1>
                 <p class="mt-2 fs-5">
-                    <span class="fw-semibold">Home</span>
+                    <span class="fw-semibold">{{ __('messages.Home') }}</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    Testimonials
+                
+                   {{ __('messages.testimonials') }}
                 </p>
             </div>
         </div>
@@ -24,8 +25,8 @@
   <div class="container">
     <div class="row mb-4">
       <div class="col-6 text-white">
-        <h1 class="heading">Testimonials</h1>
-        <p class="extralarger">Hear What Our Happy Travelers Have to Say.</p>
+        <h1 class="heading"> {{ __('messages.testimonials') }}</h1>
+        <p class="extralarger">{{ __('messages.hear_happy_travelers') }}</p>
 
       </div>
     </div>

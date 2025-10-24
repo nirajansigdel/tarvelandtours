@@ -181,11 +181,11 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">About us</h1>
+                <h1 class="fw-bold display-4">{{ __('messages.about_us') }}</h1>
                 <p class="mt-2 fs-5">
-                    <span class="fw-semibold">Home</span>
+                    <span class="fw-semibold">{{ __('messages.Home') }}</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    About
+                    {{ __('messages.about_us') }}
                 </p>
             </div>
         </div>
@@ -232,12 +232,12 @@
         }
 
 
-     .service-img {
-    width: 100%;
-    height:80vh;
-    object-fit: cover;
+        .service-img {
+            width: 100%;
+            height: 80vh;
+            object-fit: cover;
 
-  }
+        }
 
         @media (max-width: 768px) {
             .main-heading {
@@ -259,8 +259,8 @@
         <div class="row align-items-center justify-content-between">
             <!-- Left Content -->
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <p class="heading content-topheading">About us</p>
-                <h1 class="extralarge mb-3">{{ $about->title ?? '' }}</h1>
+                
+                <h1 class="extralarge mb-3">{{ __('messages.about_us') }}</h1>
                 @php
                     $text = $about->description ?? 'No description available.';
                     $parts = explode('.', $text);
@@ -277,7 +277,7 @@
                 </div>
 
                 <!-- CTA -->
-                <a href="#" class="btn cta-button">View Destination</a>
+                <a href="#" class="btn cta-button">{{ __('messages.view_destination') }}</a>
             </div>
 
             <!-- Right Image -->
@@ -290,16 +290,16 @@
                     <!-- Experience Badge -->
                     <!-- Experience Circle (on top) -->
                     <div class="position-absolute expercircle text-white rounded-circle d-flex flex-column justify-content-center align-items-center fw-bold"
-                        style="width: 190px; height: 190px; bottom: 50px; left: -60px; z-index: 2;">
+                        style="width: 180px; height: 180px; bottom:46px; left: -60px; z-index: 2;">
                         <div style="font-size:40px;">15+</div>
-                        <div style="font-size:20px; text-align: center;">Years of<br>experience</div>
+                        <div style="font-size:16px; text-align: center;">{{ __('messages.years_experience') }}</div>
                     </div>
 
                     <!-- Customers Banner (under the circle) -->
                     <div class="position-absolute text-white text-center py-4 px-3"
-                        style="background-color: #0E2F57; bottom: -40px; width:444px; border-radius: 6px; z-index: 1;">
+                        style="background-color: #0E2F57; bottom: -36px; width:444px; border-radius: 6px; z-index: 1;">
                         <div class="fw-bold" style="font-size:40px;">1K+</div>
-                        <small class="xs-text-des">Customize Service</small>
+                        <small class="xs-text-des">{{ __('messages.customize_service') }}</small>
                     </div>
 
                 </div>
@@ -331,7 +331,7 @@
 
                 @foreach ($message as $index => $ceoms)
                     <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-delay="100">
-                        <h3 class="pt-4 mb-4 fw-bold">CEO Message</h3>
+                        <h3 class="pt-4 mb-4 fw-bold">{{ __('messages.CEO_Message') }}</h3>
 
                         <!-- Typing Text Output -->
                         <p id="typing-text-{{ $index }}"></p>
@@ -371,7 +371,7 @@
 
                 type{{ $index }}();
             @endforeach
-        });
+            });
     </script>
 
 
@@ -415,9 +415,9 @@
     <section class="container-fluid py-5 bg-soft-blue ">
         <div class="container text-center">
             <div class="directors-header mb-5">
-                <h2 class="Extralarge">🌟 Meet Our Team 🌟</h2>
+                <h1 class="extralarge mb-3">{{ __('messages.OurTeams') }}</h1>
                 <p class="section-subtitle">
-                    Our board brings expertise and heart to every decision, shaping a better Nepal for future generations.
+                   {{ __('messages.OurTeams_sub') }}
                 </p>
             </div>
             <div class="row justify-content-center">
@@ -510,10 +510,10 @@
             style="min-height: 500px;">
             <div class="row col-md-10 justify-content-center align-items-center addbg p-2 py-4">
                 <h2 class="content-topheading mb-4">
-                    FAQ
+                    {{ __('messages.faqs') }}
                 </h2>
                 <h1 class="extarlarge text-center text-dark mb-5">
-                    Have Answers, Will Travel.
+                    {{ __('messages.faqs_sub') }}
                 </h1>
 
                 <!-- Accordion Start -->
@@ -528,7 +528,7 @@
                                 <button class="accordion-button collapsed custom-accordion-button px-2" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapse{{$index}}" aria-expanded="false"
                                     aria-controls="collapse{{$index}}">
-                                   👉 {{$faq->question}}
+                                    👉 {{$faq->question}}
                                 </button>
                             </h2>
                             <div id="collapse{{$index}}" class="accordion-collapse collapse" aria-labelledby="heading{{$index}}"

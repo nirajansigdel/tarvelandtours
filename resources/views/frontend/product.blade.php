@@ -9,22 +9,22 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Our Products</h1>
+                <h1 class="fw-bold display-4"> {{ __('messages.promotions') }}</h1>
                 <p class="mt-2 fs-5">
-                    <span class="fw-semibold">Home</span>
+                    <span class="fw-semibold">{{ __('messages.Home') }}</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    Products
+                    {{ __('messages.promotions') }}
                 </p>
             </div>
         </div>
     </section>
 
-    <div class="container">
+    <div class="container my-4">
         <div class="row">
              <div class="directors-header mb-4 text-center">
-            <h1 class="heading mb-1">everyoffer</h1>
+            <h1 class="heading mb-1">{{ __('messages.every_offer') }}</h1>
             <p class="extralarger">
-                Where the map ends, your story begins.</p>
+                 {{ __('messages.where_map_ends') }}</p>
         </div>
         </div>
 
@@ -92,14 +92,7 @@
 
                                 </p>
 
-                                {{--
-                                @if($product->package)
-                                <p class="card-text">
-                                    <strong>Package:</strong> {{ Str::limit($product->package, 80) }}
-                                </p>
-                                @endif
-                                --}}
-
+                    
 
                                 {{-- Pricing Information --}}
                                 @if($product->original_price || $product->discounted_price)
@@ -114,13 +107,7 @@
                                                     NPR {{ number_format($product->discounted_price) }}
                                                 </span>
                                             </div>
-                                            {{--  
-                                            <small class="">
-                                                <i class="fas fa-percentage"></i>
-                                                {{ round((($product->original_price - $product->discounted_price) / $product->original_price) * 100) }}%
-                                                OFF
-                                            </small>
-                                            --}}
+                                           
                                         @elseif($product->discounted_price)
                                             <span class="fw-bold text-success">
                                                 NPR {{ number_format($product->discounted_price) }}
@@ -137,7 +124,7 @@
                             <div class="card-footer bg-transparent d-flex justify-content-between p-0 m-0 ">
                                 <a href="{{ route('products.detail', $product->id) }}"
                                     class="col-md-5 btn text-dark fw-semibold  text-decoration-none content-button">
-                                    View Details <i class="bi bi-arrow-right"></i>
+                                    {{ __('messages.view_details') }} <i class="bi bi-arrow-right"></i>
                                 </a>
                                 @if($product->location)
                                     <div class="col-3 flex-end mt-2">

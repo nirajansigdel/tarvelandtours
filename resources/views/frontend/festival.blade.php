@@ -9,11 +9,11 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Festivals</h1>
+                <h1 class="fw-bold display-4">{{ __('messages.festivaloffer') }}</h1>
                 <p class="mt-2 fs-5">
-                    <span class="fw-semibold">Home</span>
+                    <span class="fw-semibold">{{ __('messages.Home') }}</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    Festivals
+                    {{ __('messages.festivaloffer') }}
                 </p>
             </div>
         </div>
@@ -22,9 +22,9 @@
     <div class="container ">
         <div class="row">
            <div class="directors-header mb-4 text-center">
-            <h1 class="heading mb-1"> Festival Special for Everyone</h1>
+            <h1 class="heading mb-1"> {{ __('messages.festival_special') }}</h1>
             <p class="extralarger">
-                Make this festive season memorable</p>
+                {{ __('messages.festive_message') }}</p>
         </div>
         </div>
 
@@ -96,7 +96,7 @@
                             <div class="card-footer bg-transparent d-flex justify-content-between p-0 m-0 ">
                                 <a href="{{ route('products.detail', $product->id) }}"
                                     class="col-md-5 btn text-dark fw-semibold  text-decoration-none content-button">
-                                    View Details <i class="bi bi-arrow-right"></i>
+                                    {{ __('messages.view_details') }} <i class="bi bi-arrow-right"></i>
                                 </a>
                                 @if($product->location)
                                     <div class="col-3 flex-end mt-2">
@@ -128,7 +128,7 @@
             <div class="col-12">
                 <div class="text-center text-muted">
                     <hr class="my-4">
-                    <p class="mb-0">Experience the vibrant culture and celebrations of our festivals</p>
+                    <p class="mb-0">{{ __('messages.festival_experience') }}</p>
                 </div>
             </div>
         </div>

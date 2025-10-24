@@ -16,11 +16,11 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">why us</h1>
+                <h1 class="fw-bold display-4">{{ __('messages.why_us') }}</h1>
                 <p class="mt-2 fs-5">
-                    <span class="fw-semibold">Home</span>
+                    <span class="fw-semibold">{{ __('messages.Home') }}</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    why us
+                    {{ __('messages.why_us') }}
                 </p>
             </div>
         </div>

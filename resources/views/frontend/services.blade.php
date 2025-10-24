@@ -8,11 +8,11 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">our service</h1>
+                 <h1 class="fw-bold display-4">{{ __('messages.our_services') }}</h1>
                 <p class="mt-2 fs-5">
-                    <span class="fw-semibold">Home</span>
+                    <span class="fw-semibold">{{ __('messages.Home') }}</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    service
+                    {{ __('messages.our_services') }}
                 </p>
             </div>
         </div>
@@ -44,8 +44,8 @@
 <section class="section-overlap pt-5">
   <div class="container">
      <div class="text-center mb-5">
-      <h1 class="fw-bold" style="color: #222;">List of Our Services</h1>
-      <p class="fs-5 text-muted fst-italic">"Empowering communities through dedicated service and care."</p>
+      <h1 class="fw-bold" style="color: #222;">{{ __('messages.see_list_services') }}</h1>
+      <p class="fs-5 text-muted fst-italic">"{{ __('messages.empower_all_services') }}"</p>
     </div>
     <div class="row g-4">
        @foreach ($services as $index => $service)

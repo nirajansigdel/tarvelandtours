@@ -90,14 +90,14 @@
         <!-- Experience Circle (on top) -->
         <div
           class="position-absolute expercircle text-white rounded-circle d-flex flex-column justify-content-center align-items-center fw-bold"
-          style="width: 190px; height: 190px; bottom: 50px; left: -60px; z-index: 2;">
+          style="width:180px; height:180px; bottom:46px; left: -60px; z-index: 2;">
           <div style="font-size:40px;">15+</div>
-          <div style="font-size:20px; text-align: center;">{{ __('messages.years_experience') }}</div>
+          <div style="font-size:16px; text-align: center;">{{ __('messages.years_experience') }}</div>
         </div>
 
         <!-- Customers Banner (under the circle) -->
         <div class="position-absolute text-white text-center py-4 px-3 controlwidth"
-          style="background-color: #0E2F57; bottom: -40px; width:444px; border-radius: 6px; z-index: 1;">
+          style="background-color: #0E2F57; bottom: -36px; width:444px; border-radius: 6px; z-index: 1;">
           <div class="fw-bold" style="font-size:40px;">1K+</div>
           <small class="xs-text-des">{{ __('messages.customize_service') }}</small>
         </div>

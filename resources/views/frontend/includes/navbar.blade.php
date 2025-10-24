@@ -180,20 +180,20 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark " href="#" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
-            Introduction
+            {{ __('messages.introduction') }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{ route('index') }}">Home</a></li>
-            <li><a class="dropdown-item" href="{{ route('whyus') }}">Why Us</a></li>
-            <li><a class="dropdown-item" href="{{ route('Service') }}">Our Service</a></li>
-            <li><a class="dropdown-item" href="{{ route('About') }}">About</a></li>
+            <li><a class="dropdown-item" href="{{ route('index') }}">{{ __('messages.Home') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('whyus') }}">{{ __('messages.why_us') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('Service') }}">{{ __('messages.services') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('About') }}">{{ __('messages.about') }}</a></li>
 
           </ul>
         </li>
         
-        <li class="nav-item"><a class="nav-link text-dark" href="{{ route('Gallery') }}">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="{{ route('Gallery') }}">{{ __('messages.gallery') }}</a></li>
         <li class="nav-item"><a class="nav-link text-dark "
-            href=" {{ route('destinations.index.front') }}">Destination</a></li>
+            href=" {{ route('destinations.index.front') }}">{{ __('messages.Destination') }}</a></li>
         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark " href="#" id="offerDropdown" role="button"
@@ -201,11 +201,11 @@
             Offer
           </a>
           <ul class="dropdown-menu" aria-labelledby="offerDropdown">
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}">Promotional Posts</a></li>
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}">General Offers</a></li>
-            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">Festival Deals</a></li>
-            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">Couple Packages</a></li>
-            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">Group Packages</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}">{{ __('messages.promotions') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('products.index.front') }}">{{ __('messages.generaloffer') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">{{ __('messages.festivaloffer') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">{{ __('messages.coupleoffer') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">{{ __('messages.groupoffer') }}</a></li>
 
           </ul>
         </li>
@@ -215,12 +215,12 @@
           <a class="nav-link text-dark" href="#" data-bs-toggle="dropdown">Updates</a>
           <ul class="dropdown-menu">
             <!-- <li><a class="dropdown-item" href="{{ route('events') }}">News & Events</a></li> -->
-            <li><a class="dropdown-item" href="{{ route('Blogpostcategory') }}">Blogs</a></li>
-            <li><a class="dropdown-item" href="{{ route('career') }}">Career</a></li>
-            <li><a class="dropdown-item" href="{{ route('testimonails') }}">Testimonails</a></li>
+            <li><a class="dropdown-item" href="{{ route('Blogpostcategory') }}">{{ __('messages.blogs') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('career') }}">{{ __('messages.careernav')}}</a></li>
+            <li><a class="dropdown-item" href="{{ route('testimonails') }}">{{ __('messages.testimonials') }}</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link text-dark" href=" {{ route('Contact') }}">Contact</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href=" {{ route('Contact') }}">{{ __('messages.contact') }}</a></li>
       </ul>
 
       <!-- Language Toggle (desktop) -->
@@ -285,12 +285,12 @@
           <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Couple">Couple</a></li>
           <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Group">Group</a></li>
         </ul>
-      </li>
+      </li> 
 
 
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('Service') }}">Our Service</a>
+        <a class="nav-link" href="{{ route('Service') }}">{{ __('messages.services') }}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('career') }}">Opportunity</a>

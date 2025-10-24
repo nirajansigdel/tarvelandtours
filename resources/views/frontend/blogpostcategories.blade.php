@@ -7,11 +7,11 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Our Stories</h1>
+                <h1 class="fw-bold display-4">{{ __('messages.our_stories') }}</h1>
                 <p class="mt-2 fs-5">
-                    <span class="fw-semibold">Home</span>
+                    <span class="fw-semibold">{{ __('messages.Home') }}</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    Blogs
+                    {{ __('messages.Blogs') }}
                 </p>
             </div>
         </div>
@@ -186,8 +186,8 @@
   <div class="container">
     <div class="row">
       <div class="text-center mb-4">
-        <h1 class="extralarger pb-2">Collection of Blogs</h1>
-        <p class="xs-text">Our blogs share stories</p>
+        <h1 class="extralarger pb-2">{{ __('messages.our_stories_sub') }}</h1>
+        <p class="xs-text"> {{ __('messages.our_stories_desc') }}</p>
       </div>
     </div>
     <div class="row">
@@ -200,12 +200,12 @@
               @else
                 <img src="https://plus.unsplash.com/premium_photo-1705091309202-5838aeedd653?w=500&auto=format&fit=crop&q=60" alt="Default Image">
               @endif
-              <span class="blogs-badge">Blogs</span>
+              <span class="blogs-badge">{{ __('messages.Blogs') }}</span>
             </div>
             <div class="blogs-content">
               <h3 class="blogs-title text-capitalize">{{ Str::limit(strip_tags($blogs->title), 40) }}</h3>
               <p class="blogs-desc">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($blogs->content)), 150) !!}</p>
-              <a href="{{ route('SingleBlogpostcategory', $blogs->slug) }}" class="blogs-cta">View details <span class="arrow">→</span></a>
+              <a href="{{ route('SingleBlogpostcategory', $blogs->slug) }}" class="blogs-cta">{{ __('messages.view_details') }}<span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -224,7 +224,7 @@
     </style>
     <div class="text-center mt-4">
       <a href="{{ route('Service') }}">
-        <button class="cta-button btn btn-primary px-5">View More</button>
+        <button class="cta-button btn btn-primary px-5">{{ __('messages.view_more') }}</button>
       </a>
     </div>
   </div>
@@ -358,9 +358,9 @@
             <div class="col-md-4 position-relative mb-4">
                 <div class="circle-img">
                     <img src="{{ asset('image/first.avif') }}" class="img-fluid" alt="New Customer">
-                    <div class="label-tag red">Active</div>
+                    <div class="label-tag red">{{ __('messages.active') }}</div>
                 </div>
-                <p class="flow-caption mt-3">Hope for Digital world</p>
+                <p class="flow-caption mt-3">{{ __('messages.hope_for_digital_world') }}</p>
             </div>
 
             <div class="col-md-4 d-flex justify-content-center mb-4">
@@ -372,9 +372,9 @@
             <div class="col-md-4 position-relative mb-4">
                 <div class="circle-img">
                     <img src="{{ asset('image/digital.avif') }}" class="img-fluid rounded-circle" alt="Operations">
-                    <div class="label-tag red">Need</div>
+                    <div class="label-tag red">{{ __('messages.need') }}</div>
                 </div>
-                <p class="flow-caption mt-3">Empower Young Lives</p>
+                <p class="flow-caption mt-3">{{ __('messages.empower_young_lives') }}</p>
             </div>
         </div>
 
@@ -382,9 +382,9 @@
             <div class="col-md-4 position-relative">
                 <div class="circle-img">
                     <img src="{{ asset('image/ch.avif') }}" class="img-fluid rounded-circle" alt="Loyal Customer">
-                    <div class="label-tag red">On time</div>
+                    <div class="label-tag red">{{ __('messages.on_time') }}</div>
                 </div>
-                <p class="flow-caption mt-3">Growing with Grace</p>
+                <p class="flow-caption mt-3"> {{ __('messages.growing_with_grace') }}</p>
             </div>
         </div>
     </div>

@@ -13,13 +13,34 @@ return [
     'success' => 'Success',
     'warning' => 'Warning',
     'info' => 'Information',
-    
+
+
+    // navbar 
+    'about' => 'About',
+    'services' => 'Services',
+    'gallery' => 'Gallery',
+    'contact' => 'Contact',
+    'careernav' => 'Career',
+    'events' => 'Events',
+    'faqs' => 'FAQs',
+    'introduction' => 'Introduction',
+    'why_us' => 'Why Us',
+    'Destination' => 'Destination',
+    'offers' => 'Offers',
+    'promotions' => 'Promotions Posts',
+    'festivaloffer' => 'Festival deals',
+    'generaloffer' => 'General Offers',
+    'coupleoffer' => 'Couple Package',
+    'groupoffer' => 'Group Package',
+
+
+
     // Home page specific translations
     'hero_title_outline' => 'Explore',
     'hero_title_solid' => 'The World',
     'hero_description' => 'Experience the best trekking in Nepal with customized tour packages from Kathmandu. From short treks near Kathmandu to low-budget adventures and the Annapurna Circuit, we offer unforgettable journeys for beginners and solo trekkers.',
     'discover_now' => 'Discover Now',
-    
+
     // Banner section
     'map_location' => 'Map Location',
     'map_location_desc' => 'Explore stunning trekking routes in Nepal with detailed map locations',
@@ -29,7 +50,7 @@ return [
     'photography_desc' => 'Capture unforgettable moments of your Nepal adventure through stunning photography.',
     'affordable_prices' => 'Affordable Prices',
     'affordable_prices_desc' => 'Enjoy unforgettable Nepal experiences with high-quality service at affordable prices.',
-    
+
     // Why us section
     'why_choose_us' => 'Why choose us',
     'beauty_of_world' => 'Let Us Show You The Beauty Of The World',
@@ -41,18 +62,18 @@ return [
     'adventure_tour' => 'Adventure Tour',
     'adventure_tour_desc' => 'Join Adventure Tour for an exciting, experience full of thrilling activities and unforgettable memories!.',
     'photography_desc_why' => 'Capture unforgettable moments of your Nepal adventure through stunning photography.',
-    
+
     // Contact section
     'start_planning' => 'Start Planning Your Trip Now and',
     'get_discount' => 'Get 30% Discount',
     'contact_description' => 'We\'re here to assist you with your travel plans and ensure you have an unforgettable experience. Let\'s make your dream trip a reality!',
     'book_now' => 'Book Now',
-    
+
     // JavaScript alerts
     'message_sent_successfully' => 'Message sent successfully!',
     'error_sending_message' => 'Error in sending message. Please try again.',
     'unexpected_error' => 'An unexpected error occurred. Please try again.',
-    
+
     // Demo page
     'translation_demo' => 'Translation Demo',
     'current_language' => 'Current Language',
@@ -63,13 +84,13 @@ return [
     'contact_section' => 'Contact Section',
     'language_switcher' => 'Language Switcher',
     'switch_languages_demo' => 'Switch between languages to see the content change dynamically:',
-    
+
     // Index Offer Section
     'exclusive_offers' => 'Exclusive Offers This Season',
     'explore_horizons' => 'Explore New Horizons',
     'exclusive_offer' => 'Exclusive Offer',
     'view_more' => 'View More',
-    
+
     // Index Couple Section
     'special_offer_couples' => 'Special Offer for Couples',
     'special_group_package' => 'Special Group Package',
@@ -77,11 +98,11 @@ return [
     'discounted_price' => 'Discounted Price:',
     'couples_offer_price' => 'Couple\'s Offer Price:',
     'price' => 'Price:',
-    
+
     // Index Destination Section
     'unmissable_travel_deals' => 'Unmissable Travel Deals',
     'escape_now_pay_less' => 'Escape Now, Pay Less',
-    
+
     // Costest Section (About Us)
     'about_us' => 'About us',
     'read_more' => 'Read More',
@@ -90,7 +111,8 @@ return [
     'booking_support' => 'Booking Support',
     'years_experience' => 'Years of experience',
     'customize_service' => 'Customize Service',
-    
+    'view_Destination' => 'View Destination',
+
     // Index Service Section
     'our_services' => 'Our Services',
     'join_adventure_stories' => 'Join The Adventure With Stories',
@@ -99,24 +121,35 @@ return [
     'unforgettable_moments' => 'Unforgettable Moments',
     'competitive_pricings' => 'Competitive Pricings',
     'see_all_services' => 'See All Services',
-    
+    'see_list_services' => 'List of Our Services',
+    'empower_all_services' => 'Empowering communities through dedicated service and care.',
+
+
     // Testimonials Section
     'testimonials' => 'Testimonials',
     'hear_happy_travelers' => 'Hear What Our Happy Travelers Have to Say.',
     'tourist' => 'Tourist',
-    
+
     // What We Do Section
     'what_we_do' => 'What We Do',
     'exploring_world_limits' => 'Exploring The World Without Limits',
     'what_we_do_description' => 'From crystal-clear waters to thrilling adventures, we craft experiences that take you beyond boundaries. Whether you\'re seeking relaxation or excitement, our tours deliver memories that last a lifetime.',
     'learn_more' => 'Learn More',
-    
+
     // Blog Section
     'collection_blogs' => 'Collection of Blogs',
     'timeless_adventures' => 'Timeless Adventures Await with Timeless Stories.',
     'blogs' => 'Blogs',
     'view_details' => 'View details',
-    
+    'hope_for_digital_world' => 'Discover the Wonders of the World',
+    'empower_young_lives' => 'Inspire Journeys for Young Travelers',
+    'growing_with_grace' => 'Travel and Explore with Ease',
+    'active' => 'Active',
+    'need' => 'Essential',
+    'on_time' => 'Timely',
+
+
+
     // hero section
     'Explore' => 'Explore',
     'world' => ' The world',
@@ -126,7 +159,6 @@ return [
     'map_cont' => 'Lorem Ipsum is simply dummy text of the printing.',
     'traveling' => 'Traveling Bag',
     'travelin_cont' => 'Lorem Ipsum is simply dummy text of the printing.',
-    'photography' => 'Photography',
     'photography_cont' => 'Lorem Ipsum is simply dummy text of the printing.',
     'affordable' => 'Affordable Prices',
     'affordable_cont' => 'Lorem Ipsum is simply dummy text of the printing.',
@@ -141,7 +173,6 @@ return [
     // why us
     'why_head' => 'Why choose us',
     'why_sub' => 'Let Us Show You The Beauty Of The World',
-    'why_us' => 'Why Us',
     'why_us_sub' => 'Why Trekking Nepal?',
     'why_us_desc' => 'No data available at the moment.',
 
@@ -156,7 +187,7 @@ return [
     'built_cont6' => 'transparency, ethical service, and accountability',
     'built_cont7' => '— building lasting relationships through trust and excellence in every travel experience.',
     // service
-    'services' => 'Our Services',
+
     'services_sub' => 'Join The Adventure With Stories',
     'services_cont' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     'service_c1' => 'Custom Destinations',
@@ -179,13 +210,17 @@ return [
     'Contact_head2' => 'Get 30% Discount',
     'Contact_content' => 'We’re here to assist you with your travel plans and ensure you have an unforgettable experience. Let’s make your dream trip a reality!',
     "Booknow" => "Book Now",
-    'virtual_appointment' => ' Book Virtual Appointment',
-    'volunteer' => ' Volunteer Opportunities',
-    'join_mission' => ' Join Our Mission',
-    'community_support' => ' Community Support Services',
-    'internship_jobs' => ' Internship & Job Programs',
-    'social_impact' => ' Social Impact Initiatives',
-    'contact_sub' => ' We Would Love To Connect! Always here to support, guide, and connect with you. Feel free to reach out.',
+    'book_virtual_appointment' => 'Book a Travel Consultation',
+    'explore_tour_packages' => 'Explore Tour Packages',
+    'join_adventure_club' => 'Join Our Adventure Club',
+    'travel_assistance' => 'Travel Assistance & Support',
+    'travel_internship_programs' => 'Travel Internship & Career Programs',
+    'sustainable_travel' => 'Sustainable Travel Initiatives',
+    'contact_we' => 'We would',
+    'contact_love' => 'love to connect!',
+    'contact_always' => 'We are always here to support, guide, and help you plan your next adventure. Feel free to reach out.',
+
+
     'office_address' => ' Office Address',
     'office_contact' => ' Office Contact',
     'office_email' => ' Office Email',
@@ -205,7 +240,7 @@ return [
     'our_stories' => 'Our Stories',
     'our_stories_sub' => 'Collection of Blogs',
     'our_stories_desc' => 'Our blogs shares stories',
-    'readmore'=>'Read More',
+    'readmore' => 'Read More',
 
     //  footer
 
@@ -225,14 +260,13 @@ return [
     'vision_cont' => 'To be a leading organization in community empowerment.',
     'value' => 'Our Values',
     'value_cont' => 'Integrity, Innovation, Collaboration, Excellence.',
-    'CEO Message' => 'CEO MESSAGE',
+    'CEO_Message' => 'CEO MESSAGE',
     'OurTeams' => ' Meet Our Team',
     'OurTeams_sub' => ' Our board brings expertise and heart to every decision, shaping a better Nepal for future generations.',
-    'faqs' => ' FAQ',
     'faqs_sub' => ' Have Answers, Will Travel.',
 
     // Gallery
-    'gallery' => 'Gallery',
+
     'gallery_h1' => 'Our Collection',
     'photogallery' => ' Photo Gallery',
     'photo' => ' Images',
@@ -249,6 +283,30 @@ return [
     'career_breadcrumb' => 'Home  Career',
     'career_sub' => 'Career Opportunities',
     'career_desc' => 'Join us in making a difference in the community. Your time and skills can help us achieve our mission.',
+
+
+    // package and destination
+
+    'beautiful_destination' => 'Beautiful Destination',
+    'where_map_ends' => 'Where the map ends, your story begins.',
+    'discover_destinations' => 'Discover amazing destinations and plan your next adventure',
+    'every_offer' => 'Every Offer',
+    'festival_special' => 'Festival Special for Everyone',
+    'festive_message' => 'Make this festive season a memorable journey',
+    'festival_experience' => 'Experience the vibrant culture and celebrations of our festivals',
+    'group_offer' => 'Group Offer',
+    'brings' => 'bring friends or family and enjoy our special group offer!',
+    'celebrate_togetherness_with_special_deals' => 'Celebrate togetherness with special deals',
+    'perfect_for_two' => 'Ideal para Dos',
+    'discover_amazing_destinations' => 'Discover amazing destinations and plan your next adventure',
+
+
+
+
+
+
+
+
 
 
 
@@ -278,13 +336,22 @@ return [
     'Name' => 'Name',
     'Email' => 'Email',
     'Address' => 'Address',
-    'Phone Number' => 'Phone Number',
-    'WhatsApp Number' => 'WhatsApp Number',
+    'Phone_Number' => 'Phone Number',
+    'WhatsApp' => 'WhatsApp',
     'Upload CV' => 'Upload CV',
     'Upload Photo' => 'Upload Photo',
     'Home' => 'Home',
     'What We Give' => 'What We Give',
     'Company Description' => 'Company Description',
     'Scope' => 'Scope',
+    'interested_service' => 'Interested in this service?',
+    'i_agree_privacy' => 'I agree with the Privacy Policy.',
+
+
+
+    // footer 
+
+    'need_help' => 'Need help? Our team is available 24/7 — get in touch now and we’ll be happy to assist you.',
+    'alright' => 'All Rights Reserved',
 
 ];

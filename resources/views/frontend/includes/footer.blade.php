@@ -77,10 +77,10 @@
             <div class="col-md-4 mb-4 reveal-up" style="--reveal-delay: 100ms;">
                 <h5>About Us</h5>
                 <div class="footer-menu">
-                    <a href="{{ route('Service') }}">Our Services</a>
-                    <a href="{{ route('Blogpostcategory') }}">Blog</a>
-                    <a href="{{ route('Contact') }}">Contact Us</a>
-                    <a href="{{ route('Gallery') }}">Gallery</a>
+                    <a href="{{ route('Service') }}">{{ __('messages.services') }}</a>
+                    <a href="{{ route('Blogpostcategory') }}">{{ __('messages.blogs') }}</a>
+                    <a href="{{ route('Contact') }}">{{ __('messages.contact_us') }}</a>
+                    <a href="{{ route('Gallery') }}">{{ __('messages.gallery') }}</a>
                 </div>
             </div>
 
@@ -88,10 +88,10 @@
             <div class="col-md-4 mb-4 reveal-up" style="--reveal-delay: 200ms;">
                 <h5>Explore</h5>
                 <div class="footer-menu">
-                     <li><a class="dropdown-item" href="{{ route('products.index.front') }}">Promotional Posts</a></li>
-            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">Festival Deals</a></li>
-            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">Couple Packages</a></li>
-            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">Group Packages</a></li>
+                     <li><a class="dropdown-item" href="{{ route('products.index.front') }}">{{ __('messages.promotions') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">{{ __('messages.festivaloffer') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">{{ __('messages.coupleoffer') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">{{ __('messages.groupoffer') }}</a></li>
                     
                 </div>
             </div>
@@ -102,9 +102,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <p> 
-                    Need help? Our team is available 24/7 — get in touch now and we’ll be happy to assist you.
+                    {{ __('messages.need_help') }}
                         </p>
-                        <a href="{{ route('Contact') }}" class="btn btn-outline-light btn-lg py-2  rounded-pill fw-semibold px-4 ">Book Now</a>
+                        <a href="{{ route('Contact') }}" class="btn btn-outline-light btn-lg py-2  rounded-pill fw-semibold px-4 ">{{ __('messages.book_now') }}</a>
                     </div>
                     <div class="col-md-5 footer-social d-flex mt-3 text-decoration-none">
                     @if($sitesetting && $sitesetting->facebook_link)
@@ -138,7 +138,7 @@
 
             <!-- Copyright -->
             <div class="col-md-4 reveal-up" style="--reveal-delay: 400ms;">
-                © tarvel and tour Nepal {{ now()->year }}. All Rights Reserved.
+                © tarvel and tour Nepal {{ now()->year }}. {{ __('messages.alright') }}
             </div>
         </div>
     </div>

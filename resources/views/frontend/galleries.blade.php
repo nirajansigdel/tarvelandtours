@@ -210,11 +210,11 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Our Collection</h1>
+                <h1 class="fw-bold display-4">{{ __('messages.gallery_h1') }}</h1>
                 <p class="mt-2 fs-5">
-                    <span class="fw-semibold">Home</span>
+                    <span class="fw-semibold">{{ __('messages.Home') }}</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
-                    Gallery
+                    {{ __('messages.gallery') }}
                 </p>
             </div>
         </div>
@@ -224,14 +224,14 @@
 <section class="gallery-section">
     <div class="container">
         <div class=" text-center gap-1">
-            <h1 class="heading">Photo Gallery</h1>
-            <p class="extralarger">Inspiring moments. United in community.</p>
+            <h1 class="heading">{{ __('messages.photogallery') }}</h1>
+            <p class="extralarger">{{ __('messages.gallery_sub') }}</p>
         </div>
 
         <div class="filter-container mt-4">
             <div class="btn-group">
-                <button id="imageButton" class="active">Images</button>
-                <button id="videoButton">Videos</button>
+                <button id="imageButton" class="active">{{ __('messages.photo') }}</button>
+                <button id="videoButton">{{ __('messages.video') }}</button>
             </div>
         </div>
 

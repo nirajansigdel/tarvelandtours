@@ -13,13 +13,34 @@ return [
     'success' => 'Éxito',
     'warning' => 'Advertencia',
     'info' => 'Información',
-    
+
+    //navbar
+
+    'about' => 'Acerca de',
+    'services' => 'Servicios',
+    'gallery' => 'Galería',
+    'contact' => 'Contacto',
+    'careernav' => 'Carrera',
+    'events' => 'Eventos',
+    'faqs' => 'Preguntas frecuentes',
+    'introduction' => 'Introducción',
+    'why_us' => 'Por qué nosotros',
+    'testimonials' => 'Testimonios',
+    'Destination' => 'Destino',
+    'offers' => 'Ofertas',
+    'promotions' => 'Publicaciones promocionales',
+    'festivaloffer' => 'Ofertas de festivales',
+    'generaloffer' => 'Ofertas generales',
+    'coupleoffer' => 'Oferta para parejas',
+    'groupoffer' => 'Oferta para grupos',
+
+
     // Home page specific translations
     'hero_title_outline' => 'Explorar',
     'hero_title_solid' => 'El Mundo',
     'hero_description' => 'Experimenta el mejor trekking en Nepal con paquetes de tour personalizados desde Katmandú. Desde treks cortos cerca de Katmandú hasta aventuras de bajo presupuesto y el Circuito Annapurna, ofrecemos viajes inolvidables para principiantes y trekkers solitarios.',
     'discover_now' => 'Descubrir Ahora',
-    
+
     // Banner section
     'map_location' => 'Ubicación del Mapa',
     'map_location_desc' => 'Explora rutas de trekking impresionantes en Nepal con ubicaciones de mapas detalladas',
@@ -29,7 +50,7 @@ return [
     'photography_desc' => 'Captura momentos inolvidables de tu aventura en Nepal a través de fotografía impresionante.',
     'affordable_prices' => 'Precios Asequibles',
     'affordable_prices_desc' => 'Disfruta experiencias inolvidables en Nepal con servicio de alta calidad a precios asequibles.',
-    
+
     // Why us section
     'why_choose_us' => 'Por qué elegirnos',
     'beauty_of_world' => 'Déjanos Mostrarte la Belleza del Mundo',
@@ -41,18 +62,18 @@ return [
     'adventure_tour' => 'Tour de Aventura',
     'adventure_tour_desc' => 'Únete al Tour de Aventura para una experiencia emocionante, llena de actividades emocionantes y recuerdos inolvidables!.',
     'photography_desc_why' => 'Captura momentos inolvidables de tu aventura en Nepal a través de fotografía impresionante.',
-    
+
     // Contact section
     'start_planning' => 'Comienza a Planificar tu Viaje Ahora y',
     'get_discount' => 'Obtén 30% de Descuento',
     'contact_description' => 'Estamos aquí para asistirte con tus planes de viaje y asegurar que tengas una experiencia inolvidable. ¡Hagamos realidad tu viaje soñado!',
     'book_now' => 'Reservar Ahora',
-    
+
     // JavaScript alerts
     'message_sent_successfully' => '¡Mensaje enviado exitosamente!',
     'error_sending_message' => 'Error al enviar el mensaje. Por favor intenta de nuevo.',
     'unexpected_error' => 'Ocurrió un error inesperado. Por favor intenta de nuevo.',
-    
+
     // Demo page
     'translation_demo' => 'Demostración de Traducción',
     'current_language' => 'Idioma Actual',
@@ -63,13 +84,13 @@ return [
     'contact_section' => 'Sección de Contacto',
     'language_switcher' => 'Selector de Idioma',
     'switch_languages_demo' => 'Cambia entre idiomas para ver el contenido cambiar dinámicamente:',
-    
+
     // Index Offer Section
     'exclusive_offers' => 'Ofertas Exclusivas Esta Temporada',
     'explore_horizons' => 'Explora Nuevos Horizontes',
     'exclusive_offer' => 'Oferta Exclusiva',
     'view_more' => 'Ver Más',
-    
+
     // Index Couple Section
     'special_offer_couples' => 'Oferta Especial para Parejas',
     'special_group_package' => 'Paquete Especial para Grupos',
@@ -77,11 +98,11 @@ return [
     'discounted_price' => 'Precio con Descuento:',
     'couples_offer_price' => 'Precio de Oferta para Parejas:',
     'price' => 'Precio:',
-    
+
     // Index Destination Section
     'unmissable_travel_deals' => 'Ofertas de Viaje Imperdibles',
     'escape_now_pay_less' => 'Escápate Ahora, Paga Menos',
-    
+
     // Costest Section (About Us)
     'about_us' => 'Acerca de nosotros',
     'read_more' => 'Leer Más',
@@ -90,7 +111,7 @@ return [
     'booking_support' => 'Soporte de Reservas',
     'years_experience' => 'Años de experiencia',
     'customize_service' => 'Servicio Personalizado',
-    
+
     // Index Service Section
     'our_services' => 'Nuestros Servicios',
     'join_adventure_stories' => 'Únete a la Aventura con Historias',
@@ -99,24 +120,34 @@ return [
     'unforgettable_moments' => 'Momentos Inolvidables',
     'competitive_pricings' => 'Precios Competitivos',
     'see_all_services' => 'Ver Todos los Servicios',
-    
+    'see_list_services' => 'Lista de nuestros servicios',
+    'empower_all_services' => 'Empoderando a las comunidades mediante un servicio y una atención dedicados.',
+
+
     // Testimonials Section
-    'testimonials' => 'Testimonios',
     'hear_happy_travelers' => 'Escucha lo que Nuestros Viajeros Felices Tienen que Decir.',
     'tourist' => 'Turista',
-    
+
     // What We Do Section
     'what_we_do' => 'Lo Que Hacemos',
     'exploring_world_limits' => 'Explorando el Mundo Sin Límites',
     'what_we_do_description' => 'Desde aguas cristalinas hasta aventuras emocionantes, creamos experiencias que te llevan más allá de los límites. Ya sea que busques relajación o emoción, nuestros tours ofrecen recuerdos que duran toda la vida.',
     'learn_more' => 'Aprender Más',
-    
+
     // Blog Section
     'collection_blogs' => 'Colección de Blogs',
     'timeless_adventures' => 'Aventuras Atemporales Esperan con Historias Atemporales.',
     'blogs' => 'Blogs',
     'view_details' => 'Ver detalles',
-    
+    'hope_for_digital_world' => 'Descubre las maravillas del mundo',
+    'empower_young_lives' => 'Inspira viajes para jóvenes viajeros',
+    'growing_with_grace' => 'Viaja y explora con comodidad',
+    'active' => 'Activo',
+    'need' => 'Esencial',
+    'on_time' => 'Puntual',
+
+
+
     // hero section
     'Explore' => 'Explorar',
     'world' => ' El mundo',
@@ -179,13 +210,15 @@ return [
     'Contact_head2' => 'Obtén 30% de Descuento',
     'Contact_content' => 'Estamos aquí para asistirte con tus planes de viaje y asegurar que tengas una experiencia inolvidable. ¡Hagamos realidad tu viaje soñado!',
     "Booknow" => "Reservar Ahora",
-    'virtual_appointment' => ' Reservar Cita Virtual',
-    'volunteer' => ' Oportunidades de Voluntariado',
-    'join_mission' => ' Únete a Nuestra Misión',
-    'community_support' => ' Servicios de Apoyo Comunitario',
-    'internship_jobs' => ' Programas de Prácticas y Trabajo',
-    'social_impact' => ' Iniciativas de Impacto Social',
-    'contact_sub' => ' ¡Nos Encantaría Conectarnos! Siempre aquí para apoyar, guiar y conectarnos contigo. No dudes en contactarnos.',
+    'book_virtual_appointment' => 'Reserva una consulta de viaje',
+    'explore_tour_packages' => 'Explora paquetes turísticos',
+    'join_adventure_club' => 'Únete a nuestro club de aventuras',
+    'travel_assistance' => 'Asistencia y soporte de viaje',
+    'travel_internship_programs' => 'Programas de prácticas y carrera en turismo',
+    'sustainable_travel' => 'Iniciativas de turismo sostenible',
+    'contact_we' => 'Nos gustaría',
+    'contact_love' => '¡conectar contigo!',
+    'contact_always' => 'Siempre estamos aquí para apoyarte, guiarte y ayudarte a planificar tu próxima aventura. No dudes en contactarnos.',
     'office_address' => ' Dirección de la Oficina',
     'office_contact' => ' Contacto de la Oficina',
     'office_email' => ' Correo de la Oficina',
@@ -205,7 +238,7 @@ return [
     'our_stories' => 'Nuestras Historias',
     'our_stories_sub' => 'Colección de Blogs',
     'our_stories_desc' => 'Nuestros blogs comparten historias',
-    'readmore'=>'Leer Más',
+    'readmore' => 'Leer Más',
 
     //  footer
 
@@ -225,14 +258,14 @@ return [
     'vision_cont' => 'Ser una organización líder en el empoderamiento comunitario.',
     'value' => 'Nuestros Valores',
     'value_cont' => 'Integridad, Innovación, Colaboración, Excelencia.',
-    'CEO Message' => 'MENSAJE DEL CEO',
+    'CEO_Message' => 'MENSAJE DEL CEO',
     'OurTeams' => ' Conoce Nuestro Equipo',
     'OurTeams_sub' => ' Nuestro consejo aporta experiencia y corazón a cada decisión, moldeando un Nepal mejor para las futuras generaciones.',
-    'faqs' => ' Preguntas Frecuentes',
     'faqs_sub' => ' Tenemos Respuestas, Viajaremos.',
+    'view_destination' => 'Ver Destino',
+
 
     // Gallery
-    'gallery' => 'Galería',
     'gallery_h1' => 'Nuestra Colección',
     'photogallery' => ' Galería de Fotos',
     'photo' => ' Imágenes',
@@ -249,6 +282,26 @@ return [
     'career_breadcrumb' => 'Inicio  Carrera',
     'career_sub' => 'Oportunidades de Carrera',
     'career_desc' => 'Únete a nosotros para marcar la diferencia en la comunidad. Tu tiempo y habilidades pueden ayudarnos a lograr nuestra misión.',
+
+
+    // package and destination
+    'beautiful_destination' => 'Hermoso destino',
+    'where_map_ends' => 'Donde termina el mapa, comienza tu historia.',
+    'discover_destinations' => 'Descubre destinos increíbles y planifica tu próxima aventura',
+    'every_offer' => 'Cada Oferta',
+    'festival_special' => 'Especial de Festival para Todos',
+    'festive_message' => 'Haz que esta temporada festiva sea un viaje inolvidable',
+    'festival_experience' => 'Vive la vibrante cultura y las celebraciones de nuestros festivales',
+    'group_offer' => 'Oferta para grupos',
+'brings' => 'Trae a tus amigos o familiares y disfruta de nuestra oferta especial para grupos',
+'celebrate_togetherness_with_special_deals' => 'Celebra la unión con ofertas especiales',
+'perfect_for_two' => 'Ideal para Dos',
+'discover_amazing_destinations' => 'Descubre destinos increíbles y planifica tu próxima aventura',
+
+
+
+
+
 
 
 
@@ -278,13 +331,24 @@ return [
     'Name' => 'Nombre',
     'Email' => 'Correo Electrónico',
     'Address' => 'Dirección',
-    'Phone Number' => 'Número de Teléfono',
-    'WhatsApp Number' => 'Número de WhatsApp',
+    'Phone_Number' => 'Número de Teléfono',
+    'WhatsApp' => ' WhatsApp',
     'Upload CV' => 'Subir CV',
     'Upload Photo' => 'Subir Foto',
     'Home' => 'Inicio',
     'What We Give' => 'Lo Que Ofrecemos',
     'Company Description' => 'Descripción de la Empresa',
     'Scope' => 'Alcance',
+    'interested_service' => 'Interested in this service?',
+
+    'i_agree_privacy' => 'Estoy de acuerdo con la Política de Privacidad.',
+
+
+
+
+    //footer
+
+    'need_help' => '¿Necesitas ayuda? Nuestro equipo está disponible las 24 horas, los 7 días de la semana — contáctanos ahora y estaremos encantados de ayudarte.',
+    'alright' => 'Todos los Derechos Reservados',
 
 ];
