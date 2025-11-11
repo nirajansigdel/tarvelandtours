@@ -47,10 +47,19 @@
   { padding: 0.75rem 2rem; border-radius: 50px; font-weight: 600; }
   @media (max-width: 768px) {
     .hero-content h1.outline {
-      font-size: 2.5rem;
+      font-size:3rem;
     }
-    .hero-content h1.solid {
-      font-size: 2rem;
+    .hero-content .solid {
+      font-size:3rem;
+    }
+    .hero-content {
+      left: 0 !important;           /* move to left */
+      transform: translate(0, -50%) !important; /* remove horizontal centering */
+      text-align: left !important;  /* align text to left */
+      padding-left: 1rem;           /* optional */
+    }
+    .hero-content .lead{
+      font-size:1.1rem;
     }
   }
 </style>
@@ -63,10 +72,10 @@
       @php $slideIndex = 0; @endphp
       @foreach($coverImages as $cover)
         @foreach($cover->image as $img)
-          <button type="button"  class="py-2" data-bs-target="#heroCarousel" data-bs-slide-to="{{ $slideIndex }}"
+          <button type="button"  class="py-2 none" data-bs-target="#heroCarousel" data-bs-slide-to="{{ $slideIndex }}"
             class="{{ $slideIndex === 0 ? 'active' : '' }}"
             aria-current="{{ $slideIndex === 0 ? 'true' : 'false' }}"
-            aria-label="Slide {{ $slideIndex + 1 }}"></button>
+            aria-label="Slide {{ $slideIndex + 1 }}" style="display: none;"></button>
           @php $slideIndex++; @endphp
         @endforeach
       @endforeach
