@@ -36,7 +36,7 @@
       <!-- Right: Full-height text content -->
       <div class="col-lg-6 d-flex flex-column justify-content-center text-white px-5 rightcol">
         <h2 class="extralarge">{{ __('messages.what_we_do') }}</h2>
-        <h2 class="fw-bold mb-3">{{ __('messages.exploring_world_limits') }}</h2>
+        <h3 class="fw-bold mb-3">{{ __('messages.exploring_world_limits') }}</h3>
         <p class="text-light mb-4">
           {{ __('messages.what_we_do_description') }}
         </p>

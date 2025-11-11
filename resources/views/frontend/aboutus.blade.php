@@ -181,7 +181,7 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">{{ __('messages.about_us') }}</h1>
+                <p class="fw-bold display-4">{{ __('messages.about_us') }}</p>
                 <p class="mt-2 fs-5">
                     <span class="fw-semibold">{{ __('messages.Home') }}</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
@@ -260,7 +260,7 @@
             <!-- Left Content -->
             <div class="col-lg-6 mb-4 mb-lg-0">
                 
-                <h1 class="extralarge mb-3">{{ __('messages.about_us') }}</h1>
+                <p class="extralarger mb-3">{{ __('messages.about_us') }}</p>
                 @php
                     $text = $about->description ?? 'No description available.';
                     $parts = explode('.', $text);
@@ -415,7 +415,7 @@
     <section class="container-fluid py-5 bg-soft-blue ">
         <div class="container text-center">
             <div class="directors-header mb-5">
-                <h1 class="extralarge mb-3">{{ __('messages.OurTeams') }}</h1>
+                <p class="extralarger mb-3">{{ __('messages.OurTeams') }}</p>
                 <p class="section-subtitle">
                    {{ __('messages.OurTeams_sub') }}
                 </p>
@@ -512,9 +512,9 @@
                 <h2 class="content-topheading mb-4">
                     {{ __('messages.faqs') }}
                 </h2>
-                <h1 class="extarlarge text-center text-dark mb-5">
+                <p class="extarlarge text-center text-dark mb-5">
                     {{ __('messages.faqs_sub') }}
-                </h1>
+                </p>
 
                 <!-- Accordion Start -->
 

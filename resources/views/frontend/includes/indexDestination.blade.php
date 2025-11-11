@@ -2,7 +2,7 @@
   <div class="container destination-content">
     <div class="row mb-4">
       <div class="col-7">
-        <h1 class="heading ">{{ __('messages.unmissable_travel_deals') }}</h1>
+        <p class="heading ">{{ __('messages.unmissable_travel_deals') }}</p>
         <p class="extralarger">{{ __('messages.escape_now_pay_less') }}</p>
       </div>
     </div>

@@ -53,7 +53,7 @@
     <!-- Left Content -->
     <div class="col-lg-6 mb-4 mb-lg-0">
       <p class="heading">{{ __('messages.our_services') }}</p>
-      <h1 class="extralarge mb-3">{{ __('messages.join_adventure_stories') }}</h1>
+      <p class="extralarge mb-3">{{ __('messages.join_adventure_stories') }}</p>
       <p class="text-muted mb-4">
         {{ __('messages.service_description') }}
       </p>
