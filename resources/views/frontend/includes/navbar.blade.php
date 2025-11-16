@@ -20,18 +20,41 @@
     user-select: none;
   }
 
-  #langToggleBg {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    background-color: #fff;
-  }
-
   .lang-active {
-    color: #ffc107 !important;
+    background: var(--bs-yellow) !important;
+    color: #ffffff !important;
   }
 
   .lang-inactive {
-    color: #6c757d !important;
+    background: var(--primary) !important;
+    color: #ffffff !important;
+  }
+
+  /* Enhanced language toggle styling */
+  .lang-toggle {
+    background: var(--primary) !important;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  .lang-toggle .lang-option {
+    font-size: 0.9rem;
+    letter-spacing: 0.4px;
+    transition: background-color 200ms ease, color 200ms ease;
+    border-radius: 999px;
+  }
+
+  .lang-toggle .lang-option.lang-active {
+    color: #ffffff !important;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .lang-toggle .lang-option.lang-inactive {
+    color: #ffffff !important;
+  }
+
+  .lang-toggle .lang-option:hover {
+    filter: brightness(1.05);
   }
 
   .toplogo {
@@ -145,9 +168,7 @@
 
     <!-- Language Toggle (mobile) -->
     <div class="lang-toggle-mobile d-flex align-items-center">
-      <div class="position-relative lang-toggle px-1 py-1 rounded-pill" style="width: 100px; background-color: #e9ecef;">
-        <div id="langToggleBg" class="position-absolute top-0 bottom-0 rounded-pill"
-          style="width: 50%; z-index: 1; {{ app()->getLocale() === 'es' ? 'transform: translateX(100%);' : 'transform: translateX(0%);' }}"></div>
+      <div class="position-relative lang-toggle px-1 py-1 rounded-pill" style="width: 100px; background-color: transparent;">
         <div class="d-flex justify-content-between align-items-center position-relative" style="z-index: 2;">
           <a href="{{ route('language.switch', 'es') }}" id="langSpa" class="lang-option flex-fill text-center py-1 fw-semibold {{ app()->getLocale() === 'es' ? 'lang-active' : 'lang-inactive' }}">SPA</a>
           <a href="{{ route('language.switch', 'en') }}" id="langEng" class="lang-option flex-fill text-center py-1 fw-semibold {{ app()->getLocale() === 'en' ? 'lang-active' : 'lang-inactive' }}">ENG</a>
@@ -226,9 +247,7 @@
       <!-- Language Toggle (desktop) -->
       <div class="d-flex align-items-center gap-3">
         <div class="position-relative lang-toggle px-1 py-1 rounded-pill"
-          style="width: 100px; background-color: #e9ecef;">
-          <div id="langToggleBg" class="position-absolute top-0 bottom-0 rounded-pill"
-            style="width: 50%; z-index: 1; {{ app()->getLocale() === 'es' ? 'transform: translateX(100%);' : 'transform: translateX(0%);' }}"></div>
+          style="width: 100px; background-color: transparent;">
           <div class="d-flex justify-content-between align-items-center position-relative" style="z-index: 2;">
             <a href="{{ route('language.switch', 'es') }}" id="langSpa" class="lang-option flex-fill text-center py-1 fw-semibold {{ app()->getLocale() === 'es' ? 'lang-active' : 'lang-inactive' }}">SPA</a>
             <a href="{{ route('language.switch', 'en') }}" id="langEng" class="lang-option flex-fill text-center py-1 fw-semibold {{ app()->getLocale() === 'en' ? 'lang-active' : 'lang-inactive' }}">ENG</a>
@@ -322,10 +341,39 @@
   }
   
   .lang-option.lang-active {
-    color: #0d6efd;
+    background: var(--bs-yellow);
+    color: #ffffff;
   }
   
   .lang-option.lang-inactive {
-    color: #6c757d;
+    background: var(--primary);
+    color: #ffffff;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.lang-toggle').forEach(function (container) {
+      var spa = container.querySelector('#langSpa') || container.querySelector('a[href*="language.switch"][href*="es"]');
+      var eng = container.querySelector('#langEng') || container.querySelector('a[href*="language.switch"][href*="en"]');
+      if (!spa || !eng) return;
+
+      function activate(target) {
+        if (target === spa) {
+          spa.classList.add('lang-active');
+          spa.classList.remove('lang-inactive');
+          eng.classList.remove('lang-active');
+          eng.classList.add('lang-inactive');
+        } else {
+          eng.classList.add('lang-active');
+          eng.classList.remove('lang-inactive');
+          spa.classList.remove('lang-active');
+          spa.classList.add('lang-inactive');
+        }
+      }
+
+      spa.addEventListener('click', function () { activate(spa); }, { passive: true });
+      eng.addEventListener('click', function () { activate(eng); }, { passive: true });
+    });
+  });
+</script>

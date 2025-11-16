@@ -21,7 +21,7 @@
   <div class="container">
     <div class="row mb-4">
       <div class="col-6 text-white">
-        <h1 class="heading">{{ __('messages.testimonials') }}</h1>
+        <p class="heading">{{ __('messages.testimonials') }}</p>
         <p class="extralarger">{{ __('messages.hear_happy_travelers') }}</p>
 
       </div>

@@ -16,7 +16,7 @@
 <section class="bg-hero d-flex flex-column justify-content-center align-items-center text-center text-white">
   <div class="container row col-md-8 fcc">
     <p class="text-warning fs-2">{{ __('messages.why_choose_us') }}</p>
-    <h1 class="fw-bold display-4">{{ __('messages.beauty_of_world') }}</h1>
+    <p class="fw-bold display-4">{{ __('messages.beauty_of_world') }}</p>
     <a href="{{ route('Contact') }}" class="btn btn-outline-light rounded-pill px-4 py-3 mt-3  col-md-2">{{ __('messages.contact_us') }}</a>
   </div>
 </section>

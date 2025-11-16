@@ -41,7 +41,7 @@
   <div class="container">
     <!-- Title -->
     <div class="text-center mb-5">
-      <h1 class=" fw-bold text-dark">Our Featured Projects</h1>
+      <p class=" fw-bold text-dark">Our Featured Projects</p>
       <p class="text-muted fs-6">
         Explore some of our most impactful software solutions developed for real-world business challenges.
       </p>

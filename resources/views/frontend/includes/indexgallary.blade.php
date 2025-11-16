@@ -138,7 +138,7 @@
 <section class="gallery-section">
   <div class="container">
     <div class="section-header">
-      <h1 class="extralarger blackhighlight">Photo Gallery</h1>
+      <p class="extralarger blackhighlight">Photo Gallery</p>
       <p class="xs-text">Journey through our moments of inspiration, achievement, and community spirit</p>
     </div>
   <div id="imageContent" class="gallery-wrapper">

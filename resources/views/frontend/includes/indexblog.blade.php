@@ -149,7 +149,7 @@
   <div class="container">
     <div class="row">
       <div class="text-center mb-4">
-        <h1 class="extralarger pb-2">{{ __('messages.collection_blogs') }}</h1>
+        <p class="extralarger pb-2">{{ __('messages.collection_blogs') }}</p>
         <p class="xs-text">{{ __('messages.timeless_adventures') }}</p>
       </div>
     </div>

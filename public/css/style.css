@@ -56,13 +56,6 @@ li {
     list-style: none;
 }
 
-.extralarger {
-    font-family: var(--font-family);
-    letter-spacing: 0.8px;
-    z-index: 2;
-    padding: 0;
-    margin: 0;
-}
 
 .extralarger {
     font-family: var(--font-family);
@@ -71,6 +64,9 @@ li {
     font-weight: var(--weight700);
     text-transform: capitalize;
     color: var(--text-color);
+    z-index: 2;
+    padding: 0;
+    margin: 0;
 }
 
 /* for input and textarea */

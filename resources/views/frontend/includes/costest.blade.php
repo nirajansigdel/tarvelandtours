@@ -6,7 +6,7 @@
       <!-- LEFT: Text Content -->
     <div class="col-lg-6 mb-4 mb-lg-0">
                 <p class="heading content-topheading"></p>
-                <h1 class="extralarge mb-3">{{ __('messages.about_us') }}</h1>
+                <p class="extralarge mb-3">{{ __('messages.about_us') }}</p>
                 @php
                     $text = $about->description ?? 'No description available.';
                     $parts = explode('.', $text);

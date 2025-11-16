@@ -1,7 +1,7 @@
 <section class="container-fluid tarveloffer">
   <div class="container d-flex flex-column justify-content-center gap-4">
     <div class="row text-center">
-      <h1 class="heading p-0 m-0">{{ __('messages.exclusive_offers') }}</h1>
+      <p class="heading p-0 m-0">{{ __('messages.exclusive_offers') }}</p>
       <p class="extralarger p-0 m-0">{{ __('messages.explore_horizons') }}</p>
     </div>
 
