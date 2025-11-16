@@ -62,6 +62,13 @@
                 <textarea style="width: 100%; min-height: 150px;" type="text" class="form-control" name="message" id="message" placeholder="Add Message">{{ $message->message }}</textarea>
             </div>
 
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section 
+                :model="$message" 
+                :fields="['name', 'position', 'companyName', 'message']"
+                routeName="admin.ceomessage.translate"
+                :modelId="$message->id"
+            />
            
         </div>
         <!-- /.card-body -->

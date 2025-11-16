@@ -194,6 +194,10 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
     Route::post('/teams/{team}/translate', [TeamController::class, 'translate'])->name('teams.translate');
     Route::post('/careers/{career}/translate', [CareerController::class, 'translate'])->name('careers.translate');
     Route::post('/whyus/{whyus}/translate', [WhyUsController::class, 'translate'])->name('whyus.translate');
+    Route::post('/cover-images/{coverImage}/translate', [CoverImageController::class, 'translate'])->name('cover-images.translate');
+    Route::post('/ceomessage/{directorMessage}/translate', [CeomessageController::class, 'translate'])->name('ceomessage.translate');
+    Route::post('/missionvisionvalue/{missionVisionValue}/translate', [MissionVisionValueController::class, 'translate'])->name('missionvisionvalue.translate');
+    Route::post('/blog-posts-categories/{blogPostsCategory}/translate', [BlogPostsCategoryController::class, 'translate'])->name('blog-posts-categories.translate');
     
     // Generic translation route for create pages (no model ID required)
     Route::post('/translations/translate', [TranslationController::class, 'translateGeneric'])->name('translations.translate');

@@ -33,6 +33,11 @@ trait Translatable
 
         // If translation exists, return it
         if ($translation && $translation->value) {
+            // Check if value is JSON (for array fields like includes)
+            $decoded = json_decode($translation->value, true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                return $decoded;
+            }
             return $translation->value;
         }
 

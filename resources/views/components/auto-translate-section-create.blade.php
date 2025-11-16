@@ -80,7 +80,17 @@
         // Collect field values
         const fieldData = {};
         @foreach($fields as $field)
-            @if(in_array($field, ['content', 'description', 'answer', 'bio', 'requirements']))
+            @if($field === 'includes')
+                // Handle includes array field
+                const includesInputs = document.querySelectorAll('input[name="includes[]"]');
+                const includesArray = [];
+                includesInputs.forEach(input => {
+                    if (input.value && input.value.trim()) {
+                        includesArray.push(input.value.trim());
+                    }
+                });
+                fieldData['{{ $field }}'] = includesArray;
+            @elseif(in_array($field, ['content', 'description', 'answer', 'bio', 'requirements']))
                 // Try Summernote first, then regular textarea
                 if (typeof $ !== 'undefined' && $('#summernote').length && $('#summernote').summernote('code')) {
                     fieldData['{{ $field }}'] = $('#summernote').summernote('code') || '';
@@ -123,32 +133,55 @@
                 `;
                 
                 @foreach($fields as $field)
-                    previewHtml += `
-                        <div class="translation-item mb-3">
-                            <label class="form-label small text-muted">{{ ucfirst(str_replace('_', ' ', $field)) }} (Spanish)</label>
-                            @if(in_array($field, ['content', 'description', 'answer', 'bio', 'requirements']))
-                                <textarea 
-                                    id="translated_{{ $field }}_create" 
-                                    name="translations[{{ $field }}][es]"
-                                    class="form-control form-control-sm" 
-                                    rows="5"
-                                    placeholder="Spanish translation will appear here...">${data.translations['{{ $field }}'] || ''}</textarea>
-                            @else
-                                <input 
-                                    type="text" 
-                                    id="translated_{{ $field }}_create" 
-                                    name="translations[{{ $field }}][es]"
-                                    class="form-control form-control-sm" 
-                                    placeholder="Spanish translation will appear here..."
-                                    value="${data.translations['{{ $field }}'] || ''}">
-                            @endif
-                            @if($loop->first)
-                                <small class="text-info">
-                                    <i class="fas fa-info-circle"></i> You can edit this translation before saving
-                                </small>
-                            @endif
-                        </div>
-                    `;
+                    @if($field === 'includes')
+                        const translatedIncludes = data.translations['{{ $field }}'] || [];
+                        if (Array.isArray(translatedIncludes) && translatedIncludes.length > 0) {
+                            previewHtml += `
+                                <div class="translation-item mb-3">
+                                    <label class="form-label small text-muted">{{ ucfirst(str_replace('_', ' ', $field)) }} (Spanish)</label>
+                                    <ul class="list-unstyled">`;
+                            translatedIncludes.forEach((item, index) => {
+                                previewHtml += `
+                                    <li class="mb-2">
+                                        <input 
+                                            type="text" 
+                                            name="translations[{{ $field }}][es][]"
+                                            class="form-control form-control-sm" 
+                                            placeholder="Translated item ${index + 1}"
+                                            value="${item}"
+                                        >
+                                    </li>`;
+                            });
+                            previewHtml += `</ul></div>`;
+                        }
+                    @else
+                        previewHtml += `
+                            <div class="translation-item mb-3">
+                                <label class="form-label small text-muted">{{ ucfirst(str_replace('_', ' ', $field)) }} (Spanish)</label>
+                                @if(in_array($field, ['content', 'description', 'answer', 'bio', 'requirements']))
+                                    <textarea 
+                                        id="translated_{{ $field }}_create" 
+                                        name="translations[{{ $field }}][es]"
+                                        class="form-control form-control-sm" 
+                                        rows="5"
+                                        placeholder="Spanish translation will appear here...">${data.translations['{{ $field }}'] || ''}</textarea>
+                                @else
+                                    <input 
+                                        type="text" 
+                                        id="translated_{{ $field }}_create" 
+                                        name="translations[{{ $field }}][es]"
+                                        class="form-control form-control-sm" 
+                                        placeholder="Spanish translation will appear here..."
+                                        value="${data.translations['{{ $field }}'] || ''}">
+                                @endif
+                                @if($loop->first)
+                                    <small class="text-info">
+                                        <i class="fas fa-info-circle"></i> You can edit this translation before saving
+                                    </small>
+                                @endif
+                            </div>
+                        `;
+                    @endif
                 @endforeach
                 
                 previewHtml += `

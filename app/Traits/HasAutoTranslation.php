@@ -28,7 +28,24 @@ trait HasAutoTranslation
             
             foreach ($fields as $field) {
                 $text = $request->input($field, '');
-                if (!empty($text)) {
+                
+                // Handle array fields (like includes)
+                if ($field === 'includes' && is_array($text)) {
+                    $translatedArray = [];
+                    foreach ($text as $item) {
+                        if (!empty(trim($item))) {
+                            $translatedItem = $translationService->autoTranslate(trim($item), 'es', 'en');
+                            if ($translatedItem && $translatedItem !== trim($item)) {
+                                $translatedArray[] = $translatedItem;
+                            } else {
+                                $translatedArray[] = trim($item); // Fallback to original
+                            }
+                        }
+                    }
+                    if (!empty($translatedArray)) {
+                        $translations[$field] = $translatedArray;
+                    }
+                } elseif (!empty($text)) {
                     // Strip HTML tags for translation
                     $plainText = strip_tags($text);
                     $plainText = trim($plainText);

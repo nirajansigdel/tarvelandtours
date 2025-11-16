@@ -32,6 +32,12 @@
                 <label for="content">Content </label>
                 <textarea class="form-control summernote" id="content" name="content" rows="10" required></textarea>
             </div>
+
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section-create 
+                :fields="['title', 'content']"
+                routeName="admin.translations.translate"
+            />
             
             <button type="submit" class="btn btn-primary">Create</button>
         </form>

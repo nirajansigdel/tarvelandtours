@@ -3,11 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\DirectorMessage;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class CeomessageController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return DirectorMessage::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['name', 'position', 'companyName', 'message'];
+    }
     public function index()
     {
         $ceomessage = DirectorMessage::paginate(10);
@@ -67,6 +87,10 @@ class CeomessageController extends Controller
 
             // Save message
             if ($message->save()) {
+                // Save translations if provided
+                if ($request->has('translations')) {
+                    $this->translationService->saveFromRequest($message, $request->all());
+                }
                 return redirect()->route('admin.ceomessage.index')->with('success', 'Success! Message created.');
             } else {
                 throw new \Exception('Failed to save message.');
@@ -132,6 +156,11 @@ class CeomessageController extends Controller
             // Save the updated model
             $message->save();
 
+            // Save translations if provided
+            if ($request->has('translations')) {
+                $this->translationService->saveFromRequest($message, $request->all());
+            }
+
             return redirect()->route('admin.ceomessage.index')->with('success', 'Success! Message Updated');
         } catch (\Exception $e) {
             // Optionally log the error
@@ -151,6 +180,14 @@ class CeomessageController extends Controller
         } else {
             return redirect()->route('admin.ceomessage.index')->with('error', 'Message not found.');
         }
+    }
+
+    /**
+     * Auto-translate CEO Message content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, DirectorMessage $directorMessage)
+    {
+        return $this->autoTranslateContent($request, $directorMessage->id, $this->translationService);
     }
 
     public function showCeoMessage()

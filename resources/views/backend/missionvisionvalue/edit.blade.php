@@ -27,6 +27,14 @@
                             @enderror
                         </div>
 
+                        <!-- Auto-Translate Section -->
+                        <x-auto-translate-section 
+                            :model="$missionvisionvalue" 
+                            :fields="['heading', 'description']"
+                            routeName="admin.missionvisionvalue.translate"
+                            :modelId="$missionvisionvalue->id"
+                        />
+
                         <button type="submit" class="btn btn-primary">Update</button>
                         <a href="{{ route('admin.missionvisionvalue.index') }}" class="btn btn-secondary">Back</a>
                     </form>

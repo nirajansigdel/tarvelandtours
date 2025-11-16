@@ -134,7 +134,7 @@ is revert @extends('backend.layouts.master')
                             <!-- Auto-Translate Section -->
                             <x-auto-translate-section 
                                 :model="$product" 
-                                :fields="['heading', 'subtitle', 'content', 'location', 'transportation', 'package']"
+                                :fields="['heading', 'subtitle', 'content', 'location', 'transportation', 'package', 'includes']"
                                 routeName="admin.products.translate"
                                 :modelId="$product->id"
                             />

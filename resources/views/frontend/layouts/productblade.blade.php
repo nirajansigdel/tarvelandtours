@@ -237,11 +237,17 @@
                             </div>
                         @endif
 
-                         @if($product->includes && is_array($product->includes) && count($product->includes))
+                         @php
+                            $includes = $product->getTranslated('includes', app()->getLocale());
+                            if (!is_array($includes)) {
+                                $includes = $product->includes ?? [];
+                            }
+                        @endphp
+                        @if($includes && is_array($includes) && count($includes))
                             <div class="mb-4">
                                 <h5 class="fw-bold mb-3">What's Included</h5>
                                 <div class="row">
-                                    @foreach($product->includes as $include)
+                                    @foreach($includes as $include)
                                         @if(trim($include))
                                             <div class="col-md-12 mb-2">
                                                 <div class="">

@@ -3,10 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\MissionVisionValue;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 
 class MissionVisionValueController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return MissionVisionValue::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['heading', 'description'];
+    }
     // Display a listing of the resource
     public function index()
 {
@@ -27,7 +47,12 @@ class MissionVisionValueController extends Controller
             'description' => 'required|string',
         ]);
 
-        MissionVisionValue::create($request->only('heading', 'description'));
+        $missionVisionValue = MissionVisionValue::create($request->only('heading', 'description'));
+
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($missionVisionValue, $request->all());
+        }
 
         return redirect()->route('admin.missionvisionvalue.index')->with('success', 'Item created successfully.');
     }
@@ -54,10 +79,23 @@ class MissionVisionValueController extends Controller
 
         $missionvisionvalue->update($request->only('heading', 'description'));
 
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($missionvisionvalue, $request->all());
+        }
+
         return redirect()->route('admin.missionvisionvalue.index')->with('success', 'Item updated successfully.');
     }
 
     // Remove the specified resource from storage
+    /**
+     * Auto-translate MissionVisionValue content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, MissionVisionValue $missionVisionValue)
+    {
+        return $this->autoTranslateContent($request, $missionVisionValue->id, $this->translationService);
+    }
+
     public function destroy(MissionVisionValue $missionvisionvalue)
     {
         $missionvisionvalue->delete();
