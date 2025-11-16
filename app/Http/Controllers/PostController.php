@@ -3,15 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\SummernoteContent;
-
 use App\Models\Post;
 use App\Models\Category;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 
 class PostController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return Post::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['title', 'description'];
+    }
     public function index()
     {
         $posts = Post::with('category')->latest()->paginate(5);
@@ -61,7 +80,10 @@ class PostController extends Controller
         $post->category_id = $request->input('category_id');
         $post->save();
 
-
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($post, $request->all());
+        }
 
         // Redirect back to the index page with a success message
         return redirect()->route('admin.posts.index')->with('success', 'Post created successfully');
@@ -113,6 +135,10 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
 
             if ($post->save()) {
+                // Save translations if provided
+                if ($request->has('translations')) {
+                    $this->translationService->saveFromRequest($post, $request->all());
+                }
                 return redirect()->route('admin.posts.index')->with('success', 'Success !! Post Updated');
             } else {
                 return redirect()->back()->with('error', 'Error! Post not updated.');
@@ -124,6 +150,14 @@ class PostController extends Controller
 
 
 
+
+    /**
+     * Auto-translate Post content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, Post $post)
+    {
+        return $this->autoTranslateContent($request, $post->id, $this->translationService);
+    }
 
     public function destroy(Post $post)
     {

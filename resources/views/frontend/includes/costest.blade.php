@@ -8,7 +8,7 @@
                 <p class="heading content-topheading"></p>
                 <p class="extralarge mb-3">{{ __('messages.about_us') }}</p>
                 @php
-                    $text = $about->description ?? 'No description available.';
+                    $text = $about->getTranslated('description') ?? 'No description available.';
                     $parts = explode('.', $text);
 
                     if (count($parts) >= 3) {

@@ -65,6 +65,12 @@
                     value="{{ old('keywords') }}" placeholder="Keywords">
             </div>
 
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section-create 
+                :fields="['title', 'description', 'keywords']"
+                routeName="admin.translations.translate"
+            />
+
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

@@ -50,6 +50,14 @@
                 <input type="file" name="image" class="form-control" id="image" onchange="previewImage(event)">
                 <img id="preview" src="{{ asset('uploads/country/' . $country->image) }}" style="max-width: 300px; max-height: 300px;">
             </div>
+
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section 
+                :model="$country" 
+                :fields="['name', 'content']"
+                routeName="admin.countries.translate"
+                :modelId="$country->id"
+            />
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Update</button>

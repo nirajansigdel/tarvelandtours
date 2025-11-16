@@ -53,6 +53,14 @@
             @endif
         </div>
 
+        <!-- Auto-Translate Section -->
+        <x-auto-translate-section 
+            :model="$whyus" 
+            :fields="['heading', 'subtitle', 'content']"
+            routeName="admin.whyus.translate"
+            :modelId="$whyus->id"
+        />
+
         <button class="btn btn-success">Update</button>
         <a href="{{ route('backend.whyus.index') }}" class="btn btn-secondary">Cancel</a>
     </form>

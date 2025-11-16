@@ -5,13 +5,14 @@ namespace App\Models;
 use App\Models\Company;
 use App\Models\VisitorBook;
 use App\Models\StudentDetail;
+use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Country extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, Translatable;
     protected $fillable = ['name', 'slug', 'image', 'content'];
 
     public function sluggable(): array

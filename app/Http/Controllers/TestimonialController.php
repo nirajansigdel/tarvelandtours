@@ -4,11 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Testimonial;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 use App\Models\WorkCategory;
 
 class TestimonialController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return Testimonial::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['name', 'description'];
+    }
     public function index()
     {
 
@@ -52,6 +72,12 @@ class TestimonialController extends Controller
             $testimonial->image = $newImageName;
             $testimonial->description = $request->description;
             $testimonial->save();
+
+            // Save translations if provided
+            if ($request->has('translations')) {
+                $this->translationService->saveFromRequest($testimonial, $request->all());
+            }
+
             return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial created successfully.');
         } catch (\Exception $e) {
             return back()->withInput()->with('error', 'An error occurred while creating testimonial: ' . $e->getMessage());
@@ -121,12 +147,25 @@ class TestimonialController extends Controller
             $testimonial->description = $request->description;
             $testimonial->save();
 
+            // Save translations if provided
+            if ($request->has('translations')) {
+                $this->translationService->saveFromRequest($testimonial, $request->all());
+            }
+
             return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial updated successfully.');
         } catch (\Exception $e) {
             return back()->withInput()->with('error', 'An error occurred while updating the Testimonial: ' . $e->getMessage());
         }
     }
 
+
+    /**
+     * Auto-translate Testimonial content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, Testimonial $testimonial)
+    {
+        return $this->autoTranslateContent($request, $testimonial->id, $this->translationService);
+    }
 
     public function destroy($id)
     {

@@ -10,6 +10,15 @@
             <label for="title">Category Title:</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ $category->title }}" required>
         </div>
+
+        <!-- Auto-Translate Section -->
+        <x-auto-translate-section 
+            :model="$category" 
+            :fields="['title']"
+            routeName="admin.categories.translate"
+            :modelId="$category->id"
+        />
+
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>

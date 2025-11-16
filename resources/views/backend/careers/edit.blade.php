@@ -113,6 +113,14 @@
                             </label>
                         </div>
 
+                        <!-- Auto-Translate Section -->
+                        <x-auto-translate-section 
+                            :model="$career" 
+                            :fields="['title', 'description', 'requirements']"
+                            routeName="admin.careers.translate"
+                            :modelId="$career->id"
+                        />
+
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>

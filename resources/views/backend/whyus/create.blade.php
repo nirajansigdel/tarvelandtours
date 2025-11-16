@@ -29,6 +29,13 @@
             <label>Image</label>
             <input type="file" name="image" class="form-control">
         </div>
+
+        <!-- Auto-Translate Section -->
+        <x-auto-translate-section-create 
+            :fields="['heading', 'subtitle', 'content']"
+            routeName="admin.translations.translate"
+        />
+
         <button class="btn btn-success">Save</button>
     </form>
 </div>

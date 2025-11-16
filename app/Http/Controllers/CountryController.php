@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Country;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
@@ -12,6 +14,24 @@ use App\Models\SummernoteContent;
 
 class CountryController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return Country::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['name', 'content'];
+    }
     public function index()
     {
         $countries = Country::latest()->paginate(5);
@@ -60,6 +80,11 @@ class CountryController extends Controller
             $country->content = $processedContent;
 
             $country->save();
+
+            // Save translations if provided
+            if ($request->has('translations')) {
+                $this->translationService->saveFromRequest($country, $request->all());
+            }
 
             return redirect()->route('admin.countries.index')->with('success', 'Country created successfully.');
         } catch (Exception $e) {
@@ -116,6 +141,11 @@ class CountryController extends Controller
         $country->content = $processedContent;
         $country->save();
 
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($country, $request->all());
+        }
+
         return redirect()->route('admin.countries.index')->with('success', 'Country updated successfully.');
     } catch (\Exception $e) {
         return back()->with('error', "Error updating country: " . $e->getMessage());
@@ -135,6 +165,14 @@ class CountryController extends Controller
 
         $country->delete();
         return redirect()->route('admin.countries.index')->with('success', 'Country deleted successfully.');
+    }
+
+    /**
+     * Auto-translate Country content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, Country $country)
+    {
+        return $this->autoTranslateContent($request, $country->id, $this->translationService);
     }
 }
 

@@ -164,9 +164,9 @@
                     <div class="ps-lg-2">
                         <!-- Title & Subtitle -->
                         <div class="mb-4">
-                            <h2 class="fw-bold  text-dark">{{ $product->heading }}</h2>
-                            @if($product->subtitle)
-                                <h6 h6="fs-5 text-muted">{{ $product->subtitle }}</h6>
+                            <h2 class="fw-bold  text-dark">{{ $product->getTranslated('heading') }}</h2>
+                            @if($product->getTranslated('subtitle'))
+                                <h6 h6="fs-5 text-muted">{{ $product->getTranslated('subtitle') }}</h6>
                             @endif
                         </div>
 
@@ -199,40 +199,40 @@
                                 </div>
                             @endif
 
-                            @if($product->location)
+                            @if($product->getTranslated('location'))
                                 <div class="col-sm-6 col-md-4">
                                     <div class="d-flex align-items-center text-muted small">
                                         <i class="fas fa-map-marker-alt me-2 fs-5 text-danger"></i>
-                                        <strong>Location:</strong>&nbsp;{{ $product->location }}
+                                        <strong>Location:</strong>&nbsp;{{ $product->getTranslated('location') }}
                                     </div>
                                 </div>
                             @endif
 
-                            @if($product->package)
+                            @if($product->getTranslated('package'))
                                 <div class="col-sm-6 col-md-4">
                                     <div class="d-flex align-items-center text-muted small">
                                         <i class="fas fa-box me-2 fs-5 text-warning"></i>
-                                        <strong>Package:</strong>&nbsp;{{ $product->package }}
+                                        <strong>Package:</strong>&nbsp;{{ $product->getTranslated('package') }}
                                     </div>
                                 </div>
                             @endif
 
-                            @if($product->transportation)
+                            @if($product->getTranslated('transportation'))
                                 <div class="col-sm-6 col-md-4">
                                     <div class="d-flex align-items-center text-muted small">
                                         <i class="fas fa-car me-2 fs-5 text-success"></i>
-                                        <strong>Transport:</strong>&nbsp;{{ $product->transportation }}
+                                        <strong>Transport:</strong>&nbsp;{{ $product->getTranslated('transportation') }}
                                     </div>
                                 </div>
                             @endif
                         </div>
 
                         <!-- Description -->
-                        @if($product->content)
+                        @if($product->getTranslated('content'))
                             <div class="mb-4">
                                 <h5 class="fw-bold mb-3">Description</h5>
                                 <p class="text-muted lh-lg fs-6">
-                                    {!! $product->content !!}
+                                    {!! $product->getTranslated('content') !!}
                                 </p>
                             </div>
                         @endif

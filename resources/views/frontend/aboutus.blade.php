@@ -262,7 +262,7 @@
                 
                 <p class="extralarger mb-3">{{ __('messages.about_us') }}</p>
                 @php
-                    $text = $about->description ?? 'No description available.';
+                    $text = $about->getTranslated('description') ?? 'No description available.';
                     $parts = explode('.', $text);
 
                     if (count($parts) >= 3) {

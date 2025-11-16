@@ -57,6 +57,12 @@
                 <label for="description">Description</label>
                 <textarea class="form-control" name="description" id="description" rows="3" required></textarea>
             </div>
+
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section-create 
+                :fields="['name', 'description']"
+                routeName="admin.translations.translate"
+            />
             
         </div>
         <!-- /.card-body -->

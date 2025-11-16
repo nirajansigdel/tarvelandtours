@@ -9,6 +9,13 @@
                 <label for="title">Category Title:</label>
                 <input type="text" class="form-control" id="title" name="title" required>
             </div>
+
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section-create 
+                :fields="['title']"
+                routeName="admin.translations.translate"
+            />
+
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>

@@ -3,11 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Career;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CareerController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return Career::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['title', 'description', 'requirements'];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -53,7 +73,12 @@ class CareerController extends Controller
             $data['image'] = $imageName;
         }
 
-        Career::create($data);
+        $career = Career::create($data);
+
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($career, $request->all());
+        }
 
         return redirect()->route('admin.careers.index')
             ->with('success', 'Career opportunity created successfully!');
@@ -110,6 +135,11 @@ class CareerController extends Controller
 
         $career->update($data);
 
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($career, $request->all());
+        }
+
         return redirect()->route('admin.careers.index')
             ->with('success', 'Career opportunity updated successfully!');
     }
@@ -138,5 +168,13 @@ class CareerController extends Controller
 
         return redirect()->route('admin.careers.index')
             ->with('success', 'Career opportunity status updated successfully!');
+    }
+
+    /**
+     * Auto-translate Career content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, Career $career)
+    {
+        return $this->autoTranslateContent($request, $career->id, $this->translationService);
     }
 }

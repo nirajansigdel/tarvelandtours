@@ -55,6 +55,14 @@
                 <label for="description">Description</label>
                 <textarea class="form-control" name="description" id="description" rows="3" required>{{ $testimonials->description }}</textarea>
             </div>
+
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section 
+                :model="$testimonials" 
+                :fields="['name', 'description']"
+                routeName="admin.testimonials.translate"
+                :modelId="$testimonials->id"
+            />
             
         </div>
         <!-- /.card-body -->

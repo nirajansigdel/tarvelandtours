@@ -108,6 +108,12 @@
                                 <div class="error-message">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <!-- Auto-Translate Section -->
+                        <x-auto-translate-section-create 
+                            :fields="['title', 'subtitle', 'description', 'content']"
+                            routeName="admin.translations.translate"
+                        />
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success">

@@ -49,6 +49,12 @@
                 <input type="file" name="image" class="form-control" id="image" onchange="previewImage(event)" required>
                 <img id="preview1" style="max-width: 200px; max-height:500px" />
             </div>
+
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section-create 
+                :fields="['name', 'content']"
+                routeName="admin.translations.translate"
+            />
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Submit</button>

@@ -113,6 +113,16 @@
                                 </div>
                             </div>
 
+                            <!-- Auto-Translate Section -->
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <x-auto-translate-section-create 
+                                        :fields="['name', 'position']"
+                                        routeName="admin.translations.translate"
+                                    />
+                                </div>
+                            </div>
+
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

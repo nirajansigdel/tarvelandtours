@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Category;
+use App\Services\TranslationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Log;
 
 class AboutController extends Controller
 {
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
     public function index()
     {
         $abouts = About::paginate(10);
@@ -69,6 +77,11 @@ class AboutController extends Controller
          
     
             if ($about->save()) {
+                // Save translations if provided (from the preview form)
+                if ($request->has('translations')) {
+                    $this->translationService->saveFromRequest($about, $request->all());
+                }
+                
                 return redirect()->route('admin.about-us.index')->with('success', 'Success! About us created.');
             } else {
                 return redirect()->back()->with('error', 'Error! About us not created.');
@@ -129,6 +142,11 @@ class AboutController extends Controller
             // Save the updated model
             $about->save();
 
+            // Save translations if provided (from the preview form)
+            if ($request->has('translations')) {
+                $this->translationService->saveFromRequest($about, $request->all());
+            }
+
             return redirect()->route('admin.about-us.index')->with('success', 'Success !! About Updated');
         } catch (\Exception $e) {
             Log::error('About update failed: ' . $e->getMessage());
@@ -147,6 +165,65 @@ class AboutController extends Controller
             return redirect()->route('admin.about-us.index')->with('success', 'Success !! About us Deleted');
         } else {
             return redirect()->route('admin.about-us.index')->with('error', 'About us not found.');
+        }
+    }
+
+    /**
+     * Auto-translate About content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, $id)
+    {
+        try {
+            $about = About::findOrFail($id);
+            
+            $translations = [];
+            $fields = ['title', 'subtitle', 'description', 'content'];
+            
+            foreach ($fields as $field) {
+                $text = $request->input($field, '');
+                if (!empty($text)) {
+                    // Strip HTML tags for translation (preserve content)
+                    $plainText = strip_tags($text);
+                    $plainText = trim($plainText);
+                    
+                    if (!empty($plainText)) {
+                        Log::info("Translating field: {$field}", [
+                            'original_length' => strlen($plainText),
+                            'preview' => substr($plainText, 0, 50)
+                        ]);
+                        
+                        $translated = $this->translationService->autoTranslate($plainText, 'es', 'en');
+                        
+                        // Only save if translation is different from original
+                        if ($translated && $translated !== $plainText && trim($translated) !== trim($plainText)) {
+                            Log::info("Translation successful for field: {$field}", [
+                                'original' => substr($plainText, 0, 50),
+                                'translated' => substr($translated, 0, 50)
+                            ]);
+                            $translations[$field] = $translated;
+                        } else {
+                            // If translation failed, log it
+                            Log::warning("Translation failed for field: {$field} - returned same text", [
+                                'original' => substr($plainText, 0, 100),
+                                'translated' => substr($translated ?? 'null', 0, 100),
+                                'are_equal' => ($translated === $plainText)
+                            ]);
+                            // Don't include failed translations
+                        }
+                    }
+                }
+            }
+            
+            return response()->json([
+                'success' => true,
+                'translations' => $translations
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Translation failed: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Translation failed: ' . $e->getMessage()
+            ], 500);
         }
     }
 }

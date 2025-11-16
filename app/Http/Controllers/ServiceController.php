@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\SummernoteContent;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
@@ -12,6 +14,24 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class ServiceController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return Service::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['title', 'description', 'keywords'];
+    }
     public function index()
     {
         $services = Service::latest()->paginate(5);
@@ -60,8 +80,12 @@ class ServiceController extends Controller
             $service->slug = SlugService::createSlug(Service::class, 'slug', $request->title);
             $service->image = $newImageName;
             $service->description = $processedDescription;
-    
+
             if ($service->save()) {
+                // Save translations if provided
+                if ($request->has('translations')) {
+                    $this->translationService->saveFromRequest($service, $request->all());
+                }
                 return redirect()->route('admin.services.index')->with('success', 'Success! Service created.');
             } else {
                 return redirect()->back()->with('error', 'Error! Service not created.');
@@ -125,6 +149,11 @@ class ServiceController extends Controller
 
             $service->save();
 
+            // Save translations if provided
+            if ($request->has('translations')) {
+                $this->translationService->saveFromRequest($service, $request->all());
+            }
+
             return redirect()->route('admin.services.index')->with('success', 'Success !! Services Updated');
         } catch (\Exception $e) {
             // Optionally log the error
@@ -145,6 +174,14 @@ class ServiceController extends Controller
             return redirect()->route('admin.service.index')->with('error', 'Service not found.');
         }
     }
+    /**
+     * Auto-translate Service content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, Service $service)
+    {
+        return $this->autoTranslateContent($request, $service->id, $this->translationService);
+    }
+
     private function processServices($services)
     {
         foreach ($services as $service) {

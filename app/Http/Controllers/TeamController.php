@@ -3,10 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return Team::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['name', 'position'];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -78,6 +98,11 @@ class TeamController extends Controller
 
         $team->save();
 
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($team, $request->all());
+        }
+
         return redirect()->route('admin.teams.index')->with('success', 'Team member created successfully.');
     }
 
@@ -127,6 +152,11 @@ class TeamController extends Controller
             'image' => $imageName, 
         ]);
 
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($team, $request->all());
+        }
+
         // Redirect to the team index page with a success message
         return redirect()->route('admin.teams.index')->with('success', 'Team member updated successfully.');
     }
@@ -160,5 +190,13 @@ class TeamController extends Controller
     // Return the view for editing the team member with the team member data
     return view('backend.team.update', compact('teamMember'));
 }
+
+    /**
+     * Auto-translate Team content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, Team $team)
+    {
+        return $this->autoTranslateContent($request, $team->id, $this->translationService);
+    }
 }
 

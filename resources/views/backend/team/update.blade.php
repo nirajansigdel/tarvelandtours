@@ -61,6 +61,14 @@
                                     alt="Current Image" style="max-width: 100%; max-height: 200px;">
                             </div>
 
+                            <!-- Auto-Translate Section -->
+                            <x-auto-translate-section 
+                                :model="$teamMember" 
+                                :fields="['name', 'position']"
+                                routeName="admin.teams.translate"
+                                :modelId="$teamMember->id"
+                            />
+
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>
