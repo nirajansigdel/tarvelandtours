@@ -36,6 +36,14 @@
                 <label for="content">Content </label>
                 <textarea class="form-control summernote" id="content" name="content" rows="5" required>{{ $blogPostsCategory->content }}</textarea>
             </div>
+
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section 
+                :model="$blogPostsCategory" 
+                :fields="['title', 'content']"
+                routeName="admin.blog-posts-categories.translate"
+                :modelId="$blogPostsCategory->id"
+            />
            
             <button type="submit" class="btn btn-primary">Update</button>
             <!-- Update the back button to redirect to the index route -->

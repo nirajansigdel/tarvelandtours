@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Translatable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BlogPostsCategory extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, Translatable;
     protected $fillable = ['title', 'image', 'content'];
 
     public function sluggable(): array

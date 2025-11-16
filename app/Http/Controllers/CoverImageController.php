@@ -3,11 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\CoverImage;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class CoverImageController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return CoverImage::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['title'];
+    }
     // List all cover images
     public function index()
     {
@@ -43,10 +63,15 @@ class CoverImageController extends Controller
                 $imageNames[] = $newImageName;
             }
 
-            CoverImage::create([
+            $coverImage = CoverImage::create([
                 'title' => $request->title,
                 'image' => $imageNames, // Stored as array (json in DB)
             ]);
+
+            // Save translations if provided
+            if ($request->has('translations')) {
+                $this->translationService->saveFromRequest($coverImage, $request->all());
+            }
 
             return redirect()->route('admin.cover-images.index')->with('success', 'Success! Cover images created.');
 
@@ -98,6 +123,11 @@ class CoverImageController extends Controller
 
         $coverimage->save();
 
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($coverimage, $request->all());
+        }
+
         return redirect()->route('admin.cover-images.index')->with('success', 'Cover image updated successfully.');
     }
 
@@ -125,5 +155,13 @@ class CoverImageController extends Controller
         } else {
             return redirect()->route('admin.cover-images.index')->with('error', 'Cover Image not found.');
         }
+    }
+
+    /**
+     * Auto-translate CoverImage content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, CoverImage $coverImage)
+    {
+        return $this->autoTranslateContent($request, $coverImage->id, $this->translationService);
     }
 }

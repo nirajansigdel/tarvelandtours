@@ -94,6 +94,12 @@ class TranslationController extends Controller
             'team' => \App\Models\Team::class,
             'career' => \App\Models\Career::class,
             'whyus' => \App\Models\WhyUs::class,
+            'coverimage' => \App\Models\CoverImage::class,
+            'directormessage' => \App\Models\DirectorMessage::class,
+            'ceomessage' => \App\Models\DirectorMessage::class,
+            'missionvisionvalue' => \App\Models\MissionVisionValue::class,
+            'blogpostscategory' => \App\Models\BlogPostsCategory::class,
+            'blog' => \App\Models\BlogPostsCategory::class,
         ];
 
         return $models[$modelType] ?? null;
@@ -107,7 +113,7 @@ class TranslationController extends Controller
         $modelType = class_basename($model);
         
         $fields = [
-            'Product' => ['heading', 'subtitle', 'content', 'location', 'transportation', 'package'],
+            'Product' => ['heading', 'subtitle', 'content', 'location', 'transportation', 'package', 'includes'],
             'Event' => ['heading', 'subtitle', 'content'],
             'Post' => ['title', 'description'],
             'Service' => ['title', 'description', 'keywords'],
@@ -119,6 +125,10 @@ class TranslationController extends Controller
             'Team' => ['name', 'position'],
             'Career' => ['title', 'description', 'requirements'],
             'WhyUs' => ['heading', 'subtitle', 'content'],
+            'CoverImage' => ['title'],
+            'DirectorMessage' => ['name', 'position', 'companyName', 'message'],
+            'MissionVisionValue' => ['heading', 'description'],
+            'BlogPostsCategory' => ['title', 'content'],
         ];
 
         // Filter out fields that don't exist on the model
@@ -142,7 +152,23 @@ class TranslationController extends Controller
             $fields = $request->all();
             
             foreach ($fields as $field => $text) {
-                if (!empty($text)) {
+                // Handle array fields (like includes)
+                if ($field === 'includes' && is_array($text)) {
+                    $translatedArray = [];
+                    foreach ($text as $item) {
+                        if (!empty(trim($item))) {
+                            $translatedItem = $this->translationService->autoTranslate(trim($item), 'es', 'en');
+                            if ($translatedItem && $translatedItem !== trim($item)) {
+                                $translatedArray[] = $translatedItem;
+                            } else {
+                                $translatedArray[] = trim($item); // Fallback to original
+                            }
+                        }
+                    }
+                    if (!empty($translatedArray)) {
+                        $translations[$field] = $translatedArray;
+                    }
+                } elseif (!empty($text)) {
                     // Strip HTML tags for translation
                     $plainText = strip_tags($text);
                     $plainText = trim($plainText);

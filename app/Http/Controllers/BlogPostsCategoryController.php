@@ -6,10 +6,30 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Models\BlogPostsCategory;
 use App\Models\SummernoteContent;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class BlogPostsCategoryController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return BlogPostsCategory::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['title', 'content'];
+    }
     public function index()
     {
         $categories = BlogPostsCategory::latest()->paginate(20);
@@ -57,6 +77,10 @@ class BlogPostsCategoryController extends Controller
             $category->image = $newImageName;
 
             if ($category->save()) {
+                // Save translations if provided
+                if ($request->has('translations')) {
+                    $this->translationService->saveFromRequest($category, $request->all());
+                }
                 return redirect()->route('admin.blog-posts-categories.index')->with('success', 'Blog Post Category created successfully.');
             } else {
                 return redirect()->back()->with('error', 'Error! Blog Post Category not created.');
@@ -112,12 +136,25 @@ class BlogPostsCategoryController extends Controller
 
             $message->save();
 
+            // Save translations if provided
+            if ($request->has('translations')) {
+                $this->translationService->saveFromRequest($message, $request->all());
+            }
+
             return redirect()->route('admin.blog-posts-categories.index')->with('success', 'Blog Post updated successfully.');
         } catch (Exception $e) {
             return back()->with('error', 'Error updating director message: ' . $e->getMessage());
         }
     }
 
+
+    /**
+     * Auto-translate BlogPostsCategory content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, BlogPostsCategory $blogPostsCategory)
+    {
+        return $this->autoTranslateContent($request, $blogPostsCategory->id, $this->translationService);
+    }
 
     public function destroy(BlogPostsCategory $blogPostsCategory)
     {

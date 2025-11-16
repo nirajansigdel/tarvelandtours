@@ -60,6 +60,11 @@
                     id="message" placeholder="Add Message">{{ old('message') }}</textarea>
             </div>
 
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section-create 
+                :fields="['name', 'position', 'companyName', 'message']"
+                routeName="admin.translations.translate"
+            />
            
         </div>
         <!-- /.card-body -->

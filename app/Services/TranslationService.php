@@ -31,11 +31,23 @@ class TranslationService
             ->first();
 
         if ($translation && $translation->value) {
+            // Check if value is JSON (for array fields like includes)
+            $decoded = json_decode($translation->value, true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                return $decoded;
+            }
             return $translation->value;
         }
 
         // Fallback to original value
-        return $model->getAttribute($fieldName);
+        $originalValue = $model->getAttribute($fieldName);
+        
+        // If original is an array (like includes), return as-is
+        if (is_array($originalValue)) {
+            return $originalValue;
+        }
+        
+        return $originalValue;
     }
 
     /**
@@ -43,14 +55,19 @@ class TranslationService
      * 
      * @param mixed $model
      * @param string $fieldName
-     * @param string $value
+     * @param string|array $value
      * @param string|null $locale
      * @return Translation
      */
     public function save($model, $fieldName, $value, $locale = null)
     {
         $locale = $locale ?? App::getLocale();
-
+        
+        // Handle array values (like includes) - store as JSON
+        if (is_array($value)) {
+            $value = json_encode($value);
+        }
+        
         return Translation::updateOrCreate(
             [
                 'translatable_type' => get_class($model),

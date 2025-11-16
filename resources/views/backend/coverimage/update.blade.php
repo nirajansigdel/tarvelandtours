@@ -70,6 +70,14 @@
 
                 <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
 
+                <!-- Auto-Translate Section -->
+                <x-auto-translate-section 
+                    :model="$coverimage" 
+                    :fields="['title']"
+                    routeName="admin.cover-images.translate"
+                    :modelId="$coverimage->id"
+                />
+
                 <div class="card-footer mt-3">
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>

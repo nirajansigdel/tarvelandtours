@@ -26,6 +26,12 @@
                             @enderror
                         </div>
 
+                        <!-- Auto-Translate Section -->
+                        <x-auto-translate-section-create 
+                            :fields="['heading', 'description']"
+                            routeName="admin.translations.translate"
+                        />
+
                         <button type="submit" class="btn btn-success">Create</button>
                         <a href="{{ route('admin.missionvisionvalue.index') }}" class="btn btn-secondary">Back</a>
                     </form>

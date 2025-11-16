@@ -45,6 +45,12 @@
 
             <!-- Preview container -->
             <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
+
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section-create 
+                :fields="['title']"
+                routeName="admin.translations.translate"
+            />
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

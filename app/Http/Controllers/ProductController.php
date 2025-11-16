@@ -26,7 +26,7 @@ class ProductController extends Controller
 
     protected function getTranslatableFieldsForModel($model)
     {
-        return ['heading', 'subtitle', 'content', 'location', 'transportation', 'package'];
+        return ['heading', 'subtitle', 'content', 'location', 'transportation', 'package', 'includes'];
     }
 
     public function index()

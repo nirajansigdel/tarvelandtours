@@ -128,7 +128,7 @@
 
                             <!-- Auto-Translate Section -->
                             <x-auto-translate-section-create 
-                                :fields="['heading', 'subtitle', 'content', 'location', 'transportation', 'package']"
+                                :fields="['heading', 'subtitle', 'content', 'location', 'transportation', 'package', 'includes']"
                                 routeName="admin.translations.translate"
                             />
 
