@@ -3,10 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return Product::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['heading', 'subtitle', 'content', 'location', 'transportation', 'package'];
+    }
+
     public function index()
     {
         $products = Product::latest()->paginate(12);
@@ -61,7 +83,7 @@ class ProductController extends Controller
             });
         }
 
-        Product::create([
+        $product = Product::create([
             'heading' => $validated['heading'] ?? null,
             'subtitle' => $validated['subtitle'] ?? null,
             'date' => $validated['date'] ?? null,
@@ -78,6 +100,11 @@ class ProductController extends Controller
             'includes' => $includes,
             'status' => (bool)($request->input('status', 1)),
         ]);
+
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($product, $request->all());
+        }
 
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
@@ -147,7 +174,20 @@ class ProductController extends Controller
             'status' => (bool)($request->input('status', 1)),
         ]);
 
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($product, $request->all());
+        }
+
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+    }
+
+    /**
+     * Auto-translate Product content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, Product $product)
+    {
+        return $this->autoTranslateContent($request, $product->id, $this->translationService);
     }
 
     public function destroy(Product $product)

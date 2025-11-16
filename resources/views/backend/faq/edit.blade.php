@@ -36,7 +36,13 @@
                     <textarea class="form-control" id="answer" name="answer" rows="5" required>{{ old('answer', $faq->answer) }}</textarea>
                 </div>
 
-               
+                <!-- Auto-Translate Section -->
+                <x-auto-translate-section 
+                    :model="$faq" 
+                    :fields="['question', 'answer']"
+                    routeName="admin.faqs.translate"
+                    :modelId="$faq->id"
+                />
 
                 {{-- Action Buttons --}}
                 <div class="d-flex justify-content-between">

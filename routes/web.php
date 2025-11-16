@@ -47,6 +47,7 @@ use App\Http\Controllers\{
     MissionVisionValueController,
     SectionOnePictureController,
     LanguageController,
+    TranslationController,
 };
 
 /*
@@ -176,6 +177,26 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
         'sectiononepicture' => SectionOnePictureController::class,
         // 'userdetails' => UserDetailController::class, // Simplified - only display data
     ]);
+
+    // Translation routes
+    Route::get('/translations/{modelType}/{modelId}/edit', [TranslationController::class, 'edit'])->name('translations.edit');
+    Route::put('/translations/{modelType}/{modelId}', [TranslationController::class, 'update'])->name('translations.update');
+    
+    // Auto-translate routes
+    Route::post('/about-us/{id}/translate', [AboutController::class, 'translate'])->name('about-us.translate');
+    Route::post('/products/{product}/translate', [ProductController::class, 'translate'])->name('products.translate');
+    Route::post('/posts/{post}/translate', [PostController::class, 'translate'])->name('posts.translate');
+    Route::post('/services/{service}/translate', [ServiceController::class, 'translate'])->name('services.translate');
+    Route::post('/faqs/{faq}/translate', [FaqController::class, 'translate'])->name('faqs.translate');
+    Route::post('/testimonials/{testimonial}/translate', [TestimonialController::class, 'translate'])->name('testimonials.translate');
+    Route::post('/categories/{category}/translate', [CategoryController::class, 'translate'])->name('categories.translate');
+    Route::post('/countries/{country}/translate', [CountryController::class, 'translate'])->name('countries.translate');
+    Route::post('/teams/{team}/translate', [TeamController::class, 'translate'])->name('teams.translate');
+    Route::post('/careers/{career}/translate', [CareerController::class, 'translate'])->name('careers.translate');
+    Route::post('/whyus/{whyus}/translate', [WhyUsController::class, 'translate'])->name('whyus.translate');
+    
+    // Generic translation route for create pages (no model ID required)
+    Route::post('/translations/translate', [TranslationController::class, 'translateGeneric'])->name('translations.translate');
 
 Route::prefix('backend')->name('backend.')->group(function () {
     Route::resource('seo_settings', SeoSettingController::class);

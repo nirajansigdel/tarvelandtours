@@ -28,6 +28,13 @@
                     @endforeach
                 </select>
             </div>
+
+            <!-- Auto-Translate Section -->
+            <x-auto-translate-section-create 
+                :fields="['title', 'description']"
+                routeName="admin.translations.translate"
+            />
+
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
         <script>

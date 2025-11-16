@@ -108,6 +108,79 @@
                                 <div class="error-message">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <!-- Auto-Translate Section -->
+                        <div class="form-group mt-4 p-3" style="background-color: #f8f9fa; border-left: 4px solid #007bff; border-radius: 5px;">
+                            <div class="d-flex align-items-center mb-3">
+                                <input type="checkbox" 
+                                       id="auto_translate" 
+                                       name="auto_translate" 
+                                       value="1"
+                                       class="me-2"
+                                       onchange="toggleTranslationPreview()">
+                                <label for="auto_translate" class="form-label mb-0" style="font-weight: 600; color: #007bff;">
+                                    <i class="fas fa-language"></i> Auto-Translate to Spanish
+                                </label>
+                            </div>
+                            <small class="text-muted d-block mb-3">
+                                When enabled, your English content will be automatically translated to Spanish when you save. 
+                                You can review and edit the translations below before saving.
+                            </small>
+
+                            <!-- Translation Preview Section -->
+                            <div id="translation_preview" style="display: none;">
+                                <h6 class="mb-3" style="color: #28a745;">
+                                    <i class="fas fa-check-circle"></i> Spanish Translations Preview
+                                </h6>
+                                
+                                <div class="translation-item mb-3">
+                                    <label class="form-label small text-muted">Title (Spanish)</label>
+                                    <input type="text" 
+                                           id="translated_title" 
+                                           name="translations[title][es]"
+                                           class="form-control form-control-sm" 
+                                           placeholder="Spanish translation will appear here..."
+                                           value="{{ $about->getTranslated('title', 'es') }}">
+                                    <small class="text-info">
+                                        <i class="fas fa-info-circle"></i> You can edit this translation before saving
+                                    </small>
+                                </div>
+
+                                <div class="translation-item mb-3">
+                                    <label class="form-label small text-muted">Subtitle (Spanish)</label>
+                                    <input type="text" 
+                                           id="translated_subtitle" 
+                                           name="translations[subtitle][es]"
+                                           class="form-control form-control-sm" 
+                                           placeholder="Spanish translation will appear here..."
+                                           value="{{ $about->getTranslated('subtitle', 'es') }}">
+                                </div>
+
+                                <div class="translation-item mb-3">
+                                    <label class="form-label small text-muted">Description (Spanish)</label>
+                                    <textarea id="translated_description" 
+                                              name="translations[description][es]"
+                                              class="form-control form-control-sm" 
+                                              rows="3"
+                                              placeholder="Spanish translation will appear here...">{{ $about->getTranslated('description', 'es') }}</textarea>
+                                </div>
+
+                                <div class="translation-item mb-3">
+                                    <label class="form-label small text-muted">Content (Spanish)</label>
+                                    <textarea id="translated_content" 
+                                              name="translations[content][es]"
+                                              class="form-control form-control-sm" 
+                                              rows="5"
+                                              placeholder="Spanish translation will appear here...">{{ $about->getTranslated('content', 'es') }}</textarea>
+                                </div>
+
+                                <div class="alert alert-info">
+                                    <i class="fas fa-lightbulb"></i> 
+                                    <strong>Tip:</strong> Review the translations above. You can edit them if needed. 
+                                    The translations will be saved automatically when you click "Update".
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success">
@@ -142,6 +215,159 @@
             maxHeight: null,
             focus: true
         });
+
+        // Check if translations exist and show preview
+        @if($about->getTranslated('title', 'es') || $about->getTranslated('description', 'es'))
+            document.getElementById('auto_translate').checked = true;
+            document.getElementById('translation_preview').style.display = 'block';
+        @endif
     });
+
+    // Toggle translation preview
+    function toggleTranslationPreview() {
+        const checkbox = document.getElementById('auto_translate');
+        const preview = document.getElementById('translation_preview');
+        
+        if (checkbox.checked) {
+            preview.style.display = 'block';
+            // Auto-translate on the fly when checkbox is checked
+            autoTranslateFields();
+        } else {
+            preview.style.display = 'none';
+        }
+    }
+
+    // Auto-translate fields using AJAX
+    function autoTranslateFields() {
+        const title = document.querySelector('input[name="title"]').value;
+        const subtitle = document.querySelector('input[name="subtitle"]').value;
+        const description = document.querySelector('textarea[name="description"]').value;
+        const content = document.querySelector('#summernote').value || $('#summernote').summernote('code');
+
+        // Show loading state
+        const preview = document.getElementById('translation_preview');
+        preview.innerHTML = '<div class="text-center p-3"><i class="fas fa-spinner fa-spin"></i> Translating...</div>';
+
+        // Make AJAX request to translate
+        fetch('{{ route("admin.about-us.translate", $about->id) }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                title: title,
+                subtitle: subtitle,
+                description: description,
+                content: content
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Translation response:', data);
+            
+            if (data.success && data.translations) {
+                // Update translation fields if they exist
+                if (data.translations.title && document.getElementById('translated_title')) {
+                    document.getElementById('translated_title').value = data.translations.title;
+                }
+                if (data.translations.subtitle && document.getElementById('translated_subtitle')) {
+                    document.getElementById('translated_subtitle').value = data.translations.subtitle;
+                }
+                if (data.translations.description && document.getElementById('translated_description')) {
+                    document.getElementById('translated_description').value = data.translations.description;
+                }
+                if (data.translations.content && document.getElementById('translated_content')) {
+                    document.getElementById('translated_content').value = data.translations.content;
+                }
+                
+                // Restore preview HTML
+                preview.innerHTML = `
+                    <h6 class="mb-3" style="color: #28a745;">
+                        <i class="fas fa-check-circle"></i> Spanish Translations Preview
+                    </h6>
+                    
+                    <div class="translation-item mb-3">
+                        <label class="form-label small text-muted">Title (Spanish)</label>
+                        <input type="text" 
+                               id="translated_title" 
+                               name="translations[title][es]"
+                               class="form-control form-control-sm" 
+                               placeholder="Spanish translation will appear here..."
+                               value="${data.translations.title || ''}">
+                        <small class="text-info">
+                            <i class="fas fa-info-circle"></i> You can edit this translation before saving
+                        </small>
+                    </div>
+
+                    <div class="translation-item mb-3">
+                        <label class="form-label small text-muted">Subtitle (Spanish)</label>
+                        <input type="text" 
+                               id="translated_subtitle" 
+                               name="translations[subtitle][es]"
+                               class="form-control form-control-sm" 
+                               placeholder="Spanish translation will appear here..."
+                               value="${data.translations.subtitle || ''}">
+                    </div>
+
+                    <div class="translation-item mb-3">
+                        <label class="form-label small text-muted">Description (Spanish)</label>
+                        <textarea id="translated_description" 
+                                  name="translations[description][es]"
+                                  class="form-control form-control-sm" 
+                                  rows="3"
+                                  placeholder="Spanish translation will appear here...">${data.translations.description || ''}</textarea>
+                    </div>
+
+                    <div class="translation-item mb-3">
+                        <label class="form-label small text-muted">Content (Spanish)</label>
+                        <textarea id="translated_content" 
+                                  name="translations[content][es]"
+                                  class="form-control form-control-sm" 
+                                  rows="5"
+                                  placeholder="Spanish translation will appear here...">${data.translations.content || ''}</textarea>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-lightbulb"></i> 
+                        <strong>Tip:</strong> Review the translations above. You can edit them if needed. 
+                        The translations will be saved automatically when you click "Update".
+                    </div>
+                `;
+            } else {
+                preview.innerHTML = `<div class="alert alert-warning">${data.message || 'Translation failed. Please try again.'}</div>`;
+            }
+        })
+        .catch(error => {
+            console.error('Translation error:', error);
+            preview.innerHTML = `
+                <div class="alert alert-danger">
+                    <strong>Translation Error:</strong> ${error.message || 'Unknown error occurred'}
+                    <br><small>Check browser console for details. You can still manually enter translations below.</small>
+                </div>
+                <div class="translation-item mb-3">
+                    <label class="form-label small text-muted">Title (Spanish)</label>
+                    <input type="text" id="translated_title" name="translations[title][es]" class="form-control form-control-sm" placeholder="Enter Spanish translation manually...">
+                </div>
+                <div class="translation-item mb-3">
+                    <label class="form-label small text-muted">Subtitle (Spanish)</label>
+                    <input type="text" id="translated_subtitle" name="translations[subtitle][es]" class="form-control form-control-sm" placeholder="Enter Spanish translation manually...">
+                </div>
+                <div class="translation-item mb-3">
+                    <label class="form-label small text-muted">Description (Spanish)</label>
+                    <textarea id="translated_description" name="translations[description][es]" class="form-control form-control-sm" rows="3" placeholder="Enter Spanish translation manually..."></textarea>
+                </div>
+                <div class="translation-item mb-3">
+                    <label class="form-label small text-muted">Content (Spanish)</label>
+                    <textarea id="translated_content" name="translations[content][es]" class="form-control form-control-sm" rows="5" placeholder="Enter Spanish translation manually..."></textarea>
+                </div>
+            `;
+        });
+    }
 </script>
 @endsection

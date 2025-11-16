@@ -131,6 +131,14 @@ is revert @extends('backend.layouts.master')
                                 </ul>
                             </div>
 
+                            <!-- Auto-Translate Section -->
+                            <x-auto-translate-section 
+                                :model="$product" 
+                                :fields="['heading', 'subtitle', 'content', 'location', 'transportation', 'package']"
+                                routeName="admin.products.translate"
+                                :modelId="$product->id"
+                            />
+
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>

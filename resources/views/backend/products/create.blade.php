@@ -126,6 +126,12 @@
                                 </ul>
                             </div>
 
+                            <!-- Auto-Translate Section -->
+                            <x-auto-translate-section-create 
+                                :fields="['heading', 'subtitle', 'content', 'location', 'transportation', 'package']"
+                                routeName="admin.translations.translate"
+                            />
+
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>
 

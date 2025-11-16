@@ -3,11 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faq;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class FaqController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return Faq::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['question', 'answer'];
+    }
     /**
      * Backend - List all FAQs with pagination
      */
@@ -37,7 +57,12 @@ class FaqController extends Controller
 
     $data = $request->only([ 'question', 'answer']);
 
-    Faq::create($data);
+    $faq = Faq::create($data);
+
+    // Save translations if provided
+    if ($request->has('translations')) {
+        $this->translationService->saveFromRequest($faq, $request->all());
+    }
 
     return redirect()->route('admin.faqs.index')->with('success', 'FAQ created successfully.');
 }
@@ -63,9 +88,12 @@ public function update(Request $request, Faq $faq)
 
     $data = $request->only(['question', 'answer']);
 
-   
-
     $faq->update($data);
+
+    // Save translations if provided
+    if ($request->has('translations')) {
+        $this->translationService->saveFromRequest($faq, $request->all());
+    }
 
     return redirect()->route('admin.faqs.index')->with('success', 'FAQ updated successfully.');
 }
@@ -84,6 +112,14 @@ public function update(Request $request, Faq $faq)
     return redirect()->route('admin.faqs.index')->with('success', 'FAQ deleted successfully.');
 }
 
+
+    /**
+     * Auto-translate FAQ content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, Faq $faq)
+    {
+        return $this->autoTranslateContent($request, $faq->id, $this->translationService);
+    }
 
     /**
      * Frontend - Display FAQs dynamically

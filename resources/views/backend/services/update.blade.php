@@ -68,6 +68,14 @@
                     <input type="text" name="keywords" class="form-control" id="keywords"
                         value="{{ $service->keywords ?? '' }}">
                 </div>
+
+                <!-- Auto-Translate Section -->
+                <x-auto-translate-section 
+                    :model="$service" 
+                    :fields="['title', 'description', 'keywords']"
+                    routeName="admin.services.translate"
+                    :modelId="$service->id"
+                />
                 
                 <!-- /.card-body -->
                 <div class="card-footer">

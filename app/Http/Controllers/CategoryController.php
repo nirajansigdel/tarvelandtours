@@ -3,10 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return Category::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['title'];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +66,12 @@ class CategoryController extends Controller
             'title' => 'required',
         ]);
 
-        Category::create($request->all());
+        $category = Category::create($request->all());
+
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($category, $request->all());
+        }
 
         return redirect()->route('admin.categories.create')->with('success', 'Category created successfully');
     }
@@ -90,6 +115,11 @@ class CategoryController extends Controller
 
         $category->update($request->all());
 
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($category, $request->all());
+        }
+
         return redirect()->route('admin.categories.create')->with('success', 'Category updated successfully');
     }
 
@@ -99,6 +129,14 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
+    /**
+     * Auto-translate Category content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, Category $category)
+    {
+        return $this->autoTranslateContent($request, $category->id, $this->translationService);
+    }
+
     public function destroy(Category $category)
     {
         $category->delete();

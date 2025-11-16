@@ -64,6 +64,15 @@
                     <img id="preview1" src="{{ asset('uploads/post/' . $post->image) }}"
                         style="max-width: 300px; max-height:300px" />
                 </div>
+
+                <!-- Auto-Translate Section -->
+                <x-auto-translate-section 
+                    :model="$post" 
+                    :fields="['title', 'description']"
+                    routeName="admin.posts.translate"
+                    :modelId="$post->id"
+                />
+
                 <!-- /.card-body -->
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Update</button>

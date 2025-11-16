@@ -87,6 +87,9 @@
                                     <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-warning btn-sm">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
+                                    <a href="{{ route('admin.translations.edit', ['product', $product->id]) }}" class="btn btn-info btn-sm" title="Manage Translations">
+                                        <i class="fas fa-language"></i> Translate
+                                    </a>
                                     <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')

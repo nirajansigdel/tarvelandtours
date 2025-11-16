@@ -3,10 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\WhyUs;
+use App\Services\TranslationService;
+use App\Traits\HasAutoTranslation;
 use Illuminate\Http\Request;
 
 class WhyUsController extends Controller
 {
+    use HasAutoTranslation;
+
+    protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
+    protected function getModelForTranslation($id)
+    {
+        return WhyUs::findOrFail($id);
+    }
+
+    protected function getTranslatableFieldsForModel($model)
+    {
+        return ['heading', 'subtitle', 'content'];
+    }
     public function index()
     {
         $whyus = WhyUs::latest()->paginate(10);
@@ -34,12 +54,17 @@ class WhyUsController extends Controller
             $image->move(public_path('uploads/whyus'), $imageName);
         }
 
-        WhyUs::create([
+        $whyus = WhyUs::create([
             'heading' => $request->heading,
             'subtitle' => $request->subtitle,
             'content' => $request->content,
             'image' => $imageName,
         ]);
+
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($whyus, $request->all());
+        }
 
         return redirect()->route('backend.whyus.index')->with('success', 'Why Us item created successfully.');
     }
@@ -77,6 +102,11 @@ class WhyUsController extends Controller
 
         $whyus->update($data);
 
+        // Save translations if provided
+        if ($request->has('translations')) {
+            $this->translationService->saveFromRequest($whyus, $request->all());
+        }
+
         return redirect()->route('backend.whyus.index')->with('success', 'Why Us updated successfully!');
     }
 
@@ -91,5 +121,13 @@ class WhyUsController extends Controller
         $whyus->delete();
 
         return redirect()->route('backend.whyus.index')->with('success', 'Why Us deleted successfully!');
+    }
+
+    /**
+     * Auto-translate WhyUs content to Spanish (AJAX endpoint)
+     */
+    public function translate(Request $request, WhyUs $whyus)
+    {
+        return $this->autoTranslateContent($request, $whyus->id, $this->translationService);
     }
 }

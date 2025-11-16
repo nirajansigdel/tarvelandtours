@@ -14,6 +14,7 @@ use App\Models\Testimonial;
 use App\Models\BlogPostsCategory;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,7 +26,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Translation helper function
+        if (!function_exists('translated')) {
+            function translated($model, $fieldName, $locale = null) {
+                if (method_exists($model, 'getTranslated')) {
+                    return $model->getTranslated($fieldName, $locale);
+                }
+                return $model->getAttribute($fieldName);
+            }
+        }
     }
 
     /**
@@ -85,5 +94,4 @@ class AppServiceProvider extends ServiceProvider
         });
     }
     }
-
 }

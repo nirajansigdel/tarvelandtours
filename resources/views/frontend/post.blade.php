@@ -60,12 +60,12 @@
                                         </div>
                                     @endif
                                 </div>
-                                <h5 class="content-heading mt-2">{{ $product->heading ?? 'Untitled Travel Post' }}</h5>
-                                @if($product->subtitle)
-                                    <p class="contentdesc text-muted">{{ Str::limit($product->subtitle, 100) }}</p>
+                                <h5 class="content-heading mt-2">{{ $product->getTranslated('heading') ?? 'Untitled Travel Post' }}</h5>
+                                @if($product->getTranslated('subtitle'))
+                                    <p class="contentdesc text-muted">{{ Str::limit($product->getTranslated('subtitle'), 100) }}</p>
                                 @endif
                                 <p class="p-0 m-0 xs-text-des">
-                                    {!! Str::limit($product->content, 200) !!}
+                                    {!! Str::limit($product->getTranslated('content'), 200) !!}
                                 </p>
 
                                 @if($product->original_price || $product->discounted_price)
@@ -98,11 +98,11 @@
                                     class="col-md-5 btn text-dark fw-semibold  text-decoration-none content-button">
                                     View Details <i class="bi bi-arrow-right"></i>
                                 </a>
-                                @if($product->location)
+                                @if($product->getTranslated('location'))
                                     <div class="col-3 flex-end mt-2">
                                         <small class="text-bold">
                                             <i class="fas fa-map-marker-alt"></i> <span
-                                                class="contentdesc">{{ $product->location }}</span>
+                                                class="contentdesc">{{ $product->getTranslated('location') }}</span>
                                         </small>
                                     </div>
                                 @endif
