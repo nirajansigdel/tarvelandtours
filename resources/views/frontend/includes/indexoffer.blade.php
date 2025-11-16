@@ -20,8 +20,13 @@
                 <span class="service-badge">{{ __('messages.exclusive_offer') }}</span>
               </div>
               <div class="service-content">
-                <h3 class="contenttitle text-capitalize text-white">{{ Str::limit(strip_tags($prod->heading), 15) }}</h3>
-                <p class="contentdesc text-white">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($prod->content)), 120) !!}</p>
+                <h3 class="contenttitle text-capitalize text-white">
+    {{ Str::limit(strip_tags($prod->getTranslated('heading')), 25) }}
+</h3>
+
+                <p class="contentdesc text-white">
+    {!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($prod->getTranslated('content'))), 120) !!}
+</p>
                 
                 <!-- Pricing Information -->
                 @if($prod->original_price || $prod->discounted_price)

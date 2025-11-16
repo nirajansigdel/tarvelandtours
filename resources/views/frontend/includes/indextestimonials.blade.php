@@ -37,7 +37,12 @@
                style="width: 100px; height: 100px; object-fit: cover;">
 
         <h5 class="fw-bold mb-1">{{ $testimonial->name }}</h5>
-        <p class="text-muted mb-2">{{ $testimonial->position ?? __('messages.tourist') }}</p>
+<p class="text-muted mb-2">
+  {!! Str::limit(
+        str_replace('&nbsp;', ' ', strip_tags($testimonial->getTranslated('position'))),
+        30
+      ) ?? __('messages.tourist') !!}
+</p>
 
           <div class="text-warning mb-3">
             @for ($i = 0; $i < 5; $i++)
@@ -45,7 +50,12 @@
             @endfor
           </div>
 
-          <p class="text-muted small">{{ $testimonial->description }}</p>
+      <p class="text-muted small">
+  {!! Str::limit(
+        str_replace('&nbsp;', ' ', strip_tags($testimonial->getTranslated('description'))),
+        500
+      ) !!}
+</p>
         </div>
       </div>
       @endforeach
@@ -82,3 +92,4 @@
     });
   });
 </script>
+

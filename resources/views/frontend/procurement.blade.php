@@ -44,7 +44,7 @@
 </style>
 
 <section class="container-fluid my-5">
-  <h2 class="section-title text-center mb-4">Faqs </h2>
+  <h2 class="section-title text-center mb-4">{{ __('messages.faqs') }}</h2>
   <div class="container">
 
     @forelse($faqs as $index => $faq)
@@ -53,15 +53,15 @@
         <div class="d-flex align-items-center procurement-header"
              data-target="content-{{ $index }}">
           <div class="procurement-check">✓</div>
-          <div class="procurement-question ms-3">{{ $faq->heading }}</div>
+          <div class="procurement-question ms-3">{{ $faq->getTranslated('heading') }}</div>
         </div>
 
         <!-- Content -->
         <div id="content-{{ $index }}" class="procurement-content px-4">
           <div class="row align-items-center">
             <div class="col-md-7">
-              <h4 class="fw-bold">{{ $faq->question }}</h4>
-              <p class="xs-text-des">{!! nl2br(e($faq->answer)) !!}</p>
+              <h4 class="fw-bold">{{ $faq->getTranslated('question') }}</h4>
+              <p class="xs-text-des">{!! nl2br(e($faq->getTranslated('answer'))) !!}</p>
               @if(!empty($faq->image))
                 <a type="button"
                         class="open-image-modal py-3 px-3 classgreen"
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-5 text-center">
               @if(!empty($faq->image))
-                <img src="{{ asset('storage/' . $faq->image) }}" alt="procurement image"
+                <img src="{{ asset('storage/' . $faq->image) }}" alt="FAQ image"
                      class="img-fluid" style="max-width: 200px;">
               @endif
             </div>
@@ -83,7 +83,7 @@
         </div>
       </div>
     @empty
-      <p class="text-muted text-center">No  FAQs available.</p>
+      <p class="text-muted text-center">No FAQs available.</p>
     @endforelse
 
   </div>

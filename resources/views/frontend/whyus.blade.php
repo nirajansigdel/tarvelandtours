@@ -24,28 +24,33 @@
                 </p>
             </div>
         </div>
-    </section>
+</section>
+
 <section class="container-fluid py-1">
     <div class="container">
         @forelse($whyUsData as $why)
             <div class="row gx-5 mt-5">
                 <div class="col-md-12">
-                    <h2 class="extralarge">{{ $why->heading }}</h2>
+                    <!-- Heading with translation -->
+                    <h2 class="extralarge">{{ $why->getTranslated('heading') }}</h2>
 
-                    <!-- @if(!empty($why->subtitle))
-                        <h3 class="mb-3 text-center">{{ $why->subtitle }}</h3>
-                    @endif -->
+                    <!-- Subtitle with translation (optional) -->
+                    @if(!empty($why->subtitle))
+                        <!-- <h3 class="mb-3 text-center">{{ $why->getTranslated('subtitle') }}</h3> -->
+                    @endif
 
+                    <!-- Content with translation -->
                     <p class="text-gray content-desc">
-                        {{ $why->content }}
+                        {!! $why->getTranslated('content') !!}
                     </p>
 
+                    <!-- Image -->
                     @if(!empty($why->image))
                         <div class="text-center mt-4">
                             <img 
                                 src="{{ asset('uploads/whyus/' . $why->image) }}" 
-                                alt="{{ $why->heading }} image" 
-                                class="why-usimage rounded " 
+                                alt="{{ $why->getTranslated('heading') }} image" 
+                                class="why-usimage rounded" 
                                 loading="lazy"
                             >
                         </div>
@@ -61,10 +66,5 @@
         @endforelse
     </div>
 </section>
-
-
-
-       
-
 
 @endsection

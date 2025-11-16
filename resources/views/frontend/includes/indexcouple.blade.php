@@ -107,10 +107,18 @@
         <div class="col-md-6">
           <h2 class="custom-heading">{{ __('messages.special_offer_couples') }}</h2>
           <h3 class="contenttitle text-white">
-            {!! \Illuminate\Support\Str::limit(strip_tags($couple->heading, '<p><br>'), 200) !!}
+            {!! \Illuminate\Support\Str::limit(
+        strip_tags($couple->getTranslated('heading'), '<p><br>'),
+        200
+    ) !!}
+
           </h3>
           <p class="custom-subtext">
-            {!! \Illuminate\Support\Str::limit(strip_tags($couple->content, '<p><br>'), 200) !!}
+          {!! \Illuminate\Support\Str::limit(
+        strip_tags($couple->getTranslated('content'), '<p><br>'),
+        200
+    ) !!}
+
           </p>
           <div class="custom-overlay-container shadow">
             <img
@@ -224,7 +232,10 @@
             {!! \Illuminate\Support\Str::limit(strip_tags($group->heading, '<p><br>'), 200) !!}
           </h3>
           <p class="custom-subtext">
-            {!! \Illuminate\Support\Str::limit(strip_tags($group->content, '<p><br>'), 200) !!}
+            {!! \Illuminate\Support\Str::limit(
+        strip_tags($group->getTranslated('content'), '<p><br>'),
+        200
+    ) !!}
           </p>
         </div>
       @endforeach
