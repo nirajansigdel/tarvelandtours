@@ -1,5 +1,10 @@
+
+
+
+
 <style>
-  .contactsection {
+
+.contactsection {
     position: relative;
     background-image: url("{{ asset('image/destin.jpg') }}");
     background-position: center;
@@ -10,17 +15,12 @@
     overflow: hidden;
   }
 </style>
-
 <section class=" container-fluid  contactsection position-relative text-white text-center py-5">
   <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.55);"></div>
   <div class="container position-relative z-1 justify-content-center align-items-center d-flex flex-column"
     style="min-height: 500px;">
     <div class="row col-md-8 justify-content-center align-items-center">
- <style>
-  .text-warning{
-    color: var(--bs-orange) !important;;
-  }
- </style>
+
 
       <h2 class="extralarge mb-3">
         {{ __('messages.start_planning') }} <span class="text-warning">{{ __('messages.get_discount') }}</span>

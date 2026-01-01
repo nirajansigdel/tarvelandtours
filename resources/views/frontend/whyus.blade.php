@@ -1,17 +1,18 @@
 @extends('frontend.layouts.master')
 
-<style>
-    .why-usimage {
-        height:60vh;
-        width: 100%;
-        object-fit: cover;
-    }
-</style>
+
+<head>
+    <title>{{ $whymeta?->title ?? 'Default Title' }}</title>
+    <meta name="description" content="{{ $whymeta?->description ?? '' }}">
+
+</head>
+
 
 @section('content')
 
 <section class="position-relative text-white text-center"
         style="background: url('{{ asset('image/gallery.jpg') }}') center center / cover no-repeat; height:400px;">
+
         <div class="herosectionoverlay"></div>
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
@@ -30,14 +31,14 @@
         @forelse($whyUsData as $why)
             <div class="row gx-5 mt-5">
                 <div class="col-md-12">
-                    <h2 class="extralarge">{{ $why->heading }}</h2>
+                    <h2 class="extralarge">{{ $why->getTranslated('heading') }}</h2>
 
                     <!-- @if(!empty($why->subtitle))
                         <h3 class="mb-3 text-center">{{ $why->subtitle }}</h3>
                     @endif -->
 
                     <p class="text-gray content-desc">
-                        {{ $why->content }}
+                        {{ $why->getTranslated('content') }}
                     </p>
 
                     @if(!empty($why->image))

@@ -1,47 +1,6 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-<style>
-  .procurement-check {
-    width: 30px;
-    height: 100%;
-    background-color: #2f8b45;
-    border-radius: 50%;
-    color: white;
-    font-weight: 700;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid black;
-    flex-shrink: 0;
-  }
-  .procurement-question {
-    border-left: 2px solid #2f8b45;
-    padding-left: 1rem;
-    color: #2f8b45;
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-  .procurement-content {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    background-color: #f5f6f5;
-    transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
-    padding: 0;
-  }
-  .procurement-content.active {
-    max-height: 1000px;
-    opacity: 1;
-    padding: 2rem 0;
-  }
-  .procurement-header {
-    background-color: white;
-    padding:2rem 1rem;
-    cursor: pointer;
-  }
-</style>
 
 <section class="container-fluid my-5">
   <h2 class="section-title text-center mb-4">Faqs </h2>

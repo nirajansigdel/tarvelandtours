@@ -123,7 +123,7 @@ is revert @extends('backend.layouts.master')
                                 <label>Project Categories</label>
                                 <ul style="list-style-type: none; padding-left: 0;">
                                                                          @php $types = is_array($product->product_types) ? $product->product_types : (json_decode($product->product_types, true) ?? []); @endphp
-                                                                         @foreach(['Post' => 'Post','Destination' => 'Destination','General' => 'General','Festival' => 'Festival','Couple' => 'Couple','Group' => 'Group'] as $val => $label)
+                                                                         @foreach(['Post' => 'Post (all active)','Destination' => 'Destination(everst)','General' => 'General(annapurna)','Festival' => 'Festival(lang)','Couple' => 'Couple (adv)','Group' => 'Group(dolpa)'] as $val => $label)
                                     <li>
                                                                                  <label><input type="checkbox" class="product-type" value="{{ $val }}" name="product_types[]" {{ in_array($val, $types) ? 'checked' : '' }}>{{ $label }}</label>
                                     </li>

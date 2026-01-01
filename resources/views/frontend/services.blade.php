@@ -1,9 +1,13 @@
 @extends('frontend.layouts.master')
+
+<head>
+    <title>{{ $servicemeta?->title ?? 'Default Title' }}</title>
+    <meta name="description" content="{{ $servicemeta?->description ?? '' }}">
+
+</head>
 @section('content')
-
-
 <section class="position-relative text-white text-center mb-5"
-        style="background: url('{{ asset('image/check.jpg') }}') center center / cover no-repeat; height:400px;">
+        style="background: url('{{ asset('image/gallery.jpg') }}') center center / cover no-repeat; height:400px;">
         <div class="herosectionoverlay"></div>
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
@@ -18,19 +22,6 @@
         </div>
     </section>
   <!-- multiple post of service -->
-  <style>
-    .item .col-md-10 {
-    position: relative;
-    overflow: hidden;
-    /* To keep everything inside the card */
-    background: linear-gradient(to top, #F2F2FF 0%, #E6E6FF 40%, #FAFAFA 100%);
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
-    /* Smooth transition */
-    padding: 24px 2px;
-    min-height: 40vh;
-    }
-  </style>
 
 
   <section class="container-fluid py-3" >
@@ -44,7 +35,7 @@
 <section class="section-overlap pt-5">
   <div class="container">
      <div class="text-center mb-5">
-      <h1 class="fw-bold" style="color: #222;">{{ __('messages.see_list_services') }}</h1>
+      <p class="fw-bold" style="color: #222;">{{ __('messages.see_list_services') }}</p>
       <p class="fs-5 text-muted fst-italic">"{{ __('messages.empower_all_services') }}"</p>
     </div>
     <div class="row g-4">
@@ -59,8 +50,8 @@
 
           </div>
           <div class="card-body">
-            <h5 class="fw-bold text-warning">{{ Str::limit(strip_tags($service->title), 36) }}</h5>
-            <p class="text-muted">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($service->description)), 300) !!}</p>
+            <h5 class="fw-bold text-warning">{{ Str::limit(strip_tags($service->getTranslated('title')), 36) }}</h5>
+            <p class="text-muted">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($service->getTranslated('description'))), 300) !!}</p>
           </div>
         </div>
       </a>

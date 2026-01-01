@@ -113,11 +113,12 @@
                         <div class="form-group">
                             <label for="site_webmanifest">Site manifest</label><span style="color:red; font-size:large">
                                 *</span>
-                            <input type="file" name="site_webmanifest" class="form-control" id="pdf"
+                            <input type="file" name="site_webmanifest" class="form-control" id="site_webmanifest"
                                 placeholder="file">
-                            @if ($favicon->file)
-                                <img src="{{ asset('uploads/favicon/file/' . $favicon->file) }}"
-                                    style="max-width: 500px; max-height:500px" />
+                            @if ($favicon->site_webmanifest)
+                                <a href="{{ asset('uploads/favicon/file/' . $favicon->site_webmanifest) }}" target="_blank">
+                                    View Current File
+                                </a>
                             @endif
                             <span>{{ $favicon->site_webmanifest ?? old('site_webmanifest') }}</span>
                         </div>

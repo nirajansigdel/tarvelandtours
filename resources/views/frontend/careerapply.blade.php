@@ -6,7 +6,7 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">About us</h1>
+                <p class="fw-bold display-4">About us</p>
                 <p class="mt-2 fs-5">
                     <span class="fw-semibold">Home</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
@@ -18,7 +18,7 @@
 
 
 <div class="container">
-    <h1 class="text-center mt-5">Apply to Volunteer</h1>
+    <p class="text-center mt-5">Apply to Volunteer</p>
     <p class="text-center mb-4">Fill out the form below to apply for the Community Clean-Up Volunteer opportunity.</p>
 
     <div class="row justify-content-center">

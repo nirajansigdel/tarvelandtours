@@ -33,6 +33,7 @@ class ProductController extends Controller
     {
         $products = Product::latest()->paginate(12);
         $page_title = 'Products';
+
         return view('backend.products.index', compact('products', 'page_title'));
     }
 
@@ -44,6 +45,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        /** ✅ Everything is now OPTIONAL **/
         $validated = $request->validate([
             'heading' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string|max:255',
@@ -56,29 +58,34 @@ class ProductController extends Controller
             'location' => 'nullable|string|max:255',
             'transportation' => 'nullable|string|max:255',
             'content' => 'nullable|string',
+
             'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+
             'product_types' => 'nullable|array',
-            'product_types.*' => 'string',
-            'includes' => 'nullable|array|max:5',
-            'includes.*' => 'nullable|string|max:255',
+            'product_types.*' => 'nullable|string',
+
+           'includes'   => 'nullable|array',
+'includes.*' => 'nullable|string|max:255',
+
             'status' => 'nullable|boolean',
         ]);
 
-        // Handle multiple images
+        // ✅ Handle multiple images (optional)
         $galleryImages = [];
+
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $gimg) {
-                $gname = time().'_'.uniqid().'_'.$gimg->getClientOriginalName();
+                $gname = time() . '_' . uniqid() . '_' . $gimg->getClientOriginalName();
                 $gimg->move(public_path('uploads/products'), $gname);
                 $galleryImages[] = $gname;
             }
         }
 
-        // Filter out empty includes values
+        // ✅ Filter empty includes
         $includes = $request->input('includes', []);
         if (is_array($includes)) {
-            $includes = array_filter($includes, function($value) {
+            $includes = array_filter($includes, function ($value) {
                 return !empty(trim($value));
             });
         }
@@ -95,13 +102,14 @@ class ProductController extends Controller
             'location' => $validated['location'] ?? null,
             'transportation' => $validated['transportation'] ?? null,
             'content' => $validated['content'] ?? null,
+
             'images' => $galleryImages,
             'product_types' => $request->input('product_types'),
             'includes' => $includes,
             'status' => (bool)($request->input('status', 1)),
         ]);
 
-        // Save translations if provided
+        // ✅ Save translations if provided
         if ($request->has('translations')) {
             $this->translationService->saveFromRequest($product, $request->all());
         }
@@ -112,11 +120,13 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $page_title = 'Edit Product';
+
         return view('backend.products.update', compact('product', 'page_title'));
     }
 
     public function update(Request $request, Product $product)
     {
+        /** ✅ Everything OPTIONAL here also **/
         $validated = $request->validate([
             'heading' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string|max:255',
@@ -129,29 +139,34 @@ class ProductController extends Controller
             'location' => 'nullable|string|max:255',
             'transportation' => 'nullable|string|max:255',
             'content' => 'nullable|string',
+
             'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:4096',
+
             'product_types' => 'nullable|array',
-            'product_types.*' => 'string',
-            'includes' => 'nullable|array|max:5',
+            'product_types.*' => 'nullable|string',
+
+            'includes' => 'nullable|array',
             'includes.*' => 'nullable|string|max:255',
+
             'status' => 'nullable|boolean',
         ]);
 
-        // Handle additional gallery images, keep existing
-        $existing = is_array($product->images) ? $product->images : [];
+        // ✅ Handle images (append new ones, keep old)
+        $existingImages = is_array($product->images) ? $product->images : [];
+
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $gimg) {
-                $gname = time().'_'.uniqid().'_'.$gimg->getClientOriginalName();
+                $gname = time() . '_' . uniqid() . '_' . $gimg->getClientOriginalName();
                 $gimg->move(public_path('uploads/products'), $gname);
-                $existing[] = $gname;
+                $existingImages[] = $gname;
             }
         }
 
-        // Filter out empty includes values
+        // ✅ Filter empty includes
         $includes = $request->input('includes', []);
         if (is_array($includes)) {
-            $includes = array_filter($includes, function($value) {
+            $includes = array_filter($includes, function ($value) {
                 return !empty(trim($value));
             });
         }
@@ -168,13 +183,14 @@ class ProductController extends Controller
             'location' => $validated['location'] ?? null,
             'transportation' => $validated['transportation'] ?? null,
             'content' => $validated['content'] ?? null,
-            'images' => $existing,
+
+            'images' => $existingImages,
             'product_types' => $request->input('product_types'),
             'includes' => $includes,
             'status' => (bool)($request->input('status', 1)),
         ]);
 
-        // Save translations if provided
+        // ✅ Save translations if provided
         if ($request->has('translations')) {
             $this->translationService->saveFromRequest($product, $request->all());
         }
@@ -183,7 +199,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Auto-translate Product content to Spanish (AJAX endpoint)
+     * Auto-translate Product content
      */
     public function translate(Request $request, Product $product)
     {
@@ -192,11 +208,19 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        if ($product->image && file_exists(public_path('uploads/products/'.$product->image))) {
-            @unlink(public_path('uploads/products/'.$product->image));
+        /** ✅ Properly delete multiple images **/
+        if (is_array($product->images)) {
+            foreach ($product->images as $image) {
+                $path = public_path('uploads/products/' . $image);
+
+                if (file_exists($path)) {
+                    @unlink($path);
+                }
+            }
         }
 
         $product->delete();
+
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
 }

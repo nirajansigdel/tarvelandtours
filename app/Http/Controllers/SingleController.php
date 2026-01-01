@@ -25,10 +25,21 @@ use App\Models\SeoSetting;
 use App\Models\WhyUs;
 use App\Models\Product;
 use App\Models\Event;
+use App\models\AboutMeta;
+use App\models\ServiceMeta;
+use App\models\WhyMeta;
+use App\models\TestimonialMeta;
+use App\models\BlogMeta;
+use App\models\SingleBlogPageMeta;
+use App\models\SingleServicePageMeta;
+use App\models\GalleryMeta;
+use App\models\ContactMeta;
+use App\models\CareerMeta;
 use Illuminate\Http\Request;
 
 class SingleController extends Controller
 {
+    // Removed: JSON-specific filter; using model scopeHasType instead
     public function render_about()
     {
        $about = About::first();
@@ -39,8 +50,8 @@ class SingleController extends Controller
         $siteSetting = SiteSetting::first();
         $faqs = Faq::latest()->get();
         $missionVisionValues = MissionVisionValue::paginate(10);
-
-        return view('frontend.aboutus', compact('about', 'posts','faqs', 'listservices', 'message', 'siteSetting', 'teams','missionVisionValues'));
+        $aboutmeta=AboutMeta::first();
+        return view('frontend.aboutus', compact('about', 'posts','faqs', 'listservices', 'message', 'siteSetting', 'teams','missionVisionValues','aboutmeta'));
     }
 
     public function render_team(Request $request)
@@ -53,7 +64,8 @@ class SingleController extends Controller
         $about = About::first();
         $posts = Post::with('category')->latest()->take(3)->get();
         $missionVisionValues = MissionVisionValue::paginate(10);
-        return view('frontend.team', compact('teams', 'sitesetting', 'categories', 'about', 'page_title', 'services', 'posts','missionVisionValues'));
+         $aboutmeta=AboutMeta::first();
+        return view('frontend.team', compact('teams', 'sitesetting', 'categories', 'about', 'page_title', 'services', 'posts','missionVisionValues','aboutmeta'));
     }
 
 
@@ -66,8 +78,9 @@ class SingleController extends Controller
         $about = About::first();
         $serviceHead = Service::latest()->take(1)->get();
        $Sectionones = SectionOnePicture::latest()->get();
+       $servicemeta=ServiceMeta::first();
 
-        return view('frontend.services', compact('images', 'services', 'categories', 'sitesetting', 'about', 'serviceHead','Sectionones'));
+        return view('frontend.services', compact('images', 'services', 'categories', 'sitesetting', 'about', 'serviceHead','Sectionones','servicemeta'));
     }
 
     public function render_whyus()
@@ -76,15 +89,17 @@ class SingleController extends Controller
         $whyUsItems = WhyUs::latest()->take(12)->get();
         $whyUsData = WhyUs::latest()->get();
         $Sectionones = SectionOnePicture::first();
+        $whymeta=WhyMeta::first();
 
-        return view('frontend.whyus', compact('whyUsItems', 'clientMessages', 'whyUsData', 'Sectionones'));
+        return view('frontend.whyus', compact('whyUsItems', 'clientMessages', 'whyUsData', 'Sectionones','whymeta'));
     }
 
     public function render_testimonial()
     {
         $clientMessages = ClientMessage::latest()->get();
         $testimonials = Testimonial::latest()->take(12)->get();
-        return view('frontend.testimonials', compact('testimonials', 'clientMessages'));
+         $testimonialmeta=TestimonialMeta::first();
+        return view('frontend.testimonials', compact('testimonials', 'clientMessages','testimonialmeta'));
     }
 
     /**
@@ -94,21 +109,26 @@ class SingleController extends Controller
     {
         $faqs = Faq::where('type', 'procurement')->latest()->get();
 
+
         return view('frontend.procurement', compact('faqs'));
     }
 
     public function render_blogpostcategory()
     {
         $blogpostcategories = BlogPostsCategory::all();
+         $blogmeta=BlogMeta::first();
+         $singleblogmeta=SingleBlogPageMeta::first();
 
-        return view('frontend.blogpostcategories', compact('blogpostcategories'));
+        return view('frontend.blogpostcategories', compact('blogpostcategories','blogmeta','singleblogmeta'));
     }
 
     public function render_singleBlogpostcategory($slug)
     {
         $blogpostcategory = BlogPostsCategory::where('slug', $slug)->firstOrFail();
         $listblogs = BlogPostsCategory::where('slug', '!=', $slug)->latest()->get()->take(5);
-        return view('frontend.blogpostcategory', compact('blogpostcategory', 'listblogs'));
+          $blogmeta=BlogMeta::first();
+         $singleblogmeta=SingleBlogPageMeta::first();
+        return view('frontend.blogpostcategory', compact('blogpostcategory', 'listblogs' ,'blogmeta','singleblogmeta'));
     }
 
     public function render_singleService($slug)
@@ -120,8 +140,9 @@ class SingleController extends Controller
         $sitesetting = SiteSetting::first();
         $about = About::first();
         $listservices = Service::where('slug', '!=', $slug)->get();
+        $singleservicemeta=SingleServicePageMeta::first();
 
-        return view('frontend.service', compact('service', 'images', 'services', 'categories', 'sitesetting', 'about', 'listservices'));
+        return view('frontend.service', compact('service', 'images', 'services', 'categories', 'sitesetting', 'about', 'listservices','singleservicemeta'));
     }
 
     public function render_Countries()
@@ -177,6 +198,7 @@ class SingleController extends Controller
         $services = Service::latest()->get();
         $sitesetting = SiteSetting::first();
         $videos = VideoGallery::latest()->get();
+        $gallerymeta=GalleryMeta::first();
 
         $videos = $videos->map(function ($video) {
             $video->embed_url = 'https://www.youtube.com/embed/' . $video->url;
@@ -185,7 +207,7 @@ class SingleController extends Controller
 
         $about = About::first();
 
-        return view('frontend.galleries', compact('images', 'videos', 'services', 'categories', 'sitesetting', 'about'));
+        return view('frontend.galleries', compact('images', 'videos', 'services', 'categories', 'sitesetting', 'about' ,'gallerymeta'));
     }
 
     public function render_singleImage($slug)
@@ -267,8 +289,9 @@ class SingleController extends Controller
     {
         $page_title = 'Contact Us';
         $googleMapsLink = SiteSetting::first()->google_maps_link;
+        $contactmeta=ContactMeta::first();
 
-        return view('frontend.contactpage', compact('page_title', 'googleMapsLink'));
+        return view('frontend.contactpage', compact('page_title', 'googleMapsLink','contactmeta'));
     }
 
 
@@ -278,9 +301,9 @@ class SingleController extends Controller
         $type = request()->query('type');
         
         if ($type) {
-            // Filter products by the selected category type
+            // Filter products by the selected category type via portable scope
             $products = Product::where('status', true)
-                ->whereJsonContains('product_types', $type)
+                ->hasType($type)
                 ->latest()
                 ->paginate(12);
         } else {
@@ -288,53 +311,61 @@ class SingleController extends Controller
             $products = Product::where('status', true)->latest()->paginate(12);
         }
         
-        return view('frontend.product', compact('products', 'type'));
+        return view('frontend.activities', compact('products', 'type'));
     }
 
     public function render_destinations()
     {
         $products = Product::where('status', true)
-            ->whereJsonContains('product_types', 'Destination')
+            ->hasType('Destination')
             ->latest()
             ->paginate(12);
 
-        return view('frontend.destination', compact('products'));
+        return view('frontend.everest', compact('products'));
     }
+ public function render_general()
+    {
+        $products = Product::where('status', true)
+            ->hasType('General')
+            ->latest()
+            ->paginate(12);
 
+        return view('frontend.annapurna', compact('products'));
+    }
     public function render_festivals()
     {
         $products = Product::where('status', true)
-            ->whereJsonContains('product_types', 'Festival')
+            ->hasType('Festival')
             ->latest()
             ->paginate(12);
 
-        return view('frontend.festival', compact('products'));
+        return view('frontend.langtang', compact('products'));
     }
 
     public function render_couples()
     {
         $products = Product::where('status', true)
-            ->whereJsonContains('product_types', 'Couple')
+            ->hasType('Couple')
             ->latest()
             ->paginate(12);
 
-        return view('frontend.couple', compact('products'));
+        return view('frontend.adventure', compact('products'));
     }
 
     public function render_groups()
     {
         $products = Product::where('status', true)
-            ->whereJsonContains('product_types', 'Group')
+            ->hasType('Group')
             ->latest()
             ->paginate(12);
 
-        return view('frontend.group', compact('products'));
+        return view('frontend.poonhill', compact('products'));
     }
 
     public function render_posts()
     {
         $products = Product::where('status', true)
-            ->whereJsonContains('product_types', 'Post')
+            ->hasType('Post')
             ->latest()
             ->paginate(12);
 
@@ -352,7 +383,9 @@ class SingleController extends Controller
                 // If the product has multiple types, find products that share at least one type
                 if (is_array($product->product_types) && count($product->product_types) > 0) {
                     foreach ($product->product_types as $type) {
-                        $query->orWhereJsonContains('product_types', $type);
+                        $query->orWhere(function($q) use ($type) {
+                            $q->where('product_types', 'LIKE', '%"'.$type.'"%');
+                        });
                     }
                 }
             })
@@ -360,7 +393,7 @@ class SingleController extends Controller
             ->take(5)
             ->get();
             
-        return view('frontend.layouts.productblade', compact('product', 'relatedProducts'));
+        return view('frontend.productblade', compact('product', 'relatedProducts'));
     }
     
 
@@ -385,7 +418,9 @@ class SingleController extends Controller
     {
         $careers = \App\Models\Career::where('status', true)->latest()->get();
 
-        return view('frontend.career', compact('careers'));
+        $careermeta=CareerMeta::first();
+
+        return view('frontend.career', compact('careers', 'careermeta'));
     }
      public function render_volunteer()
     {

@@ -16,13 +16,6 @@
             </div>
         </div>
     </section>
-
-    <style>
-        .gallery_image{
-            height:400px;
-            width: 400px;
-        }
-    </style>
 <div class="container py-3">
     <div class="row ">
         <div class="col-lg-5">

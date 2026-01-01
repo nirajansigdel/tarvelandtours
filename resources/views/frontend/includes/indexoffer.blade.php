@@ -20,21 +20,21 @@
                 <span class="service-badge">{{ __('messages.exclusive_offer') }}</span>
               </div>
               <div class="service-content">
-                <h3 class="contenttitle text-capitalize text-white">{{ Str::limit(strip_tags($prod->heading), 15) }}</h3>
-                <p class="contentdesc text-white">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($prod->content)), 120) !!}</p>
+                <h3 class="contenttitle text-capitalize text-white">{{ Str::limit(strip_tags($prod->getTranslated('heading')), 26) }}</h3>
+                <p class="contentdesc text-white">{!! Str::limit(str_replace('&nbsp;', ' ', strip_tags($prod->getTranslated('content'))), 120) !!}</p>
                 
                 <!-- Pricing Information -->
                 @if($prod->original_price || $prod->discounted_price)
                   <div class="pricing-info mt-2">
                     @if($prod->original_price && $prod->discounted_price)
                       <div class="d-flex align-items-center gap-2">
-                        <span class="text-decoration-line-through text-white" style="font-size: 0.9rem;">NPR {{ number_format($prod->original_price) }}</span>
-                        <span class="fw-bold text-warning" style="font-size: 1.1rem;">NPR {{ number_format($prod->discounted_price) }}</span>
+                        <span class="text-decoration-line-through text-white" style="font-size: 0.9rem;">$ {{ number_format($prod->original_price) }}</span>
+                        <span class="fw-bold text-warning" style="font-size: 1.1rem;">$ {{ number_format($prod->discounted_price) }}</span>
                       </div>
                     @elseif($prod->discounted_price)
-                      <span class="fw-bold text-white" style="font-size: 1.1rem;">NPR {{ number_format($prod->discounted_price) }}</span>
+                      <span class="fw-bold text-white" style="font-size: 1.1rem;">$ {{ number_format($prod->discounted_price) }}</span>
                     @elseif($prod->original_price)
-                      <span class="fw-bold text-warning" style="font-size: 1.1rem;">NPR {{ number_format($prod->original_price) }}</span>
+                      <span class="fw-bold text-warning" style="font-size: 1.1rem;">$ {{ number_format($prod->original_price) }}</span>
                     @endif
                   </div>
                 @endif
@@ -47,7 +47,7 @@
 
     <div class="row d-flex flex-column justify-content-center align-items-center my-4">
       <div class="col-md-3">
-        <a href="{{ route('Service') }}">
+        <a href="{{ route('products.index.front') }}">
           <button class="cta-button btn btn-primary px-5">{{ __('messages.view_more') }}</button>
         </a>
       </div>

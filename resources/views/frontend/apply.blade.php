@@ -8,7 +8,7 @@
 
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="mt-5 pt-5">
-                <h1 class="fw-bold display-4">Our POst </h1>
+                <h3 class="fw-bold display-4">Our POst </h3>
                 <p class="mt-2 fs-5">
                     <span class="fw-semibold">Home</span>
                     <i class="fas fa-angle-double-right mx-2 text-warning"></i>
@@ -145,8 +145,7 @@
 </div>
 
     <!-- Custom CSS -->
-    <style>
-    </style>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

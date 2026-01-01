@@ -32,24 +32,36 @@ return [
     'generaloffer' => 'General Offers',
     'coupleoffer' => 'Couple Package',
     'groupoffer' => 'Group Package',
+    
+   'everest'    => 'Everest Treks',
+'annapurna'  => 'Annapurna Treks',
+'langtang'   => 'Langtang Treks',
+'adventure'  => 'Adventure Treks',
+'dolpa'      => 'Poonhill Treks',
+'activities' => 'Activities',
+'trekking' => 'Trekking',
+
+    
+    
+    
+    
 
 
 
     // Home page specific translations
     'hero_title_outline' => 'Explore',
     'hero_title_solid' => 'The World',
-    'hero_description' => 'Experience the best trekking in Nepal with customized tour packages from Kathmandu. From short treks near Kathmandu to low-budget adventures and the Annapurna Circuit, we offer unforgettable journeys for beginners and solo trekkers.',
     'discover_now' => 'Discover Now',
 
     // Banner section
-    'map_location' => 'Map Location',
-    'map_location_desc' => 'Explore stunning trekking routes in Nepal with detailed map locations',
-    'traveling_bag' => 'Traveling Bag',
-    'traveling_bag_desc' => 'Pack smart and light with the perfect traveling bag for adventures.',
+    'map_location' => 'Stunning Trekking Routes',
+    'map_location_desc' => 'Explore the most stunning trekking routes in Nepal, complete with detailed maps and locations to guide your adventure. From the Everest Base Camp to hidden trails, discover journeys off the beaten path.',
+    'traveling_bag' => 'Smart Travel Gear',
+    'traveling_bag_desc' => 'Pack light and smart for your Nepal adventure with the perfect traveling bag designed for trekking, hiking, and outdoor experiences.',
     'photography' => 'Photography',
-    'photography_desc' => 'Capture unforgettable moments of your Nepal adventure through stunning photography.',
+    'photography_desc' => 'Preserve every moment of your Nepal tours and treks with breathtaking photography — from mountains and jungles to cultural treasures.',
     'affordable_prices' => 'Affordable Prices',
-    'affordable_prices_desc' => 'Enjoy unforgettable Nepal experiences with high-quality service at affordable prices.',
+    'affordable_prices_desc' => 'Experience unforgettable Nepal journeys with high-quality service at budget-friendly prices, from family holidays to adventure treks and day tours..',
 
     // Why us section
     'why_choose_us' => 'Why choose us',
@@ -66,7 +78,7 @@ return [
     // Contact section
     'start_planning' => 'Start Planning Your Trip Now and',
     'get_discount' => 'Get 30% Discount',
-    'contact_description' => 'We\'re here to assist you with your travel plans and ensure you have an unforgettable experience. Let\'s make your dream trip a reality!',
+    'contact_description' => 'We’ll help you design the perfect trip and make sure every moment in Nepal is unforgettable. Let’s turn your dream journey into reality!',
     'book_now' => 'Book Now',
 
     // JavaScript alerts
@@ -115,7 +127,7 @@ return [
 
     // Index Service Section
     'our_services' => 'Our Services',
-    'join_adventure_stories' => 'Join The Adventure With Stories',
+    'join_adventure_stories' => 'Trekking and Tour Services in Nepal – Join the Adventure-',
     'service_description' => 'Experience the journey of a lifetime with the best travel agency in Nepal, renowned for organizing unforgettable solo treks and immersive adventures across the Himalayas.',
     'custom_destinations' => 'Custom Destinations',
     'unforgettable_moments' => 'Unforgettable Moments',
@@ -132,12 +144,12 @@ return [
 
     // What We Do Section
     'what_we_do' => 'What We Do',
-    'exploring_world_limits' => 'Exploring The World Without Limits',
-    'what_we_do_description' => 'From crystal-clear waters to thrilling adventures, we craft experiences that take you beyond boundaries. Whether you\'re seeking relaxation or excitement, our tours deliver memories that last a lifetime.',
+    'exploring_world_limits' => 'Discover Nepal’s Wonders Without Limits',
+    'what_we_do_description' => 'From majestic mountains to vibrant culture, we design Nepal tours and treks that create unforgettable memories. Whether it’s Everest Base Camp trekking, family holidays in the mountains and jungle, or adventure travel with rafting and paragliding, your journey will be extraordinary',
     'learn_more' => 'Learn More',
 
     // Blog Section
-    'collection_blogs' => 'Collection of Blogs',
+    'collection_blogs' => 'Blog Collection for Trekking and Tours in Nepal',
     'timeless_adventures' => 'Timeless Adventures Await with Timeless Stories.',
     'blogs' => 'Blogs',
     'view_details' => 'View details',
@@ -215,7 +227,7 @@ return [
     'join_adventure_club' => 'Join Our Adventure Club',
     'travel_assistance' => 'Travel Assistance & Support',
     'travel_internship_programs' => 'Travel Internship & Career Programs',
-    'sustainable_travel' => 'Sustainable Travel Initiatives',
+    'sustainable_travel' => 'Learn Spain language',
     'contact_we' => 'We would',
     'contact_love' => 'love to connect!',
     'contact_always' => 'We are always here to support, guide, and help you plan your next adventure. Feel free to reach out.',
@@ -299,12 +311,8 @@ return [
     'celebrate_togetherness_with_special_deals' => 'Celebrate togetherness with special deals',
     'perfect_for_two' => 'Ideal para Dos',
     'discover_amazing_destinations' => 'Discover amazing destinations and plan your next adventure',
-
-
-
-
-
-
+    'general_offer' => 'General Offer',
+    'general_offer_sub' => 'Explore our Nepal travel deals and trekking packages at the best prices',
 
 
 

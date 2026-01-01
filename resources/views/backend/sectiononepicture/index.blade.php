@@ -35,7 +35,7 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->title ?? '-' }}</td>
                             <td>
-                                <img src="{{ asset('storage/' . $item->image_path) }}" style="max-width:100px; max-height:100px;">
+                                <img src="{{ asset($item->image_path) }}" style="max-width:100px; max-height:100px;">
                             </td>
                             <td>
                                 <a href="{{ route('admin.sectiononepicture.edit', $item->id) }}" class="btn btn-primary btn-sm">

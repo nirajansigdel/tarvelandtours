@@ -1,84 +1,14 @@
-<style>
-.footer-section {
-    background: #0c2544;
-    color: #e0e0e0;
-    font-family: 'Segoe UI', sans-serif;
-    padding: 50px 0 20px;
-}
 
-.footer-section h5 {
-    color:var(--bs-orange);
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.footer-logo img {
-    max-height: 60px;
-    filter: brightness(0) invert(1);
-}
-
-.footer-menu a {
-    color: #e0e0e0;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 8px;
-    transition: color 0.3s;
-}
-
-.footer-menu a:hover {
-    color: #ffffff;
-}
-
-.footer-social a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    background: #152d56;
-    color: #f26522;
-    border-radius: 50%;
-    font-size: 18px;
-    transition: all 0.3s ease;
-}
-
-.footer-social a:hover {
-    background:var(--bs-orange);
-    color: #fff;
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(242, 101, 34, 0.7);
-}
-
-.footer-bottom {
-    border-top: 1px solid #2c3e50;
-    margin-top: 30px;
-    padding-top: 15px;
-    font-size: 14px;
-    text-align: center;
-}
-
-.reveal-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
-}
-
-.reveal-up.is-visible {
-    opacity: 1;
-    transform: none;
-}
-</style>
 <footer class="footer-section">
     <div class="container">
         <div class="row  text-md-start mb-5">
 
             <!-- Column 1 -->
             <div class="col-md-4 mb-4 reveal-up" style="--reveal-delay: 100ms;">
-                <h5>About Us</h5>
+                <h5>{{ __('messages.about_us') }}</h5>
                 <div class="footer-menu">
                     <a href="{{ route('Service') }}">{{ __('messages.services') }}</a>
-                    <a href="{{ route('Blogpostcategory') }}">{{ __('messages.blogs') }}</a>
+                    <a href="{{ route('blogs') }}">{{ __('messages.blogs') }}</a>
                     <a href="{{ route('Contact') }}">{{ __('messages.contact_us') }}</a>
                     <a href="{{ route('Gallery') }}">{{ __('messages.gallery') }}</a>
                 </div>
@@ -86,19 +16,19 @@
 
             <!-- Column 2 -->
             <div class="col-md-4 mb-4 reveal-up" style="--reveal-delay: 200ms;">
-                <h5>Explore</h5>
+                <h5>{{ __('messages.Explore') }}</h5>
                 <div class="footer-menu">
-                     <li><a class="dropdown-item" href="{{ route('products.index.front') }}">{{ __('messages.promotions') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">{{ __('messages.festivaloffer') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">{{ __('messages.coupleoffer') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">{{ __('messages.groupoffer') }}</a></li>
+                     <li><a class="dropdown-item" href="{{ route('products.index.front') }}">{{ __('messages.everest') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">{{ __('messages.annapurna') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">{{ __('messages.langtang') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">{{ __('messages.dolpa') }}</a></li>
                     
                 </div>
             </div>
 
             <!-- Column 3 (Social Links) -->
             <div class="col-md-4 mb-4 reveal-up" style="--reveal-delay: 300ms;">
-                <h5>Connect with Us</h5>
+                <h5>{{ __('messages.connect') }} </h5>
                 <div class="row">
                     <div class="col-md-12">
                         <p> 
@@ -138,7 +68,7 @@
 
             <!-- Copyright -->
             <div class="col-md-4 reveal-up" style="--reveal-delay: 400ms;">
-                © tarvel and tour Nepal {{ now()->year }}. {{ __('messages.alright') }}
+                © Unique Nepal Trek And Expedition {{ now()->year }}. {{ __('messages.alright') }}
             </div>
         </div>
     </div>

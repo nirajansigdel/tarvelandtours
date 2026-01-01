@@ -1,22 +1,4 @@
 
-
-<style>
-  @media (max-width: 768px) {
-  .testimonial-carousel .slick-slide {
-    padding: 10px;
-  }
-  .testimonial-carousel .bg-white {
-    padding: 20px;
-  }
-  .heading {
-    font-size: 1.8rem;
-  }
-  .extralarger {
-    font-size: 1rem;
-  }
-}
-
-</style>
 <section class="py-5" style="background-color: #f8f9fa;">
   <div class="container">
     <div class="row mb-4">
@@ -45,7 +27,7 @@
             @endfor
           </div>
 
-          <p class="text-muted small">{{ $testimonial->description }}</p>
+          <p class="text-muted small">{{ $testimonial->getTranslated('description') }}</p>
         </div>
       </div>
       @endforeach

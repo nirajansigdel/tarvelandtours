@@ -1,5 +1,10 @@
-
 @extends('frontend.layouts.master')
+
+<head>
+
+    <title>{{ $seoSetting->meta_title ?? config('app.name') }}</title>
+    <meta name="description" content="{{ $seoSetting->meta_description ?? '' }}">  
+</head>
 
 @section('content')
 
@@ -50,14 +55,13 @@
 
 
 --}}
-
 @include("frontend.includes.herosection")
 @include("frontend.includes.banner")
 @include("frontend.includes.indexoffer")
 @include("frontend.includes.indexcouple")
 @include("frontend.includes.indexDestination")
 @include("frontend.includes.why") 
-@include("frontend.includes.costest")
+@include("frontend.includes.indexabout")
 @include("frontend.includes.indexservice")
 @include("frontend.includes.indextestimonials")
 @include("frontend.includes.contact") 
@@ -189,82 +193,6 @@
         });
     });
 </script>
-<style>
-    .notification-image img {
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transition: transform 0.3s ease;
-        object-fit: cover;
-        max-height: 320px;
-        width:500px;
-    }
-
-    .notification-image img:hover {
-        transform: scale(1.01);
-    }
-
-    .modal-content {
-        border-radius: 12px;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-        border: none;
-        overflow: hidden;
-    }
-
-    .modal-header {
-        background:var(--primary) !important;
-        color: #fff;
-        padding: 1rem 1.5rem;
-        border-bottom: none;
-    }
-
-    .modal-header .modal-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-    }
-
-    .modal-body {
-        padding: 2rem;
-    }
-
-    .modal-footer {
-        padding: 1rem 1.5rem;
-        border-top: none;
-    }
-
-    .btn-close-white {
-        filter: brightness(0) invert(1);
-    }
-
-    .notification-content h6 {
-        font-size: 0.875rem;
-        color: #6c757d;
-        font-weight: 500;
-    }
-
-    .notification-content p {
-        font-size: 1rem;
-        color: #333;
-        margin-bottom: 0;
-    }
-
-    @media (max-width: 576px) {
-        .modal-body {
-            padding: 1.25rem;
-        }
-
-        .notification-image img {
-            max-height: 240px;
-        }
-
-        .modal-header, .modal-footer {
-            padding: 1rem;
-        }
-
-        .modal-title {
-            font-size: 1rem;
-        }
-    }
-</style>
 
 
 

@@ -2,6 +2,14 @@
 <!-- herosection for about contact and dem -->
 
   @extends('frontend.layouts.master')
+
+<head>
+    <title>{{ $testimonialmeta?->title ?? 'Default Title' }}</title>
+    <meta name="description" content="{{ $testimonialmeta->description ?? '' }}">
+
+</head>
+
+
 @section('content')
 <!-- herosection for about contact and dem -->
 <section class="position-relative text-white text-center"
@@ -25,7 +33,7 @@
   <div class="container">
     <div class="row mb-4">
       <div class="col-6 text-white">
-        <h1 class="heading"> {{ __('messages.testimonials') }}</h1>
+        <p class="heading"> {{ __('messages.testimonials') }}</p>
         <p class="extralarger">{{ __('messages.hear_happy_travelers') }}</p>
 
       </div>
@@ -38,7 +46,7 @@
         class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
 
         <h5 class="fw-bold mb-1">{{ $testimonial->name }}</h5>
-        <p class="text-muted mb-2">{{ $testimonial->position ?? 'Tourist' }}</p>
+        <p class="text-muted mb-2">{{ $testimonial->getTranslated('position') ?? 'Tourist' }}</p>
 
         <div class="text-warning mb-3">
         @for ($i = 0; $i < 5; $i++)
@@ -46,7 +54,7 @@
       @endfor
         </div>
 
-        <p class="text-muted small">{{ $testimonial->description }}</p>
+        <p class="text-muted small">{{ $testimonial->getTranslated('description') }}</p>
       </div>
       </div>
     @endforeach

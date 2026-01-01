@@ -44,8 +44,28 @@ use App\Http\Controllers\{
     ProductController,
     UserDetailController,
     SeoSettingController,
+    BlogMetaController,
+    ContactMetaController,
+    AboutMetaController,
+    ServiceMetaController,
+    WhyMetaController,
+    GalleryMetaController,
+    CareerMetaController,
+    TestimonialMetaController,
+    ProductOneMetaController,
+    ProductTwoMetaController,
+    ProductThreeMetaController,
+    ProductFourMetaController,
+    ProductFiveMetaController,
+    SinglePageMetaController,
+    SingleProductPageMetaController,
+    SingleBlogPageMetaController,
+    SingleServicePageMetaController,
     MissionVisionValueController,
     SectionOnePictureController,
+    SectionTwoPictureController,
+    SectionThreePictureController,
+    SectionFourPictureController,
     LanguageController,
     TranslationController,
 };
@@ -83,8 +103,8 @@ Route::get('/procurement', [SingleController::class, 'render_faqs'])->name('fron
 Route::get('/testimonails', [SingleController::class, 'render_testimonial'])->name('testimonails');
 
 // 📰 Blog & Categories
-Route::get('/blogpostcategories', [SingleController::class, 'render_blogpostcategory'])->name('Blogpostcategory');
-Route::get('/blog-category/{slug}', [SingleController::class, 'render_singleBlogpostcategory'])->name('SingleBlogpostcategory');
+Route::get('/blogs', [SingleController::class, 'render_blogpostcategory'])->name('blogs');
+Route::get('/blog/{slug}', [SingleController::class, 'render_singleBlogpostcategory'])->name('blog');
 Route::get('/singlecategory/{slug}', [SingleController::class, 'render_singleCategory'])->name('singleCategory');
 Route::get('/singlepost/{slug}', [SingleController::class, 'render_singlePost'])->name('singlePost');
 
@@ -111,15 +131,13 @@ Route::post('/apply/{id}', [ApplicationController::class, 'store'])->name('apply
 
 // 🛒 Products (Frontend)
 Route::get('/products', [SingleController::class, 'render_products'])->name('products.index.front');
-Route::get('/destinations', [SingleController::class, 'render_destinations'])->name('destinations.index.front');
-Route::get('/festivals', [SingleController::class, 'render_festivals'])->name('festivals.index.front');
-Route::get('/couples', [SingleController::class, 'render_couples'])->name('couples.index.front');
-Route::get('/groups', [SingleController::class, 'render_groups'])->name('groups.index.front');
+Route::get('/annapurna', [SingleController::class, 'render_general'])->name('general.index.front');
+Route::get('/everest', [SingleController::class, 'render_destinations'])->name('destinations.index.front');
+Route::get('/langtang', [SingleController::class, 'render_festivals'])->name('festivals.index.front');
+Route::get('/adventure', [SingleController::class, 'render_couples'])->name('couples.index.front');
+Route::get('/poonhill', [SingleController::class, 'render_groups'])->name('groups.index.front');
 Route::get('/posts', [SingleController::class, 'render_posts'])->name('posts.index.front');
 Route::get('/products/{id}', [SingleController::class, 'render_singleProduct'])->name('products.detail');
-
-
-
 
 // Extra static pages (optional)
 Route::get('/career', [SingleController::class, 'render_career'])->name('career');
@@ -173,8 +191,28 @@ Route::prefix('/admin')->name('admin.')->middleware(['web', 'auth'])->group(func
         'notifications' => NotificationController::class,
         'careers' => CareerController::class,
         'seo_settings' => SeoSettingController::class, 
+        'blogmeta' => BlogMetaController::class,
+        'contactmeta' => ContactMetaController::class,
+        'aboutmeta' => AboutMetaController::class,
+        'servicemeta' => ServiceMetaController::class,
+        'whymeta' => WhyMetaController::class,
+        'gallerymeta' => GalleryMetaController::class,
+        'careermeta' => CareerMetaController::class,
+        'testimonialmeta' => TestimonialMetaController::class,
+        'productonemeta' => ProductOneMetaController::class,
+        'producttwometa' => ProductTwoMetaController::class,
+        'productthreemeta' => ProductThreeMetaController::class,
+        'productfourmeta' => ProductFourMetaController::class,
+        'productfivemeta' => ProductFiveMetaController::class,
+        'singlepagemeta' => SinglePageMetaController::class,
+        'singleproductpagemeta' => SingleProductPageMetaController::class,
+        'singleblogpagemeta' => SingleBlogPageMetaController::class,
+        'singleservicepagemeta' => SingleServicePageMetaController::class,
         'missionvisionvalue'=> MissionVisionValueController::class,
         'sectiononepicture' => SectionOnePictureController::class,
+        'sectiontwopicture' => SectionTwoPictureController::class,
+        'sectionthreepicture' => SectionThreePictureController::class,
+        'sectionfourpicture' => SectionFourPictureController::class,
         // 'userdetails' => UserDetailController::class, // Simplified - only display data
     ]);
 

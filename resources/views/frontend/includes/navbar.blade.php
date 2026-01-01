@@ -12,10 +12,9 @@
     left: 0;
     width: 100%;
     top:0px !important;
-    padding:20px;
   }
 
-  .lang-option {
+    .lang-option {
     transition: color 0.3s ease;
     user-select: none;
   }
@@ -57,6 +56,8 @@
     filter: brightness(1.05);
   }
 
+
+
   .toplogo {
     width: auto;
     height: 70px;
@@ -89,7 +90,7 @@
     color: white !important;
     font-size: 18px;
     text-transform: capitalize;
-    margin:0.7rem;
+    margin:0.5rem;
     
   }
 
@@ -121,7 +122,7 @@
 
   .offcanvas-body .nav-link {
     font-size: 18px;
-    padding: 10px 0;
+    padding: 6px 0 !important;
     color: black !important;
   }
 
@@ -147,6 +148,10 @@
   }
 
   @media (min-width: 992px) {
+    /* Allow mega menu to be positioned relative to the full navbar width */
+    .navbar .nav-item.dropdown {
+      position: static;
+    }
     .navbar .dropdown:hover .dropdown-menu {
       display: block;
       margin-top: 0;
@@ -155,15 +160,229 @@
     .navbar .dropdown-toggle::after {
       transform: rotate(180deg);
     }
-  }
+    /* Mega dropdown styles for desktop */
+    /* Mega menu wrapper */
+.dropdown-menu.mega-menu {
+    width: 100%;
+max-width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 30px 0;
+    background: transparent;
+    border: none;
+    margin-top: 20px;
+}
+
+/* Glassmorphic inner container */
+.mega-menu .mega-inner {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 28px;
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    height: auto;
+    border: 1px solid rgba(255,255,255,0.25);
+    animation: megaFadeIn .3s ease;
+}
+
+/* Fade-in animation */
+@keyframes megaFadeIn {
+    from { opacity:0; transform:translateY(10px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+/* Card grid */
+.mega-card-grid {
+    display: flex;
+    gap: 22px;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+}
+
+/* Actual card */
+.mega-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #212529;
+    
+    /* Glow border */
+    border: 2px solid transparent;
+    background-clip: padding-box;
+
+    /* Shadow */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+
+    /* Animation */
+    transition: transform .25s ease, box-shadow .25s ease, border .25s ease;
+}
+
+/* Hover lift + glow */
+.mega-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 32px rgba(0,0,0,0.22);
+    border-color: rgba(255, 179, 80, 0.85);   /* Golden glow */
+}
+
+/* Card image */
+.mega-thumb {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid #eaeaea;
+}
+
+/* Title */
+.mega-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 14px 18px 6px;
+    color: #1d1d1d;
+}
+
+/* Description */
+.mega-card-desc {
+    font-size: 0.92rem;
+    color: #6c757d;
+    margin: 0 18px 14px;
+    line-height: 1.35;
+}
+
+/* Button */
+.mega-card-btn {
+    margin: 0 18px 18px;
+    padding: 10px 12px;
+    background: linear-gradient(135deg, #ef6b20, #ff914d);
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all .25s ease;
+}
+
+.mega-card-btn:hover {
+    background: linear-gradient(135deg, #d55a00, #ff7a22);
+    box-shadow: 0 4px 14px rgba(239, 107, 32, 0.45);
+}
+
+/* Premium label tag */
+.mega-label {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(0,0,0,0.65);
+    padding: 5px 12px;
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 600;
+    border-radius: 50px;
+    backdrop-filter: blur(6px);
+}
+
+/* Mobile responsiveness */
+@media(max-width: 992px){
+    .mega-menu .mega-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 20px;
+    }
+    .mega-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    .mega-thumb {
+        height: 160px;
+    }
+}
 </style>
 
 <!-- Navbar -->
+@php
+  use App\Models\Product;
+  use App\Models\Service;
+  use App\Models\WhyUs;
+  use App\Models\About;
+  use App\Models\CoverImage;
+use App\Models\BlogPostsCategory;
+  use App\Models\Career;
+  use App\Models\Testimonial;
+
+  // Helper to get first product image url
+  $firstProductImage = function (?Product $p) {
+    if (!$p) return null;
+    $imgs = is_array($p->images) ? $p->images : [];
+    if (count($imgs) > 0) {
+      return asset('uploads/products/' . $imgs[0]);
+    }
+    return null;
+  };
+
+  // Offer thumbnails (one latest item per type)
+  $promoProd = Product::where('status', true)->hasType('Post')->latest()->first();
+  $promoThumb = $firstProductImage($promoProd);
+  
+    $destination = Product::where('status', true)->hasType('Destination')->latest()->first();
+  $generaldestination = $firstProductImage($destination);
+
+  $generalProd = Product::where('status', true)->hasType('General')->latest()->first();
+  $generalThumb = $firstProductImage($generalProd);
+
+  $festivalProd = Product::where('status', true)->hasType('Festival')->latest()->first();
+  $festivalThumb = $firstProductImage($festivalProd);
+
+  $coupleProd = Product::where('status', true)->hasType('Couple')->latest()->first();
+  $coupleThumb = $firstProductImage($coupleProd);
+
+  $groupProd = Product::where('status', true)->hasType('Group')->latest()->first();
+  $groupThumb = $firstProductImage($groupProd);
+
+  // Introduction thumbnails
+  $service = Service::latest()->first();
+  $serviceThumb = $service && $service->image ? asset('uploads/service/' . $service->image) : null;
+
+  $why = WhyUs::latest()->first();
+  $whyThumb = $why && $why->image ? asset('uploads/whyus/' . $why->image) : null;
+
+  $about = About::first();
+  $aboutThumb = $about && $about->image ? asset('uploads/about/' . $about->image) : null;
+
+  $cover = CoverImage::latest()->first();
+  $homeThumb = null;
+  if ($cover) {
+    $coverImgs = is_array($cover->image) ? $cover->image : [];
+    if (count($coverImgs) > 0) {
+      $homeThumb = asset('uploads/coverimage/' . $coverImgs[0]);
+    }
+  }
+
+  // Updates thumbnails
+   $blog = BlogPostsCategory::latest()->first();
+  $blogsThumb = $blog && $blog->image ? asset('uploads/blogpostcategory/' . $blog->image) : null;
+
+  $careerItem = Career::where('status', true)->latest()->first();
+  $careerThumb = $careerItem ? $careerItem->image_url : null;
+
+  $testi = Testimonial::latest()->first();
+  $testimonialThumb = $testi && $testi->image ? asset('uploads/testimonial/' . $testi->image) : null;
+@endphp
 <nav class="navbar navbar-expand-md">
   <div class="container d-flex align-items-center justify-content-between">
     <!-- Logo -->
     <a class="navbar-brand toplogo" href="{{ route('index') }}">
-      <img src="{{ asset('image/logo.jpg') }}" alt="Logo" />
+      <img src="{{ asset('image/logo1.png') }}" alt="Logo" />
     </a>
 
     <!-- Language Toggle (mobile) -->
@@ -203,44 +422,87 @@
             data-bs-toggle="dropdown" aria-expanded="false">
             {{ __('messages.introduction') }}
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{ route('index') }}">{{ __('messages.Home') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('whyus') }}">{{ __('messages.why_us') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('Service') }}">{{ __('messages.services') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('About') }}">{{ __('messages.about') }}</a></li>
-
-          </ul>
+          <div class="dropdown-menu mega-menu" aria-labelledby="navbarDropdown">
+            <div class="container-fluid mega-inner">
+              <div class="mega-card-grid">
+                <a class="mega-card" href="{{ route('index') }}">
+                  <div class="mega-thumb" @if($homeThumb) style="background-image: url('{{ $homeThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.Home') }}</div>
+                </a>
+                <a class="mega-card" href="{{ route('whyus') }}">
+                  <div class="mega-thumb" @if($whyThumb) style="background-image: url('{{ $whyThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.why_us') }}</div>
+                </a>
+                <a class="mega-card" href="{{ route('Service') }}">
+                  <div class="mega-thumb" @if($serviceThumb) style="background-image: url('{{ $serviceThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.services') }}</div>
+                </a>
+                <a class="mega-card" href="{{ route('About') }}">
+                  <div class="mega-thumb" @if($aboutThumb) style="background-image: url('{{ $aboutThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.about') }}</div>
+                </a>
+              </div>
+            </div>
+          </div>
         </li>
         
-        <li class="nav-item"><a class="nav-link text-dark" href="{{ route('Gallery') }}">{{ __('messages.gallery') }}</a></li>
+       
+         <li class="nav-item"><a class="nav-link text-dark" href="{{ route('blogs') }}">{{ __('messages.blogs') }}</a></li>
         <li class="nav-item"><a class="nav-link text-dark "
-            href=" {{ route('destinations.index.front') }}">{{ __('messages.Destination') }}</a></li>
+            href=" {{ route('products.index.front') }}">{{ __('messages.activities') }}</a></li>
         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark " href="#" id="offerDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
-            Offer
+     {{ __('messages.trekking') }}
           </a>
-          <ul class="dropdown-menu" aria-labelledby="offerDropdown">
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}">{{ __('messages.promotions') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('products.index.front') }}">{{ __('messages.generaloffer') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('festivals.index.front') }}">{{ __('messages.festivaloffer') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('couples.index.front') }}">{{ __('messages.coupleoffer') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('groups.index.front') }}">{{ __('messages.groupoffer') }}</a></li>
-
-          </ul>
+          <div class="dropdown-menu mega-menu" aria-labelledby="offerDropdown">
+            <div class="container-fluid mega-inner">
+              <div class="mega-card-grid">
+                <a class="mega-card" href="{{ route('destinations.index.front') }}">
+                  <div class="mega-thumb" @if($generaldestination) style="background-image: url('{{ $generaldestination }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.everest') }}</div>
+                </a>
+                <a class="mega-card" href="{{ route('general.index.front') }}">
+                  <div class="mega-thumb" @if($generalThumb) style="background-image: url('{{ $generalThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.annapurna') }}</div>
+                </a>
+                <a class="mega-card" href="{{ route('festivals.index.front') }}">
+                  <div class="mega-thumb" @if($festivalThumb) style="background-image: url('{{ $festivalThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.langtang') }}</div>
+                </a>
+                <a class="mega-card" href="{{ route('couples.index.front') }}">
+                  <div class="mega-thumb" @if($coupleThumb) style="background-image: url('{{ $coupleThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.adventure') }}</div>
+                </a>
+                <a class="mega-card" href="{{ route('groups.index.front') }}">
+                  <div class="mega-thumb" @if($groupThumb) style="background-image: url('{{ $groupThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.dolpa') }}</div>
+                </a>
+              </div>
+            </div>
+          </div>
         </li>
 
 
         <li class="nav-item dropdown">
           <a class="nav-link text-dark" href="#" data-bs-toggle="dropdown">Updates</a>
-          <ul class="dropdown-menu">
-            <!-- <li><a class="dropdown-item" href="{{ route('events') }}">News & Events</a></li> -->
-            <li><a class="dropdown-item" href="{{ route('Blogpostcategory') }}">{{ __('messages.blogs') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('career') }}">{{ __('messages.careernav')}}</a></li>
-            <li><a class="dropdown-item" href="{{ route('testimonails') }}">{{ __('messages.testimonials') }}</a></li>
-          </ul>
+          <div class="dropdown-menu mega-menu">
+            <div class="container-fluid mega-inner">
+              <div class="mega-card-grid">
+                <a class="mega-card" href="{{ route('career') }}">
+                  <div class="mega-thumb" @if($careerThumb) style="background-image: url('{{ $careerThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.careernav')}}</div>
+                </a>
+                <a class="mega-card" href="{{ route('testimonails') }}">
+                  <div class="mega-thumb" @if($testimonialThumb) style="background-image: url('{{ $testimonialThumb }}'); background-size: cover; background-position: center;" @endif></div>
+                  <div class="mega-card-title">{{ __('messages.testimonials') }}</div>
+                </a>
+              </div>
+            </div>
+          </div>
         </li>
+         <li class="nav-item"><a class="nav-link text-dark" href="{{ route('Gallery') }}">{{ __('messages.gallery') }}</a></li>
         <li class="nav-item"><a class="nav-link text-dark" href=" {{ route('Contact') }}">{{ __('messages.contact') }}</a></li>
       </ul>
 
@@ -281,47 +543,41 @@
         <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('About') }}">About Us</a>
+        <a class="nav-link" href="{{ route('blogs') }}">Blogs</a>
       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{{ route('products.index.front') }}?type=Post">{{ __('messages.activities')}}</a>
+      </li> <li class="nav-item">
+        <a class="nav-link" href="{{ route('products.index.front') }}?type=Destination">{{ __('messages.everest')}}</a>
+      </li> <li class="nav-item">
+        <a class="nav-link" href="{{ route('products.index.front') }}?type=General">{{ __('messages.langtang') }}</a>
+      </li> 
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('whyus') }}">Why Us</a>
+        <a class="nav-link"  href="{{ route('products.index.front') }}?type=Festival">{{ __('messages.annapurna') }}</a>
       </li>
+      </li> <li class="nav-item">
+        <a class="nav-link" href="{{ route('products.index.front') }}?type=Couple">{{ __('messages.adventure') }}</a>
+      </li> 
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('Contact') }}">Contact Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('Gallery') }}">Gallery</a>
+        <a class="nav-link"  href="{{ route('products.index.front') }}?type=Group">{{ __('messages.dolpa') }}</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-          Offer
+          Information
         </a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Post">Post</a></li>
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Destination">Destination</a></li>
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=General">General</a></li>
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Festival">Festival</a></li>
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Couple">Couple</a></li>
-          <li><a class="dropdown-item" href="{{ route('products.index.front') }}?type=Group">Group</a></li>
+          <li><a class="dropdown-item" href="{{ route('About') }}">About Us</a></li>
+          <li><a class="dropdown-item" href="{{ route('Service') }}">{{ __('messages.services') }}</a></li>
+          <li><a class="dropdown-item" href="{{ route('events') }}" >News & Events</a></li>
+          <li><a class="dropdown-item"  href="{{ route('whyus') }}" >Why Us</a></li>
+          <li><a class="dropdown-item"  href="{{ route('Gallery') }}">Gallery</a></li>
+          <li><a class="dropdown-item" href="{{ route('career') }}" >Opportunity</a></li>
+          <li><a class="dropdown-item" href="{{ route('faqs') }}">FAQs</a></li>
         </ul>
       </li> 
-
-
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('Service') }}">{{ __('messages.services') }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('career') }}">Opportunity</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('events') }}">News & Events</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('Blogpostcategory') }}">Blogs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('faqs') }}">FAQs</a>
+      
+       <li class="nav-item">
+        <a class="nav-link" href="{{ route('Contact') }}">Contact Us</a>
       </li>
     </ul>
   </div>

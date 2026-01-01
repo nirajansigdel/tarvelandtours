@@ -50,6 +50,55 @@ class FrontViewController extends Controller
         $notifications = Notification::where('status', 1)->latest()->get();
         $products = \App\Models\Product::where('status', true)->latest()->get();
          $seoSetting = SeoSetting::latest()->first();
+         if ($seoSetting) {
+             $locale = app()->getLocale();
+             $normalize = function ($value) use ($locale) {
+                 if ($value === null) {
+                     return null;
+                 }
+                 if (is_string($value)) {
+                     $trimmed = trim($value);
+                     $firstChar = $trimmed[0] ?? '';
+                     if ($firstChar === '[' || $firstChar === '{') {
+                         $decoded = json_decode($trimmed, true);
+                         if (json_last_error() === JSON_ERROR_NONE) {
+                             $value = $decoded;
+                         } else {
+                             return $trimmed;
+                         }
+                     } else {
+                         return $trimmed;
+                     }
+                 }
+                 if (is_array($value)) {
+                     $isAssoc = array_keys($value) !== range(0, count($value) - 1);
+                     if ($isAssoc) {
+                         if (isset($value[$locale]) && is_string($value[$locale]) && $value[$locale] !== '') {
+                             return $value[$locale];
+                         }
+                         foreach ($value as $v) {
+                             if (is_string($v) && $v !== '') {
+                                 return $v;
+                             }
+                         }
+                         return null;
+                     } else {
+                         foreach ($value as $v) {
+                             if (is_string($v) && $v !== '') {
+                                 return $v;
+                             }
+                         }
+                         return null;
+                     }
+                 }
+                 return $value;
+             };
+             foreach (['meta_title','meta_description','meta_keywords','canonical_url','heading_h1','image_description','meta_author','viewport'] as $field) {
+                 if (isset($seoSetting->$field)) {
+                     $seoSetting->$field = $normalize($seoSetting->$field);
+                 }
+             }
+         }
     
     
         return view('frontend.index', compact(

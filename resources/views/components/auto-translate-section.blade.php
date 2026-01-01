@@ -27,21 +27,49 @@
         @foreach($fields as $field)
             <div class="translation-item mb-3">
                 <label class="form-label small text-muted">{{ ucfirst(str_replace('_', ' ', $field)) }} (Spanish)</label>
-                @if(in_array($field, ['content', 'description', 'answer', 'bio', 'requirements']))
+                @if($field === 'includes')
+                    @php
+                        $translatedIncludes = $model->getTranslated('includes', 'es');
+                        $translatedIncludes = is_array($translatedIncludes) ? $translatedIncludes : (empty($translatedIncludes) ? [] : [$translatedIncludes]);
+                    @endphp
+                    <ul class="list-unstyled m-0">
+                        @forelse($translatedIncludes as $idx => $item)
+                            <li class="mb-2">
+                                <input 
+                                    type="text" 
+                                    name="translations[includes][es][]" 
+                                    class="form-control form-control-sm" 
+                                    placeholder="Translated item {{ $idx + 1 }}"
+                                    value="{{ is_array($item) ? implode(', ', $item) : $item }}">
+                            </li>
+                        @empty
+                            <li class="mb-2">
+                                <input 
+                                    type="text" 
+                                    name="translations[includes][es][]" 
+                                    class="form-control form-control-sm" 
+                                    placeholder="Translated item 1"
+                                    value="">
+                            </li>
+                        @endforelse
+                    </ul>
+                @elseif(in_array($field, ['content', 'description', 'answer', 'bio', 'requirements']))
+                    @php $val = $model->getTranslated($field, 'es'); @endphp
                     <textarea 
                         id="translated_{{ $field }}_{{ $modelId }}" 
                         name="translations[{{ $field }}][es]"
                         class="form-control form-control-sm" 
                         rows="5"
-                        placeholder="Spanish translation will appear here...">{{ $model->getTranslated($field, 'es') }}</textarea>
+                        placeholder="Spanish translation will appear here...">{{ is_array($val) ? implode("\n", $val) : $val }}</textarea>
                 @else
+                    @php $val = $model->getTranslated($field, 'es'); @endphp
                     <input 
                         type="text" 
                         id="translated_{{ $field }}_{{ $modelId }}" 
                         name="translations[{{ $field }}][es]"
                         class="form-control form-control-sm" 
                         placeholder="Spanish translation will appear here..."
-                        value="{{ $model->getTranslated($field, 'es') }}">
+                        value="{{ is_array($val) ? implode(', ', $val) : $val }}">
                 @endif
                 @if($loop->first)
                     <small class="text-info">

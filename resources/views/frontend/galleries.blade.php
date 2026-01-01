@@ -1,208 +1,15 @@
 @extends('frontend.layouts.master')
+
+
+
+<head>
+    <title>{{ $gallerymeta?->title ?? 'Default Title' }}</title>
+    <meta name="description" content="{{ $gallerymeta?->description ?? '' }}">
+
+</head>
+
 @section('content')
 
-<style>
-    .gallery-section {
-        padding:50px 0;
-        position: relative;
-        overflow: hidden;
-    }
-
-
-
-    .gallery-wrapper {
-        position: relative;
-    }
-
-    .gallery-masonry {
-        display: flex;
-        flex-wrap: wrap;
-        margin: -10px;
-    }
-
-    .gallery-item {
-        width: calc(33.333% - 20px);
-        margin: 10px;
-        position: relative;
-        overflow: hidden;
-        border-radius: 4px;
-        transform-origin: center;
-        transition: all 0.4s ease;
-    }
-
-    .gallery-item:nth-child(3n+1) {
-        transform: rotate(-1deg);
-    }
-
-    .gallery-item:nth-child(3n+2) {
-        transform: rotate(1deg);
-    }
-
-    .gallery-item:nth-child(3n+3) {
-        transform: rotate(-0.5deg);
-    }
-
-    .gallery-item:hover {
-        transform: rotate(0) scale(1.02);
-        z-index: 2;
-    }
-
-    .gallery-img {
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-        transition: all 0.4s ease;
-    }
-
-    .gallery-content {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 20px;
-        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        transform: translateY(100%);
-        transition: transform 0.4s ease;
-    }
-
-    .view-btn {
-        color: white;
-        font-size: 14px;
-        text-decoration: none;
-        position: relative;
-        padding-bottom: 2px;
-    }
-
-    .view-btn::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: white;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover .gallery-content {
-        transform: translateY(0);
-    }
-
-    .gallery-item:hover .view-btn::after {
-        transform: scaleX(1);
-        transform-origin: left;
-    }
-
-    /* Filter Buttons */
-    .filter-container {
-        margin-top: 0px;
-        text-align: center;
-        margin-bottom: 50px;
-        position: relative;
-    }
-
-    .filter-container::before,
-    .filter-container::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        width: 100px;
-        height: 1px;
-        background: linear-gradient(to right, transparent, var(--primary), transparent);
-    }
-
-    .filter-container::before {
-        left: calc(50% - 200px);
-    }
-
-    .filter-container::after {
-        right: calc(50% - 200px);
-    }
-
-    .btn-group {
-        display: inline-flex;
-        background: white;
-        padding: 6px;
-        border-radius: 30px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        position: relative;
-        z-index: 1;
-    }
-
-    .btn-group button {
-        padding: 12px 30px;
-        border: none;
-        background: transparent;
-        color: #555;
-        font-size: 15px;
-        font-weight: 600;
-        border-radius: 25px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        letter-spacing: 0.5px;
-    }
-
-    .btn-group button:hover {
-        color: var(--primary);
-    }
-
-    .btn-group button.active {
-        background: var(--primary);
-        color: white;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
-    }
-
-    .btn-group button:not(:last-child) {
-        margin-right: 5px;
-    }
-
-    @media (max-width: 991px) {
-        .gallery-item {
-            width: calc(50% - 20px);
-        }
-    }
-
-    @media (max-width: 576px) {
-        .gallery-item {
-            width: calc(100% - 20px);
-        }
-        
-        .gallery-section {
-            padding: 60px 0;
-        }
-    }
-
-    .gallery-content .btn-primary {
-        background: white;
-        color: var(--primary);
-        border: none;
-        padding: 8px 16px;
-        font-size: 14px;
-        font-weight: 600;
-        border-radius: 20px;
-        transition: all 0.3s ease;
-    }
-
-    .gallery-content .btn-primary:hover {
-        background: var(--primary);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .gallery-content .d-flex {
-        gap: 15px;
-    }
-</style>
-
-<!-- ======= Blog Hero Section ======= -->
-<style>
-  
-</style>
 
 <section class="position-relative text-white text-center"
         style="background: url('{{ asset('image/check.jpg') }}') center center / cover no-repeat; height:400px;">
@@ -224,7 +31,7 @@
 <section class="gallery-section">
     <div class="container">
         <div class=" text-center gap-1">
-            <h1 class="heading">{{ __('messages.photogallery') }}</h1>
+            <p class="heading">{{ __('messages.photogallery') }}</p>
             <p class="extralarger">{{ __('messages.gallery_sub') }}</p>
         </div>
 

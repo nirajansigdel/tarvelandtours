@@ -15,11 +15,22 @@ class SeoSettingController extends Controller
 
     public function create()
     {
+        // Only one SEO Setting record is allowed
+        if (SeoSetting::count() >= 1) {
+            return redirect()->route('backend.seo_settings.edit', SeoSetting::first()->id)
+                ->with('info', 'Only one SEO Setting can exist. Edit the existing one below.');
+        }
         return view('backend.seo_settings.create');
     }
 
     public function store(Request $request)
     {
+        // Block creation if a record already exists
+        if (SeoSetting::count() >= 1) {
+            return redirect()->route('backend.seo_settings.edit', SeoSetting::first()->id)
+                ->with('warning', 'Only one SEO Setting is allowed. Please edit the existing one.');
+        }
+
         $validated = $request->validate([
             'meta_title' => 'nullable|array',
             'meta_title.*' => 'nullable|string|max:255',
@@ -55,7 +66,7 @@ class SeoSettingController extends Controller
 
         $seoSetting->save();
 
-        return redirect()->route('backend.seo_settings.index')->with('success', 'SEO Setting created successfully.');
+        return redirect()->route('backend.seo_settings.edit', $seoSetting->id)->with('success', 'SEO Setting created successfully.');
     }
 
     public function edit($id)

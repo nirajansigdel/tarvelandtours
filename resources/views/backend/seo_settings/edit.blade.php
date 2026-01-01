@@ -140,13 +140,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    dynamicInput('meta_title_wrapper', 'btn-add-meta-title');
-    dynamicInput('meta_description_wrapper', 'btn-add-meta-description');
-    dynamicInput('meta_keywords_wrapper', 'btn-add-meta-keywords');
-    dynamicInput('canonical_url_wrapper', 'btn-add-canonical-url');
-    dynamicInput('schema_json_wrapper', 'btn-add-schema-json', true);
-    dynamicInput('heading_h1_wrapper', 'btn-add-heading-h1');
-    dynamicInput('image_description_wrapper', 'btn-add-image-description', true);
+    dynamicInput('meta_title_wrapper', 'btn-add-meta_title');
+    dynamicInput('meta_description_wrapper', 'btn-add-meta_description');
+    dynamicInput('meta_keywords_wrapper', 'btn-add-meta_keywords');
+    dynamicInput('canonical_url_wrapper', 'btn-add-canonical_url');
+    dynamicInput('schema_json_wrapper', 'btn-add-schema_json', true);
+    dynamicInput('heading_h1_wrapper', 'btn-add-heading_h1');
+    dynamicInput('image_description_wrapper', 'btn-add-image_description', true);
 });
 </script>
 @endsection

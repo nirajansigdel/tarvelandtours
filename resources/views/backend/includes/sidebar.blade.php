@@ -347,6 +347,53 @@
                 @endhasanyrole
                 {{-- End of Introduction --}}
 
+                {{-- Beginning of Section Pictures --}}
+                @hasanyrole('superadmin|admin')
+                    <li class="nav-item">
+                        <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                            <div class="col-auto navbar-vertical-label">Section Pictures</div>
+                            <div class="col ps-0">
+                                <hr class="mb-0 navbar-vertical-divider">
+                            </div>
+                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-indicator {{ in_array(Request::segment(2), ['sectiononepicture','sectiontwopicture','sectionthreepicture','sectionfourpicture']) ? '' : 'collapsed' }}"
+                            href="#dashboardSectionPictures" role="button" data-bs-toggle="collapse"
+                            aria-expanded="{{ in_array(Request::segment(2), ['sectiononepicture','sectiontwopicture','sectionthreepicture','sectionfourpicture']) ? 'true' : 'false' }}"
+                            aria-controls="dashboardSectionPictures">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon"><i class="fas fa-images"></i></span>
+                                <span class="nav-link-text ps-1">Section Pictures</span>
+                            </div>
+                        </a>
+                        <ul class="nav collapse {{ in_array(Request::segment(2), ['sectiononepicture','sectiontwopicture','sectionthreepicture','sectionfourpicture']) ? 'show' : '' }}"
+                            id="dashboardSectionPictures">
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::segment(2) == 'sectiononepicture' ? 'active' : '' }}" href="{{ route('admin.sectiononepicture.index') }}">
+                                    <div class="d-flex align-items-center"><i class="fa fa-angle-double-right"></i> Section One</div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::segment(2) == 'sectiontwopicture' ? 'active' : '' }}" href="{{ route('admin.sectiontwopicture.index') }}">
+                                    <div class="d-flex align-items-center"><i class="fa fa-angle-double-right"></i> Section Two</div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::segment(2) == 'sectionthreepicture' ? 'active' : '' }}" href="{{ route('admin.sectionthreepicture.index') }}">
+                                    <div class="d-flex align-items-center"><i class="fa fa-angle-double-right"></i> Section Three</div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::segment(2) == 'sectionfourpicture' ? 'active' : '' }}" href="{{ route('admin.sectionfourpicture.index') }}">
+                                    <div class="d-flex align-items-center"><i class="fa fa-angle-double-right"></i> Section Four</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    </li>
+                @endhasanyrole
+                {{-- End of Section Pictures --}}
+
 
 
 @hasanyrole('superadmin|admin')
@@ -617,12 +664,7 @@
                     
                 @endhasanyrole
                 --}}
-                {{-- End of Student Reviews --}}
-
-                {{-- Beginning of Blog Posts Category --}}
-                
-             
-                {{-- End of Blog Posts Category --}}
+        
 
                 {{-- Beginning of FAQs --}}
                 @hasanyrole('superadmin|admin')
@@ -762,8 +804,10 @@
 @endhasanyrole
 @hasanyrole('superadmin|admin')
     <li class="nav-item">
-        <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
-            <div class="col-auto navbar-vertical-label">SEO Settings</div>
+        <div class="row navbar-vertical-label-wrapper mt-4 mb-3">
+            <div class="col-auto navbar-vertical-label fw-bold text-uppercase" style="letter-spacing: 0.5px; font-size: 0.75rem; color: #495057;">
+                <i class="fas fa-cog me-1"></i>Meta Settings
+            </div>
             <div class="col ps-0">
                 <hr class="mb-0 navbar-vertical-divider">
             </div>
@@ -771,13 +815,125 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ Request::segment(2) == 'seo_settings' ? 'active' : '' }}"
-            href="{{ route('admin.seo_settings.index') }}">
+        <a class="nav-link dropdown-indicator {{ in_array(Request::segment(2), ['seo_settings','blogmeta','contactmeta','aboutmeta','servicemeta','whymeta','gallerymeta','careermeta','testimonialmeta','productonemeta','producttwometa','productthreemeta','productfourmeta','productfivemeta','singlepagemeta','singleblogpagemeta','singleservicepagemeta','singleproductpagemeta']) ? '' : 'collapsed' }}"
+           href="#metaSettingsDropdown" role="button" data-bs-toggle="collapse"
+           aria-expanded="{{ in_array(Request::segment(2), ['seo_settings','blogmeta','contactmeta','aboutmeta','servicemeta','whymeta','gallerymeta','careermeta','testimonialmeta','productonemeta','producttwometa','productthreemeta','productfourmeta','productfivemeta','singlepagemeta','singleblogpagemeta','singleservicepagemeta','singleproductpagemeta']) ? 'true' : 'false' }}"
+           aria-controls="metaSettingsDropdown">
             <div class="d-flex align-items-center">
-                <i class="fa fa-angle-double-right"></i>
-                <span class="nav-link-text ps-1">SEO Settings</span>
+                <span class="nav-link-icon" style="color: #6c757d;"><i class="fas fa-tags"></i></span>
+                <span class="nav-link-text ps-1 fw-500">Meta Settings</span>
             </div>
         </a>
+
+        <ul class="nav collapse {{ in_array(Request::segment(2), ['seo_settings','blogmeta','contactmeta','aboutmeta','servicemeta','whymeta','gallerymeta','careermeta','testimonialmeta','productonemeta','producttwometa','productthreemeta','productfourmeta','productfivemeta','singlepagemeta','singleblogpagemeta','singleservicepagemeta','singleproductpagemeta']) ? 'show' : '' }}" id="metaSettingsDropdown" style="background: rgba(108, 117, 125, 0.03); border-radius: 0.375rem; margin: 0.5rem 0; padding: 0.25rem 0;">
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('admin/seo_settings*') ? 'active' : '' }}" href="{{ route('admin.seo_settings.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-search" style="width: 14px; color: #0d6efd; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">SEO Settings</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'blogmeta' ? 'active' : '' }}" href="{{ route('admin.blogmeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-newspaper-o" style="width: 14px; color: #198754; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Blog Meta</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'contactmeta' ? 'active' : '' }}" href="{{ route('admin.contactmeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-envelope" style="width: 14px; color: #dc3545; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Contact Meta</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'aboutmeta' ? 'active' : '' }}" href="{{ route('admin.aboutmeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-info-circle" style="width: 14px; color: #0dcaf0; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">About Meta</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'servicemeta' ? 'active' : '' }}" href="{{ route('admin.servicemeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-cogs" style="width: 14px; color: #ffc107; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Service Meta</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'whymeta' ? 'active' : '' }}" href="{{ route('admin.whymeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-lightbulb-o" style="width: 14px; color: #fd7e14; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Why Meta</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'gallerymeta' ? 'active' : '' }}" href="{{ route('admin.gallerymeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-image" style="width: 14px; color: #e83e8c; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Gallery Meta</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'careermeta' ? 'active' : '' }}" href="{{ route('admin.careermeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-briefcase" style="width: 14px; color: #20c997; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Career Meta</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'testimonialmeta' ? 'active' : '' }}" href="{{ route('admin.testimonialmeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-star" style="width: 14px; color: #6f42c1; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Testimonial Meta</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item" style="border-top: 1px solid rgba(108, 117, 125, 0.15); margin: 0.5rem 0; padding-top: 0.5rem;">
+                <a class="nav-link {{ Request::segment(2) == 'productonemeta' ? 'active' : '' }}" href="{{ route('admin.productonemeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-cube" style="width: 14px; color: #343a40; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Product One</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'producttwometa' ? 'active' : '' }}" href="{{ route('admin.producttwometa.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-cube" style="width: 14px; color: #495057; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Product Two</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'productthreemeta' ? 'active' : '' }}" href="{{ route('admin.productthreemeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-cube" style="width: 14px; color: #6c757d; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Product Three</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'productfourmeta' ? 'active' : '' }}" href="{{ route('admin.productfourmeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-cube" style="width: 14px; color: #868e96; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Product Four</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'productfivemeta' ? 'active' : '' }}" href="{{ route('admin.productfivemeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-cube" style="width: 14px; color: #adb5bd; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Product Five</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item" style="border-top: 1px solid rgba(108, 117, 125, 0.15); margin: 0.5rem 0; padding-top: 0.5rem;">
+                <a class="nav-link {{ Request::segment(2) == 'singlepagemeta' ? 'active' : '' }}" href="{{ route('admin.singlepagemeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-file-text-o" style="width: 14px; color: #0d6efd; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">Single Page</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'singleblogpagemeta' ? 'active' : '' }}" href="{{ route('admin.singleblogpagemeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-file-text-o" style="width: 14px; color: #20c997; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">single Blog Page</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'singleservicepagemeta' ? 'active' : '' }}" href="{{ route('admin.singleservicepagemeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-file-text-o" style="width: 14px; color: #ffc107; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">single Service Page</span></div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::segment(2) == 'singleproductpagemeta' ? 'active' : '' }}" href="{{ route('admin.singleproductpagemeta.index') }}" style="padding-left: 2rem; font-size: 0.875rem;">
+                    <div class="d-flex align-items-center"><i class="fa fa-file-text-o" style="width: 14px; color: #6f42c1; margin-right: 0.5rem;"></i><span class="nav-link-text" style="padding-left: 0;">single Product Page</span></div>
+                </a>
+            </li>
+        </ul>
     </li>
 @endhasanyrole
 
@@ -806,7 +962,7 @@
 @hasanyrole('superadmin|admin')
     <li class="nav-item">
         <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
-            <div class="col-auto navbar-vertical-label">Section One Picture</div>
+            <div class="col-auto navbar-vertical-label">Section   Picture</div>
             <div class="col ps-0">
                 <hr class="mb-0 navbar-vertical-divider">
             </div>
@@ -823,6 +979,40 @@
             </div>
         </a>
     </li>
+
+
+    
+    <li class="nav-item">
+        <a class="nav-link {{ Request::is('admin/sectiononepicture*') ? 'active' : '' }}"
+           href="{{ route('admin.sectiononepicture.index') }}"
+           aria-current="{{ Request::is('admin/sectiononepicture*') ? 'page' : '' }}">
+            <div class="d-flex align-items-center">
+                <i class="fa fa-angle-double-right"></i>
+                <span class="nav-link-text ps-1">Section two Picture</span>
+            </div>
+        </a>
+    </li>
+        
+    <li class="nav-item">
+        <a class="nav-link {{ Request::is('admin/sectiononepicture*') ? 'active' : '' }}"
+           href="{{ route('admin.sectiononepicture.index') }}"
+           aria-current="{{ Request::is('admin/sectiononepicture*') ? 'page' : '' }}">
+            <div class="d-flex align-items-center">
+                <i class="fa fa-angle-double-right"></i>
+                <span class="nav-link-text ps-1">Section three Picture</span>
+            </div>
+        </a>
+            
+    <li class="nav-item">
+        <a class="nav-link {{ Request::is('admin/sectiononepicture*') ? 'active' : '' }}"
+           href="{{ route('admin.sectiononepicture.index') }}"
+           aria-current="{{ Request::is('admin/sectiononepicture*') ? 'page' : '' }}">
+            <div class="d-flex align-items-center">
+                <i class="fa fa-angle-double-right"></i>
+                <span class="nav-link-text ps-1">Section four Picture</span>
+            </div>
+        </a>
+
 @endhasanyrole
 
 

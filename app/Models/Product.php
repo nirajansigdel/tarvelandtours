@@ -42,4 +42,14 @@ class Product extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    /**
+     * Portable filter for product_types that works on servers without JSON support.
+     * Matches the JSON-encoded text for a given type, e.g. ["Destination","Group"].
+     */
+    public function scopeHasType($query, string $type)
+    {
+        // Use LIKE against the stored JSON string (works if column is JSON or TEXT)
+        return $query->where('product_types', 'LIKE', '%"'.$type.'"%');
+    }
 }

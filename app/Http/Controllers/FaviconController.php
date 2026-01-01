@@ -44,6 +44,12 @@ class FaviconController extends Controller
                 File::makeDirectory($directory, 0755, true, true);
             }
 
+            // Create file subdirectory for manifest
+            $fileDirectory = public_path('uploads/favicon/file/');
+            if (!File::isDirectory($fileDirectory)) {
+                File::makeDirectory($fileDirectory, 0755, true, true);
+            }
+
             if ($request->hasFile('android_chrome_oneninetwo')) {
                 $favIconOneNinetyTwo = time() . '.' . $request->file('android_chrome_oneninetwo')->getClientOriginalExtension();
                 $request->file('android_chrome_oneninetwo')->move($directory, $favIconOneNinetyTwo);
@@ -86,7 +92,7 @@ class FaviconController extends Controller
             }
 
             $postPath = time() . '.' . $request->file('site_webmanifest')->getClientOriginalExtension();
-            $request->file('site_webmanifest')->move(public_path('uploads/favicon/file/'), $postPath);
+            $request->file('site_webmanifest')->move($fileDirectory, $postPath);
 
             $favicon = new Favicon;
             $favicon->android_chrome_oneninetwo = $favIconOneNinetyTwo;
@@ -116,14 +122,13 @@ class FaviconController extends Controller
     {
         // dd($request);
         $this->validate($request, [
-            'android_chrome_oneninetwo' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
-            'android_chrome_fiveonetwo' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
-            'favicon_thirtyTwo' => 'image|mimes:jpg,png,peg,gif,svg,webp|max:2048',
-            'favicon_sixteen' => 'image|mimes:jpg,png,peg,gif,svg,webp|max:2048',
-            // 'favicon_ico' => 'image|mimes:jpg,png,jpeg,gif,svg,ico|max:2048',
-            'favicon_ico' => 'file|mimes:ico|max:2048',
-            'apple_touch_icon' => 'image|mimes:jpg,png,peg,gif,svg,webp|max:2048',
-            'site_webmanifest' => 'required|file|max:4000'
+            'android_chrome_oneninetwo' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
+            'android_chrome_fiveonetwo' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
+            'favicon_thirtyTwo' => 'nullable|image|mimes:jpg,png,peg,gif,svg,webp|max:2048',
+            'favicon_sixteen' => 'nullable|image|mimes:jpg,png,peg,gif,svg,webp|max:2048',
+            'favicon_ico' => 'nullable|file|mimes:ico|max:2048',
+            'apple_touch_icon' => 'nullable|image|mimes:jpg,png,peg,gif,svg,webp|max:2048',
+            'site_webmanifest' => 'nullable|file|max:4000'
         ]);
 
         try {
@@ -133,50 +138,53 @@ class FaviconController extends Controller
                 $favIconOneNinetyTwo = time() . '.' . $request->android_chrome_oneninetwo->extension();
                 $request->android_chrome_oneninetwo->move(public_path('uploads/favicon/'), $favIconOneNinetyTwo);
             } else {
-                $favIconOneNinetyTwo = "NoFile";
+                $favIconOneNinetyTwo = $favicon->android_chrome_oneninetwo;
             }
 
             if ($request->hasFile('android_chrome_fiveonetwo')) {
                 $favIconFiveOneTwo = time() . '.' . $request->android_chrome_fiveonetwo->extension();
                 $request->android_chrome_fiveonetwo->move(public_path('uploads/favicon/'), $favIconFiveOneTwo);
             } else {
-                $favIconFiveOneTwo = "NoFile";
+                $favIconFiveOneTwo = $favicon->android_chrome_fiveonetwo;
             }
 
             if ($request->hasFile('favicon_thirtyTwo')) {
                 $favIconThirtyTwo = time() . '.' . $request->favicon_thirtyTwo->extension();
                 $request->favicon_thirtyTwo->move(public_path('uploads/favicon/'), $favIconThirtyTwo);
             } else {
-                $favIconThirtyTwo = "NoFile";
+                $favIconThirtyTwo = $favicon->favicon_thirtyTwo;
             }
 
             if ($request->hasFile('favicon_sixteen')) {
                 $favIconSixteen = time() . '.' . $request->favicon_sixteen->extension();
                 $request->favicon_sixteen->move(public_path('uploads/favicon/'), $favIconSixteen);
             } else {
-                $favIconSixteen = "NoFile";
+                $favIconSixteen = $favicon->favicon_sixteen;
             }
             if ($request->hasFile('favicon_ico')) {
                 $favIconIco = time() . '.' . $request->favicon_ico->extension();
                 $request->favicon_ico->move(public_path('uploads/favicon/'), $favIconIco);
             } else {
-                $favIconIco = "NoFile";
+                $favIconIco = $favicon->favicon_ico;
             }
 
             if ($request->hasFile('apple_touch_icon')) {
                 $AppleTouchIcon = time() . '.' . $request->apple_touch_icon->extension();
-                // dd($AppleTouchIcon);
                 $request->apple_touch_icon->move(public_path('uploads/favicon/'), $AppleTouchIcon);
-
             } else {
-                $AppleTouchIcon = "NoFile";
+                $AppleTouchIcon = $favicon->apple_touch_icon;
             }
 
             if ($request->hasFile('site_webmanifest')) {
+                // Create directory if it doesn't exist
+                $directory = public_path('uploads/favicon/file/');
+                if (!File::isDirectory($directory)) {
+                    File::makeDirectory($directory, 0755, true, true);
+                }
                 $postPath = time() . '.' . $request->site_webmanifest->extension();
-                $request->site_webmanifest->move(public_path('uploads/favicon/file/'), $postPath);
+                $request->site_webmanifest->move($directory, $postPath);
             } else {
-                $postPath = "NoFile";
+                $postPath = $favicon->site_webmanifest;
             }
 
             // Update the model properties

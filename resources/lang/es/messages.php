@@ -33,6 +33,16 @@ return [
     'generaloffer' => 'Ofertas generales',
     'coupleoffer' => 'Oferta para parejas',
     'groupoffer' => 'Oferta para grupos',
+    
+    
+    'everest'    => 'Trekking al Everest',
+'annapurna'  => 'Trekking al Annapurna',
+'langtang'   => 'Trekking al Langtang',
+'adventure'  => 'Trekking de Aventura',
+'dolpa'      => 'Trekking al Poonhill',
+'activities' => 'Actividades',
+'trekking'   => 'Trekking',
+
 
 
     // Home page specific translations
@@ -42,14 +52,14 @@ return [
     'discover_now' => 'Descubrir Ahora',
 
     // Banner section
-    'map_location' => 'Ubicación del Mapa',
-    'map_location_desc' => 'Explora rutas de trekking impresionantes en Nepal con ubicaciones de mapas detalladas',
-    'traveling_bag' => 'Bolsa de Viaje',
-    'traveling_bag_desc' => 'Empaca inteligente y ligero con la bolsa de viaje perfecta para aventuras.',
+    'map_location' => 'Rutas de Senderismo Impresionantes',
+    'map_location_desc' => 'Explora las rutas de senderismo más impresionantes de Nepal, con mapas detallados y ubicaciones para guiar tu aventura. Desde el Campamento Base del Everest hasta senderos ocultos, descubre viajes fuera de lo común.',
+    'traveling_bag' => 'Equipo de Viaje Inteligente',
+    'traveling_bag_desc' => 'Empaca ligero e inteligentemente para tu aventura en Nepal con la mochila perfecta diseñada para trekking, senderismo y experiencias al aire libre.',
     'photography' => 'Fotografía',
-    'photography_desc' => 'Captura momentos inolvidables de tu aventura en Nepal a través de fotografía impresionante.',
+    'photography_desc' => 'Preserva cada momento de tus tours y trekkings en Nepal con fotografías impresionantes — desde montañas y selvas hasta tesoros culturales.',
     'affordable_prices' => 'Precios Asequibles',
-    'affordable_prices_desc' => 'Disfruta experiencias inolvidables en Nepal con servicio de alta calidad a precios asequibles.',
+    'affordable_prices_desc' => 'Vive viajes inolvidables por Nepal con un servicio de alta calidad a precios accesibles, desde vacaciones familiares hasta trekkings de aventura y tours de un día.',
 
     // Why us section
     'why_choose_us' => 'Por qué elegirnos',
@@ -66,7 +76,7 @@ return [
     // Contact section
     'start_planning' => 'Comienza a Planificar tu Viaje Ahora y',
     'get_discount' => 'Obtén 30% de Descuento',
-    'contact_description' => 'Estamos aquí para asistirte con tus planes de viaje y asegurar que tengas una experiencia inolvidable. ¡Hagamos realidad tu viaje soñado!',
+    'contact_description' => 'Te ayudaremos a diseñar el viaje perfecto y a que cada momento en Nepal sea inolvidable. ¡Convirtamos tu viaje soñado en realidad!',
     'book_now' => 'Reservar Ahora',
 
     // JavaScript alerts
@@ -114,7 +124,7 @@ return [
 
     // Index Service Section
     'our_services' => 'Nuestros Servicios',
-    'join_adventure_stories' => 'Únete a la Aventura con Historias',
+    'join_adventure_stories' => 'Servicios de Trekking y Tours en Nepal – Únete a la Aventura',
     'service_description' => 'Experimenta el viaje de tu vida con la mejor agencia de viajes de Nepal, reconocida por organizar treks en solitario inolvidables y aventuras inmersivas a través del Himalaya.',
     'custom_destinations' => 'Destinos Personalizados',
     'unforgettable_moments' => 'Momentos Inolvidables',
@@ -130,12 +140,13 @@ return [
 
     // What We Do Section
     'what_we_do' => 'Lo Que Hacemos',
-    'exploring_world_limits' => 'Explorando el Mundo Sin Límites',
-    'what_we_do_description' => 'Desde aguas cristalinas hasta aventuras emocionantes, creamos experiencias que te llevan más allá de los límites. Ya sea que busques relajación o emoción, nuestros tours ofrecen recuerdos que duran toda la vida.',
-    'learn_more' => 'Aprender Más',
+    'exploring_world_limits' => 'Descubre las Maravillas de Nepal Sin Límites',
+    'what_we_do_description' => 'Desde majestuosas montañas hasta una vibrante cultura, diseñamos tours y trekkings en Nepal que crean recuerdos inolvidables. Ya sea trekking al Campamento Base del Everest, vacaciones familiares en las montañas y la jungla, o viajes de aventura con rafting y parapente, tu experiencia será extraordinaria.',
+    'learn_more' => 'Saber Más',
+
 
     // Blog Section
-    'collection_blogs' => 'Colección de Blogs',
+    'collection_blogs' => 'Colección de Blogs sobre Trekking y Tours en Nepal',
     'timeless_adventures' => 'Aventuras Atemporales Esperan con Historias Atemporales.',
     'blogs' => 'Blogs',
     'view_details' => 'Ver detalles',
@@ -215,7 +226,7 @@ return [
     'join_adventure_club' => 'Únete a nuestro club de aventuras',
     'travel_assistance' => 'Asistencia y soporte de viaje',
     'travel_internship_programs' => 'Programas de prácticas y carrera en turismo',
-    'sustainable_travel' => 'Iniciativas de turismo sostenible',
+    'sustainable_travel' => 'en español se dice',
     'contact_we' => 'Nos gustaría',
     'contact_love' => '¡conectar contigo!',
     'contact_always' => 'Siempre estamos aquí para apoyarte, guiarte y ayudarte a planificar tu próxima aventura. No dudes en contactarnos.',
@@ -293,13 +304,12 @@ return [
     'festive_message' => 'Haz que esta temporada festiva sea un viaje inolvidable',
     'festival_experience' => 'Vive la vibrante cultura y las celebraciones de nuestros festivales',
     'group_offer' => 'Oferta para grupos',
-'brings' => 'Trae a tus amigos o familiares y disfruta de nuestra oferta especial para grupos',
-'celebrate_togetherness_with_special_deals' => 'Celebra la unión con ofertas especiales',
-'perfect_for_two' => 'Ideal para Dos',
-'discover_amazing_destinations' => 'Descubre destinos increíbles y planifica tu próxima aventura',
-
-
-
+    'brings' => 'Trae a tus amigos o familiares y disfruta de nuestra oferta especial para grupos',
+    'celebrate_togetherness_with_special_deals' => 'Celebra la unión con ofertas especiales',
+    'perfect_for_two' => 'Ideal para Dos',
+    'discover_amazing_destinations' => 'Descubre destinos increíbles y planifica tu próxima aventura',
+    'general_offer' => 'Oferta General',
+    'general_offer_sub' => 'Ofertas de viajes y trekking en Nepal',
 
 
 

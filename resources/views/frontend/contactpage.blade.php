@@ -1,5 +1,13 @@
 @extends('frontend.layouts.master')
 
+
+
+<head>
+    <title>{{ $contactmeta?->title ?? 'Default Title' }}</title>
+    <meta name="description" content="{{ $contactmeta?->description ?? '' }}">
+
+</head>
+
 @section('content')
   <section class="position-relative text-white text-center"
     style="background: url('{{ asset('image/contact.webp') }}') center center / cover no-repeat; height:400px;">
@@ -7,7 +15,7 @@
 
     <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
       <div class="mt-5 pt-5">
-        <h1 class="fw-bold display-4">connect with us</h1>
+        <p class="fw-bold display-4">connect with us</p>
         <p class="mt-2 fs-5">
           <span class="fw-semibold">Home</span>
           <i class="fas fa-angle-double-right mx-2 text-warning"></i>
@@ -16,18 +24,6 @@
       </div>
     </div>
   </section>
-  <style>
-    .text-orange {
-      color: #f26522 !important;
-    }
-
-    .bg-orange {
-      background: #f26522;
-
-    }
-  </style>
-
-
 
   <!-- Hero Contact Section -->
   <section class=" container-fluid py-5 bg-white">
@@ -38,7 +34,7 @@
           <p class="heading  mb-2">{{ __('messages.contact_us') }}</p>
           <h2 class="fw-bold">{{ __('messages.contact_we') }} <span class="text-orange">{{ __('messages.contact_love') }} </span></h2>
           <p class="content-desc">{{ __('messages.contact_always') }}</p>
-          <a href="https://api.whatsapp.com/send?phone=9779851222693"
+          <a href="https://api.whatsapp.com/send?phone=9779808114909"
             class=" btn cta-button px-4 py-3 d-inline-flex align-items-center">
             <i class="bi bi-whatsapp me-2"></i> {{ __('messages.WhatsApp') }}
           </a>
@@ -116,7 +112,7 @@
                 @enderror
               </div>
               <div class="col-md-6">
-                 <input type="tel" name="emai;" class="form-control @error('email') is-invalid @enderror"
+                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                   placeholder="{{ __('messages.Email') }}" value="{{ old('email') }}">
                 @error('email')
                   <div class="invalid-feedback">{{ $message }}</div>

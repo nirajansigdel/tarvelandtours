@@ -1,176 +1,14 @@
 @extends('frontend.layouts.master')
 
+
+<head>
+    <title>{{ $aboutmeta?->title ?? 'Default Title' }}</title>
+    <meta name="description" content="{{ $aboutmeta?->description ?? '' }}">
+
+</head>
+
+
 @section('content')
-
-    <!-- ========================== -->
-    <!-- Inline Styles for this Page -->
-    <!-- ========================== -->
-    <style>
-        /* ========== Global ========== */
-        .highlighted {
-            color: var(--primary);
-            position: relative;
-        }
-
-        .highlighted::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 4px;
-            background: var(--primary);
-            left: 0;
-            bottom: -6px;
-            border-radius: 2px;
-        }
-
-        .tname {
-            font-size: 1.5rem;
-            color: #222;
-            text-transform: capitalize;
-        }
-
-
-
-
-
-
-        /* ========== Mission Section ========== */
-        .mission-card {
-            background-color: #fff;
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            min-height: 30vh;
-        }
-
-        .mission-card:hover {
-            background-color: #f0f8ff;
-            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.1);
-        }
-
-        /* ========== CEO Typing ========== */
-        #typing-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        /* ========== Directors Section ========== */
-        .directors-section {
-            background-color: #f7f9fc;
-        }
-
-        .directors-title {
-            font-size: 2.5rem;
-
-        }
-
-        .directors-description {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #666;
-        }
-
-        .director-card {
-            transition: transform 0.1s ease;
-
-        }
-
-        .director-card:hover {
-            transform: translateY(0px);
-        }
-
-        .director-image-wrapper {
-            position: relative;
-
-
-        }
-
-        .director-image-wrapper img {
-            width: 100%;
-            object-fit: cover;
-            height: 50vh;
-        }
-
-        .badge-custom {
-            position: absolute;
-            padding: 12px;
-            font-size: 0.75rem;
-            border-radius: 20px;
-            animation: popUp 0.6s ease-in-out;
-            width: 150px;
-            height: 5vh;
-        }
-
-        .badge-role {
-            bottom: -10px;
-            left: -10px;
-            background-color: #ffc107;
-            color: #212529;
-            transform: rotate(-5deg);
-        }
-
-        .badge-position {
-            bottom: -10px;
-            right: -10px;
-            background-color: #dc3545;
-            color: white;
-            transform: rotate(5deg);
-        }
-
-        @keyframes popUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* ========== Team Section ========== */
-        .teammember-section {
-            background-color: #f9f9f9;
-            transform: translateY(200px);
-            transition: opacity 1.6s ease-out, transform 1.6s ease-out;
-        }
-
-        .teammember-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-
-
-
-
-
-        .team-card {
-            border: 1px solid #eee;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-details {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .team-details .badge {
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border-radius: 20px;
-        }
-    </style>
 
 
     <!-- ========== Hero Section ========== -->
@@ -199,60 +37,16 @@
                 @foreach ($missionVisionValues as $mvv)
                     <div class="col-md-4 mb-4 ">
                         <div class="mission-card p-4">
-                            <h3 class="mb-3">{{$mvv->heading }}
+                            <h3 class="mb-3">{{$mvv->getTranslated('heading') }}
                             </h3>
-                            <p class="xs-text-des">{{$mvv->description }}</p>
+                            <p class="xs-text-des">{{$mvv->getTranslated('description')}}</p>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
     </section>
-    <style>
-        .section-title {
-            color: #f26522;
-            font-weight: 600;
-        }
 
-        .main-heading {
-            font-weight: 700;
-            font-size: 2.5rem;
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: #f26522;
-            margin-bottom: 10px;
-        }
-
-        .feature-title {
-            font-size: 1.1rem;
-            font-weight: 400;
-            width: 100%;
-        }
-
-
-        .service-img {
-            width: 100%;
-            height: 80vh;
-            object-fit: cover;
-
-        }
-
-        @media (max-width: 768px) {
-            .main-heading {
-                font-size: 2rem;
-            }
-
-            .feature-title {
-                font-size: 1rem;
-            }
-
-            .feature-icon {
-                font-size: 2rem;
-            }
-        }
-    </style>
 
 
     <div class="container py-5">
@@ -338,7 +132,7 @@
 
                         <!-- Hidden Full Message -->
                         <div id="full-content-{{ $index }}" class="xs-text-des" style="display: none;">
-                            {{ $ceoms->message }}
+                            {{ $ceoms->getTranslated('message') }}
                         </div>
                     </div>
 
@@ -375,42 +169,7 @@
     </script>
 
 
-    {{--
-    <section class="aboutherosection py-5 directors-section">
-        <div class="container">
-            <div class="row align-items-center mx-md-5">
-                <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-delay="100">
-                    <h3 class="pt-4 mb-4 fw-bold">CEO Message</h3>
-                    <p id="typing-text"></p>
-                    @foreach ($message as $ceoms )
-                    <div id="full-content" class="xs-text-des">
-                        @if($ceoms->name)
-                        <h5 class="fw-bold mb-2">{{ $ceoms->name }}</h5>
-                        @endif
-                        @if($ceoms->position)
-                        <p class="text-muted mb-2">{{ $ceoms->position }}</p>
-                        @endif
-                        @if($ceoms->companyName)
-                        <p class="text-muted mb-3">{{ $ceoms->companyName }}</p>
-                        @endif
-                        @if($ceoms->message)
-                        <div class="ceo-message">
-                            {{ $ceoms->message }}
-                        </div>
-                        @endif
-                    </div>
-                    <div class="col-md-6 order-md-1 text-center" data-aos="fade-right" data-aos-delay="400">
-                        @if($ceoms->image)
-                        <img src="{{ asset('uploads/message/' . $ceoms->image) }}" alt="CEO Image"
-                            style="max-width: 80%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); height: 400px;">
-                        @endif
-                    </div>
-                    @endforeach
 
-                </div>
-            </div>
-    </section>
-    --}}
     <!-- ========== Directors Section ========== -->
     <section class="container-fluid py-5 bg-soft-blue ">
         <div class="container text-center">
@@ -436,7 +195,7 @@
                             <div class="gradient-box text-black bg-white rounded-3 p-4 mx-auto" style="text-align: left;">
                                 <h5 class="tname fw-bold mb-2 text-capitalize">{{ $team->name }}</h5>
                                 <p class="xs-text-des mb-1 text-left text-capitalize">Board
-                                    Member/{{ $team->position }}/{{ $team->role }}</p>
+                                    Member/{{ $team->getTranslated('position') }}/{{ $team->getTranslated('role') }}</p>
 
                             </div>
                         </div>
@@ -446,64 +205,6 @@
 
         </div>
     </section>
-
-
-    <style>
-        .contactsection {
-            background-image: url("{{ asset('image/destin.jpg') }}");
-            position: relative;
-            background-color: #f8f9fa;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 80vh;
-            overflow: hidden;
-        }
-
-        .text-warning {
-            color: var(--bs-orange) !important;
-            ;
-        }
-
-        /* Remove background & border */
-        .custom-accordion-button {
-            background-color: transparent;
-            box-shadow: none;
-            color: #000;
-            font-weight: 600;
-            padding: 1rem 0;
-            transition: color 0.3s ease;
-        }
-
-        /* Change text color when open */
-        .custom-accordion-button:not(.collapsed) {
-            color: #f7941d;
-
-        }
-
-        /* Replace default caret with plus */
-        .custom-accordion-button::after {
-            content: '+';
-            font-size: 1.5rem;
-            transform: none;
-            background-image: none !important;
-            margin-left: auto;
-            transition: transform 0.3s ease;
-            bottom: none;
-        }
-
-        /* Change plus to minus when expanded */
-        .custom-accordion-button:not(.collapsed)::after {
-            content: '−';
-            /* Unicode minus */
-            color: #f7941d;
-        }
-
-        .addbg {
-            background: var(--white);
-        }
-    </style>
     <section class="container-fluid contactsection position-relative text-white text-center py-5">
         <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.55);"></div>
         <div class="container position-relative z-1 justify-content-center align-items-center d-flex flex-column "
@@ -528,13 +229,13 @@
                                 <button class="accordion-button collapsed custom-accordion-button px-2" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapse{{$index}}" aria-expanded="false"
                                     aria-controls="collapse{{$index}}">
-                                    👉 {{$faq->question}}
+                                    👉 {{$faq->getTranslated('question')}}
                                 </button>
                             </h2>
                             <div id="collapse{{$index}}" class="accordion-collapse collapse" aria-labelledby="heading{{$index}}"
                                 data-bs-parent="#tripAccordion">
                                 <div class="accordion-body text-muted">
-                                    {{ $faq->answer }}
+                                    {{ $faq->getTranslated('answer') }}
                                 </div>
                             </div>
                         </div>

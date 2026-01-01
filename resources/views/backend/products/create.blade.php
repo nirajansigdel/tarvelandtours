@@ -100,27 +100,27 @@
                                 <ul style="list-style-type: none; padding-left: 0;">
                                                                         <li>
                                         <label><input type="checkbox" class="product-type" value="Post"
-                            name="product_types[]">Post</label>
+                            name="product_types[]">Post (activities)</label>
                                     </li>
                                     <li>
                                         <label><input type="checkbox" class="product-type" value="Destination"
-                            name="product_types[]">Destination</label>
+                            name="product_types[]">Everest ( Destination)</label>
                                     </li>
                                     <li>
                                         <label><input type="checkbox" class="product-type" value="General"
-                            name="product_types[]">General</label>
+                            name="product_types[]">Annapurna ( general)</label>
                                     </li>
                                     <li>
                                         <label><input type="checkbox" class="product-type" value="Festival"
-                            name="product_types[]">Festival</label>
+                            name="product_types[]">Langtang ( festival)</label>
                                     </li>
                                     <li>
                                         <label><input type="checkbox" class="product-type" value="Couple"
-                            name="product_types[]">Couple</label>
+                            name="product_types[]">Advanture ( couple)</label>
                                     </li>
                                     <li>
                                         <label><input type="checkbox" class="product-type" value="Group"
-                            name="product_types[]">Group</label>
+                            name="product_types[]">Dolpa ( group)</label>
                                     </li>
 
                                 </ul>

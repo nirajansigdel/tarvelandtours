@@ -34,9 +34,9 @@ class ContactController extends Controller
 
             $contact = new Contact;
             $contact->name = $validated['name'];
-            $contact->email = $validated['email'];
+            $contact->email = $validated['email'] ?? null;
             $contact->phone_no = $validated['phone_no'];
-            $contact->service = $validated['service'];
+            $contact->service = $validated['service'] ?? null;
             $contact->message = $validated['message'];
             $contact->save();
             
